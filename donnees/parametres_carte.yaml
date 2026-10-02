@@ -569,11 +569,13 @@ fleuves:
     # [PROPOSITION] naît au nord de l'Ahaggar, longe le pied sud du Tassili puis traverse le Fezzan
     trace: [[5.7, 24.25], [6.6, 24.55], [7.6, 24.6], [8.6, 24.5], [9.6, 24.35], [10.6, 24.3],
             [11.6, 24.45], [12.3, 24.65], [12.8, 24.75]]
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 3
   - geo_id: GEO_FLV_IMIKHREL
     noms: ["Imikhrel"]
     # [CANON] piémonts O (k'ara occidental / !Okheti), ~800 km, débouché SO de l'Halakhel (Imekh-stom)
     trace: [[4.6, 24.0], [3.9, 24.25], [3.1, 24.5], [2.3, 24.7], [1.6, 24.85], [0.9, 25.0], [0.4, 25.15]]
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 2
   - geo_id: GEO_FLV_EHUKHTAL
     noms: ["Ehukhtal"]
@@ -581,6 +583,7 @@ fleuves:
     # [PROPOSITION] longe le pied nord de halekh, contourne l'Eglab, débouche par le goulet Hlom-khetal
     trace: [[-0.1, 24.5], [-1.0, 24.7], [-2.1, 24.9], [-3.3, 25.15], [-4.5, 25.45], [-5.7, 25.8],
             [-6.8, 26.25], [-7.6, 26.75], [-8.0, 27.2], [-7.8, 27.3]]
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 3
   - geo_id: GEO_FLV_HAWQAL
     noms: ["|Na-khuwel", "Ḥawqal"]
@@ -588,23 +591,27 @@ fleuves:
     trace: [[19.9, 19.7], [20.6, 20.2], [21.3, 20.75], [23.6, 22.15], [24.5, 22.6], [25.3, 23.25],
             [25.9, 24.0], [26.4, 24.75], [26.8, 25.3]]
     traverse_lac: GEO_LAC_AKHTIR
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 3
   - geo_id: GEO_FLV_HAWQAL_RA
     noms: ["|Na-khuwel-ra"]
     # [CANON] affluent méridional à bras multiples
     trace: [[22.4, 17.7], [22.6, 18.7], [22.7, 19.6], [22.75, 20.45]]
     bras: [[[22.6, 18.7], [23.2, 19.4], [23.4, 20.2], [23.3, 20.8]]]
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 2
   - geo_id: GEO_FLV_HAWQAL_IN
     noms: ["|Na-khuwel-ɨn"]
     # [CANON] affluent oriental
     trace: [[27.0, 21.4], [26.7, 22.2], [26.2, 23.0], [25.8, 23.7]]
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 2
   - geo_id: GEO_FLV_EMISSAIRE_MOPAMA
     noms: [null]                     # [CANON] nom : [LACUNE]
     # [CANON] ~600 km, navigable, vers l'Atlantique (Ku-jálima-rir), delta à mangroves (GEO_DLT_MOPAMA)
     # [PROPOSITION] franchit Mù-wúlè en gorges, gagne la côte par les bas-pays du Mono
     trace: [[5.0, 9.45], [4.4, 9.0], [3.8, 8.4], [3.0, 7.8], [2.3, 7.25], [1.7, 6.7], [1.25, 6.2], [0.95, 5.85]]
+    suivre_relief: true            # v0.3.2 : tracé de moindre coût le long des vallées, dans un couloir autour du tracé indicatif
     largeur: 3
 
 deltas:

@@ -1,6 +1,6 @@
 # Le Beliet — carte physique
 
-Carte topographique et des milieux (biomes) du Beliet, version 0.3.1.
+Carte topographique et des milieux (biomes) du Beliet, version 0.3.2.
 
 ![Carte des milieux](carte/beliet_carte_milieux.png)
 
@@ -11,6 +11,7 @@ Carte topographique et des milieux (biomes) du Beliet, version 0.3.1.
 | `carte/beliet_carte_milieux.png` | carte des milieux + relief ombré + hydrographie + noms (5 020 × 2 881 px) | regarder, imprimer, partager |
 | `carte/beliet_carte_relief.png` | même carte, teintes d'altitude à la place des milieux | regarder le relief |
 | `carte/beliet_carte.svg` | carte complète **en calques** (Inkscape) | retoucher à la main, ajouter des villes |
+| `carte/beliet_carte_ascii.md` | **carte texte** : relief, eaux, milieux, cols, répertoire des lieux avec coordonnées | corpus, agents, usages sans image |
 | `carte/sig/` | données géographiques (GeoJSON, GeoTIFF, cartes d'altitude) | outils SIG (QGIS), Azgaar, futures cartes interactives |
 | `donnees/parametres_carte.yaml` | **toutes les décisions de placement** (chaînes, mer, lacs, fleuves, climat) | modifier la géographie |
 | `donnees/cols.yaml` | positions calculées des **48 cols** (altitudes du registre) | modifier ou recalculer les cols |
@@ -73,9 +74,10 @@ python3 outils/generer_carte.py              # complet, ~9 min
 python3 outils/generer_carte.py --reprendre  # réutilise le relief si seuls le climat, les milieux ou l'habillage changent
 python3 outils/placer_cols.py                # recalcule les positions des 48 cols (après une génération)
 python3 outils/mesures_corpus.py             # met à jour ALIGNEMENT_CORPUS.md §8 et carte/sig/beliet_mesures.json
+python3 outils/carte_ascii.py                # régénère la carte texte (après mesures_corpus.py)
 ```
 
-Après un changement de relief, relancez dans l'ordre : `generer_carte.py`, `placer_cols.py` (si les chaînes ont bougé), de nouveau `generer_carte.py`, puis `mesures_corpus.py`.
+Après un changement de relief, relancez dans l'ordre : `generer_carte.py`, `placer_cols.py` (si les chaînes ont bougé), de nouveau `generer_carte.py`, puis `mesures_corpus.py` et `carte_ascii.py`.
 
 Le programme télécharge les tuiles d'altitude et les tracés fluviaux réels au premier lancement. Il les garde ensuite dans `outils/cache/` (fichiers non versionnés).
 

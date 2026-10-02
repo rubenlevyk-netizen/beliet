@@ -1,4 +1,4 @@
-# Analyse de cohérence — carte du Beliet v0.3.1
+# Analyse de cohérence — carte du Beliet v0.3.2
 
 Sources croisées :
 - `references/GEOSYSTEME_GLOBAL_DU_BELIET_v3.1.md` (GEO) et `GEOSYSTEME_REGISTRE.v1.json` ;
@@ -10,6 +10,13 @@ Sources croisées :
 L'illustration `TEST_Beliet_MAP.png` n'est **pas** utilisée. Aucun fichier du corpus ne donne de coordonnées : toutes les positions sont des [PROPOSITION] déduites des relations de voisinage croisées ci-dessous.
 
 ## 0. Changements
+
+### v0.3.2
+
+| Point | v0.3.1 | v0.3.2 | Fondement |
+|---|---|---|---|
+| Ehukhtal, Imikhrel, Madīlan, Ḥawqal et ses affluents, émissaire du Mopámà | tracés dessinés, presque rectilignes | tracés de moindre coût : le fleuve suit les fonds de vallée du relief, dans un couloir de ~110 km autour du tracé indicatif ; grandes inflexions puis méandres | demande de l'auteur ; source et embouchure inchangées (canon) |
+| Carte texte | — | `carte/beliet_carte_ascii.md` : relief et eaux, milieux, répertoire des lieux, 48 cols | demande de l'auteur |
 
 ### v0.3.1 (retours de l'auteur sur la v0.3)
 
@@ -96,20 +103,21 @@ Quatre contraintes ne tiennent pas ensemble :
 - interfluve de ~300 km jusqu'à l'Abnuḥīl (§V.2) ;
 - 1 350 000 km².
 
-**Choix v0.3 :** la superficie, l'ancrage NO et l'interfluve priment. La mer mesure ~3 500 km d'ouest en est. Sa largeur varie : ~350 km à l'ouest, 250 km aux étranglements, 450 km au centre, 650 km à l'est. Superficie obtenue : **1,28 M km²** (v0.3.1).
+**Choix v0.3 :** la superficie, l'ancrage NO et l'interfluve priment. La mer mesure 3 640 km d'ouest en est. Sa largeur varie de 110 km (goulet ouest) à 890 km (bassin oriental) : ~350 km à l'ouest, 200-300 km aux étranglements, ~400 km au centre, 550-650 km à l'est. Superficie obtenue : **1,28 M km²**.
 
 Conséquences :
-- **Portage vers l'Atlantique** : l'extrémité ouest est à ~350 km de la côte (Tan-Tan, Sidi Ifni). « 3 jours » reste trop court ; un portage d'une à deux semaines par le Sas terrestre (Stakhr-Durek, oasis de Hloran-rir) est cohérent.
-- **Portage vers la Méditerranée (5 jours)** : possible au nord du bassin oriental, où le Sumdan ne mesure que 130 à 250 km (golfe de Syrte).
-- **Région NO** : de l'Atlantique à la mer, ~750 000 km² (850 000 au corpus).
+- **Portage vers l'Atlantique** : le plus court portage mesure 270 km (rive NO → côte d'Agadir). « 3 jours » reste trop court ; 8 à 10 jours par le Sas terrestre (Stakhr-Durek, oasis de Hloran-rir) sont cohérents.
+- **Portage vers la Méditerranée (5 jours)** : possible au nord du bassin oriental, où le Sumdan ne mesure que 130 à 200 km (golfe de Syrte, Marmarique).
+- **Région NO** : de l'Atlantique à la mer, ~750 000 km² estimés (850 000 au corpus).
+- **Caravanes vers la mer Rouge (8 jours)** : 370 km au plus court ; cohérent.
 
 ### 3.2 Longueurs de la cordillère
 
 | Chaîne | Corpus | Carte |
 |---|---|---|
-| halekh | 1 200 km | ~1 500 km |
+| halekh | 1 200 km | ~1 800 km (jusqu'à la côte mauritanienne) |
 | k'ara | 2 100 km | ~2 900 km, plus ~1 450 km de « continuité montagnarde » vers qoyra |
-| lóngò | 1 800 km | ~1 650 km |
+| lóngò | 1 800 km | ~1 740 km, plus trois contreforts |
 | qoyra | 1 400 km | ~2 000 km (plateaux réels) |
 
 Le contour réel est plus large que le continent du corpus (§1). Les chaînes s'allongent d'autant.
@@ -118,11 +126,11 @@ Le contour réel est plus large que le continent du corpus (§1). Les chaînes s
 
 | Fleuve | Corpus | Carte (avec méandres) |
 |---|---|---|
-| Ehukhtal | ~1 100 km | ~950 km |
-| Imikhrel | ~800 km | ~500 km |
+| Ehukhtal | ~1 100 km | ~920 km |
+| Imikhrel | ~800 km | ~540 km |
 | \|Na-madikh / Madīlan | ~1 400 km | ~1 000 km avec la ria |
 | Émissaire du Mopámà | ~600 km | ~650 km |
-| \|Na-khuwel / Ḥawqal | — | ~1 050 km |
+| \|Na-khuwel / Ḥawqal | — | ~1 090 km |
 
 L'Imikhrel reste court : ses « piémonts O » sont pris entre !Okheti et la rive sud. Pour l'allonger, il faudrait faire naître le fleuve plus à l'est, sur l'Ahaggar.
 

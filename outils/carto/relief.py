@@ -408,7 +408,10 @@ class Relief:
                                 lignes.append(("reel", m))
                         i = j
             if "trace" in f:
-                lignes.append(("trace", np.array(lisser_polyligne(np.array(f["trace"]), sous=6))))
+                if f.get("suivre_relief"):
+                    lignes.append(("trace", self._chemin_relief(f)))
+                else:
+                    lignes.append(("trace", np.array(lisser_polyligne(np.array(f["trace"]), sous=6))))
             for b in f.get("bras", []):
                 lignes.append(("trace", np.array(lisser_polyligne(np.array(b), sous=6))))
             # orientation : la source est l'extrémité la plus haute (relief réel)
@@ -422,6 +425,95 @@ class Relief:
                 orient.append(c if z[0] >= z[-1] else c[::-1])
             out.append(dict(cfg=f, lignes=orient))
         self.fleuves = out
+
+    def _chemin_relief(self, f):
+        """Tracé de moindre coût de la source à l'embouchure : le fleuve suit les fonds de vallée du
+        relief, dans un couloir autour du tracé indicatif des paramètres (qui porte les choix du corpus)."""
+        from scipy.ndimage import maximum_filter, minimum_filter
+        from scipy.sparse import coo_matrix
+        from scipy.sparse.csgraph import dijkstra
+        g = self.g
+        k = 2                                          # pas de calcul : 2 px (~3,5 km)
+        guide = np.array(lisser_polyligne(np.array(f["trace"]), sous=6))
+        couloir = f.get("couloir_km", 110)
+        x, y = g.px(guide[:, 0], guide[:, 1])
+        marge = (couloir * 1.6) / g.km_px_eq
+        x0, x1 = int(max(0, x.min() - marge)), int(min(g.W, x.max() + marge))
+        y0, y1 = int(max(0, y.min() - marge)), int(min(g.H, y.max() + marge))
+        h = gaussian_filter(self.h[y0:y1, x0:x1], 1.5)[::k, ::k]
+        H, W = h.shape
+        km_c = g.km_px[y0:y1:k][:, None] * k * np.ones((1, W))
+        n40 = max(3, int(40 / (g.km_px_eq * k)))
+        lo, hi = minimum_filter(h, n40), maximum_filter(h, n40)
+        vallee = (h - lo) / (hi - lo + 80)             # 0 au fond des vallées, 1 sur les crêtes
+        # distance au tracé indicatif
+        gx = (x - x0) / k; gy = (y - y0) / k
+        yy, xx = np.mgrid[0:H, 0:W]
+        dmin = np.full((H, W), 1e9)
+        for i in range(len(gx) - 1):
+            ax, ay, bx, by = gx[i], gy[i], gx[i + 1], gy[i + 1]
+            vx, vy = bx - ax, by - ay
+            t = np.clip(((xx - ax) * vx + (yy - ay) * vy) / (vx * vx + vy * vy + 1e-9), 0, 1)
+            dmin = np.minimum(dmin, np.hypot(xx - ax - t * vx, yy - ay - t * vy))
+        d_km = dmin * km_c
+        eau = (self.mer | (self.lac > 0))[y0:y1:k, x0:x1:k]
+        if f.get("traverse_lac"):
+            eau = self.mer[y0:y1:k, x0:x1:k]
+        dst = (int(round(gy[-1])), int(round(gx[-1])))
+        pres_bout = np.hypot(yy - dst[0], xx - dst[1]) * km_c < 25
+        # grandes inflexions : points de passage décalés de part et d'autre du tracé indicatif (~tous les 170 km)
+        seg = np.hypot(np.diff(gx), np.diff(gy)) * km_c[np.clip(gy[:-1].astype(int), 0, H - 1), 0]
+        Ls = np.r_[0, np.cumsum(seg)]
+        n_pp = int(Ls[-1] // 170)
+        etapes = [(gy[0], gx[0])]
+        rng_pp = np.random.default_rng(self.graine + 800 + sum(map(ord, f["geo_id"] or "")))
+        signe = rng_pp.choice([-1, 1])
+        for j in range(1, n_pp + 1):
+            sj = Ls[-1] * j / (n_pp + 1)
+            px_ = np.interp(sj, Ls, gx); py_ = np.interp(sj, Ls, gy)
+            tx = np.interp(sj + 1, Ls, gx) - np.interp(sj - 1, Ls, gx)
+            ty = np.interp(sj + 1, Ls, gy) - np.interp(sj - 1, Ls, gy)
+            nn = np.hypot(tx, ty) + 1e-9
+            dkm = signe * couloir * rng_pp.uniform(0.12, 0.3)
+            signe = -signe if rng_pp.random() < 0.8 else signe
+            kc = km_c[int(np.clip(py_, 0, H - 1)), 0]
+            etapes.append((py_ + tx / nn * dkm / kc, px_ - ty / nn * dkm / kc))
+        etapes.append((gy[-1], gx[-1]))
+        etapes = [(int(np.clip(round(a), 0, H - 1)), int(np.clip(round(b_), 0, W - 1))) for a, b_ in etapes]
+        # micro-relief des plaines (non résolu par le relief réel) : sans lui, un glacis plat donne une ligne droite
+        rng = np.random.default_rng(self.graine + 700 + sum(map(ord, f["geo_id"] or "")))
+        mr = gaussian_filter(rng.standard_normal((H, W)), 30 / (g.km_px_eq * k))
+        mr = gaussian_filter(rng.standard_normal((H, W)), 9 / (g.km_px_eq * k)) * 0.4 + mr / (mr.std() + 1e-9)
+        mr = (mr - mr.min()) / (mr.max() - mr.min() + 1e-9)
+        cout = (1 + 9 * vallee + 9 * mr ** 1.5 + (np.maximum(0, d_km - 0.45 * couloir) / (0.35 * couloir)) ** 2
+                + np.where(eau & ~pres_bout, 60, 0)).astype(np.float64)
+        idx = np.arange(H * W).reshape(H, W)
+        lignes, cols, poids = [], [], []
+        # 16 voisins (pas de cavalier compris) : pas de lignes droites imposées par la grille
+        for dy, dx in ((0, 1), (1, 0), (1, 1), (1, -1), (1, 2), (2, 1), (1, -2), (2, -1)):
+            a = idx[0:H - dy, max(0, -dx):W - max(0, dx)]
+            b = idx[dy:H, max(0, dx):W + min(0, dx) if dx < 0 else W]
+            ca = cout.ravel()[a.ravel()]; cb = cout.ravel()[b.ravel()]
+            l = np.hypot(dy, dx) * km_c.ravel()[a.ravel()]
+            w = 0.5 * (ca + cb) * l
+            lignes += [a.ravel(), b.ravel()]; cols += [b.ravel(), a.ravel()]; poids += [w, w]
+        M = coo_matrix((np.concatenate(poids), (np.concatenate(lignes), np.concatenate(cols))), shape=(H * W, H * W)).tocsr()
+        chemin = []
+        for (sa, sb), (ta, tb) in zip(etapes[:-1], etapes[1:]):
+            _, pred = dijkstra(M, indices=idx[sa, sb], return_predecessors=True)
+            morceau = [idx[ta, tb]]
+            while morceau[-1] != idx[sa, sb] and pred[morceau[-1]] >= 0:
+                morceau.append(pred[morceau[-1]])
+            chemin += morceau[::-1][1 if chemin else 0:]
+        chemin = np.array(chemin)
+        py, px_ = np.divmod(chemin, W)
+        from scipy.ndimage import gaussian_filter1d
+        PX = gaussian_filter1d(px_.astype(float), 5.0, mode="nearest") * k + x0
+        PY = gaussian_filter1d(py.astype(float), 5.0, mode="nearest") * k + y0
+        lon, lat = g.ll(PX + 0.5, PY + 0.5)
+        c = np.c_[lon, lat]
+        c[0] = guide[0]; c[-1] = guide[-1]
+        return c[::2] if len(c) > 40 else c
 
     def _meandres(self, c, k):
         g = self.g

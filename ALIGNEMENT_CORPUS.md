@@ -13,7 +13,8 @@ Ce document recense tout ce que le chantier de carte a **décidé, mesuré, ajou
   1. `carte/sig/beliet_mesures.json` : mesures, positions et cols, lisibles par machine ; régénéré par `python3 outils/mesures_corpus.py`.
   2. `donnees/parametres_carte.yaml` et `donnees/cols.yaml` : décisions de placement.
   3. `carte/sig/beliet_geographie.geojson` : géométries (rivage réel de la mer, lacs, crêtes, fleuves, cols).
-- **Version de référence** : carte v0.3.1. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
+- **Version de référence** : carte v0.3.2. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
+- **Carte texte** : `carte/beliet_carte_ascii.md` (relief, eaux, milieux, répertoire des lieux, cols ; une case = 0,5° × 0,5°).
 
 ---
 
@@ -59,7 +60,7 @@ Les noms ci-dessous sont des **noms de travail** (géographie réelle ou descrip
 
 ## 3. Corrections de valeurs canoniques (remesurées)
 
-Les valeurs « carte » sont mesurées sur la carte v0.3.1 (tables complètes en §8).
+Les valeurs « carte » sont mesurées sur la carte v0.3.2 (tables complètes en §8).
 
 | ID | Objet | Corpus | Carte | Action proposée |
 |---|---|---|---|---|
@@ -76,10 +77,10 @@ Les valeurs « carte » sont mesurées sur la carte v0.3.1 (tables complètes en
 | ALN-040 | Longueur de lóngò | ~1 800 km | 1 736 km, plus trois contreforts (259, 392, 324 km) | conserver |
 | ALN-041 | Longueur de qoyra | ~1 400 km | 2 020 km (plateaux réels) | remplacer |
 | ALN-042 | Chaîne côtière septentrionale | ~1 200 km | 2 622 km (Tunisie → delta) | remplacer |
-| ALN-043 | Ehukhtal | ~1 100 km | 954 km | conserver |
-| ALN-044 | Imikhrel | ~800 km | 477 km | remplacer, ou repousser ses sources sur l'Ahaggar |
-| ALN-045 | \|Na-madikh / Madīlan | ~1 400 km | 791 km de fleuve + ~200 km de ria Tawālmaz | remplacer (~1 000 km) |
-| ALN-046 | Émissaire du Mopámà | ~600 km | 642 km | conserver |
+| ALN-043 | Ehukhtal | ~1 100 km | 918 km (cours calculé le long des vallées) | conserver |
+| ALN-044 | Imikhrel | ~800 km | 536 km | remplacer, ou repousser ses sources sur l'Ahaggar |
+| ALN-045 | \|Na-madikh / Madīlan | ~1 400 km | 808 km de fleuve + ~200 km de ria Tawālmaz | remplacer (~1 000 km) |
+| ALN-046 | Émissaire du Mopámà | ~600 km | 653 km | conserver |
 | ALN-047 | Tira-qoyra / Abnuḥīl | ~6 800 km ; bassin 3,2 M km² | ~3 600 km dans le Beliet | annoter : 6 800 km suppose des sources hors Beliet |
 | ALN-048 | Superficie totale du Beliet | ~15 000 000 km² | 17,6 M km² de terres (zone estompée pondérée), plus 1,28 M km² de mer | remplacer |
 | ALN-049 | Extension E-O / N-S | 6 800 km / 5 200 km | 7 380 km / 4 320 km (contour réel) | remplacer |
@@ -94,7 +95,7 @@ Les valeurs « carte » sont mesurées sur la carte v0.3.1 (tables complètes en
 
 Segments de rivage recommandés pour placer les lieux de LIEUX, déduits des suffixes `_NO` / `_N` / `_NE` et des routes.
 
-| Façade | Segment de rivage (carte v0.3.1) | Lieux du corpus | Remarques |
+| Façade | Segment de rivage (carte v0.3.2) | Lieux du corpus | Remarques |
 |---|---|---|---|
 | HKL_O | goulet Hlom-khetal, extrémité ouest (-7,9 à -6,5° E ; 27,2-27,8° N) | Hlom-khetal | estuaire de l'Ehukhtal ; Akhidalet en amont (-8,2° ; 27,0°) |
 | HKL_NO | rive nord du bassin occidental, de -6,5° à -2,0° E (28,3-29,7° N) ; rias | Akhidalet, Kralekh-Aktrik, Aktrik-khem | point de départ du portage RT_027 vers Khloreth-klam : rive NO la plus proche de l'Atlantique |
@@ -165,7 +166,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 
 ## 7. Historique des positions (versions caduques à ne pas reporter)
 
-| Élément | v0.1 | v0.2 (abandonnée) | v0.3 | v0.3.1 (référence) |
+| Élément | v0.1 | v0.2 (abandonnée) | v0.3 | v0.3.1 et v0.3.2 (référence) |
 |---|---|---|---|---|
 | Halakhel | 6-28° E, 23,5-31,5° N, bras des chotts | -11,5-28° E, bande coupée en deux | -8-28,5° E, d'un seul tenant | idem v0.3 |
 | Tùmázì | Sudd (26,4-32,1° E) | cuvette du Tchad | Sudd | 22,0-27,7° E |
@@ -173,6 +174,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 | Ku-jálima-rir / Jálondù | baie du Bénin | Guinée-Bissau | golfe de Guinée O / côte du Ghana | idem |
 | Cordillère | sur massifs réels | arc rectiligne 20-21° N | massifs réels, abaissée à l'ouest | + socles, lóngò arqué, contreforts |
 | Cols | absents | absents | absents | 48 placés |
+| Fleuves dessinés | tracés droits | tracés droits | tracés droits | v0.3.2 : cours calculés le long des vallées (même source, même embouchure) |
 
 ---
 
@@ -180,7 +182,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 
 <!-- MESURES:DEBUT — section régénérée par outils/mesures_corpus.py ; ne pas éditer à la main -->
 
-### Mesures de la carte v0.3.1
+### Mesures de la carte v0.3.2
 
 Toutes les valeurs sont mesurées sur la carte générée. Fichier complet : `carte/sig/beliet_mesures.json`.
 
@@ -254,7 +256,7 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 |---|---|---|---|---|
 | \|\|Urumati-halekh | 1797 km | 4350 m à [-6.54, 22.39] | 1940 m | [-16.3, 20.0] → [0.6, 23.75] |
 | !Okheti | 190 km | 3454 m à [0.38, 23.39] | 1706 m | [0.0, 24.45] → [1.2, 23.15] |
-| \|\|Urumati-k'ara | 2881 km | 5350 m à [17.81, 20.33] | 2328 m | [0.6, 23.75] → [24.4, 13.3] |
+| \|\|Urumati-k'ara | 2881 km | 5350 m à [17.81, 20.33] | 2326 m | [0.6, 23.75] → [24.4, 13.3] |
 | GEO_ORO_URUMATI_KARA (segment 24.4, 13.3) | 1444 km | 3285 m à [23.34, 14.37] | 1700 m | [24.4, 13.3] → [36.6, 8.7] |
 | \|\|Urumati-lóngò | 1736 km | 3454 m à [0.38, 23.39] | 1554 m | [0.9, 23.6] → [9.2, 10.2] |
 | GEO_ORO_URUMATI_LONGO (segment 5.6, 16.6) | 392 km | 2056 m à [5.6, 16.59] | 1208 m | [5.6, 16.6] → [8.4, 18.9] |
@@ -270,18 +272,18 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 
 | Fleuve | Longueur dessinée | Amont | Aval |
 |---|---|---|---|
-| Tira-ñara / Tanāḥil (`GEO_FLV_TANAHIL`) | 1755 km | [37.39, 11.63] | [37.11, 11.86] |
-| Buhlela (`GEO_FLV_BUHLELA`) | 1135 km | [35.58, 16.0] | [35.59, 16.0] |
-| Tira-qoyra / Abnuḥīl (`GEO_FLV_ABNUHIL`) | 2446 km | [33.69, 18.49] | [33.69, 18.49] |
-| Šafāqil (`GEO_FLV_ABNUHIL_SAFAQIL`) | 768 km | [31.15, 30.18] | [31.15, 30.18] |
+| Tira-ñara / Tanāḥil (`GEO_FLV_TANAHIL`) | 1755 km | [37.18, 11.04] | [32.49, 15.63] |
+| Buhlela (`GEO_FLV_BUHLELA`) | 1135 km | [39.27, 11.97] | [33.98, 17.67] |
+| Tira-qoyra / Abnuḥīl (`GEO_FLV_ABNUHIL`) | 2446 km | [32.49, 15.63] | [30.86, 27.6] |
+| Šafāqil (`GEO_FLV_ABNUHIL_SAFAQIL`) | 768 km | [30.88, 27.63] | [30.4, 31.44] |
 | Abnīqa (`GEO_FLV_ABNUHIL_ABNIQA`) | 262 km | [30.78, 27.6] | [28.3, 27.6] |
-| \|Na-madikh / Madīlan (`GEO_FLV_MADIKH`) | 791 km | [5.7, 24.25] | [12.8, 24.75] |
-| Imikhrel (`GEO_FLV_IMIKHREL`) | 477 km | [4.6, 24.0] | [0.4, 25.15] |
-| Ehukhtal (`GEO_FLV_EHUKHTAL`) | 954 km | [-0.1, 24.5] | [-7.8, 27.3] |
-| \|Na-khuwel / Ḥawqal (`GEO_FLV_HAWQAL`) | 1033 km | [19.9, 19.7] | [26.8, 25.3] |
-| \|Na-khuwel-ra (`GEO_FLV_HAWQAL_RA`) | 611 km | [22.4, 17.7] | [23.3, 20.8] |
-| \|Na-khuwel-ɨn (`GEO_FLV_HAWQAL_IN`) | 301 km | [27.0, 21.4] | [25.8, 23.7] |
-| GEO_FLV_EMISSAIRE_MOPAMA (`GEO_FLV_EMISSAIRE_MOPAMA`) | 642 km | [5.0, 9.45] | [0.95, 5.85] |
+| \|Na-madikh / Madīlan (`GEO_FLV_MADIKH`) | 808 km | [5.7, 24.25] | [12.8, 24.75] |
+| Imikhrel (`GEO_FLV_IMIKHREL`) | 536 km | [4.6, 24.0] | [0.49, 25.15] |
+| Ehukhtal (`GEO_FLV_EHUKHTAL`) | 918 km | [-0.1, 24.5] | [-7.69, 27.22] |
+| \|Na-khuwel / Ḥawqal (`GEO_FLV_HAWQAL`) | 1087 km | [19.9, 19.7] | [26.72, 25.2] |
+| \|Na-khuwel-ra (`GEO_FLV_HAWQAL_RA`) | 635 km | [22.4, 17.7] | [23.3, 20.8] |
+| \|Na-khuwel-ɨn (`GEO_FLV_HAWQAL_IN`) | 292 km | [27.0, 21.4] | [25.93, 23.62] |
+| GEO_FLV_EMISSAIRE_MOPAMA (`GEO_FLV_EMISSAIRE_MOPAMA`) | 653 km | [5.0, 9.45] | [0.98, 5.93] |
 
 #### Distances
 
@@ -339,13 +341,13 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 | côte Mer Rouge | [37.5, 19.0] | 80 mm | 79 mm |
 | Akhtir | [22.6, 21.3] | 750 mm | 630 mm |
 | côte océan de l'Est | [47.0, 5.0] | 550 mm | 574 mm |
-| versant sud de k'ara (humide) | [19.5, 17.6] | 1000 mm | 766 mm |
+| versant sud de k'ara (humide) | [19.5, 17.6] | 1000 mm | 768 mm |
 | versant sud de k'ara, Ennedi | [23.0, 14.5] | 900 mm | 904 mm |
 | piémont nord de k'ara (200-600) | [11.0, 23.9] | 280 mm | 273 mm |
 | rive nord de l'Halakhel (Sumdan) | [8.0, 30.3] | 90 mm | 77 mm |
 | rive sud de l'Halakhel (désertique) | [20.5, 23.1] | 110 mm | 142 mm |
 | versant atlantique de halekh | [-12.0, 20.6] | 750 mm | 747 mm |
-| versant SO de lóngò (humide) | [2.6, 19.2] | 900 mm | 932 mm |
+| versant SO de lóngò (humide) | [2.6, 19.2] | 900 mm | 933 mm |
 | versant NE de lóngò (semi-aride) | [7.4, 17.6] | 420 mm | 397 mm |
 | façade méditerranéenne NE | [29.5, 30.95] | 400 mm | 400 mm |
 | piémonts SE (semi-arides) | [43.5, 7.0] | 320 mm | 433 mm |
@@ -362,26 +364,26 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 
 | Milieu | Surface |
 |---|---|
-| `steppe_piemont` | 5 403 933 km² |
-| `foret_tropicale_humide` | 3 605 159 km² |
-| `herbage_arbore` | 3 215 814 km² |
-| `desert_pierreux` | 2 762 667 km² |
-| `foret_montagne` | 840 319 km² |
-| `fourre_cotier_sec` | 448 575 km² |
-| `prairie_altitude` | 330 004 km² |
-| `desert_sableux` | 271 634 km² |
-| `depression_saline` | 188 728 km² |
-| `foret_berge` | 178 950 km² |
-| `plaine_alluviale` | 166 774 km² |
+| `steppe_piemont` | 5 402 404 km² |
+| `foret_tropicale_humide` | 3 610 476 km² |
+| `herbage_arbore` | 3 214 338 km² |
+| `desert_pierreux` | 2 758 736 km² |
+| `foret_montagne` | 840 966 km² |
+| `fourre_cotier_sec` | 448 558 km² |
+| `prairie_altitude` | 329 701 km² |
+| `desert_sableux` | 272 234 km² |
+| `depression_saline` | 186 712 km² |
+| `foret_berge` | 179 242 km² |
+| `plaine_alluviale` | 169 062 km² |
 | `eaux_lacustres` | 165 502 km² |
-| `zone_humide_lacustre` | 65 780 km² |
-| `recif_corallien` | 39 467 km² |
-| `foret_maree` | 29 362 km² |
-| `cote_desertique` | 25 893 km² |
-| `ile_aride` | 25 228 km² |
-| `zone_periglaciaire` | 24 789 km² |
-| `littoral_rocheux` | 12 546 km² |
-| `oasis` | 7 035 km² |
+| `zone_humide_lacustre` | 65 894 km² |
+| `recif_corallien` | 39 473 km² |
+| `foret_maree` | 29 357 km² |
+| `cote_desertique` | 25 913 km² |
+| `ile_aride` | 25 231 km² |
+| `zone_periglaciaire` | 24 504 km² |
+| `littoral_rocheux` | 12 539 km² |
+| `oasis` | 7 316 km² |
 | `glacier` | 2 078 km² |
 | `dunes_littorales` | 203 km² |
 
@@ -497,13 +499,13 @@ Coordonnées [longitude, latitude] en degrés décimaux WGS84. Liste complète e
 | `GEO_FLV_ABNUHIL` | Tira-qoyra / Abnuḥīl | tracé réel Natural Earth | ["Nile"] |  |
 | `GEO_FLV_ABNUHIL_SAFAQIL` | Šafāqil | tracé réel Natural Earth | ["Nile", "Rosetta Branch", "Damietta Branch"] |  |
 | `GEO_FLV_ABNUHIL_ABNIQA` | Abnīqa | tracé amont → aval | [[30.78, 27.6], [30.2, 27.66], [29.6, 27.64], [29.0, 27.6], [28.55, 27.6], [28.3, 27.6]] |  |
-| `GEO_FLV_MADIKH` | \|Na-madikh / Madīlan | tracé amont → aval | [[5.7, 24.25], [6.6, 24.55], [7.6, 24.6], [8.6, 24.5], [9.6, 24.35], [10.6, 24.3], [11.6, 24.45], [12.3, 24.65], [12.8, 24.75]] |  |
-| `GEO_FLV_IMIKHREL` | Imikhrel | tracé amont → aval | [[4.6, 24.0], [3.9, 24.25], [3.1, 24.5], [2.3, 24.7], [1.6, 24.85], [0.9, 25.0], [0.4, 25.15]] |  |
-| `GEO_FLV_EHUKHTAL` | Ehukhtal | tracé amont → aval | [[-0.1, 24.5], [-1.0, 24.7], [-2.1, 24.9], [-3.3, 25.15], [-4.5, 25.45], [-5.7, 25.8], [-6.8, 26.25], [-7.6, 26.75], [-8.0, 27.2], [-7.8, 27.3]] |  |
-| `GEO_FLV_HAWQAL` | \|Na-khuwel / Ḥawqal | tracé amont → aval | [[19.9, 19.7], [20.6, 20.2], [21.3, 20.75], [23.6, 22.15], [24.5, 22.6], [25.3, 23.25], [25.9, 24.0], [26.4, 24.75], [26.8, 25.3]] |  |
-| `GEO_FLV_HAWQAL_RA` | \|Na-khuwel-ra | tracé amont → aval | [[22.4, 17.7], [22.6, 18.7], [22.7, 19.6], [22.75, 20.45]] |  |
-| `GEO_FLV_HAWQAL_IN` | \|Na-khuwel-ɨn | tracé amont → aval | [[27.0, 21.4], [26.7, 22.2], [26.2, 23.0], [25.8, 23.7]] |  |
-| `GEO_FLV_EMISSAIRE_MOPAMA` | sans nom | tracé amont → aval | [[5.0, 9.45], [4.4, 9.0], [3.8, 8.4], [3.0, 7.8], [2.3, 7.25], [1.7, 6.7], [1.25, 6.2], [0.95, 5.85]] |  |
+| `GEO_FLV_MADIKH` | \|Na-madikh / Madīlan | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[5.7, 24.25], [6.6, 24.55], [7.6, 24.6], [8.6, 24.5], [9.6, 24.35], [10.6, 24.3], [11.6, 24.45], [12.3, 24.65], [12.8, 24.75]] |  |
+| `GEO_FLV_IMIKHREL` | Imikhrel | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[4.6, 24.0], [3.9, 24.25], [3.1, 24.5], [2.3, 24.7], [1.6, 24.85], [0.9, 25.0], [0.4, 25.15]] |  |
+| `GEO_FLV_EHUKHTAL` | Ehukhtal | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[-0.1, 24.5], [-1.0, 24.7], [-2.1, 24.9], [-3.3, 25.15], [-4.5, 25.45], [-5.7, 25.8], [-6.8, 26.25], [-7.6, 26.75], [-8.0, 27.2], [-7.8, 27.3]] |  |
+| `GEO_FLV_HAWQAL` | \|Na-khuwel / Ḥawqal | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[19.9, 19.7], [20.6, 20.2], [21.3, 20.75], [23.6, 22.15], [24.5, 22.6], [25.3, 23.25], [25.9, 24.0], [26.4, 24.75], [26.8, 25.3]] |  |
+| `GEO_FLV_HAWQAL_RA` | \|Na-khuwel-ra | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[22.4, 17.7], [22.6, 18.7], [22.7, 19.6], [22.75, 20.45]] |  |
+| `GEO_FLV_HAWQAL_IN` | \|Na-khuwel-ɨn | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[27.0, 21.4], [26.7, 22.2], [26.2, 23.0], [25.8, 23.7]] |  |
+| `GEO_FLV_EMISSAIRE_MOPAMA` | sans nom | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[5.0, 9.45], [4.4, 9.0], [3.8, 8.4], [3.0, 7.8], [2.3, 7.25], [1.7, 6.7], [1.25, 6.2], [0.95, 5.85]] |  |
 | `—` | Atlas (relief réel non documenté au corpus) | écrêtement (seuil 1200 m, facteur 0.35) | [[-10.5, 29.0], [10.0, 29.0], [10.0, 37.5], [-10.5, 37.5]] |  |
 | `—` | Ligne du Cameroun (relief réel non documenté au corpus) | écrêtement (seuil 1500 m, facteur 0.22) | [[8.5, 3.6], [15.0, 3.6], [15.0, 8.2], [8.5, 8.2]] |  |
 | `—` | erg n° 1 | zone de désert de sable | [[-1.5, 30.2], [1.8, 30.2], [2.2, 31.4], [-1.0, 31.5]] |  |

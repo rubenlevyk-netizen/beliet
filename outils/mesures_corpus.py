@@ -147,8 +147,16 @@ def main():
         e["longueur_dessinee_km"] += round(tot)
         e["amont"] += sources
         e["aval"] += bouches
+        # source = extrémité amont la plus haute ; embouchure = extrémité aval la plus basse
+        alt = lambda q: float(rel.h[int(np.clip(g.px(*q)[1], 0, g.H - 1)), int(np.clip(g.px(*q)[0], 0, g.W - 1))])
+        e["source"] = max(e["amont"], key=alt)
+        e["embouchure"] = min(e["aval"], key=alt)
         if "reel" in c:
             e["trace_reel"] = c["reel"]
+        else:
+            L0 = max(F["lignes"], key=len)
+            pas = max(1, len(L0) // 40)
+            e["trace_dessine"] = [[r1(a, 3), r1(b, 3)] for a, b in list(L0[::pas]) + [L0[-1]]]
 
     # ---------------------------------------------------------------- distances clés
     pos = {d["geo_id"]: d["pos"] for d in p.get("detroits_et_debouches", []) + p.get("deltas", [])}
@@ -243,7 +251,10 @@ def positions(p, M):
     for f in p["fleuves"]:
         nom = " / ".join(n for n in f["noms"] if n) or "sans nom"
         if "trace" in f:
-            add(f["geo_id"], nom, "tracé amont → aval", f["trace"])
+            if f.get("suivre_relief"):
+                add(f["geo_id"], nom, "tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON", f["trace"])
+            else:
+                add(f["geo_id"], nom, "tracé amont → aval", f["trace"])
         if "reel" in f:
             add(f["geo_id"], nom, "tracé réel Natural Earth", f["reel"])
     for e in p.get("ecretements", []):
@@ -307,7 +318,7 @@ def ecrire_md(M):
     L += ["", "#### Fleuves dessinés", "", "| Fleuve | Longueur dessinée | Amont | Aval |", "|---|---|---|---|"]
     for k, v in M["fleuves"].items():
         nom = " / ".join(n for n in v["noms"] if n) or k
-        L.append(f"| {nom} (`{k}`) | {v['longueur_dessinee_km']} km | {v['amont'][0]} | {v['aval'][-1]} |")
+        L.append(f"| {nom} (`{k}`) | {v['longueur_dessinee_km']} km | {v['source']} | {v['embouchure']} |")
     L += ["", "#### Distances", "", "| Trajet | Distance |", "|---|---|"]
     for k, v in M["distances"].items():
         L.append(f"| {k} | {v} km |")

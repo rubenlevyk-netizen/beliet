@@ -75,7 +75,8 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     base = np.where((P >= 600) & (P < 1450), CODE["herbage_arbore"], base)
     base = np.where((P >= 1450) & (T >= 19), CODE["foret_tropicale_humide"], base)
     # étages montagnards (Zone II) : 800 / 2 400 / 3 600 m
-    mont = (h >= 800) & (h < 2400)
+    # étage montagnard de la Zone II : chaînes et hauts reliefs, pas les plateaux relevés
+    mont = (h >= 800) & (h < 2400) & ((rel.crete > 0.04) | (h >= 1300))
     base = np.where(mont & (P >= 550), CODE["foret_montagne"], base)
     base = np.where(mont & (P < 550) & (P >= 110), CODE["steppe_piemont"], base)
     base = np.where((h >= 2400) & (h < 3600), CODE["prairie_altitude"], base)
@@ -108,7 +109,12 @@ def classer_milieux(rel, p, P, T, hy, log=print):
         dk = distance_transform_edt(rel.lac != k) * km
         niveau_lac = np.where(dk < 25, L["cfg"]["altitude_m"], niveau_lac)
     humide = terre & (d_lac < 18) & (h < niveau_lac + 30) & (P >= 500)
-    humide |= terre & (hy.profondeur_cuvette > 3) & (P >= 750)
+    cuv = terre & (hy.profondeur_cuvette > 3) & (hy.profondeur_cuvette < 40) & (P >= 750)
+    lab_c, n_c = label(cuv)
+    if n_c:
+        taille = np.bincount(lab_c.ravel(), weights=g.aire_km2().ravel())
+        cuv &= taille[lab_c] < 12000          # pas de marais géant non documenté
+    humide |= cuv
     cl[humide] = CODE["zone_humide_lacustre"]
     maree = terre & (d_ocean < 12) & (h < 14) & (P >= 1000)
     cl[maree] = CODE["foret_maree"]
@@ -183,6 +189,7 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     # --- lissage ------------------------------------------------------------------------
     garde = np.isin(cl, [CODE["oasis"], CODE["glacier"], CODE["foret_berge"], CODE["eaux_lacustres"]])
     cl = filtre_majoritaire(cl, terre & ~garde, 5, codes=[i for i in range(len(MILIEUX)) if i not in (CODE["oasis"], CODE["eaux_lacustres"])])
-    stats = {MILIEUX[c][0]: float((g.aire_km2()[cl == c]).sum()) for c in range(len(MILIEUX))}
+    A_f = g.aire_km2() * rel.fondu
+    stats = {MILIEUX[c][0]: float((A_f[cl == c]).sum()) for c in range(len(MILIEUX))}
     log("  superficies (km²) : " + ", ".join(f"{k} {v:,.0f}" for k, v in sorted(stats.items(), key=lambda kv: -kv[1]) if v > 0))
     return dict(classes=cl, stats=stats)

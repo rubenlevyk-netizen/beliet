@@ -1,6 +1,6 @@
 # Le Beliet — carte physique
 
-Carte topographique et des milieux (biomes) du Beliet, version 0.1.
+Carte topographique et des milieux (biomes) du Beliet, version 0.2.
 
 ![Carte des milieux](carte/beliet_carte_milieux.png)
 
@@ -14,7 +14,7 @@ Carte topographique et des milieux (biomes) du Beliet, version 0.1.
 | `carte/sig/` | données géographiques (GeoJSON, GeoTIFF, cartes d'altitude) | outils SIG (QGIS), Azgaar, futures cartes interactives |
 | `donnees/parametres_carte.yaml` | **toutes les décisions de placement** (chaînes, mer, lacs, fleuves, climat) | modifier la géographie |
 | `ANALYSE_COHERENCE.md` | incohérences du corpus et choix retenus | valider ou corriger les choix |
-| `references/` | les trois fichiers de référence fournis | source |
+| `references/` | les fichiers de référence fournis (Géosystème, registre, contour, LIEUX, ROUTES, RESSOURCES, illustration) | source |
 | `outils/` | le programme qui fabrique la carte | régénérer après modification |
 
 ## Regarder la carte

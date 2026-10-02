@@ -8,7 +8,7 @@ from scipy.optimize import nnls
 REGIMES = [
     ("mousson_sud_ouest", 50, ("atl_s", "decoupe", "lacs"), 0.62),
     ("mousson_sud", 95, ("decoupe", "atl_s", "lacs"), 0.62),
-    ("mousson_ouest", 15, ("decoupe", "atl_s", "lacs"), 0.82),
+    ("mousson_ouest", 15, ("decoupe", "atl_s", "lacs", "marais_sud"), 0.82),
     ("flux_ouest", 5, ("atl_n", "atl_s", "lacs_nord"), 0.35),
     ("hiver_nord_ouest", 305, ("med", "atl_n", "halakhel"), 0.25),
     ("vents_est", 185, ("est", "rouge"), 0.4),
@@ -82,9 +82,11 @@ class Climat:
             "lacs": lacs & (LAT < 15),
             "lacs_nord": lacs & (LAT >= 15),
             "decoupe": decoupe & (LAT < 6) & (LON < 36),
+            # zones humides saisonnières au pied O de qoyra (§V.6) : plaines du Soudan du Sud
+            "marais_sud": terre & (LON > 27) & (LON < 34) & (LAT > 5) & (LAT < 9.5) & (h < 700),
         }
         force = {"atl_s": 1.0, "atl_n": 0.55, "med": 0.7, "rouge": 0.12, "est": 0.6,
-                 "halakhel": 0.3, "lacs": 0.55, "lacs_nord": 0.75, "decoupe": 0.95}
+                 "halakhel": 0.3, "lacs": 0.3, "lacs_nord": 0.5, "decoupe": 0.95, "marais_sud": 0.6}
         dx_m = g.km_px_eq * f * 1000 * np.cos(np.radians(20))
         self.regimes = {}
         for nom, ang, srcs, recyc in REGIMES:
@@ -99,7 +101,8 @@ class Climat:
             Pb = rotate(Pr, ang, reshape=True, order=1, cval=0)
             # recadrage au centre
             oy = (Pb.shape[0] - H) // 2; ox = (Pb.shape[1] - W) // 2
-            self.regimes[nom] = np.clip(Pb[oy:oy + H, ox:ox + W], 0, None)
+            # diffusion latérale : l'humidité ne voyage pas en couloirs rectilignes
+            self.regimes[nom] = gaussian_filter(np.clip(Pb[oy:oy + H, ox:ox + W], 0, None), 5.0)
         self.H, self.W, self.f = H, W, f
         self.LON, self.LAT, self.terre_c = LON, LAT, terre
         self._calibrer(p["calibration_pluies"])
@@ -131,7 +134,7 @@ class Climat:
             r = np.log(pt["mm"] / max(v, 1.0))
             w = np.exp(-((xx - xc) ** 2 + (yy - yc) ** 2) / (2 * sig ** 2))
             num += w * r; den += w
-        corr = np.exp(np.clip(num / (den + 0.04), np.log(0.35), np.log(4.0)))
+        corr = np.exp(np.clip(num / (den + 0.02), np.log(0.3), np.log(6.0)))
         P = P * corr
         self.P_c = P
         self.log("  calibration des pluies :")

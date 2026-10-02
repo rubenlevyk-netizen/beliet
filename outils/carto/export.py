@@ -23,7 +23,7 @@ POLICE = "/usr/share/fonts/truetype/freefont/FreeSerif.ttf"
 POLICE_I = "/usr/share/fonts/truetype/freefont/FreeSerifItalic.ttf"
 POLICE_B = "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf"
 FAMILLE = "FreeSerif, 'DejaVu Serif', 'Liberation Serif', Georgia, serif"
-VERSION = "0.1"
+VERSION = "0.2"
 
 # --------------------------------------------------------------------------- couleurs
 
@@ -98,6 +98,19 @@ def teintes_milieux(rel, mil):
     r = cl == CODE["recif_corallien"]
     c[r] = 0.55 * c[r] + 0.45 * pal[CODE["recif_corallien"]]
     return c
+
+
+def estomper(rgb, rel, om):
+    """Dégradé vers un fond neutre au sud de la limite du Beliet (fondu)."""
+    w = rel.fondu[..., None]
+    if (w >= 1).all():
+        return rgb
+    gris = np.clip(214 + np.maximum(rel.h, 0) / 60, 205, 236)
+    neutre = np.stack([gris, gris * 0.985, gris * 0.955], -1).astype(np.float32)
+    neutre = neutre * (1 + 0.35 * (om[..., None] / 0.72 - 1))
+    terre = (rel.terre | rel.dehors)[..., None]
+    out = np.where(terre, rgb * w + neutre * (1 - w), rgb)
+    return np.clip(out, 0, 255).astype(np.uint8)
 
 
 def png_b64(arr, mode=None):
@@ -273,8 +286,8 @@ def tout(rel, p, reg, pluie, temp, hy, mil, log=print):
     g = rel.g
     log("  ombrage et teintes…")
     om = ombrage(rel)
-    rgb_hyp = composer(teintes_hypso(rel), om, rel)
-    rgb_mil = composer(teintes_milieux(rel, mil), om, rel, force_terre=0.62)
+    rgb_hyp = estomper(composer(teintes_hypso(rel), om, rel), rel, om)
+    rgb_mil = estomper(composer(teintes_milieux(rel, mil), om, rel, force_terre=0.62), rel, om)
 
     log("  vecteurs…")
     vec = vecteurs(rel, p, reg, hy, mil, log)
@@ -302,17 +315,26 @@ def vecteurs(rel, p, reg, hy, mil, log):
     g = rel.g
     v = {}
     # côtes (continent + îles du Beliet), rivages Halakhel et lacs
-    terre_b = rel.terre | (rel.beliet & ~rel.eau)
-    v["cotes"] = [pg for pg in contours_masque(terre_b, simpl=0.5) if pg.area > 6]
+    import contourpy
+    from scipy.ndimage import binary_dilation
+    oc = gaussian_filter(rel.ocean.astype(np.float32), 0.7)
+    pres = binary_dilation(rel.terre, iterations=3) & (rel.fondu > 0.3)
+    gen_c = contourpy.contour_generator(z=np.ma.masked_where(~pres, oc), name="serial")
+    v["cotes"] = []
+    for ligne in gen_c.lines(0.5):
+        if len(ligne) < 4:
+            continue
+        ls = LineString(ligne + 0.5).simplify(0.5)
+        if ls.length > 6:
+            v["cotes"].append(np.array(ls.coords))
     v["halakhel"] = contours_masque(rel.mer, simpl=0.5)
     v["lacs"] = []
     for k, lac in enumerate(rel.lacs, start=1):
         v["lacs"].append((lac["cfg"], contours_masque(rel.lac == k, simpl=0.5)))
     v["dehors"] = contours_masque(rel.dehors & ~rel.decoupe, simpl=0.8, aire_min=30)
     # isohypses
-    import contourpy
     hs = gaussian_filter(rel.h, 1.6)
-    hs = np.where(rel.terre, hs, np.nan)
+    hs = np.where(rel.terre & (rel.fondu > 0.5), hs, np.nan)
     gen = contourpy.contour_generator(z=hs, name="serial")
     iso = []
     for niv in (200, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000):
@@ -329,12 +351,21 @@ def vecteurs(rel, p, reg, hy, mil, log):
     res = hy.reseau()
     sec = []
     for r in res:
-        P = np.c_[r["x"], r["y"]]
-        if len(P) < 3:
-            continue
-        ls = LineString(P).simplify(0.7)
-        P = chaikin(np.array(ls.coords), 2)
-        sec.append(dict(type=r["type"], P=P, Q=r["Q"], A=r["A"]))
+        P0 = np.c_[r["x"], r["y"]]
+        ok = rel.fondu[P0[:, 1].astype(int), P0[:, 0].astype(int)] > 0.6
+        # morceaux continus dans la zone non estompée
+        debut = None
+        for i in range(len(P0) + 1):
+            dedans = i < len(P0) and ok[i]
+            if dedans and debut is None:
+                debut = i
+            if not dedans and debut is not None:
+                P = P0[debut:i]
+                debut = None
+                if len(P) < 3 or (i < len(P0) and len(P) < 12):
+                    continue
+                ls = LineString(P).simplify(0.7)
+                sec.append(dict(type=r["type"], P=chaikin(np.array(ls.coords), 2), Q=r["Q"], A=r["A"]))
     v["secondaires"] = sec
     log(f"    {len(sec)} tronçons de cours d'eau secondaires")
     # fleuves nommés (hors eau)
@@ -360,7 +391,7 @@ def vecteurs(rel, p, reg, hy, mil, log):
     # milieux vectorisés (demi-résolution)
     cl = mil["classes"][::2, ::2]
     polys = []
-    terre2 = rel.terre[::2, ::2]
+    terre2 = rel.terre[::2, ::2] & (rel.fondu[::2, ::2] > 0.5)
     for geom, val in features.shapes(cl, mask=terre2 | (cl == CODE["recif_corallien"]),
                                      transform=Affine.scale(2)):
         val = int(val)
@@ -394,11 +425,11 @@ def etiquettes(rel, p, reg, vec):
         big = e["geo_id"].startswith("GEO_EXT")
         E.droit(x, y, n, 44 if big else 30, COUL_EAU, POLICE_I, esp=8 if big else 4, halo=0, opac=0.85)
     # Halakhel
-    axe = [(8.0, 29.0), (12.0, 27.8), (16.0, 26.9), (20.0, 26.5), (24.0, 27.0)]
+    axe = p["halakhel"].get("axe_etiquette", [(8.0, 29.0), (12.0, 27.8), (16.0, 26.9), (20.0, 26.5), (24.0, 27.0)])
     P = np.array([g.px(lo, la) for lo, la in axe])
     P = lisser_polyligne(P, 10)
     E.courbe(P, nom("GEO_MER_HALAKHEL") and f"Mer {nom('GEO_MER_HALAKHEL')}", 60, COUL_EAU, POLICE_I, esp=22, halo=0)
-    x, y = g.px(25.6, 27.9)
+    x, y = g.px(*p["halakhel"].get("pos_qibsan", (25.6, 27.9)))
     E.droit(x, y, nom("GEO_MER_HALAKHEL", 1), 30, COUL_EAU, POLICE_I, esp=4, halo=0, opac=0.85)
     # lacs
     for k, lac in enumerate(rel.lacs, start=1):
@@ -601,8 +632,8 @@ def assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso, dem
     for pg in vec["dehors"]:
         o.append(f'<path d="{anneaux_svg(pg)}" stroke="#8c8c8c" stroke-width="1.0"/>')
     o.append(f'<g id="cotes" stroke="#2f5f86" stroke-width="1.4">')
-    for pg in vec["cotes"]:
-        o.append(f'<path d="{anneaux_svg(pg)}"/>')
+    for P in vec["cotes"]:
+        o.append(f'<path d="{d_chemin(chaikin(P, 2))}"/>')
     o.append("</g>")
     o.append(f'<path id="GEO_MER_HALAKHEL" inkscape:label="Mer Halakhel (rivage)" d="{" ".join(anneaux_svg(pg) for pg in vec["halakhel"])}" stroke="#2f5f86" stroke-width="1.3"/>')
     for cfg, pgs in vec["lacs"]:
@@ -748,7 +779,7 @@ def stats(rel, p, mil, pluie, log):
     A = g.aire_km2()
     s = {
         "version": VERSION,
-        "terres_emergees_beliet_km2": round(float(A[rel.terre].sum())),
+        "terres_emergees_beliet_km2": round(float((A * rel.fondu)[rel.terre].sum())),
         "mer_halakhel_km2": round(float(A[rel.mer].sum())),
         "lacs_km2": {L["cfg"]["geo_id"]: round(float(A[rel.lac == k].sum())) for k, L in enumerate(rel.lacs, start=1)},
         "altitude_max_m": round(float(rel.h[rel.terre].max())),

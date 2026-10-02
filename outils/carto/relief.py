@@ -67,7 +67,7 @@ class Relief:
         poly = g.poly_px(c).buffer(0)
         beliet = g.rasteriser(poly).astype(bool)
         d_px = distance_transform_edt(~beliet)
-        decoupe = (self.LAT < 5.6) & (self.LON > 9.4) & (self.LON < 41.7)
+        decoupe = (self.LAT < 5.6) & (self.LON > 8.6) & (self.LON < 41.7)
         proche = (~beliet) & (d_px <= 5) & ~decoupe
         h[beliet & (h <= 0)] = 3.0
         h[proche & (h > 0)] = -8.0
@@ -76,10 +76,42 @@ class Relief:
         for a in p.get("archipels", []):
             if "zone" in a:
                 archi |= g.rasteriser(g.poly_px(a["zone"])).astype(bool)
-        self.beliet = beliet | (archi & (h > 0))
         self.decoupe = decoupe & ~beliet & (h > 0)
+        # la découpe sud (frontières politiques réelles) disparaît : les terres au-delà sont
+        # calculées comme le reste, puis estompées progressivement à l'affichage
+        self.beliet = beliet | (archi & (h > 0)) | self.decoupe
+        self.fondu = self._fondu_sud(beliet)
         self.h = h
         self.n_lisse = bruit_bande(g.shape, self.graine + 7, 6, 400)
+
+    def _fondu_sud(self, poly_mask):
+        """Poids 1 → 0 vers le sud : limite irrégulière, lissée, sans tracé politique reconnaissable."""
+        g = self.g
+        F = self.p.get("fondu_sud", {})
+        lon0, lon1 = F.get("lon_min", 8.5), F.get("lon_max", 42.5)
+        # latitude la plus méridionale du contour fourni, colonne par colonne
+        lat_cut = np.full(g.W, np.nan)
+        cols = np.nonzero((g.lons > lon0) & (g.lons < lon1))[0]
+        for x in cols:
+            ys = np.nonzero(poly_mask[:, x])[0]
+            if len(ys):
+                lat_cut[x] = g.lats[ys.max()]
+        ok = ~np.isnan(lat_cut)
+        lat_cut = np.interp(np.arange(g.W), np.nonzero(ok)[0], lat_cut[ok])
+        from scipy.ndimage import gaussian_filter1d
+        sig = F.get("lissage_deg", 4.0) * g.K
+        lisse = gaussian_filter1d(lat_cut, sig, mode="nearest")
+        rng = np.random.default_rng(self.graine + 61)
+        bruit = gaussian_filter1d(rng.standard_normal(g.W), 1.6 * g.K)
+        bruit /= bruit.std() + 1e-9
+        lim = lisse + F.get("decalage_deg", 0.6) + F.get("amplitude_deg", 0.7) * bruit
+        largeur = F.get("largeur_deg", 2.6)
+        nb = bruit_bande(g.shape, self.graine + 62, 40 / g.km_px_eq, 300 / g.km_px_eq)
+        t = (self.LAT - lim[None, :] + 0.3 * nb) / largeur + 0.5
+        w = np.clip(t, 0, 1)
+        w = w * w * (3 - 2 * w)
+        dans = (self.LON > lon0) & (self.LON < lon1)
+        return np.where(dans, w, 1.0).astype(np.float32)
 
     # ------------------------------------------------------------ écrêtements
     def ecreter(self):
@@ -118,6 +150,14 @@ class Relief:
             d = distance_transform_edt(~L["masque"]) * _km(g)
             u = c["soulevement_regional_m"] * np.exp(-(d / c["rayon_soulevement_km"]) ** 2)
             h += np.where(self.beliet, u, 0).astype(np.float32)
+        # soulèvements de plateaux (zones polygonales, bord estompé)
+        for z in self.p.get("zones_soulevement", []):
+            m = g.rasteriser(g.poly_px(z["contour"])).astype(bool)
+            d = distance_transform_edt(m) * _km(g)
+            f = np.clip(d / z["fondu_km"], 0, 1)
+            f = f * f * (3 - 2 * f)
+            h += np.where(self.beliet, z["hauteur_m"] * f, 0).astype(np.float32)
+            self.log(f"  soulèvement « {z['nom']} » : +{z['hauteur_m']} m")
 
     # --------------------------------------------------------------- chaînes
     def chaines(self):
@@ -166,28 +206,30 @@ class Relief:
         g, p = self.g, self.p
         H = p["halakhel"]
         km = _km(g)
-        a_bras = aire_poly_ll(H["bras_nord_ouest"])
-        cible = H.get("superficie_cible_km2", 1350000) - a_bras
-        princ, a0 = ajuster_aire(H["bassin_principal"], cible * 1.04, seulement_nord_sud=True)
-        self.log(f"  Halakhel : bassin dessiné {a0:,.0f} km² → ajusté {cible * 1.06:,.0f} km² (+ bras {a_bras:,.0f})")
-        geoms = [g.poly_px(princ), g.poly_px(H["bras_nord_ouest"])]
+        bassins = H["bassins"]
+        a0 = sum(aire_poly_ll(b["contour"]) for b in bassins)
+        self.log(f"  Halakhel : bassins dessinés {a0:,.0f} km² (cible {H.get('superficie_cible_km2', 0):,})")
+        geoms = [g.poly_px(b["contour"]) for b in bassins]
+        etroits = []
         for cle in ("detroit_khreth_na_serek", "ria_tawalmaz"):
             e = H[cle]
             ligne = g.ligne_px(e["trace"])
             lat = np.mean([c[1] for c in e["trace"]])
-            geoms.append(ligne.buffer(e["largeur_km"] / 2 / g.km_px_a(lat), cap_style=2))
+            gb = ligne.buffer(e["largeur_km"] / 2 / g.km_px_a(lat), cap_style=2)
+            geoms.append(gb)
+            etroits.append(gb)
         m0 = g.rasteriser(unary_union(geoms)).astype(bool)
         din = distance_transform_edt(m0) * km
         dout = distance_transform_edt(~m0) * km
         n = bruit_bande(g.shape, self.graine + 21, 4, 120 / g.km_px_eq)
         nG = bruit_bande(g.shape, self.graine + 22, 80 / g.km_px_eq, 600 / g.km_px_eq)
-        ouest = np.clip((12 - self.LON) / 5, 0, 1)
+        ouest = np.clip((H.get("rias_ouest_de_lon", 0.0) - self.LON) / 5, 0, 1)
         rias = bruit_crete(g.shape, self.graine + 24, 2, 60 / g.km_px_eq, octaves=3)
-        amp = 9 + 10 * ouest
-        n = n + 2.2 * ouest * (rias - 0.5) * 2
-        n = n + nG * (55 / amp)
+        amp = 7 + 8 * ouest
+        n = n + 2.0 * ouest * (rias - 0.5) * 2
+        n = n + nG * (32 / amp)
         # le détroit et la ria gardent leur largeur
-        etroit = g.rasteriser([geoms[2].buffer(10), geoms[3].buffer(10)]).astype(bool)
+        etroit = g.rasteriser([e.buffer(10) for e in etroits]).astype(bool)
         amp = np.where(etroit, 1.5, amp)
         m = (din - dout + amp * n) > 0
         lab, _ = label(m)
@@ -237,8 +279,9 @@ class Relief:
         dout2 = distance_transform_edt(~self.mer) * km
         pente = H.get("pente_glacis_m_par_km", 5.5)
         glacis = self.L + 15 + pente * dout2
-        zone_g = self.beliet & ~self.mer & (dout2 < 260)
-        w = np.clip((260 - dout2) / 80, 0, 1)
+        lg = H.get("largeur_glacis_km", 260)
+        zone_g = self.beliet & ~self.mer & (dout2 < lg)
+        w = np.clip((lg - dout2) / (lg * 0.3), 0, 1)
         cible_g = smin(self.h, glacis, 120)
         self.h = np.where(zone_g, self.h + w * (cible_g - self.h), self.h).astype(np.float32)
         # rives : pas de terre sous le niveau de la mer intérieure au contact de celle-ci
@@ -292,28 +335,42 @@ class Relief:
                 geoms = [fus] if fus.geom_type == "LineString" else list(fus.geoms)
                 for gm in geoms:
                     c = np.array(gm.coords)
+                    garde = np.ones(len(c), bool)
                     if "couper_au_nord_de" in f:
-                        c = c[c[:, 1] <= f["couper_au_nord_de"] + 1e-6]
+                        garde &= c[:, 1] <= f["couper_au_nord_de"] + 1e-6
                     if "garder_au_nord_de" in f:
-                        c = c[c[:, 1] >= f["garder_au_nord_de"] - 1e-6]
-                    if len(c) > 2:
-                        lignes.append(c)
+                        garde &= c[:, 1] >= f["garder_au_nord_de"] - 1e-6
+                    if "garder_ouest_de" in f:
+                        garde &= c[:, 0] <= f["garder_ouest_de"] + 1e-6
+                    # tronçons continus seulement (pas de segment qui saute la partie retirée)
+                    i = 0
+                    while i < len(c):
+                        if not garde[i]:
+                            i += 1
+                            continue
+                        j = i
+                        while j < len(c) and garde[j]:
+                            j += 1
+                        morceau = c[i:j]
+                        # coupe aussi aux sauts anormaux des données sources
+                        sauts = np.nonzero(np.hypot(*np.diff(morceau, axis=0).T) > 0.3)[0]
+                        for m in np.split(morceau, sauts + 1):
+                            if len(m) > 4:
+                                lignes.append(("reel", m))
+                        i = j
             if "trace" in f:
-                lignes.append(np.array(lisser_polyligne(np.array(f["trace"]), sous=6)))
+                lignes.append(("trace", np.array(lisser_polyligne(np.array(f["trace"]), sous=6))))
             for b in f.get("bras", []):
-                lignes.append(np.array(lisser_polyligne(np.array(b), sous=6)))
+                lignes.append(("trace", np.array(lisser_polyligne(np.array(b), sous=6))))
             # orientation : la source est l'extrémité la plus haute (relief réel)
             orient = []
-            for c in lignes:
+            for k, (typ, c) in enumerate(lignes):
+                if typ == "trace":
+                    orient.append(self._meandres(c, k))
+                    continue
                 x, y = self.g.px(c[:, 0], c[:, 1])
                 z = map_coordinates(self.h_reel, [np.clip(y, 0, self.g.H - 1), np.clip(x, 0, self.g.W - 1)], order=1)
-                if "trace" in f or z[0] >= z[-1]:
-                    orient.append(c)
-                else:
-                    orient.append(c[::-1])
-            # méandres pour les tracés dessinés à la main
-            if "trace" in f:
-                orient = [self._meandres(c, k) for k, c in enumerate(orient)]
+                orient.append(c if z[0] >= z[-1] else c[::-1])
             out.append(dict(cfg=f, lignes=orient))
         self.fleuves = out
 
@@ -364,6 +421,9 @@ class Relief:
                 dans_eau = eau[iy, ix]
                 z = np.where(dans_eau, self.niveau[iy, ix], self.h[iy, ix]).astype(np.float64)
                 z = np.minimum.accumulate(z)
+                plancher = F["cfg"].get("plancher_m")
+                if plancher is not None:
+                    z = np.maximum(z, plancher)
                 z = z - 4
                 # ne pas creuser sous l'eau
                 trace = np.zeros(g.shape, bool)
@@ -384,6 +444,10 @@ class Relief:
                 nouv = znear + (hs - znear) * f
                 app = (dk < w_km) & (hs > znear) & self.beliet[y0:y1, x0:x1] & ~eau[y0:y1, x0:x1]
                 hs[app] = nouv[app]
+                if plancher is not None:
+                    # remblai : le lit ne descend pas sous le plancher (fleuve perché sur un plateau)
+                    lev = (dk < w_km * 1.6) & (hs < znear + 6 * dk) & self.beliet[y0:y1, x0:x1] & ~eau[y0:y1, x0:x1]
+                    hs[lev] = np.maximum(hs[lev], np.minimum(znear + 4 + 6 * dk, znear + 120)[lev])
                 self.lit[y0:y1, x0:x1] |= sub
 
     def ilots(self):

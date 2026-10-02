@@ -1,0 +1,5575 @@
+{
+ "schema_version": "GEOSYSTEME_REGISTRE.v1",
+ "horodatage_generation": "2026-09-22",
+ "metadata": {
+  "description": "Identités, noms, géométrie et attributs structurés des sites et des phénomènes physiques du géosystème."
+ },
+ "entrees": [
+  {
+   "geo_id": "GEO_EXT_MEDITERRANEE",
+   "nature": "site",
+   "type": "EXT",
+   "libelle": "Méditerranée",
+   "noms": [
+    {
+     "forme": "[NON DOCUMENTÉ]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "external",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_SHAFAQ-MIRQ_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_TANQUISH_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "ext_id": "EXT_PPL_INTERMEDIAIRES_MED",
+     "relation": "donne_acces_a"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_EXT_ATLANTIQUE",
+   "nature": "site",
+   "type": "EXT",
+   "libelle": "Océan Atlantique",
+   "noms": [
+    {
+     "forme": "Jálondù",
+     "langue": "MBA",
+     "usage": "l'océan vu depuis les estuaires",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "external",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_KHLORETH-KLAM_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_STALOMAR-KOT_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_STAKHR-DUREK_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_HLORAN-RIR_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KU-JALIMA-RIR_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_JALI-FE_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_ANSES-JALONDU_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_JALI-LONGO_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_GALU-KANDA_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KOT-SKRAL_LARGE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_THRESKOL-STRAKH_LARGE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_FALAMI_SKREN_PERIPH_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_LISEKDI_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "TAL",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_DIFF_FILAL_890",
+     "relation": "theatre"
+    },
+    {
+     "ext_id": "EXT_PPL_THRESKOL",
+     "relation": "donne_acces_a"
+    },
+    {
+     "ext_id": "EXT_REG_PORTS_NO",
+     "relation": "donne_acces_a"
+    },
+    {
+     "ext_id": "EXT_PPL_NAVIGATEURS_ATL",
+     "relation": "donne_acces_a"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_EXT_MERROUGE",
+   "nature": "site",
+   "type": "EXT",
+   "libelle": "Mer Rouge",
+   "noms": [
+    {
+     "forme": "[NON DOCUMENTÉ]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "external",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "TAM",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_MIL_BLOCUS_TNAYEL_1418",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_PILOTES_GUERRE_TAM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_QYR_RADES",
+     "relation": "zone_action"
+    },
+    {
+     "ext_id": "EXT_REG_MAHSA",
+     "relation": "donne_acces_a"
+    },
+    {
+     "ext_id": "EXT_PPL_COMPTOIRS_AROMATES",
+     "relation": "donne_acces_a"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_EXT_OCEAN_EST",
+   "nature": "site",
+   "type": "EXT",
+   "libelle": "Océan de l'Est",
+   "noms": [
+    {
+     "forme": "[LACUNE — À DOCUMENTER]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "external",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_TNAYA-HAEM_SE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KURE-KESUN_SE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KURE-TAWA_SE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_QIREL-TSIDAR_SE",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "INST_QYR_RADES",
+     "relation": "zone_action"
+    },
+    {
+     "ext_id": "EXT_PPL_SUQNA",
+     "relation": "donne_acces_a"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_GLF_KUJALIMARIR",
+   "nature": "site",
+   "type": "GLF",
+   "libelle": "Golfe occidental",
+   "noms": [
+    {
+     "forme": "Ku-jálima-rir",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_EXT_ATLANTIQUE",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_GLF_JALONDU",
+   "nature": "site",
+   "type": "GLF",
+   "libelle": "Golfe Jálondù",
+   "noms": [
+    {
+     "forme": "Jálondù",
+     "langue": "MBA",
+     "usage": "le golfe",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_EXT_ATLANTIQUE",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "rite_id": "RIT_DUR_JALIM_NER_KETH",
+     "relation": "s_accomplit_a"
+    },
+    {
+     "acteur_id": "KAD",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_POL_SILENCE_COMPTES_1504",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_BLOCUS_DIME_1538",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_ECO_INFRASTRUCTURE_KALANKO_1538",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_CONSEIL_JALIMA",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_SAKOD_JALI",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_DEUXEAUX",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_MAISONS_EAU_DOUCE",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ARC_LISEKDI",
+   "nature": "site",
+   "type": "ARC",
+   "libelle": "Archipel sec",
+   "noms": [
+    {
+     "forme": "Li-sèk-dì",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_GLF_JALONDU",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ORO_URUMATI",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Cordillère",
+   "noms": [
+    {
+     "forme": "||Urumati",
+     "langue": "TIR",
+     "usage": "forme standardisée",
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Urumat",
+     "langue": null,
+     "usage": "emprunt sans clic hors tɨrakh",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "rite_id": "RIT_TRK_IRENA",
+     "relation": "s_accomplit_a"
+    },
+    {
+     "ressource_id": "RES_NAT_CUIVRE",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_FER",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_METAUX_SEC",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_TRF_SILO_TREVE",
+     "relation": "provenance"
+    },
+    {
+     "event_id": "EVT_GUERRE_TARIQ_VAGUE3_-1050",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_TRK_URUMSEK",
+     "relation": "zone_action"
+    },
+    {
+     "ressource_id": "RES_NAT_GEMMES",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_URUMATI_HALEKH",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne Supérieure Occidentale",
+   "noms": [
+    {
+     "forme": "||Urumati-halekh",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "FAL",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "FAL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "HIB",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "KOL",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "KOL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "ARN",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_ECO_FALAMI_SAX_PHASE4",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_FALAMI_FRACTURE_INTERNE_1400",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_ECO_FALAMI_HLORAN_SKREN_1400",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_ECO_FALAMI_AUDIT_LAFT_1440",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_FALAMI_PORTEURS_1462",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_FALAMI_MIGRATION_STAKHRBA_1500",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_FALAMI_LGC_1343",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_FALAMI_HLORANIM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_HLK_KOLTAR",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_URUMATI_KARA",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne Intermédiaire Centrale",
+   "noms": [
+    {
+     "forme": "||Urumati-k'ara",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "TRQ",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "ARN",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "ETH",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "URM",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "URM",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_POL_MUR_HIVER_1344",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_TRK_LISEURS_GLACE",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_NA_IN",
+     "relation": "zone_action"
+    },
+    {
+     "ressource_id": "RES_NAT_BASALTE",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_URUMATI_LONGO",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne Inférieure Occidentale",
+   "noms": [
+    {
+     "forme": "||Urumati-lóngò",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "LON",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "OKH",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "OKH",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "TIX",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "TIX",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "LIG_0069",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0058",
+     "relation": "site_associe"
+    },
+    {
+     "event_id": "EVT_DIFF_LGC_CORDILLERE_1350",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_CODE_ECORCE",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_LIGUE_TIXARIN",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_TRK_TAMA",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_URUMATI_QOYRA",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne Inférieure Orientale",
+   "noms": [
+    {
+     "forme": "||Urumati-qoyra",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "SRQ",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "SRQ",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "QIR",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "QIR",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "KOS",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "NES",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "KUM",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "KUM",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "TSD",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "TSD",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "IXA",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "IXA",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_DIFF_LGC_SE_PIEMONTS_1345",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_LGC_SE_COLSHTE_1400",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_ABSORPTION_SUD_1440",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_MARIAGE_RESHA_1549",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_TRK_LISEURS_GLACE",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_QYR_TSKURE",
+     "relation": "zone_action"
+    },
+    {
+     "ressource_id": "RES_NAT_BASALTE",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_ARASUKHI",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Massif culminant",
+   "noms": [
+    {
+     "forme": "|'Ara-Sukhì",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI_KARA",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ORO_OKHETI",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne de transition halekh/lóngò",
+   "noms": [
+    {
+     "forme": "!Okheti",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ORO_MUWULE",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne mineure du sud-ouest",
+   "noms": [
+    {
+     "forme": "Mù-wúlè",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ORO_MUDARHOBI",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Massif du sud du bassin lacustre occidental",
+   "noms": [
+    {
+     "forme": "Mù-dárhòbì",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_NAT_BASALTE_ILU",
+     "relation": "provenance"
+    },
+    {
+     "lieu_id": "ZRS_KU-BANGA_SC",
+     "relation": "secteur"
+    },
+    {
+     "route_id": "RT_029",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_KUKIBO",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Hautes collines du sud-centre",
+   "noms": [
+    {
+     "forme": "Kù-kɨ́bò",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "event_id": "EVT_SOC_EXODE_QESHA_1435",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_DISPARITION_QERA_1569",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_SABOTAGE_PEPINIERES_1568",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_SYNDICAT_EXILES",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_GARDE_QESHA",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ORO_COTIERE_N",
+   "nature": "site",
+   "type": "ORO",
+   "libelle": "Chaîne côtière septentrionale",
+   "noms": [
+    {
+     "forme": "[LACUNE — À DOCUMENTER]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_001",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Abnī-tɨra",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2800,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Venturi violent, fermeture stricte 7 mois.",
+    "capacite_pers_jour": {
+     "min": 12,
+     "max": 18
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "ETH",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "ETH",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SYN_PASSE_ROUGE_712",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_LING_KURR_SAQRA_CRISTALLISATION_-200",
+     "relation": "theatre"
+    },
+    {
+     "route_id": "RT_006",
+     "relation": "extremite"
+    },
+    {
+     "route_id": "RT_064",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_002",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ṭanīkhūr",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 3200,
+    "statut_passage": "haute_route_extreme",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 7,
+     "mois_fin": 8
+    },
+    "contrainte": "Zone de silence (hypoxie / '!Okh-||Akh' (le Souffle Noir) - La phonétique (clic alvéolaire ! de la vie suivi du clic latéral || de la pierre) illustre mécaniquement l'étouffement par le poids de la montagne), fenêtre commerciale minime.",
+    "capacite_pers_jour": {
+     "min": 10,
+     "max": 15
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_003",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ṣabūl-tɨkh",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2900,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Corniches de glace permanentes nécessitant guides.",
+    "capacite_pers_jour": {
+     "min": 12,
+     "max": 16
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_004",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ḥamīr-ɨlkh",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 3000,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 7,
+     "mois_fin": 9
+    },
+    "contrainte": "Couloir d'avalanche actif au printemps.",
+    "capacite_pers_jour": {
+     "min": 10,
+     "max": 15
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_005",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Qaṣūl-tɨra",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2700,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Accès bloqué par névés tardifs jusqu'en juin.",
+    "capacite_pers_jour": {
+     "min": 16,
+     "max": 22
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_006",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Maḥēl-!ara",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2950,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 7,
+     "mois_fin": 9
+    },
+    "contrainte": "Sanctuaire climatique (froid sec absolu).",
+    "capacite_pers_jour": {
+     "min": 10,
+     "max": 14
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "ETH",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "ETH",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_007",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ṭubayl",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2850,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Accessible uniquement par temps clair.",
+    "capacite_pers_jour": {
+     "min": 12,
+     "max": 18
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "ETH",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_008",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Šaqra-t'em",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2400,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Risque de gel précoce dès fin octobre",
+    "capacite_pers_jour": {
+     "min": 22,
+     "max": 30
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "SHQ",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "SHQ",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_LING_KURR_SAQRA_CRISTALLISATION_-200",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_009",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Kurel-ahek",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2150,
+    "statut_passage": "principal",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Carrefour caravanier NE-Centre, berceau du pidgin Kurr-Šaqra ; boue automnale puis gel",
+    "capacite_pers_jour": {
+     "min": 40,
+     "max": 55
+    },
+    "statut_attributs": "[INFÉRENCE]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "SHQ",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "SHQ",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_LING_KURR_SAQRA_CRISTALLISATION_-200",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_010",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "T'araq-ɨnkh",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2400,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Les rampes d'accès argileuses (Gris) gèlent ensuite (Blanc). Piège à caravanes. (Silence de Ts'idar (710) : Blocage intentionnel ayant affamé les plaines ; Preuve du col comme arme de destruction massive.)",
+    "capacite_pers_jour": {
+     "min": 20,
+     "max": 28
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "TSD",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "IXA",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SOC_SILENCE_TSIDAR_710",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SYN_PASSE_ROUGE_712",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_PROTOCOLE_BLANC_1360",
+     "relation": "theatre"
+    },
+    {
+     "route_id": "RT_009",
+     "relation": "passage"
+    },
+    {
+     "route_id": "RT_053",
+     "relation": "passage"
+    },
+    {
+     "route_id": "RT_062",
+     "relation": "passage"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_011",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "K'elis-‖ara",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2500,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Pentes exposées aux vents d'Est glaciaux.",
+    "capacite_pers_jour": {
+     "min": 18,
+     "max": 26
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "IXA",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SOC_PROTOCOLE_BLANC_1360",
+     "relation": "theatre"
+    },
+    {
+     "route_id": "RT_061",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_012",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Q'ami-tɨra",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2300,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Zone de brouillard dense en intersaison.",
+    "capacite_pers_jour": {
+     "min": 22,
+     "max": 30
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_013",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "P'etsul-!ama",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2600,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Réservé historiquement aux pèlerinages d'été.",
+    "capacite_pers_jour": {
+     "min": 16,
+     "max": 22
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "route_id": "RT_065",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_014",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "T'iqur-ɨlkh",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2700,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Gel permanent des sources d'eau. Bordé par le cirque hypoxique de !Ayk-ma-‖Ixa (Zone de mort par asphyxie et anomalies éoliennes).",
+    "capacite_pers_jour": {
+     "min": 14,
+     "max": 20
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "IXA",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_CLIM_TEMPETE_VERTE_1154",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_015",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "S'akum-|ena",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2200,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Torrentiel à la fonte (crue de |'Ara-mu)",
+    "capacite_pers_jour": {
+     "min": 24,
+     "max": 32
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "event_id": "EVT_SOC_EXODE_QESHA_1435",
+     "relation": "theatre"
+    },
+    {
+     "route_id": "RT_038",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_016",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Q'usa-||ema",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2100,
+    "statut_passage": "principal",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Maintenu ouvert par déneigement manuel sauf durant le pic de |'Arin (février)",
+    "capacite_pers_jour": {
+     "min": 30,
+     "max": 40
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "TSD",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "LIG_0050",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "LIG_0067",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0113",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0124",
+     "relation": "site_associe"
+    },
+    {
+     "event_id": "EVT_DIFF_LGC_SE_PIEMONTS_1345",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_EXODE_QESHA_1435",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_DISPARITION_QERA_1569",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_QYR_TSKURE",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_QYR_TSIDAR",
+     "relation": "zone_action"
+    },
+    {
+     "route_id": "RT_019",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_017",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "T'amr-khɨna",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2450,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Glissant et dangereux au dégel",
+    "capacite_pers_jour": {
+     "min": 18,
+     "max": 26
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "TSD",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_018",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Pámà-Rikh-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1600,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 12
+    },
+    "contrainte": "Pas de neige, mais pluies torrentielles continues en |'Ara-ku effaçant la piste",
+    "capacite_pers_jour": {
+     "min": 55,
+     "max": 70
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_019",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Mázì-Klek-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1900,
+    "statut_passage": "principal",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Sujet aux éboulements forestiers par saturation des sols",
+    "capacite_pers_jour": {
+     "min": 38,
+     "max": 50
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_020",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Kù-Lábà",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1700,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 12
+    },
+    "contrainte": "Zone de sangsues et de brumes chaudes persistantes",
+    "capacite_pers_jour": {
+     "min": 50,
+     "max": 65
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_021",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Sikal-Ktet-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1800,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Praticable toute l'année sauf crues éclairs saisonnières",
+    "capacite_pers_jour": {
+     "min": 42,
+     "max": 58
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_022",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Dúma-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1650,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 12
+    },
+    "contrainte": "Enlisement fréquent des chariots lourds",
+    "capacite_pers_jour": {
+     "min": 55,
+     "max": 68
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_023",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Kù-Sepá",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1750,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 12
+    },
+    "contrainte": "Route pavée de troncs pour résister à la boue.",
+    "capacite_pers_jour": {
+     "min": 50,
+     "max": 62
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_024",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Pámà-Tɨra-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2000,
+    "statut_passage": "principal",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "La base est un bourbier (Gris), le sommet un névé (Blanc). Passage technique.",
+    "capacite_pers_jour": {
+     "min": 32,
+     "max": 42
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "URM",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_025",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Lémakhɨ",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2200,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Végétation gèle sur pied (verglas) rendant la progression lente.",
+    "capacite_pers_jour": {
+     "min": 28,
+     "max": 36
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "URM",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_026",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Sogo-!Ara-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2100,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Chutes de pierres fréquentes au dégel.",
+    "capacite_pers_jour": {
+     "min": 30,
+     "max": 40
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_027",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Kù-Pété-‖Eni",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1900,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Pluies verglaçantes dangereuses pour les porteurs.",
+    "capacite_pers_jour": {
+     "min": 40,
+     "max": 52
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_028",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Ténɨlkh-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2300,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Zone de transition brutale forêt/neige.",
+    "capacite_pers_jour": {
+     "min": 22,
+     "max": 30
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "URM",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_029",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ku-Darikámba-!Ari-te",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2400,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Mur thermique violent à la sortie de la forêt.",
+    "capacite_pers_jour": {
+     "min": 20,
+     "max": 28
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_030",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ktalep-tɨra",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2600,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Glaciation des vents (Windchill extrême).",
+    "capacite_pers_jour": {
+     "min": 16,
+     "max": 22
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_031",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Tkrilan-ɨkh",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2800,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Sec et froid, absence d'eau liquide.",
+    "capacite_pers_jour": {
+     "min": 12,
+     "max": 18
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_032",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Hlelak-!uri",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2900,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 9
+    },
+    "contrainte": "Piste vertigineuse, impraticable sous la moindre neige.",
+    "capacite_pers_jour": {
+     "min": 12,
+     "max": 16
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_033",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Rekal-‖ene",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2500,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Risque majeur de cécité des neiges au printemps.",
+    "capacite_pers_jour": {
+     "min": 18,
+     "max": 26
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_034",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ktamar-khɨ",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 3000,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 7,
+     "mois_fin": 9
+    },
+    "contrainte": "Passage des purs (Tɨrakh uniquement hors saison).",
+    "capacite_pers_jour": {
+     "min": 10,
+     "max": 15
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_035",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Kraloth-!enu",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2700,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 6,
+     "mois_fin": 10
+    },
+    "contrainte": "Verrouillé par le gel des sources.",
+    "capacite_pers_jour": {
+     "min": 14,
+     "max": 20
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_036",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Narkh-ɨlkh",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2550,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Dégel tardif sur versant Nord.",
+    "capacite_pers_jour": {
+     "min": 18,
+     "max": 24
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_037",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Kurahek",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2100,
+    "statut_passage": "principal",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Intenable dès les pluies de |'Ara-ku (boue), fermé par la neige ensuite",
+    "capacite_pers_jour": {
+     "min": 35,
+     "max": 45
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "KOL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "INST_CIV_DEUX_FACADES",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_SKIMKHR_KRIL",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_038",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Hlenik-k'eso",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2000,
+    "statut_passage": "principal",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Pavé pour résister à la boue, mais bloqué par le verglas en cœur de |'Arin",
+    "capacite_pers_jour": {
+     "min": 32,
+     "max": 42
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "KOL",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_039",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Pēlakh-t'sira",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1750,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 12
+    },
+    "contrainte": "Reste praticable tardivement mais effondrements fréquents",
+    "capacite_pers_jour": {
+     "min": 50,
+     "max": 65
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "KOL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "INST_CIV_SKIMKHR_KRIL",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_040",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Namkural",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1800,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 12
+    },
+    "contrainte": "Sujet aux crues boueuses, praticable tardivement",
+    "capacite_pers_jour": {
+     "min": 40,
+     "max": 55
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_041",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Krathal-t'iq",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2300,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Pentes instables au dégel de printemps",
+    "capacite_pers_jour": {
+     "min": 25,
+     "max": 32
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_042",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ktalor-p'es",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2600,
+    "statut_passage": "haute_route",
+    "cycle_hivernal": "hiver_blanc",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Verrouillé 6 mois/an par le froid sec et le manque d'oxygène",
+    "capacite_pers_jour": {
+     "min": 18,
+     "max": 25
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_043",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Halek-t'ama",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 1900,
+    "statut_passage": "bas_col",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Brouillards givrants fréquents réduisant la visibilité",
+    "capacite_pers_jour": {
+     "min": 38,
+     "max": 50
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_044",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "ʿUbayl-t'iq",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2000,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "hiver_gris",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Crues d'oueds côté désert (Jaune), boue côté plateau (Gris).",
+    "capacite_pers_jour": {
+     "min": 30,
+     "max": 40
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "TNQ",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_045",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ḥazīr-k'ama",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2100,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Brouillards givrants venant des plateaux.",
+    "capacite_pers_jour": {
+     "min": 28,
+     "max": 38
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_COL_046",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Ṣamar-q'ut",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2200,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Vent de sable (Bas) rencontre la neige (Haut).",
+    "capacite_pers_jour": {
+     "min": 26,
+     "max": 36
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "TNQ",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SYN_PASSE_ROUGE_712",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_LING_KURR_SAQRA_CRISTALLISATION_-200",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_047",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Rafīq-t'sal",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2300,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 5,
+     "mois_fin": 10
+    },
+    "contrainte": "Instable en intersaison (éboulements).",
+    "capacite_pers_jour": {
+     "min": 22,
+     "max": 30
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": [
+    {
+     "acteur_id": "TNQ",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_COL_048",
+   "nature": "site",
+   "type": "COL",
+   "libelle": "Col",
+   "noms": [
+    {
+     "forme": "Nrelat-q'urm",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": {
+    "altitude_m": 2200,
+    "statut_passage": "secondaire",
+    "cycle_hivernal": "cycle_mixte",
+    "ouverture": {
+     "mois_debut": 4,
+     "mois_fin": 11
+    },
+    "contrainte": "Vallées d'accès inondables durant les pluies froides",
+    "capacite_pers_jour": {
+     "min": 28,
+     "max": 36
+    },
+    "statut_attributs": "[CANON]"
+   },
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_MER_HALAKHEL",
+   "nature": "site",
+   "type": "MER",
+   "libelle": "Mer intérieure",
+   "noms": [
+    {
+     "forme": "Halakhel",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Qibṣān",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Ḥalqūr",
+     "langue": "SAM",
+     "usage": "forme archaïque",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "rite_id": "RIT_HLK_PASSES_SUD",
+     "relation": "s_accomplit_a"
+    },
+    {
+     "ressource_id": "RES_NAT_OISEAUX",
+     "relation": "provenance"
+    },
+    {
+     "lieu_id": "LUR_KRETH-NA-SEREK_N",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_SEREKH-KHEM_N",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_AKHIDALET_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KRALEKH-AKTRIK_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_AKTRIK-KHEM_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_HLOM-KHETAL_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_IMEKH-STOM_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_CHERBEKH-KHEM_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_TAWALMAZ_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_QABD-AR-GANUB_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_AKHILETH_NO",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "TRQ",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_DIFF_FILAL_890",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_ABSORPTION_SUD_1440",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_TRIB_KRALEKH",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_HLK_AKHEROMIR",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_LAC_TUMAZI",
+   "nature": "site",
+   "type": "LAC",
+   "libelle": "Premier lac",
+   "noms": [
+    {
+     "forme": "Tùmázì",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Tù-Mázì",
+     "langue": "MBA",
+     "usage": "graphie décomposée",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_NAT_MINOKLAL",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_CEREALES_SEC",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_LEGUMINEUSES",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_BOIS_LEGER_LAC",
+     "relation": "provenance"
+    },
+    {
+     "lieu_id": "LUR_KUBEKA_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KUPILA-MUSUKU_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KUKIBO_QESHA_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-PILA-DI_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-SUKU-NA_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-LEMBE_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-ZABA_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_MI-TONO_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-PELE-SO_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-BANGA_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KU-NOMA_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KUKANADI_SC",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_SAKUMADI_FORS",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "LON",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "PIL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "NGU",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SEM",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "KIR",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "PEL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "LIG_0082",
+     "relation": "bassin_associe"
+    },
+    {
+     "acteur_id": "LIG_0052",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0061",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0091",
+     "relation": "site_associe"
+    },
+    {
+     "event_id": "EVT_GUERRE_TARIQ_VAGUE3_-1050",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_EPI_PIL_BERGES_-250",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_GEO_FIN_THALASSO_-1400",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_FILAL_890",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_PRATIQUE_DOC_MOPAMA_1379",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_LING_PIDGIN_PAMABA_-1200",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_PROTOCOLE_ROUGE_1360",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_PRECARISATION_BAPAMA_1560",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_ECO_INFUSION_OR_1445",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_TERMINUS_TUMAZI_-1000",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_GARDE_VAGUES",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_SYNDICAT_EXILES",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_GARDE_QESHA",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_MUSUKU",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_MASQUES",
+     "relation": "zone_action"
+    },
+    {
+     "ressource_id": "RES_NAT_MAHRUVA",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_LAC_AKHTIR",
+   "nature": "site",
+   "type": "LAC",
+   "libelle": "Deuxième lac",
+   "noms": [
+    {
+     "forme": "Akhtir",
+     "langue": null,
+     "usage": "forme courante",
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "||Akh-Tɨr",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_TRF_CUIVRE_AKHTIR",
+     "relation": "provenance"
+    },
+    {
+     "event_id": "EVT_SYN_ZAGAKH_1430",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_LAC_MOPAMA",
+   "nature": "site",
+   "type": "LAC",
+   "libelle": "Troisième lac",
+   "noms": [
+    {
+     "forme": "Mopámà",
+     "langue": "MBA",
+     "usage": "nom du système lac, émissaire et delta",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "rite_id": "RIT_SEM_PALA_SEMBE",
+     "relation": "s_accomplit_a"
+    },
+    {
+     "lieu_id": "LUR_KUTEKA_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KUBELAA_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_KUNGUMI_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_MAZI-DUM_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KUSALADI_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_KUUMANA_SO",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "NGU",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SEM",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "KIR",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "PEL",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "FIG_0061",
+     "relation": "site_associe"
+    },
+    {
+     "event_id": "EVT_SOC_RADICAL_LONGO_348",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_PRATIQUE_DOC_MOPAMA_1379",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_REQUISITION_CHANTIERS_1443",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_LEVEE_BAPAMA_1475",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_FRACTURE_TSHERUGU_1480",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_ASCENSION_FUNDE_1495",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_LING_PIDGIN_PAMABA_-1200",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_GEO_PESTE_BOIS_1150",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_LOPEPO_DEPLOYMENT_1382",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_EMBUSCADE_CHENAUX_1382",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_PROTOCOLE_ROUGE_1360",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_GUERRE_VAGUES_1510",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_URB_KUBELAA_1519",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_PACTE_DOUBLERIVE_1560",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_PRECARISATION_BAPAMA_1560",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_CULTE_ABYSSE_1450",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_NUIT_LONGS_COUTEAUX_1480",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_ECO_INDEXATION_MUGALU_1544",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SCH_MBR_PEKBADAY_1355",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_GARDE_VAGUES",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_ALLIANCE_RACINE",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_MUKIRI",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_RIT_PEK_BADAY",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_FLV_EMISSAIRE_MOPAMA",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Émissaire du lac Mopámà",
+   "noms": [
+    {
+     "forme": "[LACUNE — À DOCUMENTER]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 600,
+    "statut": "[CANON]",
+    "precision": "du lac à l'océan Atlantique, navigable"
+   },
+   "rattachements": [
+    {
+     "site_id": "GEO_LAC_MOPAMA",
+     "relation": "emissaire_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "event_id": "EVT_MIL_CONTREBANDE_MUBADAY_1495",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_GUERRE_VAGUES_1510",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_CRIM_INSTITUTIONNALISATION_RACKET_1565",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_SAKOD_JALI",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DLT_MOPAMA",
+   "nature": "site",
+   "type": "DLT",
+   "libelle": "Delta du Mopámà",
+   "noms": [
+    {
+     "forme": "[LACUNE — À DOCUMENTER]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_EMISSAIRE_MOPAMA",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "KAD",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SEM",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_MIL_CONTREBANDE_MUBADAY_1495",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_BRUME_RAZZIA_1465",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_GUERRE_VAGUES_1510",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_PEK_BADAY",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_SUKU_DUM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_MBR_RIT_PEK_BADAY",
+     "relation": "zone_action"
+    },
+    {
+     "route_id": "RT_059",
+     "relation": "extremite"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_FLV_ABNUHIL",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Plus long fleuve",
+   "noms": [
+    {
+     "forme": "Tira-qoyra",
+     "langue": "QOY",
+     "usage": "sources",
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Abnuḥīl",
+     "langue": "SAM",
+     "usage": "basse vallée",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 6800,
+    "statut": "[CANON]",
+    "precision": "de la source du Tira-ñara au débouché halakhélien du bras d'Abnīqa ; segments au GÉOSYSTÈME §V.5"
+   },
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_NAT_LEGUMINEUSES",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_HASIL",
+     "relation": "provenance"
+    },
+    {
+     "lieu_id": "LUR_QURASH-TANIQA_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_QURASH-TANIHIL_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_SARIQ_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_ABNAQIL_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_TANAHIL_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_TANAQIL_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_ABNIQA_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_QABSUR-QIBS_E",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_SHALIM_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "ZRS_HAMAD-RAS_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "HMQ",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SRN",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SRT",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SRQ",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "SRQ",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "TRQ",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "RMS",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_GUERRE_TARIQ_VAGUE1_-1300",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_CHUTE_SHALIM_-1180",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_RUPTURE_DIGUES_-1180",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_FRAGMENTATION_MICRO_ROYAUMES_-1180",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_CHUTE_NARASH_950",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_GUERRE_ECLUSES_1430",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_SHALIM_QURASH_1400",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_GUERRE_SCEAUX_1415",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_TECH_PONT_PEAUX_1460",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_EDIT_TAZRIN_1536",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_LIGUE_POLDERS",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_EMPIRE_SHALIM_QURASH",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_CHANCELLERIE_SHALIM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_SMQ_HAMUQAS",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_FLV_ABNUHIL_ABNIQA",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Bras terminal occidental du système Abnuḥīl",
+   "noms": [
+    {
+     "forme": "Abnīqa",
+     "langue": "SAM",
+     "usage": "bras terminal",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 300,
+    "statut": "[INFÉRENCE]",
+    "precision": "du seuil de diffluence au débouché halakhélien ; calée sur la largeur de l'interfluve oriental (~300 km)"
+   },
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "debouche_de"
+    },
+    {
+     "site_id": "GEO_ZON_INTERFLUVE_E",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_FLV_ABNUHIL_SAFAQIL",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Bras terminal septentrional du système Abnuḥīl",
+   "noms": [
+    {
+     "forme": "Šafāqil",
+     "langue": "SAM",
+     "usage": "bras terminal",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 520,
+    "statut": "[INFÉRENCE]",
+    "precision": "du seuil de diffluence au débouché méditerranéen NE ; dérivée des ~600 km séparant les deux embouchures et des ~300 km du bras d'Abnīqa, les deux bras divergeant vers l'O et vers le N ; borne basse, un cours sinueux l'allonge"
+   },
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_FLV_TANAHIL",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Affluent majeur des hauts plateaux",
+   "noms": [
+    {
+     "forme": "Tira-ñara",
+     "langue": "QOY",
+     "usage": "sources",
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Tanāḥil",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 1450,
+    "statut": "[INFÉRENCE]",
+    "precision": "branche-source des hauts plateaux SE, jusqu'au confluent"
+   },
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "affluent_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "event_id": "EVT_GUERRE_TARIQ_VAGUE1_-1300",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_CHUTE_SHALIM_-1180",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_RUPTURE_DIGUES_-1180",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_FRAGMENTATION_MICRO_ROYAUMES_-1180",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_SILENCE_TSIDAR_710",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SYN_PASSE_ROUGE_712",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_SHALIM_QURASH_1400",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_SAQRADUM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_EMPIRE_SHALIM_QURASH",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_CONSEIL_CREANCIERS",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_CHANCELLERIE_SHALIM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_SMQ_HAMUQAS",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_SMQ_SHAKRADUM",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_VAL_HAUTE_TANAHIL",
+   "nature": "site",
+   "type": "VAL",
+   "libelle": "Haute Tanāḥil, vallée amont",
+   "noms": [
+    {
+     "forme": "[LACUNE — À DOCUMENTER]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_TANAHIL",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_QURASH-TANIHIL_NE",
+     "relation": "secteur"
+    },
+    {
+     "lieu_id": "ZRS_SHALIM_NE",
+     "relation": "secteur"
+    },
+    {
+     "event_id": "EVT_SYN_FRONTIERES_840",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_FORT_MARNAH_320",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_URB_MARNAH_ARC",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_PHARMACOPEE_IMPERIALE_1465",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_POL_GUERRE_OR_1520",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_EXT_MAHTAM",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_SMQ_DIMLAS",
+     "relation": "zone_action"
+    },
+    {
+     "ressource_id": "RES_NAT_GRES",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_FLV_BUHLELA",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Affluent oriental à source extérieure",
+   "noms": [
+    {
+     "forme": "Buhlela",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 900,
+    "statut": "[INFÉRENCE]",
+    "precision": "branche-source orientale, sources hors-Beliet, jusqu'au confluent"
+   },
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "affluent_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_FLV_MADIKH",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Fleuve central aux eaux ferrugineuses",
+   "noms": [
+    {
+     "forme": "|Na-madikh",
+     "langue": "TIR",
+     "usage": "sources",
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Madīlan",
+     "langue": "SAM",
+     "usage": "basse vallée",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 1400,
+    "statut": "[CANON]",
+    "precision": null
+   },
+   "rattachements": [],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_FLV_IMIKHREL",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Fleuve des piémonts occidentaux",
+   "noms": [
+    {
+     "forme": "Imikhrel",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 800,
+    "statut": "[CANON]",
+    "precision": null
+   },
+   "rattachements": [],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_FLV_EHUKHTAL",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Fleuve de l'ouest",
+   "noms": [
+    {
+     "forme": "Ehukhtal",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "metrique": {
+    "longueur_km": 1100,
+    "statut": "[CANON]",
+    "precision": null
+   },
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "NAW",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "FAL",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SOC_FALAMI_LGC_1343",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_FLV_HAWQAL",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Système fluvial de l'Akhtir",
+   "noms": [
+    {
+     "forme": "|Na-khuwel",
+     "langue": "TIR",
+     "usage": "sources",
+     "statut": "[CANON]"
+    },
+    {
+     "forme": "Ḥawqal",
+     "langue": "SAM",
+     "usage": "basse vallée",
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_LAC_AKHTIR",
+     "relation": "emissaire_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_HAWQIL_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "lieu_id": "LUR_ZAGAKH-TIR_NE",
+     "relation": "bassin_versant"
+    },
+    {
+     "acteur_id": "SRT",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "SRQ",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "SRQ",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SYN_ZAGAKH_1430",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_FLV_HAWQAL_IN",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Affluent oriental",
+   "noms": [
+    {
+     "forme": "|Na-khuwel-ɨn",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_HAWQAL",
+     "relation": "affluent_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_FLV_HAWQAL_RA",
+   "nature": "site",
+   "type": "FLV",
+   "libelle": "Affluent méridional à bras multiples",
+   "noms": [
+    {
+     "forme": "|Na-khuwel-ra",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "ligne",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_HAWQAL",
+     "relation": "affluent_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_DET_KHRETHNASEREK",
+   "nature": "site",
+   "type": "DET",
+   "libelle": "Passe nord de la mer intérieure",
+   "noms": [
+    {
+     "forme": "Khreth-na-Serek",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_MER_HALAKHEL",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "KRA",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "HLE",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "LIG_0085",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0152",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0153",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "INST_CIV_GARDE_DETROIT",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_ECOLE_PHARES",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DET_HLOMKHETAL",
+   "nature": "site",
+   "type": "DET",
+   "libelle": "Goulet occidental",
+   "noms": [
+    {
+     "forme": "Hlom-khetal",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_MER_HALAKHEL",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_SAV_KHRETH_THIM",
+     "relation": "provenance"
+    },
+    {
+     "lieu_id": "LUR_HLOM-KHETAL_NO",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "INST_CIV_HLOMTHRIM",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DET_IMEKHSTOM",
+   "nature": "site",
+   "type": "DET",
+   "libelle": "Goulet estuarien du sud-ouest",
+   "noms": [
+    {
+     "forme": "Imekh-stom",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_IMIKHREL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "HIB",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_DIFF_FANION_NOIR_1350",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_SILENCE_SANITAIRE_1352",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_CIV_KTALTHEK",
+     "relation": "zone_action"
+    },
+    {
+     "acteur_id": "INST_CIV_HLOMTHRIM",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DET_ABNIQA",
+   "nature": "site",
+   "type": "DET",
+   "libelle": "Débouché deltaïque oriental",
+   "noms": [
+    {
+     "forme": "Abnīqa",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_DET_HAWQIL",
+   "nature": "site",
+   "type": "DET",
+   "libelle": "Débouché deltaïque du Ḥawqal",
+   "noms": [
+    {
+     "forme": "Ḥawqil",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_HAWQAL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "QBS",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DET_SAFAQIL_PASSE",
+   "nature": "site",
+   "type": "DET",
+   "libelle": "Débouché méditerranéen, bras nord",
+   "noms": [
+    {
+     "forme": "Šafāqil",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "acteur_id": "SRN",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_EST_TAWALMAZ",
+   "nature": "site",
+   "type": "EST",
+   "libelle": "Ria-estuaire",
+   "noms": [
+    {
+     "forme": "Tawālmaz",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_MADIKH",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_EST_AKHIDALET",
+   "nature": "site",
+   "type": "EST",
+   "libelle": "Estuaire occidental",
+   "noms": [
+    {
+     "forme": "Akhidalet",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_EHUKHTAL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_HLOM-KHETAL_NO",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "KRA",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "NAW",
+     "relation": "territoire"
+    },
+    {
+     "acteur_id": "LIG_0033",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "FIG_0048",
+     "relation": "site_associe"
+    },
+    {
+     "acteur_id": "INST_HLK_MEMOIRE_BRUME",
+     "relation": "zone_action"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DLT_SAFAQIL",
+   "nature": "site",
+   "type": "DLT",
+   "libelle": "Delta méditerranéen",
+   "noms": [
+    {
+     "forme": "Šafāqil",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "debouche_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_MAR_SARAQ",
+   "nature": "site",
+   "type": "MAR",
+   "libelle": "Marais hypersalin",
+   "noms": [
+    {
+     "forme": "Ṣaraq",
+     "langue": "SAM",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ZON_INTERFLUVE_E",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "event_id": "EVT_SYN_PASSE_ROUGE_712",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ARC_STAURKHLOR",
+   "nature": "site",
+   "type": "ARC",
+   "libelle": "Archipel volcanique du large",
+   "noms": [
+    {
+     "forme": "Staur-Khlōr",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "rite_id": "RIT_TAL_TEST_STAUR_KHLOR",
+     "relation": "s_accomplit_a"
+    },
+    {
+     "ressource_id": "RES_NAT_KHTOM_NATIF",
+     "relation": "provenance"
+    },
+    {
+     "ressource_id": "RES_NAT_OKH_NA",
+     "relation": "provenance"
+    },
+    {
+     "acteur_id": "TAL",
+     "relation": "territoire"
+    },
+    {
+     "event_id": "EVT_SOC_PARQUAGE_THRESKOL_1350",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_LOG_DERIVE_SILENCIEUSE_1365",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_SOC_SOIF_STRAKH_1448",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_MIL_LOI_DU_FEU_1452",
+     "relation": "theatre"
+    },
+    {
+     "event_id": "EVT_DIFF_CULTE_ABYSSE_1450",
+     "relation": "theatre"
+    },
+    {
+     "acteur_id": "INST_HLK_TALOMAK",
+     "relation": "zone_action"
+    },
+    {
+     "ressource_id": "RES_NAT_ARSENIC",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ILE_KHLORNAW",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Mont-Brume",
+   "noms": [
+    {
+     "forme": "Khlōr-Naw",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_TRF_BARGE_CITERNE",
+     "relation": "provenance"
+    },
+    {
+     "event_id": "EVT_MIL_PROTOCOLE_JAUNE_1415",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ILE_STRAKHKOT",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Rocher de l'Abîme",
+   "noms": [
+    {
+     "forme": "Strakh-Kot",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "event_id": "EVT_SOC_SOIF_STRAKH_1448",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ILE_STAUROM",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Lieu Brûlé",
+   "noms": [
+    {
+     "forme": "Staur-Om",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ILE_THRELHAL",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Vague Vide",
+   "noms": [
+    {
+     "forme": "Threl-Hal",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ILE_SKRALKOT",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Rocher de la Baleine",
+   "noms": [
+    {
+     "forme": "Skral-Kot",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ILE_HLEKAKOR",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Écume Morte",
+   "noms": [
+    {
+     "forme": "Hleka-Kōr",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "event_id": "EVT_MIL_LOI_DU_FEU_1452",
+     "relation": "theatre"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ILE_STRAKHKHLOR",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Mont de la Mort",
+   "noms": [
+    {
+     "forme": "Strakh-Khlōr",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ILE_AKTIRKOT",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Pointe Sud",
+   "noms": [
+    {
+     "forme": "Aktir-Kot",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ILE_SKELTI",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Les Jumelles",
+   "noms": [
+    {
+     "forme": "Skel-Ti",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_ILE_HALKOT",
+   "nature": "site",
+   "type": "ILE",
+   "libelle": "Le Non-Rocher",
+   "noms": [
+    {
+     "forme": "Hal-Kot",
+     "langue": "HAL",
+     "usage": null,
+     "statut": "[INFÉRENCE]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "point",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ARC_STAURKHLOR",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_SIT_AYKMAIXA",
+   "nature": "site",
+   "type": "SIT",
+   "libelle": "Cirque glaciaire endoréique",
+   "noms": [
+    {
+     "forme": "!Ayk-ma-‖Ixa",
+     "langue": "TIR",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "partie_de"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "rite_id": "RIT_TRK_GLACE_VERTE",
+     "relation": "s_accomplit_a"
+    },
+    {
+     "ressource_id": "RES_SAV_GLACE_VERTE",
+     "relation": "provenance"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_DES_SUMDAN",
+   "nature": "site",
+   "type": "DES",
+   "libelle": "Désert, bouclier septentrional",
+   "noms": [
+    {
+     "forme": "Sumdan",
+     "langue": null,
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_TRF_STAKHR_KHALAN",
+     "relation": "provenance"
+    },
+    {
+     "acteur_id": "DUR",
+     "relation": "secteur"
+    },
+    {
+     "acteur_id": "QSL",
+     "relation": "territoire"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_ZON_INTERFLUVE_E",
+   "nature": "site",
+   "type": "ZON",
+   "libelle": "Interfluve oriental",
+   "noms": [
+    {
+     "forme": "[LACUNE — À DOCUMENTER]",
+     "langue": null,
+     "usage": null,
+     "statut": null
+    }
+   ],
+   "scope": "internal",
+   "geometrie": "zone",
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_PHN_CYCLE_MIXTE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Hiver Gris, zone de saturation",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_TRK_FAUX_PRINTEMPS",
+     "relation": "interprete"
+    },
+    {
+     "lieu_id": "LUR_TSIDAR-RE_SE",
+     "relation": "exposition"
+    },
+    {
+     "lieu_id": "LUR_QIREL-TSIDAR_SE",
+     "relation": "exposition"
+    },
+    {
+     "lieu_id": "LUR_GITES-TSIDAR_SE",
+     "relation": "exposition"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_CATABATIQUE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Vents catabatiques d'effondrement",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_QYR_CHUTE_CIEL",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_PRECIPITATION_CARBONATEE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Précipitation carbonatée massive",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_MER_HALAKHEL",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_HLK_OEIL_MORT",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_ORAGE_SEC",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Orages électrostatiques secs",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_DES_SUMDAN",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_SMQ_DJINNS_MUETS",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_NEIGE_ROUGE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Dépôts nivaux ferrugineux",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_TRK_SANG_NEIGE",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_ACOUSTIQUE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Conduits de propagation acoustique",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_FLV_ABNUHIL",
+     "relation": "se_manifeste_a"
+    },
+    {
+     "site_id": "GEO_FLV_MADIKH",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_SMQ_VOIX_FANTOMES",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_PATHOGENE_LIGNEUX",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Pathogène ligneux, Peste du Bois",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_LAC_MOPAMA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": []
+  },
+  {
+   "geo_id": "GEO_PHN_SATURATION_FONGIQUE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Saturation fongique, Rouille Verte",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_LAC_MOPAMA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "lieu_id": "LUR_MAZI-DUM_SO",
+     "relation": "exposition"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_PALYNOLOGIQUE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Précipitation palynologique rétrograde, la Glace Verte",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_SIT_AYKMAIXA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "ressource_id": "RES_SAV_GLACE_VERTE",
+     "relation": "porte_sur"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_BRUMES_LACUSTRES",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Brume thermique nocturne de surface",
+   "noms": [
+    {
+     "forme": "Mi-sùwí",
+     "langue": "MBA",
+     "usage": null,
+     "statut": "[CANON]"
+    }
+   ],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_LAC_TUMAZI",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_MBR_TESUWI",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_BIOLUMINESCENCE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Bioluminescence des passes, Lait de Lune",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_MER_HALAKHEL",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_HLK_FEU_FROID",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_GAZ_MARAIS",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Gaz de marais",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_DLT_MOPAMA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_MBR_FEU_FROID",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_COURANTS_LACUSTRES",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Tourbillons et courants descendants lacustres",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_LAC_TUMAZI",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_MBR_NOMBRIL_LAC",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_CONTRE_COURANT_FLUVIAL",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Contre-courants fluviaux profonds",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_MBR_RIVIERE_INVERSE",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_MIRAGE_INFERIEUR",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Mirage inférieur désertique",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_DES_SUMDAN",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_SMQ_CITE_SOIF",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_NUAGE_OROGRAPHIQUE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Nuage orographique de rebord de plateau",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_QYR_MANTEAU",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_ECHO_MONTAGNE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Résonance acoustique des cirques glaciaires",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI_KARA",
+     "relation": "se_manifeste_a"
+    },
+    {
+     "site_id": "GEO_ORO_URUMATI_QOYRA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_TRK_ECHO",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_CORROSION_SALINE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Corrosion saline des interfaces halakhéliennes",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_MER_HALAKHEL",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_HLK_DENT_SEL",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_EROSION_EOLIENNE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Érosion éolienne et ensablement",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_DES_SUMDAN",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_SMQ_MUR_VIVANT",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_FORGE_ALTITUDE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Ressort hydraulique glaciaire, Forge d'Altitude",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI_KARA",
+     "relation": "se_manifeste_a"
+    },
+    {
+     "site_id": "GEO_ORO_URUMATI_QOYRA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_QYR_FER_FROID",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_OASIS_LITTORALES",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Résurgences karstiques littorales",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_MER_HALAKHEL",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_HLK_SABLE_VIVANT",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_FLORE_ENDEMIQUE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Arbres à sève laticifère rouge",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI_LONGO",
+     "relation": "se_manifeste_a"
+    },
+    {
+     "site_id": "GEO_LAC_TUMAZI",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_MBR_ARBRE_SAIGNEUR",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_OBSIDIENNE",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Affleurements d'obsidienne volcanique",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_ORO_URUMATI_KARA",
+     "relation": "se_manifeste_a"
+    },
+    {
+     "site_id": "GEO_ORO_URUMATI_QOYRA",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_TRK_PIERRE_NOIRE",
+     "relation": "interprete"
+    }
+   ]
+  },
+  {
+   "geo_id": "GEO_PHN_MOUSSON",
+   "nature": "phenomene",
+   "type": "PHN",
+   "libelle": "Inversion saisonnière des vents de l'Océan de l'Est",
+   "noms": [],
+   "scope": "internal",
+   "geometrie": null,
+   "statut": "[CANON]",
+   "rattachements": [
+    {
+     "site_id": "GEO_EXT_OCEAN_EST",
+     "relation": "se_manifeste_a"
+    }
+   ],
+   "attributs": null,
+   "renvois": [
+    {
+     "mythe_id": "MYTHE_QYR_RESPIRATION",
+     "relation": "interprete"
+    },
+    {
+     "lieu_id": "LUR_ABNAQIL_NE",
+     "relation": "exposition"
+    },
+    {
+     "lieu_id": "LUR_ABNIQA_NE",
+     "relation": "exposition"
+    },
+    {
+     "lieu_id": "LUR_TNAYA-HAEM_SE",
+     "relation": "exposition"
+    }
+   ]
+  }
+ ]
+}

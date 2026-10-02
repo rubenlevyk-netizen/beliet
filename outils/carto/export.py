@@ -23,7 +23,7 @@ POLICE = "/usr/share/fonts/truetype/freefont/FreeSerif.ttf"
 POLICE_I = "/usr/share/fonts/truetype/freefont/FreeSerifItalic.ttf"
 POLICE_B = "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf"
 FAMILLE = "FreeSerif, 'DejaVu Serif', 'Liberation Serif', Georgia, serif"
-VERSION = "0.2"
+VERSION = "0.3"
 
 # --------------------------------------------------------------------------- couleurs
 

@@ -210,27 +210,49 @@ class Relief:
         a0 = sum(aire_poly_ll(b["contour"]) for b in bassins)
         self.log(f"  Halakhel : bassins dessinés {a0:,.0f} km² (cible {H.get('superficie_cible_km2', 0):,})")
         geoms = [g.poly_px(b["contour"]) for b in bassins]
+        # chenaux : passes, goulets et rias (largeur fixe ou décroissante vers l'amont)
         etroits = []
-        for cle in ("detroit_khreth_na_serek", "ria_tawalmaz"):
-            e = H[cle]
-            ligne = g.ligne_px(e["trace"])
-            lat = np.mean([c[1] for c in e["trace"]])
-            gb = ligne.buffer(e["largeur_km"] / 2 / g.km_px_a(lat), cap_style=2)
+        for e in H.get("chenaux", []):
+            tr = e["trace"]
+            l0 = e["largeur_km"]
+            l1 = e.get("largeur_fin_km", l0)
+            morceaux = []
+            for k in range(len(tr) - 1):
+                t = (k + 0.5) / max(1, len(tr) - 1)
+                lk = l0 + (l1 - l0) * t
+                lat = 0.5 * (tr[k][1] + tr[k + 1][1])
+                morceaux.append(g.ligne_px([tr[k], tr[k + 1]]).buffer(lk / 2 / g.km_px_a(lat)))
+            gb = unary_union(morceaux)
             geoms.append(gb)
             etroits.append(gb)
         m0 = g.rasteriser(unary_union(geoms)).astype(bool)
         din = distance_transform_edt(m0) * km
         dout = distance_transform_edt(~m0) * km
+        C = H.get("cote", {})
         n = bruit_bande(g.shape, self.graine + 21, 4, 120 / g.km_px_eq)
+        n_fin = n.copy()
         nG = bruit_bande(g.shape, self.graine + 22, 80 / g.km_px_eq, 600 / g.km_px_eq)
         ouest = np.clip((H.get("rias_ouest_de_lon", 0.0) - self.LON) / 5, 0, 1)
         rias = bruit_crete(g.shape, self.graine + 24, 2, 60 / g.km_px_eq, octaves=3)
-        amp = 7 + 8 * ouest
+        amp = C.get("bruit_km", 7) + 8 * ouest
         n = n + 2.0 * ouest * (rias - 0.5) * 2
-        n = n + nG * (32 / amp)
-        # le détroit et la ria gardent leur largeur
-        etroit = g.rasteriser([e.buffer(10) for e in etroits]).astype(bool)
-        amp = np.where(etroit, 1.5, amp)
+        n = n + nG * (C.get("ondulation_km", 32) / amp)
+        # le rivage épouse le relief réel : baies dans les creux, caps sur les plateaux
+        k_rel = C.get("relief_reel_km_par_100m", 0.0)
+        if k_rel:
+            hr = np.maximum(self.h_reel, 0)
+            loc = gaussian_filter(hr, C.get("relief_reel_lissage_km", 10) / g.km_px_eq)
+            if "niveau_reference_m" in C:
+                # inondation des bas-pays réels sous un niveau de référence
+                reg = C["niveau_reference_m"]
+            else:
+                reg = gaussian_filter(hr, 260 / g.km_px_eq)
+            lim = C.get("relief_reel_max_km", 70)
+            n = n + np.clip(k_rel * (reg - loc) / 100, -lim, lim) / amp
+        # les chenaux gardent leur largeur
+        if etroits:
+            etroit = g.rasteriser([e.buffer(C.get("garde_chenaux_px", 10)) for e in etroits]).astype(bool)
+            n = np.where(etroit, n_fin * 1.5 / amp, n)
         m = (din - dout + amp * n) > 0
         lab, _ = label(m)
         core = lab[m0 & (din > 25)]
@@ -259,8 +281,11 @@ class Relief:
             rr = np.hypot(xx + 0.5 - x, yy + 0.5 - y) / r
             v = self.L + haut * np.clip(1 - rr, 0, None) ** 1.3 - 450 * rr * rr
             iles[y0:y1, x0:x1] = np.maximum(iles[y0:y1, x0:x1], v)
-        for (lon, lat) in H["iles_volcaniques"]:
-            bosse(lon, lat, rng.uniform(250, 900), rng.uniform(9, 22))
+        for ile in H["iles_volcaniques"]:
+            if len(ile) >= 4:
+                bosse(ile[0], ile[1], ile[2], ile[3])
+            else:
+                bosse(ile[0], ile[1], rng.uniform(250, 900), rng.uniform(9, 22))
         ys, xs = np.nonzero(m & (d > 6) & (d < 45))
         k = 0
         essais = 0

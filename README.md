@@ -1,6 +1,6 @@
 # Le Beliet — carte physique
 
-Carte topographique et des milieux (biomes) du Beliet, version 0.2.
+Carte topographique et des milieux (biomes) du Beliet, version 0.3.
 
 ![Carte des milieux](carte/beliet_carte_milieux.png)
 

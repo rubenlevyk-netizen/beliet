@@ -1,6 +1,6 @@
 # Le Beliet — carte physique
 
-Carte topographique et des milieux (biomes) du Beliet, version 0.3.
+Carte topographique et des milieux (biomes) du Beliet, version 0.3.1.
 
 ![Carte des milieux](carte/beliet_carte_milieux.png)
 
@@ -13,7 +13,10 @@ Carte topographique et des milieux (biomes) du Beliet, version 0.3.
 | `carte/beliet_carte.svg` | carte complète **en calques** (Inkscape) | retoucher à la main, ajouter des villes |
 | `carte/sig/` | données géographiques (GeoJSON, GeoTIFF, cartes d'altitude) | outils SIG (QGIS), Azgaar, futures cartes interactives |
 | `donnees/parametres_carte.yaml` | **toutes les décisions de placement** (chaînes, mer, lacs, fleuves, climat) | modifier la géographie |
+| `donnees/cols.yaml` | positions calculées des **48 cols** (altitudes du registre) | modifier ou recalculer les cols |
 | `ANALYSE_COHERENCE.md` | incohérences du corpus et choix retenus | valider ou corriger les choix |
+| `ALIGNEMENT_CORPUS.md` | **tout ce que la carte apporte au corpus** : positions, mesures, ajouts, corrections, impossibilités | faire remonter les décisions dans le corpus |
+| `carte/sig/beliet_mesures.json` | les mêmes mesures et positions, lisibles par machine | agent de gestion du corpus |
 | `references/` | les fichiers de référence fournis (Géosystème, registre, contour, LIEUX, ROUTES, RESSOURCES, illustration) | source |
 | `outils/` | le programme qui fabrique la carte | régénérer après modification |
 
@@ -52,7 +55,8 @@ La carte est en projection Web Mercator, la même que votre contour d'origine. L
 
 | Fichier | Contenu |
 |---|---|
-| `beliet_geographie.geojson` | mer, lacs, lignes de crête, fleuves nommés, détroits, deltas — chaque objet porte son `geo_id` du registre |
+| `beliet_geographie.geojson` | mer, lacs, lignes de crête, fleuves nommés, détroits, deltas, 48 cols — chaque objet porte son `geo_id` du registre |
+| `beliet_mesures.json` | mesures de la carte, positions de tous les éléments, cols |
 | `beliet_cours_eau_secondaires.geojson` | réseau fluvial calculé, avec débit (m³/s) et bassin (km²) |
 | `beliet_milieux.geojson` | polygones des milieux (codes du vocabulaire du Géosystème) |
 | `beliet_altitude.tif`, `beliet_milieux.tif`, `beliet_pluie_mm.tif` | rasters géoréférencés (EPSG:3857) ; altitude à demi-résolution, pluie au quart |
@@ -67,7 +71,11 @@ La carte est en projection Web Mercator, la même que votre contour d'origine. L
 pip install -r outils/requirements.txt
 python3 outils/generer_carte.py              # complet, ~9 min
 python3 outils/generer_carte.py --reprendre  # réutilise le relief si seuls le climat, les milieux ou l'habillage changent
+python3 outils/placer_cols.py                # recalcule les positions des 48 cols (après une génération)
+python3 outils/mesures_corpus.py             # met à jour ALIGNEMENT_CORPUS.md §8 et carte/sig/beliet_mesures.json
 ```
+
+Après un changement de relief, relancez dans l'ordre : `generer_carte.py`, `placer_cols.py` (si les chaînes ont bougé), de nouveau `generer_carte.py`, puis `mesures_corpus.py`.
 
 Le programme télécharge les tuiles d'altitude et les tracés fluviaux réels au premier lancement. Il les garde ensuite dans `outils/cache/` (fichiers non versionnés).
 

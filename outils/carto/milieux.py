@@ -76,9 +76,13 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     base = np.where((P >= 1450) & (T >= 19), CODE["foret_tropicale_humide"], base)
     # étages montagnards (Zone II) : 800 / 2 400 / 3 600 m
     # étage montagnard de la Zone II : chaînes et hauts reliefs, pas les plateaux relevés
-    mont = (h >= 800) & (h < 2400) & ((rel.crete > 0.04) | (h >= 1300))
-    base = np.where(mont & (P >= 550), CODE["foret_montagne"], base)
-    base = np.where(mont & (P < 550) & (P >= 110), CODE["steppe_piemont"], base)
+    # limites irrégulières : seuil d'altitude et emprise de la chaîne bruités, transition boisée
+    nm = bruit_bande(g.shape, 911, 3, 70 / g.km_px_eq)
+    nm2 = bruit_bande(g.shape, 912, 3, 40 / g.km_px_eq)
+    mont = (h >= 800 + 220 * nm) & (h < 2400) & ((rel.crete > 0.06 + 0.1 * nm2) | (h >= 1300 + 150 * nm2))
+    base = np.where(mont & (P >= 720), CODE["foret_montagne"], base)
+    base = np.where(mont & (P >= 480) & (P < 720), CODE["herbage_arbore"], base)
+    base = np.where(mont & (P < 480) & (P >= 110), CODE["steppe_piemont"], base)
     base = np.where((h >= 2400) & (h < 3600), CODE["prairie_altitude"], base)
     base = np.where(h >= 3600, CODE["zone_periglaciaire"], base)
     neige = np.where(LON < 1, 3950, np.where(LON > 36, 4350, 4750))

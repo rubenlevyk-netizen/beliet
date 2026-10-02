@@ -23,7 +23,7 @@ POLICE = "/usr/share/fonts/truetype/freefont/FreeSerif.ttf"
 POLICE_I = "/usr/share/fonts/truetype/freefont/FreeSerifItalic.ttf"
 POLICE_B = "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf"
 FAMILLE = "FreeSerif, 'DejaVu Serif', 'Liberation Serif', Georgia, serif"
-VERSION = "0.3"
+VERSION = "0.3.1"
 
 # --------------------------------------------------------------------------- couleurs
 
@@ -410,6 +410,7 @@ def vecteurs(rel, p, reg, hy, mil, log):
 
 COUL_EAU = "#1f4f7a"
 COUL_RELIEF = "#5a3a1c"
+COUL_COL = "#3b2a1a"
 COUL_REGION = "#4a4036"
 
 
@@ -477,6 +478,33 @@ def etiquettes(rel, p, reg, vec):
         E.texte.append(f'<path d="M{X - 7:.1f},{Y + 6:.1f} L{X:.1f},{Y - 7:.1f} L{X + 7:.1f},{Y + 6:.1f}Z" fill="{COUL_RELIEF}"/>')
         E.droit(X, Y - 14, n, 24, COUL_RELIEF, POLICE_B, halo=4)
         E.droit(X, Y + 28, f"{hmax:,.0f} m".replace(",", " "), 18, COUL_RELIEF, POLICE, halo=3)
+    # cols (positions calculées, altitudes canoniques) : symbole « )( » orienté selon la crête
+    boites_cols = []
+    for c in p.get("cols", []):
+        x, y = g.px(*c["pos"])
+        az = c.get("azimut_crete_px_deg", 0.0)
+        if c.get("chaine", "").endswith("(escarpement)"):
+            az = 90.0
+        az = (az + 90) % 180 - 90
+        E.texte.append(f'<text x="{x:.1f}" y="{y + 6:.1f}" transform="rotate({az:.1f} {x:.1f} {y:.1f})" '
+                       f'font-family="{FAMILLE}" font-size="20" font-weight="bold" text-anchor="middle" '
+                       f'fill="{COUL_COL}"><title>{echap(c["nom"])} — {c["altitude_m"]} m</title>)(</text>')
+        n = nom(c["geo_id"]) or c["nom"]
+        alt = f"{c['altitude_m']:,} m".replace(",", " ")
+        # bloc nom + altitude ; huit positions essayées autour du symbole, sans chevaucher les autres cols
+        lw = max(sum(E.T.largeur(n, POLICE_I, 15, 0)[0]), 8 * len(alt)) + 6
+        lh = 34
+        choix = [(0, -22), (0, 30), (lw / 2 + 14, 4), (-lw / 2 - 14, 4), (lw / 2 + 8, -20), (-lw / 2 - 8, -20),
+                 (lw / 2 + 8, 28), (-lw / 2 - 8, 28)]
+        for ox, oy in choix:
+            bx0, by0 = x + ox - lw / 2, y + oy - lh / 2
+            boite = (bx0, by0, bx0 + lw, by0 + lh)
+            if not any(boite[0] < b[2] and b[0] < boite[2] and boite[1] < b[3] and b[1] < boite[3] for b in boites_cols):
+                break
+        boites_cols.append(boite)
+        boites_cols.append((x - 12, y - 10, x + 12, y + 10))
+        E.droit(x + ox, y + oy - 4, n, 15, COUL_COL, POLICE_I, halo=3)
+        E.droit(x + ox, y + oy + 12, alt, 12, COUL_COL, POLICE, halo=2.5)
     # fleuves nommés
     for F in rel.fleuves:
         cfg = F["cfg"]
@@ -722,6 +750,10 @@ def exporter_sig(rel, p, reg, pluie, hy, mil, vec):
               type="FLV", statut="[PROPOSITION] tracé")
     for m in p.get("massifs", []):
         F({"type": "Point", "coordinates": m["centre"]}, geo_id=m["geo_id"], nom=nom(m["geo_id"]), type="ORO")
+    for c in p.get("cols", []):
+        F({"type": "Point", "coordinates": c["pos"]}, geo_id=c["geo_id"], nom=nom(c["geo_id"]) or c["nom"], type="COL",
+          altitude_m=c["altitude_m"], groupe=c["groupe"], chaine=c["chaine"], statut_passage=c.get("statut_passage"),
+          cycle_hivernal=c.get("cycle_hivernal"), statut=c.get("statut"))
     for e in p.get("detroits_et_debouches", []) + p.get("deltas", []):
         F({"type": "Point", "coordinates": e["pos"]}, geo_id=e["geo_id"], nom=nom(e["geo_id"]), type=e["geo_id"].split("_")[1])
     for a in p.get("archipels", []):

@@ -1,4 +1,4 @@
-# Analyse de cohérence — carte du Beliet v0.3
+# Analyse de cohérence — carte du Beliet v0.3.1
 
 Sources croisées :
 - `references/GEOSYSTEME_GLOBAL_DU_BELIET_v3.1.md` (GEO) et `GEOSYSTEME_REGISTRE.v1.json` ;
@@ -9,7 +9,24 @@ Sources croisées :
 
 L'illustration `TEST_Beliet_MAP.png` n'est **pas** utilisée. Aucun fichier du corpus ne donne de coordonnées : toutes les positions sont des [PROPOSITION] déduites des relations de voisinage croisées ci-dessous.
 
-## 0. Changements de la v0.3
+## 0. Changements
+
+### v0.3.1 (retours de l'auteur sur la v0.3)
+
+| Point | v0.3 | v0.3.1 | Fondement |
+|---|---|---|---|
+| Tùmázì | Sudd, 26,4-32,1° E | 22,0-27,7° E, 6,5-8,9° N (décalé de 4,4° vers l'ouest) | « Sud-Centre » (§V.5) ; demande de l'auteur |
+| Kù-kɨ́bò | 24,9-27,1° E | 20,5-22,7° E, 6,25-7,6° N, au sud-ouest du lac | suit le lac ; « S lac », FOR_S |
+| lóngò | ligne droite posée sur un plat | tracé arqué par l'Adrar des Ifoghas ; bifurcation adoucie depuis !Okheti ; socle de piémonts (+550 m sur ~270 km) ; trois contreforts (O vers le Tilemsi, NE vers l'Aïr, SO au-dessus du Mopámà) | réalisme ; URU_SO « piémonts escarpés au-dessus du Mopámà » |
+| halekh, extrémité ouest | crête de 2 100 m surgissant d'une plaine plate | descente progressive vers la côte (550 m puis 1 200 m), socle de piémonts (+450 m sur ~230 km) | une chaîne ne naît pas d'un plat sans contreforts ; versants atlantiques (§I) |
+| Socles | aucun | !Okheti +450 m ; k'ara +250 m | raccord des chaînes au plat pays |
+| Étage montagnard | forêt dès 800 m sur toute l'emprise des chaînes | limites bruitées ; forêt si ≥ 720 mm, bois clair (herbage arboré) de 480 à 720 mm, steppe en dessous | bandes forestières moins géométriques ; versants NE de lóngò semi-arides (§I) |
+| Limite sud | décalage uniforme | décalage variable : abaissée de ~1,2° au sud du Tùmázì ; plonge vers le sud à l'est pour garder toute la Corne | demande de l'auteur |
+| Cols | absents | les 48 cols du registre sont placés (`donnees/cols.yaml`) ; altitude canonique imposée au relief | demande de l'auteur ; méthode en `ALIGNEMENT_CORPUS.md` §5 |
+
+Toutes les corrections, mesures et positions destinées au corpus sont consignées dans `ALIGNEMENT_CORPUS.md`.
+
+### v0.3
 
 La v0.3 repart de la v0.1 (géographie posée sur le relief réel). Elle corrige les points relevés par l'auteur, chacun justifié par le croisement GEO / LIEUX / ROUTES.
 
@@ -22,7 +39,7 @@ La v0.3 repart de la v0.1 (géographie posée sur le relief réel). Elle corrige
 | Mopámà | piémont du plateau de Jos | Fouta-Djalon | piémont sud-ouest de l'extrémité de lóngò (centre du Nigeria) | GEO §V.4 « N : lóngò » ; URU_SO « piémonts escarpés au-dessus du Mopámà » ; demande de l'auteur |
 | Émissaire du Mopámà | Niger inférieur | vers le Geba | ~600 km vers le sud-ouest : gorges de Mù-wúlè, bas-pays du Mono, delta à mangroves | GEO §VI.3 (600 km, navigable) ; LIEUX : Kù-Bèláà, Mázì-Dúm en `foret_maree` |
 | Ku-jálima-rir, golfe Jálondù, Li-sèk-dì | baie du Bénin | côte de Guinée-Bissau | golfe de Guinée à l'ouest du delta : anse Jálondù sur la côte de l'actuel Ghana, Li-sèk-dì au large, Ku-jálima-rir plus à l'ouest | demande de l'auteur (plus à l'ouest) ; lien avec l'émissaire (RT_003, RT_047, RT_060) |
-| Tùmázì | Sudd | cuvette du Tchad | Sudd (v0.1) | GEO §V.5 « N : piémonts S de k'ara », « E : piémonts qoyra » ; RT_068 vers les Gîtes-Ts'idar (qoyra) |
+| Tùmázì | Sudd | cuvette du Tchad | Sudd (v0.1) ; décalé vers l'ouest en v0.3.1 | GEO §V.5 « N : piémonts S de k'ara », « E : piémonts qoyra » ; RT_068 vers les Gîtes-Ts'idar (qoyra) |
 | Kù-kɨ́bò | nord-ouest du lac | monts Mandara | au sud-ouest du lac, vers la forêt | GEO §V.5 relief « S lac » ; Q'eša-Kɨ́bò en TUM_SC + FOR_S |
 | Mù-wúlè / Mù-dárhòbì | Borgou / Ouest camerounais | Fouta / monts Loma | ouest et sud du lac | GEO §I « bordure O », « massif S » |
 | Ehukhtal | vers le bras des chotts | ~650 km | ~950 km : pied nord de halekh, débouché par le goulet Hlom-khetal | GEO : sources !Okheti, ~1 100 km, estuaire Akhidalet « côtes NO » |
@@ -79,7 +96,7 @@ Quatre contraintes ne tiennent pas ensemble :
 - interfluve de ~300 km jusqu'à l'Abnuḥīl (§V.2) ;
 - 1 350 000 km².
 
-**Choix v0.3 :** la superficie, l'ancrage NO et l'interfluve priment. La mer mesure ~3 500 km d'ouest en est. Sa largeur varie : ~350 km à l'ouest, 250 km aux étranglements, 450 km au centre, 650 km à l'est. Superficie obtenue : **1,31 M km²**.
+**Choix v0.3 :** la superficie, l'ancrage NO et l'interfluve priment. La mer mesure ~3 500 km d'ouest en est. Sa largeur varie : ~350 km à l'ouest, 250 km aux étranglements, 450 km au centre, 650 km à l'est. Superficie obtenue : **1,28 M km²** (v0.3.1).
 
 Conséquences :
 - **Portage vers l'Atlantique** : l'extrémité ouest est à ~350 km de la côte (Tan-Tan, Sidi Ifni). « 3 jours » reste trop court ; un portage d'une à deux semaines par le Sas terrestre (Stakhr-Durek, oasis de Hloran-rir) est cohérent.
@@ -103,9 +120,9 @@ Le contour réel est plus large que le continent du corpus (§1). Les chaînes s
 |---|---|---|
 | Ehukhtal | ~1 100 km | ~950 km |
 | Imikhrel | ~800 km | ~500 km |
-| |Na-madikh / Madīlan | ~1 400 km | ~1 000 km avec la ria |
+| \|Na-madikh / Madīlan | ~1 400 km | ~1 000 km avec la ria |
 | Émissaire du Mopámà | ~600 km | ~650 km |
-| |Na-khuwel / Ḥawqal | — | ~1 050 km |
+| \|Na-khuwel / Ḥawqal | — | ~1 050 km |
 
 L'Imikhrel reste court : ses « piémonts O » sont pris entre !Okheti et la rive sud. Pour l'allonger, il faudrait faire naître le fleuve plus à l'est, sur l'Ahaggar.
 
@@ -117,6 +134,9 @@ Halekh a des « versants sumdaniens arides (N) » : un désert s'étend au nord 
 
 ### 3.6 Kù-kɨ́bò au nord ou au sud du Tùmázì
 §V.5 le place au sud du lac (« Relief ») et au nord (« Limites »). LIEUX tranche : Q'eša-Kɨ́bò est en TUM_SC **et FOR_S**. **Choix :** au sud-ouest du lac, vers la forêt.
+
+### 3.6 bis Position du Tùmázì
+« Sud-Centre » (§V.5) place le lac au centre de la moitié sud. Le Sudd (v0.3) était trop à l'est. **Choix v0.3.1 :** 22,0-27,7° E. Deux limites du corpus s'en trouvent plus lâches : « E : piémonts qoyra » (qoyra est à ~1 400 km) et les affluents venus des « plateaux SE ».
 
 ### 3.7 Sud-ouest
 
@@ -145,8 +165,8 @@ Le corpus annonce 6 800 km et 3,2 M km² de bassin. Ce sont les valeurs du Nil r
 - **Registre** : `GEO_EXT_ATLANTIQUE` et `GEO_GLF_JALONDU` portent la même forme, « Jálondù ».
 
 ### 3.10 Surfaces
-- Terres émergées : **~16,8 M km²** (zone estompée pondérée).
-- Mer Halakhel : **1,31 M km²** (1,35 au corpus).
+- Terres émergées : **~17,6 M km²** (zone estompée pondérée, v0.3.1).
+- Mer Halakhel : **1,28 M km²** (1,35 au corpus).
 
 ---
 

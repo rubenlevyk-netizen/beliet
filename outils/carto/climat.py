@@ -83,7 +83,7 @@ class Climat:
             "lacs_nord": lacs & (LAT >= 15),
             "decoupe": decoupe & (LAT < 6) & (LON < 36),
             # zones humides saisonnières au pied O de qoyra (§V.6) : plaines du Soudan du Sud
-            "marais_sud": terre & (LON > 27) & (LON < 34) & (LAT > 5) & (LAT < 9.5) & (h < 700),
+            "marais_sud": terre & (LON > 21) & (LON < 30) & (LAT > 5) & (LAT < 9.5) & (h < 700),
         }
         force = {"atl_s": 1.0, "atl_n": 0.55, "med": 0.7, "rouge": 0.12, "est": 0.6,
                  "halakhel": 0.3, "lacs": 0.3, "lacs_nord": 0.5, "decoupe": 0.95, "marais_sud": 0.6}
@@ -138,9 +138,11 @@ class Climat:
         P = P * corr
         self.P_c = P
         self.log("  calibration des pluies :")
+        self.calibration = []
         for pt in points:
             x, y = g.px(*pt["pos"])
             v = float(map_coordinates(P, [[y / f - 0.5], [x / f - 0.5]], order=1)[0])
+            self.calibration.append(dict(lieu=pt["lieu"], pos=pt["pos"], cible_mm=pt["mm"], modele_mm=round(v)))
             self.log(f"    {pt['lieu']:<42} cible {pt['mm']:>5} mm  →  modèle {v:6.0f} mm")
 
     def pluie(self):

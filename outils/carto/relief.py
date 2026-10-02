@@ -104,14 +104,21 @@ class Relief:
         rng = np.random.default_rng(self.graine + 61)
         bruit = gaussian_filter1d(rng.standard_normal(g.W), 1.6 * g.K)
         bruit /= bruit.std() + 1e-9
-        lim = lisse + F.get("decalage_deg", 0.6) + F.get("amplitude_deg", 0.7) * bruit
+        dec = np.full(g.W, F.get("decalage_deg", 0.6), float)
+        if F.get("decalages_locaux"):
+            pl = np.array(F["decalages_locaux"], float)
+            dec = np.interp(g.lons, pl[:, 0], pl[:, 1])
+        lim = lisse + dec + F.get("amplitude_deg", 0.7) * bruit
         largeur = F.get("largeur_deg", 2.6)
         nb = bruit_bande(g.shape, self.graine + 62, 40 / g.km_px_eq, 300 / g.km_px_eq)
         t = (self.LAT - lim[None, :] + 0.3 * nb) / largeur + 0.5
         w = np.clip(t, 0, 1)
         w = w * w * (3 - 2 * w)
-        dans = (self.LON > lon0) & (self.LON < lon1)
-        return np.where(dans, w, 1.0).astype(np.float32)
+        # raccord progressif aux bornes est et ouest (pas de couture verticale)
+        r = F.get("raccord_deg", 2.0)
+        bord = np.clip(np.minimum(self.LON - lon0, lon1 - self.LON) / r, 0, 1)
+        bord = bord * bord * (3 - 2 * bord)
+        return (1 - bord * (1 - w)).astype(np.float32)
 
     # ------------------------------------------------------------ écrêtements
     def ecreter(self):
@@ -167,6 +174,23 @@ class Relief:
         R = bruit_crete(g.shape, self.graine + 11, 2.0, 70 / km_eq, octaves=6)
         warp = bruit_bande(g.shape, self.graine + 13, 40 / km_eq, 500 / km_eq)
         detail = bruit_bande(g.shape, self.graine + 17, 1.5, 25 / km_eq, pente=1.0)
+        # socles : piémonts et contreforts qui relient la chaîne au plat pays (évite la crête « posée »)
+        lent = bruit_bande(g.shape, self.graine + 19, 120 / km_eq, 700 / km_eq)
+        for ch in p["chaines"]:
+            S = ch.get("socle_m")
+            if not S:
+                continue
+            L = ch.get("socle_km", 250)
+            pts = np.array(ch["points"], float)
+            fin = lisser_polyligne(pts, sous=10)
+            d, s = distance_polyligne(g, fin[:, :2], L * 2.6)
+            i = np.clip(np.floor(s).astype(int), 0, len(fin) - 2)
+            t = s - i
+            frac = (fin[i, 2] * (1 - t) + fin[i + 1, 2] * t) / pts[:, 2].max()
+            dw = np.maximum(d + 0.35 * L * warp + 0.25 * L * lent, 0)
+            u = S * np.clip(frac, 0, 1) ** 0.8 * np.exp(-(dw / L) ** 2) * (0.5 + 0.7 * R)
+            self.h = np.where(self.beliet & (d < 1e8), self.h + u, self.h).astype(np.float32)
+            self.log(f"  socle {ch['geo_id']:<26} +{S} m sur ~{L} km")
         pied = gaussian_filter(self.h, 45 / km_eq)
         self.crete = np.zeros(g.shape, np.float32)   # intensité « montagne » (0-1), pour la suite
         self.axes = []
@@ -261,7 +285,7 @@ class Relief:
         # garder une bande de Sumdan entre la mer intérieure et la Méditerranée
         d_ocean = distance_transform_edt(self.beliet) * km
         m &= d_ocean > H.get("distance_min_ocean_km", 70)
-        m &= ((H.get("longitude_max_est", 28.4) - self.LON) * 100 + 14 * n) > 0
+        m &= ((H.get("longitude_max_est", 28.4) - self.LON) * 100 + 14 * n_fin) > 0
         lab, _ = label(m)
         core = lab[m0 & (din > 25)]
         m = np.isin(lab, np.unique(core[core > 0]))
@@ -512,6 +536,38 @@ class Relief:
             nouv = np.where(ok & (sub > pied), pied + (sub - pied) * fac, sub)
             self.h[y0:y1, x0:x1] = nouv.astype(np.float32)
             self.log(f"  sommet {ax['cfg']['geo_id']:<26} {M:5.0f} m → {cible} m")
+
+    def entailler_cols(self, cols):
+        """Donne à chaque col son altitude canonique : entaille (crête trop haute) ou selle (crête trop basse)."""
+        g = self.g
+        self.h_sans_cols = self.h.copy()     # relief de référence pour outils/placer_cols.py
+        for c in cols:
+            if not c.get("entaille", True):
+                continue
+            x, y = g.px(*c["pos"])
+            k = g.km_px_a(c["pos"][1])
+            r = int(45 / k)
+            x0, x1 = int(max(0, x - r)), int(min(g.W, x + r + 1))
+            y0, y1 = int(max(0, y - r)), int(min(g.H, y + r + 1))
+            yy, xx = np.mgrid[y0:y1, x0:x1]
+            dx, dy = (xx + 0.5 - x) * k, (yy + 0.5 - y) * k
+            az = np.radians(c.get("azimut_crete_px_deg", 0.0))
+            u = dx * np.cos(az) + dy * np.sin(az)          # le long de la crête (km)
+            v = -dx * np.sin(az) + dy * np.cos(az)         # en travers (km)
+            sub = self.h[y0:y1, x0:x1]
+            alt = float(c["altitude_m"])
+            avant = float(self.h[int(y), int(x)])
+            if avant > alt:
+                # entaille : cône ouvert vers les deux vallées, la crête remonte de part et d'autre
+                sub[:] = np.minimum(sub, alt + 38 * np.maximum(np.hypot(u, v) - 2.5, 0))
+            else:
+                # selle : la crête est relevée de part et d'autre du passage, les versants restent intacts
+                au, av = np.abs(u), np.abs(v)
+                S = alt + 18 * np.minimum(au, 15) - 30 * np.maximum(au - 15, 0) - 60 * av
+                sub[:] = np.where(au < 32, np.maximum(sub, S), sub)
+                sub[:] = np.minimum(sub, alt + 38 * np.maximum(np.hypot(u, v) - 2.5, 0))
+                sub[:] = np.where((au < 32) & (np.hypot(u, v) < 2.5), np.maximum(sub, alt), sub)
+            self.log(f"  col {c['geo_id']} {c['nom']:<22} {avant:6.0f} → {self.h[int(y), int(x)]:6.0f} m")
 
     # ------------------------------------------------------------- ensemble
     def construire(self):

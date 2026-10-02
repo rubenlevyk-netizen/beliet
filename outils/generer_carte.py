@@ -32,8 +32,18 @@ def journal(msg):
 
 
 def empreinte(p):
-    cles = ["cadre", "contour", "niveaux", "halakhel", "lacs", "chaines", "ecretements", "fleuves", "archipels"]
-    return hashlib.sha1(json.dumps({k: p.get(k) for k in cles}, sort_keys=True).encode()).hexdigest()[:12]
+    cles = ["cadre", "contour", "niveaux", "halakhel", "lacs", "chaines", "ecretements", "fleuves", "archipels",
+            "fondu_sud", "zones_soulevement", "cols"]
+    d = {k: p.get(k) for k in cles}
+    if not d.get("cols"):
+        d.pop("cols")          # sans cols : même empreinte qu'un relief de référence non entaillé
+    return hashlib.sha1(json.dumps(d, sort_keys=True).encode()).hexdigest()[:12]
+
+
+def charger_cols():
+    """Cols placés par outils/placer_cols.py (donnees/cols.yaml), s'il existe."""
+    f = os.path.join(RACINE, "donnees", "cols.yaml")
+    return yaml.safe_load(open(f, encoding="utf-8"))["cols"] if os.path.exists(f) else []
 
 
 def main():
@@ -43,6 +53,7 @@ def main():
     args = ap.parse_args()
     t0 = time.time()
     p = yaml.safe_load(open(args.parametres, encoding="utf-8"))
+    p["cols"] = charger_cols()
     g = Grille(p["cadre"])
     journal(f"Grille {g.W} × {g.H} px ({g.km_px_eq:.2f} km/px à l'équateur)")
     cache = os.path.join(CACHE, f"relief_{empreinte(p)}.pkl")
@@ -56,6 +67,7 @@ def main():
         journal("Érosion :")
         erosion(rel, log=journal)
         rel.ajuster_sommets()
+        rel.entailler_cols(p["cols"])
         rel.log = None
         os.makedirs(CACHE, exist_ok=True)
         pickle.dump(rel, open(cache, "wb"), protocol=4)

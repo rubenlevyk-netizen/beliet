@@ -1,0 +1,78 @@
+# Le Beliet — carte physique
+
+Carte topographique et des milieux (biomes) du Beliet, version 0.1.
+
+![Carte des milieux](carte/beliet_carte_milieux.png)
+
+## Ce que contient ce dépôt
+
+| Dossier / fichier | Contenu | À quoi il sert |
+|---|---|---|
+| `carte/beliet_carte_milieux.png` | carte des milieux + relief ombré + hydrographie + noms (5 020 × 2 881 px) | regarder, imprimer, partager |
+| `carte/beliet_carte_relief.png` | même carte, teintes d'altitude à la place des milieux | regarder le relief |
+| `carte/beliet_carte.svg` | carte complète **en calques** (Inkscape) | retoucher à la main, ajouter des villes |
+| `carte/sig/` | données géographiques (GeoJSON, GeoTIFF, cartes d'altitude) | outils SIG (QGIS), Azgaar, futures cartes interactives |
+| `donnees/parametres_carte.yaml` | **toutes les décisions de placement** (chaînes, mer, lacs, fleuves, climat) | modifier la géographie |
+| `ANALYSE_COHERENCE.md` | incohérences du corpus et choix retenus | valider ou corriger les choix |
+| `references/` | les trois fichiers de référence fournis | source |
+| `outils/` | le programme qui fabrique la carte | régénérer après modification |
+
+## Regarder la carte
+
+Sur GitHub, cliquez sur `carte/beliet_carte_milieux.png`, puis sur l'image pour l'agrandir. Pour la télécharger, utilisez le bouton « Download raw file » (icône de flèche vers le bas).
+
+## Modifier la carte : trois voies
+
+### 1. Demander à Claude (le plus simple)
+Formulez la demande en langage courant. Par exemple : « déplace le lac Akhtir de 200 km vers l'est », « la mer Halakhel doit toucher l'Atlantique », « ajoute la ville X à 12,5° E et 24° N », « place les 48 cols ». Claude modifie `donnees/parametres_carte.yaml`, régénère la carte et enregistre la nouvelle version dans le dépôt. Les versions précédentes restent récupérables.
+
+### 2. Retoucher à la main avec Inkscape (gratuit)
+1. Installez Inkscape : https://inkscape.org
+2. Téléchargez `carte/beliet_carte.svg` et ouvrez-le.
+3. Ouvrez le panneau des calques (menu Calque → Calques et objets). Vous y trouvez :
+   - `01 Relief` et `02 Milieux` : les fonds de carte (un seul visible à la fois) ;
+   - `03 Milieux — polygones éditables` : les biomes en formes modifiables (masqué au départ) ;
+   - `04 Courbes de niveau`, `05 Hydrographie`, `06 Méridiens et parallèles`, `07 Toponymie` ;
+   - **`08 Villes et lieux (à compléter)`** : calque vide, prévu pour vos ajouts ;
+   - `09 Titre, légende, échelle`.
+4. Sélectionnez le calque 08, puis dessinez vos points et écrivez vos noms avec l'outil Texte.
+5. Exportez une image : Fichier → Exporter → PNG.
+
+Pour qu'un ajout fait à la main survive à une régénération, signalez-le à Claude, qui l'inscrira dans les paramètres. Une retouche faite seulement dans Inkscape n'existe que dans votre fichier.
+
+### 3. Outils spécialisés (plus tard)
+- **QGIS** (SIG gratuit) ouvre `carte/sig/*.geojson` et `carte/sig/*.tif`. C'est l'outil adapté pour gérer des centaines de lieux.
+- **Azgaar's Fantasy Map Generator** (navigateur, gratuit) importe `carte/sig/beliet_altitude_azgaar.png` comme carte d'altitude. Azgaar recalcule toutefois ses propres biomes et ses propres fleuves : ils ne suivront pas le Géosystème.
+
+## Repérer une position
+
+La carte est en projection Web Mercator, la même que votre contour d'origine. Les méridiens et parallèles sont tracés tous les 5°. Une position se donne en longitude et latitude, par exemple « 17,8° E, 20,3° N » pour |'Ara-Sukhì. L'échelle est exacte à 15° N ; plus au nord, les distances réelles sont plus courtes que ce que montre la carte.
+
+## Fichiers de `carte/sig/`
+
+| Fichier | Contenu |
+|---|---|
+| `beliet_geographie.geojson` | mer, lacs, lignes de crête, fleuves nommés, détroits, deltas — chaque objet porte son `geo_id` du registre |
+| `beliet_cours_eau_secondaires.geojson` | réseau fluvial calculé, avec débit (m³/s) et bassin (km²) |
+| `beliet_milieux.geojson` | polygones des milieux (codes du vocabulaire du Géosystème) |
+| `beliet_altitude.tif`, `beliet_milieux.tif`, `beliet_pluie_mm.tif` | rasters géoréférencés (EPSG:3857) ; altitude à demi-résolution, pluie au quart |
+| `beliet_altitude_16bits.png` | altitude en niveaux de gris 16 bits (demi-résolution) : valeur = altitude + 10 000 m |
+| `beliet_altitude_azgaar.png` | altitude au format attendu par Azgaar |
+| `beliet_milieux_codes.json` | correspondance code → milieu → couleur |
+| `beliet_statistiques.json` | surfaces, altitudes, surfaces par milieu |
+
+## Régénérer la carte (pour Claude ou un développeur)
+
+```bash
+pip install -r outils/requirements.txt
+python3 outils/generer_carte.py              # complet, ~9 min
+python3 outils/generer_carte.py --reprendre  # réutilise le relief si seuls le climat, les milieux ou l'habillage changent
+```
+
+Le programme télécharge les tuiles d'altitude et les tracés fluviaux réels au premier lancement. Il les garde ensuite dans `outils/cache/` (fichiers non versionnés).
+
+## Sources et licences des données réelles
+
+- **Relief de base :** AWS Terrain Tiles (Mapzen / Linux Foundation). Elles assemblent SRTM, ETOPO1, GMTED et d'autres jeux de données publics.
+- **Tracés fluviaux réels :** Natural Earth (domaine public).
+- **Altérations, noms et choix :** Géosystème du Beliet v3.1 et son registre.

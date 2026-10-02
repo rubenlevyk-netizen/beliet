@@ -1,0 +1,188 @@
+"""Classification des milieux selon le vocabulaire fermé du Géosystème v3.1 (§II, « Milieux »)."""
+import numpy as np
+from scipy.ndimage import (binary_dilation, distance_transform_edt, label, uniform_filter)
+
+# Vocabulaire fermé du corpus — ordre = code numérique du raster
+MILIEUX = [
+    ("desert_pierreux", "Désert de pierre", "#c9b48f"),
+    ("desert_sableux", "Désert de sable", "#ecd9a3"),
+    ("dunes_littorales", "Cordons dunaires côtiers", "#f3e6bd"),
+    ("oasis", "Oasis", "#3f8f4a"),
+    ("steppe_piemont", "Steppe semi-aride de piémont", "#c6c58a"),
+    ("fourre_cotier_sec", "Fourré côtier sec", "#9aa86a"),
+    ("depression_saline", "Dépression saline", "#e8e2d6"),
+    ("cote_desertique", "Côte désertique", "#d8c3a0"),
+    ("recif_corallien", "Récif corallien", "#5fc9c4"),
+    ("littoral_rocheux", "Littoral rocheux", "#8c8577"),
+    ("plaine_alluviale", "Plaine alluviale irriguée", "#8cbf5a"),
+    ("foret_montagne", "Forêt de montagne et de piémont", "#3e6b45"),
+    ("prairie_altitude", "Prairie d'altitude", "#a3b07f"),
+    ("zone_periglaciaire", "Zone périglaciaire", "#a59e94"),
+    ("glacier", "Glacier", "#f4f8fb"),
+    ("foret_tropicale_humide", "Forêt tropicale humide", "#1f5a32"),
+    ("herbage_arbore", "Herbage arboré", "#b4b85c"),
+    ("foret_berge", "Forêt de berge", "#4c8a3c"),
+    ("foret_maree", "Forêt de marée", "#2f7564"),
+    ("zone_humide_lacustre", "Zone humide lacustre", "#6fa58e"),
+    ("eaux_lacustres", "Eaux lacustres et hauts-fonds", "#7fb3d5"),
+    ("ile_aride", "Île aride", "#bda57e"),
+]
+CODE = {c[0]: i for i, c in enumerate(MILIEUX)}
+OCEAN, HALAKHEL, DEHORS, VIDE = 254, 253, 252, 255
+
+
+def filtre_majoritaire(cl, masque, taille=5, codes=None):
+    """Filtre de mode sur les classes de `codes`, limité à `masque`."""
+    codes = codes if codes is not None else np.unique(cl[masque])
+    meilleur = np.zeros(cl.shape, np.float32)
+    sortie = cl.copy()
+    for c in codes:
+        f = uniform_filter((cl == c).astype(np.float32), taille)
+        mieux = f > meilleur
+        meilleur[mieux] = f[mieux]
+        sortie[mieux & masque] = c
+    return sortie
+
+
+def classer_milieux(rel, p, P, T, hy, log=print):
+    g = rel.g
+    km = g.km_px[:, None]
+    h = rel.h
+    terre = rel.terre
+    LON, LAT = rel.LON, rel.LAT
+    cl = np.full(g.shape, VIDE, np.uint8)
+    cl[rel.ocean] = OCEAN
+    cl[rel.mer] = HALAKHEL
+    cl[rel.dehors] = DEHORS
+    cl[rel.lac > 0] = CODE["eaux_lacustres"]
+
+    # ergs (désert de sable) — propositions dans les paramètres
+    from .grille import bruit_bande
+    erg0 = g.rasteriser([g.poly_px(e) for e in p.get("ergs", [])]).astype(bool)
+    d_in = distance_transform_edt(erg0) * km
+    d_out = distance_transform_edt(~erg0) * km
+    nb = bruit_bande(g.shape, 909, 3, 160 / g.km_px_eq)
+    erg = (d_in - d_out + 45 * nb) > 0
+    # lisière d'écotone : ±12 % de bruit sur la pluie pour des limites naturelles
+    P = P * (1 + 0.12 * bruit_bande(g.shape, 910, 3, 90 / g.km_px_eq))
+
+    # --- base : pluie × altitude ------------------------------------------------------
+    sec = P < 110
+    desert = np.where(erg, CODE["desert_sableux"], CODE["desert_pierreux"])
+    base = np.where(sec, desert, CODE["steppe_piemont"])
+    base = np.where((P >= 250) & (P < 600), CODE["steppe_piemont"], base)
+    base = np.where((P >= 110) & (P < 250) & (h < 350) & (rel.crete < 0.05), desert, base)
+    base = np.where((P >= 600) & (P < 1450), CODE["herbage_arbore"], base)
+    base = np.where((P >= 1450) & (T >= 19), CODE["foret_tropicale_humide"], base)
+    # étages montagnards (Zone II) : 800 / 2 400 / 3 600 m
+    mont = (h >= 800) & (h < 2400)
+    base = np.where(mont & (P >= 550), CODE["foret_montagne"], base)
+    base = np.where(mont & (P < 550) & (P >= 110), CODE["steppe_piemont"], base)
+    base = np.where((h >= 2400) & (h < 3600), CODE["prairie_altitude"], base)
+    base = np.where(h >= 3600, CODE["zone_periglaciaire"], base)
+    neige = np.where(LON < 1, 3950, np.where(LON > 36, 4350, 4750))
+    base = np.where(h >= neige, CODE["glacier"], base)
+    cl[terre] = base[terre].astype(np.uint8)
+
+    # --- façades ----------------------------------------------------------------------
+    d_ocean = distance_transform_edt(~rel.ocean) * km
+    d_mer = distance_transform_edt(~rel.mer) * km
+    cote = terre & (d_ocean < 120) & (LAT >= 29.5) & (P >= 220) & (h < 900) & (LON < 36)
+    cl[cote & np.isin(cl, [CODE["steppe_piemont"], CODE["herbage_arbore"], CODE["desert_pierreux"]])] = CODE["fourre_cotier_sec"]
+    dunes = terre & (d_ocean < 18) & (P < 450) & (LON < -8) & (LAT > 15) & (LAT < 28.5) & (h < 90)
+    cl[dunes] = CODE["dunes_littorales"]
+    cdes = terre & (d_ocean < 16) & (P < 130) & (LON > 30) & (h < 200)
+    cl[cdes] = CODE["cote_desertique"]
+
+    # --- dépressions salées -----------------------------------------------------------
+    sal = terre & (hy.profondeur_cuvette > 8) & (P < 320)
+    sal |= terre & (d_mer < 28) & (LON > 25) & (P < 260) & (h < 60)       # remontées salines de l'interfluve
+    for d in p.get("depressions_salees", []):
+        sal |= g.rasteriser(g.poly_px(d["contour"])).astype(bool) & terre
+    cl[sal] = CODE["depression_saline"]
+
+    # --- zones humides et marées --------------------------------------------------------
+    d_lac = distance_transform_edt(rel.lac == 0) * km
+    niveau_lac = np.zeros(g.shape, np.float32)
+    for k, L in enumerate(rel.lacs, start=1):
+        dk = distance_transform_edt(rel.lac != k) * km
+        niveau_lac = np.where(dk < 25, L["cfg"]["altitude_m"], niveau_lac)
+    humide = terre & (d_lac < 18) & (h < niveau_lac + 30) & (P >= 500)
+    humide |= terre & (hy.profondeur_cuvette > 3) & (P >= 750)
+    cl[humide] = CODE["zone_humide_lacustre"]
+    maree = terre & (d_ocean < 12) & (h < 14) & (P >= 1000)
+    cl[maree] = CODE["foret_maree"]
+
+    # --- plaines alluviales des fleuves du nord --------------------------------------------
+    lits = np.zeros(g.shape, bool)
+    for F in rel.fleuves:
+        for c in F["lignes"]:
+            x, y = g.px(c[:, 0], c[:, 1])
+            ix = np.clip(x.astype(int), 0, g.W - 1); iy = np.clip(y.astype(int), 0, g.H - 1)
+            lits[iy, ix] = True
+    d_lit = distance_transform_edt(~lits) * km
+    alluv = terre & (d_lit < 9) & (P < 650) & (h < 1300)
+    delta = terre & (LON > 29.8) & (LON < 32.4) & (LAT > 30.0) & (LAT < 31.7) & (h < 30)
+    alluv |= delta
+    cl[alluv] = CODE["plaine_alluviale"]
+
+    # --- forêts de berge : grands cours d'eau en savane / steppe ------------------------------
+    berge = terre & (hy.Q > 120) & (P >= 300) & (P < 1450)
+    berge = binary_dilation(berge, iterations=1) & terre & np.isin(cl, [CODE["steppe_piemont"], CODE["herbage_arbore"]])
+    cl[berge] = CODE["foret_berge"]
+
+    # --- oasis -------------------------------------------------------------------------
+    rng = np.random.default_rng(p["cadre"]["graine_aleatoire"] + 77)
+    cand = terre & (P < 160) & (hy.A > 400) & (hy.A < 60000) & (h < 1000) & np.isin(cl, [CODE["desert_pierreux"], CODE["desert_sableux"], CODE["depression_saline"], CODE["steppe_piemont"]])
+    karst = terre & (d_mer < 8) & (LON > 14) & (LON < 28) & (LAT < 26.8) & (P < 300)   # oasis littorales (§IV.20)
+    oasis = np.zeros(g.shape, bool)
+    for masque, n_max, pas in ((cand, 140, 26), (karst, 40, 14)):
+        ys, xs = np.nonzero(masque)
+        if len(xs) == 0:
+            continue
+        ordre = rng.permutation(len(xs))
+        pris = []
+        for j in ordre:
+            x, y = xs[j], ys[j]
+            if all((x - a) ** 2 + (y - b) ** 2 > pas ** 2 for a, b in pris):
+                pris.append((x, y))
+                if len(pris) >= n_max:
+                    break
+        for x, y in pris:
+            r = rng.uniform(1.2, 3.2)
+            ri = int(np.ceil(r))
+            yy, xx = np.mgrid[-ri:ri + 1, -ri:ri + 1]
+            disque = (xx * xx + yy * yy) <= r * r
+            y0, x0 = y - ri, x - ri
+            if y0 >= 0 and x0 >= 0 and y0 + 2 * ri + 1 <= g.H and x0 + 2 * ri + 1 <= g.W:
+                oasis[y0:y0 + 2 * ri + 1, x0:x0 + 2 * ri + 1] |= disque
+    oasis &= terre
+    cl[oasis] = CODE["oasis"]
+
+    # --- littoral rocheux ------------------------------------------------------------------
+    gy, gx = np.gradient(h, g.km_px_eq * 1000)
+    pente = np.hypot(gx, gy)
+    d_eau_sal = np.minimum(d_ocean, d_mer)
+    roche = terre & (d_eau_sal < 4) & ((pente > 0.035) | (h > 120))
+    cl[roche] = CODE["littoral_rocheux"]
+
+    # --- îles arides -----------------------------------------------------------------------
+    lab, n = label(terre)
+    tailles = np.bincount(lab.ravel())
+    continent = np.argmax(np.where(np.arange(len(tailles)) == 0, 0, tailles))
+    ile = terre & (lab != continent)
+    d_lac_ile = distance_transform_edt(rel.lac == 0) * km
+    ile_ar = ile & (P < 900) & ~(d_lac_ile < 3)
+    cl[ile_ar] = CODE["ile_aride"]
+
+    # --- récifs coralliens (marins) --------------------------------------------------------
+    d_cote = distance_transform_edt(~terre) * km
+    recif = rel.ocean & (d_cote < 22) & (rel.h > -70) & (LON > 32) & (LON < 44) & (LAT > 12.3) & (LAT < 28.5)
+    cl[recif] = CODE["recif_corallien"]
+
+    # --- lissage ------------------------------------------------------------------------
+    garde = np.isin(cl, [CODE["oasis"], CODE["glacier"], CODE["foret_berge"], CODE["eaux_lacustres"]])
+    cl = filtre_majoritaire(cl, terre & ~garde, 5, codes=[i for i in range(len(MILIEUX)) if i not in (CODE["oasis"], CODE["eaux_lacustres"])])
+    stats = {MILIEUX[c][0]: float((g.aire_km2()[cl == c]).sum()) for c in range(len(MILIEUX))}
+    log("  superficies (km²) : " + ", ".join(f"{k} {v:,.0f}" for k, v in sorted(stats.items(), key=lambda kv: -kv[1]) if v > 0))
+    return dict(classes=cl, stats=stats)

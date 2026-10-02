@@ -1,0 +1,508 @@
+# =============================================================================
+#  PARAMÈTRES DE LA CARTE DU BELIET — version 0.1
+# =============================================================================
+#  Ce fichier contient TOUTES les décisions de placement de la carte.
+#  Pour déplacer une chaîne, un lac, un fleuve : on modifie ses coordonnées ici,
+#  puis on relance le générateur (outils/generer_carte.py).
+#
+#  Coordonnées : [longitude, latitude] en degrés décimaux (WGS84).
+#    longitude négative = ouest de Greenwich ; latitude négative = sud de l'équateur.
+#  Altitudes : mètres. Distances : kilomètres.
+#
+#  Statuts (repris du corpus) :
+#    [CANON]      valeur tirée du Géosystème v3.1
+#    [INFÉRENCE]  valeur déduite du Géosystème, non écrite telle quelle
+#    [PROPOSITION] choix de placement fait pour cette carte, à valider
+#
+#  geo_id : identifiant du registre GEOSYSTEME_REGISTRE.v1 quand il existe.
+# =============================================================================
+
+cadre:
+  # Emprise de la carte (élargie à l'ouest pour inclure Staur-Khlōr).
+  lon_min: -26.5
+  lon_max: 53.5
+  lat_min: -3.5
+  lat_max: 39.0
+  # Projection : Web Mercator (EPSG:3857), identique à MAP_BELIET_ORIGIN.svg.
+  pixels_par_degre: 62.752      # résolution de travail (≈ 1,8 km/px à l'équateur)
+  graine_aleatoire: 1729        # change le « bruit » du relief ; garder fixe pour reproduire
+
+contour:
+  # Le contour fourni est l'Afrique réelle en Web Mercator, géoréférencé ainsi :
+  fichier: references/MAP_BELIET_ORIGIN.svg
+  lon_gauche: -17.53            # cap Vert (x = 0)
+  lon_droite: 51.41             # Ras Hafun (x = 2163,07)
+  largeur_svg: 2163.07
+  lat_haut: 37.35               # Ras ben Sakka, Tunisie (y = 0)
+
+niveaux:
+  halakhel_surface_m: -20       # [INFÉRENCE] mer fermée légèrement sous le niveau océanique
+  halakhel_profondeur_max_m: 1700   # [CANON]
+
+# -----------------------------------------------------------------------------
+#  MER HALAKHEL (GEO_MER_HALAKHEL) — mer intérieure endoréique
+#  [CANON] 1 350 000 km², E-O, ~1 800 km × 600-900 km, prof. max 1 700 m
+#  [PROPOSITION] posée sur les bassins réels de Libye (Fezzan, Syrte, Koufra,
+#  dépression de Qattara). Bras nord-ouest sur les chotts tunisiens, relié par
+#  le détroit Khreth-na-Serek.
+# -----------------------------------------------------------------------------
+halakhel:
+  geo_id: GEO_MER_HALAKHEL
+  bassin_principal:
+    - [6.6, 31.4]
+    - [8.5, 30.9]
+    - [10.5, 30.4]
+    - [12.5, 29.9]
+    - [14.5, 29.45]
+    - [16.5, 29.05]
+    - [18.5, 28.8]
+    - [20.5, 28.85]
+    - [22.5, 29.0]
+    - [24.5, 29.3]
+    - [26.5, 29.6]
+    - [27.8, 29.4]
+    - [28.3, 28.6]
+    - [28.2, 27.8]
+    - [27.7, 27.2]
+    - [26.5, 26.3]
+    - [24.5, 25.2]
+    - [22.5, 24.3]
+    - [20.5, 23.7]
+    - [18.5, 23.4]
+    - [16.5, 23.55]
+    - [14.5, 24.3]
+    - [12.5, 25.2]
+    - [10.5, 26.1]
+    - [8.8, 27.1]
+    - [7.4, 28.3]
+    - [6.6, 29.6]
+    - [6.3, 30.6]
+  bras_nord_ouest:               # [PROPOSITION] golfe des chotts (non nommé au corpus)
+    - [7.25, 32.35]
+    - [6.5, 32.9]
+    - [5.7, 33.6]
+    - [5.9, 34.25]
+    - [7.0, 34.25]
+    - [8.0, 34.0]
+    - [9.0, 33.95]
+    - [9.45, 33.6]
+    - [8.7, 33.25]
+    - [7.7, 33.05]
+  detroit_khreth_na_serek:       # GEO_DET_KHRETHNASEREK — [CANON] 12 km de large
+    trace: [[6.85, 31.3], [7.0, 31.85], [7.25, 32.35]]
+    largeur_km: 12
+  ria_tawalmaz:                  # GEO_EST_TAWALMAZ — ria de la Madīlan [CANON] « plusieurs centaines de km »
+    trace: [[16.3, 23.62], [15.6, 23.85], [14.7, 24.0], [13.8, 24.15]]
+    largeur_km: 22
+  # Îles : [CANON] ~40 (dunes stabilisées, volcans éteints, îlots rocheux)
+  iles_volcaniques:              # [PROPOSITION] champ volcanique réel du Haruj + Waw an Namus
+    - [17.3, 27.55]
+    - [17.85, 27.25]
+    - [18.35, 27.75]
+    - [16.85, 27.05]
+    - [17.6, 26.75]
+    - [17.8, 24.9]
+    - [19.2, 26.6]
+    - [21.6, 27.3]
+    - [12.6, 27.8]
+    - [10.2, 28.6]
+    - [24.0, 27.6]
+    - [14.9, 26.6]
+  ilots_cotiers_nombre: 28       # îlots générés près des rivages (dunes stabilisées, rochers)
+  superficie_cible_km2: 1350000  # [CANON]
+  longitude_max_est: 28.4        # [PROPOSITION] laisse ~300 km d'interfluve jusqu'à l'Abnuḥīl [CANON]
+  distance_min_ocean_km: 70      # [PROPOSITION] largeur minimale du Sumdan entre Méditerranée et Halakhel
+  pente_glacis_m_par_km: 5.5     # [PROPOSITION] glacis de la rive sud (HKL_S)
+
+detroits_et_debouches:           # points, pour l'étiquetage
+  - {geo_id: GEO_DET_KHRETHNASEREK, nom: Khreth-na-Serek, pos: [7.0, 31.85]}
+  - {geo_id: GEO_DET_HLOMKHETAL,   nom: Hlom-khetal,     pos: [6.35, 30.45]}
+  - {geo_id: GEO_DET_IMEKHSTOM,    nom: Imekh-stom,      pos: [8.85, 27.2]}
+  - {geo_id: GEO_DET_ABNIQA,       nom: Abnīqa,          pos: [28.25, 27.95]}
+  - {geo_id: GEO_DET_HAWQIL,       nom: Ḥawqil,          pos: [25.5, 25.75]}
+  - {geo_id: GEO_DET_SAFAQIL_PASSE, nom: Šafāqil,        pos: [31.2, 31.5]}
+
+# -----------------------------------------------------------------------------
+#  LACS — surface plane à altitude fixe ; le terrain est relevé autour.
+# -----------------------------------------------------------------------------
+lacs:
+  - geo_id: GEO_LAC_TUMAZI
+    nom: Tùmázì
+    altitude_m: 620              # [CANON]
+    profondeur_max_m: 680        # [CANON]
+    superficie_cible_km2: 92000  # [CANON]
+    endoreique: true             # [CANON]
+    soulevement_regional_m: 330  # [PROPOSITION] cuvette réelle du Sudd (~400 m) relevée
+    rayon_soulevement_km: 650
+    contour:                     # [PROPOSITION] posé sur le Sudd (Soudan du Sud)
+      - [26.4, 7.9]
+      - [27.2, 8.55]
+      - [28.4, 8.85]
+      - [29.6, 8.9]
+      - [30.8, 8.7]
+      - [31.8, 8.2]
+      - [32.1, 7.4]
+      - [31.5, 6.8]
+      - [30.3, 6.5]
+      - [29.0, 6.6]
+      - [27.8, 6.8]
+      - [26.8, 7.2]
+  - geo_id: GEO_LAC_AKHTIR
+    nom: Akhtir
+    nom_secondaire: "||Akh-Tɨr"
+    altitude_m: 1200             # [CANON]
+    profondeur_max_m: 800        # [CANON]
+    superficie_cible_km2: 45000  # [CANON]
+    endoreique: false            # émissaire : |Na-khuwel / Ḥawqal [CANON]
+    soulevement_regional_m: 820  # [PROPOSITION] haut bassin dans le flanc nord de ||Urumati-k'ara
+    rayon_soulevement_km: 260
+    contour:
+      - [21.2, 21.0]
+      - [21.7, 21.85]
+      - [22.6, 22.3]
+      - [23.6, 22.15]
+      - [24.0, 21.5]
+      - [23.6, 20.75]
+      - [22.6, 20.4]
+      - [21.7, 20.45]
+  - geo_id: GEO_LAC_MOPAMA
+    nom: Mopámà
+    altitude_m: 800              # [CANON]
+    profondeur_max_m: 420        # [CANON]
+    superficie_cible_km2: 28000  # [CANON]
+    endoreique: false            # émissaire vers l'Atlantique [CANON]
+    soulevement_regional_m: 260  # [PROPOSITION] plateau réel du nord du Nigeria relevé
+    rayon_soulevement_km: 380
+    contour:                     # [PROPOSITION] piémont sud-ouest du plateau de Jos
+      - [5.5, 9.95]
+      - [6.0, 10.65]
+      - [6.9, 11.15]
+      - [7.8, 11.25]
+      - [8.0, 10.75]
+      - [7.4, 10.15]
+      - [6.5, 9.7]
+      - [5.8, 9.6]
+
+# -----------------------------------------------------------------------------
+#  RELIEF — chaînes (lignes de crête). Chaque point : [lon, lat, altitude crête, demi-largeur km]
+#  mode « max » : la chaîne s'élève au-dessus du relief réel.
+#  mode « plancher » : on ne relève le relief réel que là où il est plus bas.
+# -----------------------------------------------------------------------------
+chaines:
+  - geo_id: GEO_ORO_URUMATI_HALEKH
+    nom: "||Urumati-halekh"
+    altitude_max_m: 4350         # [CANON] sommets > 4 200 m
+    # [CANON] OSO-ENE, ~1 200 km, moy. 2 800 m, sommets > 4 200 m, glaciers relictuels > 3 500 m
+    # [PROPOSITION] de l'Adrar mauritanien au Tidikelt (Algérie)
+    mode: max
+    rugosite: 1.0
+    points:
+      - [-13.6, 20.6, 2100, 90]
+      - [-11.5, 21.3, 3000, 130]
+      - [-9.0, 22.2, 3700, 160]
+      - [-6.5, 23.2, 4350, 170]
+      - [-4.0, 24.1, 3900, 160]
+      - [-1.8, 24.9, 3300, 150]
+      - [0.0, 25.5, 3100, 140]
+  - geo_id: GEO_ORO_OKHETI
+    nom: "!Okheti"
+    # [CANON] transition halekh / lóngò ; sources de l'Ehukhtal
+    mode: max
+    rugosite: 1.0
+    points:
+      - [-0.4, 26.0, 2700, 80]
+      - [0.3, 25.3, 2900, 90]
+      - [1.0, 24.6, 2700, 90]
+  - geo_id: GEO_ORO_URUMATI_KARA
+    nom: "||Urumati-k'ara"
+    altitude_max_m: 5350         # [CANON] > 5 000 m (|'Ara-Sukhì)
+    # [CANON] O-E puis inflexion SE, ~2 100 km, moy. 3 200 m, sommets > 5 000 m (|'Ara-Sukhì),
+    #         dernier glacier > 4 800 m, hauts plateaux 2 400-3 000 m
+    # [PROPOSITION] Tassili — Ahaggar — Djado — Tibesti — Ennedi — Marra
+    mode: max
+    rugosite: 1.1
+    points:
+      - [0.0, 25.5, 3100, 140]
+      - [2.5, 25.0, 3300, 150]
+      - [5.0, 24.4, 3600, 175]
+      - [7.5, 23.9, 3500, 180]
+      - [10.0, 23.2, 3300, 165]
+      - [12.5, 22.3, 3500, 160]
+      - [15.0, 21.3, 3900, 175]
+      - [17.8, 20.3, 5350, 215]
+      - [20.0, 18.9, 4300, 190]
+      - [22.0, 16.9, 3700, 170]
+      - [23.5, 15.0, 3300, 150]
+      - [24.4, 13.3, 3050, 140]
+  - geo_id: GEO_ORO_URUMATI_KARA
+    nom: null                    # prolongement sud-est, « continuité montagnarde » avec qoyra [CANON §V.2]
+    # [PROPOSITION] monts Nouba jusqu'à l'escarpement éthiopien occidental
+    mode: max
+    rugosite: 0.9
+    points:
+      - [24.4, 13.3, 3050, 140]
+      - [26.5, 12.0, 2400, 120]
+      - [28.5, 11.25, 2100, 115]
+      - [30.5, 10.8, 2300, 115]
+      - [32.5, 10.15, 2100, 110]
+      - [34.3, 9.2, 2300, 110]
+      - [35.6, 8.75, 2600, 110]
+      - [36.6, 8.7, 2800, 100]
+  - geo_id: GEO_ORO_URUMATI_LONGO
+    nom: "||Urumati-lóngò"
+    altitude_max_m: 3300         # [CANON] sommets > 3 200 m
+    # [CANON] NO-SE, ~1 800 km, moy. 1 600 m, sommets > 3 200 m ; versants SO humides, NE semi-arides
+    # [PROPOSITION] du nœud du Tidikelt au plateau de Jos, en passant à l'ouest de l'Aïr
+    mode: max
+    rugosite: 1.0
+    points:
+      - [0.8, 24.8, 3000, 110]
+      - [1.8, 23.3, 3350, 130]
+      - [3.0, 21.6, 2800, 140]
+      - [4.4, 19.8, 2500, 140]
+      - [5.8, 17.8, 2300, 130]
+      - [7.0, 15.8, 2150, 125]
+      - [8.0, 13.8, 2000, 120]
+      - [8.8, 12.0, 1900, 110]
+      - [9.3, 10.4, 1750, 100]
+  - geo_id: GEO_ORO_URUMATI_QOYRA
+    nom: "||Urumati-qoyra"
+    altitude_max_m: 4650         # [CANON] sommets > 4 600 m
+    # [CANON] N-S puis inflexion E-O, ~1 400 km, plateaux 2 200 m, sommets > 4 600 m, escarpements, volcans
+    # [PROPOSITION] hauts plateaux éthiopiens et somaliens réels (relief réel conservé)
+    mode: plancher
+    rugosite: 0.6
+    points:
+      - [38.8, 15.4, 2300, 90]
+      - [38.3, 13.2, 2900, 120]
+      - [38.2, 11.0, 2900, 130]
+      - [38.6, 9.0, 2800, 140]
+      - [39.3, 7.3, 2700, 130]
+      - [40.5, 8.0, 2400, 110]
+      - [42.0, 9.0, 2100, 100]
+      - [44.0, 9.7, 1800, 90]
+      - [46.5, 10.2, 1700, 70]
+      - [48.5, 10.6, 1500, 50]
+  - geo_id: GEO_ORO_COTIERE_N
+    nom: null                    # [CANON] chaîne côtière septentrionale — nom : [LACUNE]
+    # [CANON] reliefs plissés, falaises calcaires, ~1 200 km ; barrière Méditerranée / Sumdan
+    # [PROPOSITION] Dorsale tunisienne — djebel Nefoussa — djebel Akhdar — plateau de Marmarique
+    mode: max
+    rugosite: 0.8
+    points:
+      - [6.2, 36.2, 1400, 45]
+      - [8.4, 35.7, 1600, 60]
+      - [9.7, 34.75, 1250, 45]
+      - [10.6, 33.3, 900, 35]
+      - [11.6, 32.15, 1050, 45]
+      - [13.0, 31.95, 1000, 45]
+      - [14.6, 31.55, 900, 40]
+      - [16.0, 30.75, 800, 35]
+      - [17.5, 30.25, 750, 30]
+      - [19.0, 30.0, 800, 30]
+      - [20.2, 31.2, 1000, 40]
+      - [21.6, 32.35, 1250, 50]
+      - [23.0, 32.45, 1100, 45]
+      - [24.6, 31.85, 900, 45]
+      - [26.2, 31.15, 750, 45]
+      - [28.0, 30.75, 600, 45]
+      - [29.5, 30.6, 400, 35]
+  - geo_id: GEO_ORO_MUWULE
+    nom: "Mù-wúlè"
+    altitude_max_m: 1800         # [CANON]
+    # [CANON] chaîne mineure SO, bordure O du bassin Mopámà, alt. max. 1 800 m
+    mode: max
+    rugosite: 0.9
+    points:
+      - [3.1, 11.7, 1400, 60]
+      - [3.5, 10.4, 1800, 75]
+      - [3.9, 9.1, 1700, 70]
+      - [4.2, 8.1, 1300, 55]
+  - geo_id: GEO_ORO_KUKIBO
+    nom: "Kù-kɨ́bò"
+    altitude_max_m: 1400         # [CANON]
+    # [CANON] hautes collines SC, transition Tùmázì / k'ara, alt. max. 1 400 m
+    mode: max
+    rugosite: 0.7
+    points:
+      - [24.6, 9.2, 1150, 70]
+      - [25.8, 9.75, 1400, 80]
+      - [27.0, 10.2, 1250, 70]
+
+massifs:
+  - geo_id: GEO_ORO_ARASUKHI
+    nom: "|'Ara-Sukhì"           # [CANON] > 5 000 m, partie de k'ara
+    centre: [17.8, 20.3]
+  - geo_id: GEO_ORO_MUDARHOBI
+    nom: "Mù-dárhòbì"            # [CANON] massif S du bassin Mopámà, alt. max. 2 100 m
+    centre: [10.0, 6.4]          # [PROPOSITION] hautes terres réelles de l'Ouest camerounais, écrêtées
+  - geo_id: GEO_SIT_AYKMAIXA
+    nom: "!Ayk-ma-‖Ixa"          # [CANON] cirque glaciaire 2 700 m, jonction qoyra / k'ara
+    centre: [36.9, 9.1]
+
+# Reliefs réels absents du corpus : écrêtés pour ne pas concurrencer la cordillère.
+# h' = seuil + facteur × (h - seuil) au-dessus du seuil.
+ecretements:
+  - nom: Atlas (relief réel non documenté au corpus)          # [PROPOSITION]
+    zone: [[-10.5, 29.0], [10.0, 29.0], [10.0, 37.5], [-10.5, 37.5]]
+    seuil_m: 1200
+    facteur: 0.35
+  - nom: Ligne du Cameroun (devient Mù-dárhòbì, max 2 100 m)  # [PROPOSITION]
+    zone: [[8.5, 3.6], [15.0, 3.6], [15.0, 8.2], [8.5, 8.2]]
+    seuil_m: 1500
+    facteur: 0.22
+
+# -----------------------------------------------------------------------------
+#  FLEUVES NOMMÉS — tracés de l'amont vers l'aval.
+#  « reel: X » = tracé réel de Natural Earth (nom anglais du jeu de données).
+# -----------------------------------------------------------------------------
+fleuves:
+  - geo_id: GEO_FLV_TANAHIL
+    noms: ["Tira-ñara", "Tanāḥil"]   # amont (Qoyra) / aval (Šamqir)
+    # [PROPOSITION] = Nil Bleu réel ; [CANON] 1 450 km
+    reel: ["Abay", "El Bahr el Azraq"]
+    largeur: 3
+  - geo_id: GEO_FLV_BUHLELA
+    noms: ["Buhlela"]
+    # [PROPOSITION] = Atbara / Tekezé réels ; [CANON] « sources hors-Beliet E » non résolu
+    reel: ["Tekeze", "Setit", "Atbara"]
+    largeur: 2
+  - geo_id: GEO_FLV_ABNUHIL
+    noms: ["Tira-qoyra", "Abnuḥīl"]
+    # [PROPOSITION] = Nil réel de Khartoum au seuil de diffluence (≈ 27,6° N)
+    reel: ["Nile"]
+    couper_au_nord_de: 27.6
+    largeur: 4
+  - geo_id: GEO_FLV_ABNUHIL_SAFAQIL
+    noms: ["Šafāqil"]
+    # bras nord vers la Méditerranée = Nil réel en aval de la diffluence + branches du delta
+    reel: ["Nile", "Rosetta Branch", "Damietta Branch"]
+    garder_au_nord_de: 27.6
+    largeur: 3
+  - geo_id: GEO_FLV_ABNUHIL_ABNIQA
+    noms: ["Abnīqa"]
+    # [CANON] bras de décharge vers l'ouest, ~300 km, débouché deltaïque dans l'Halakhel
+    trace: [[30.78, 27.6], [30.2, 27.75], [29.6, 27.82], [29.0, 27.88], [28.55, 27.92], [28.25, 27.95]]
+    largeur: 3
+  - geo_id: GEO_FLV_MADIKH
+    noms: ["|Na-madikh", "Madīlan"]
+    # [CANON] versants N de k'ara, ~1 400 km, eaux rougeâtres, vallées encaissées, ria Tawālmaz
+    trace: [[5.6, 25.35], [6.6, 25.25], [7.6, 25.1], [8.8, 24.95], [10.0, 24.85], [11.2, 24.65],
+            [12.3, 24.45], [13.3, 24.25], [13.8, 24.15]]
+    largeur: 3
+  - geo_id: GEO_FLV_IMIKHREL
+    noms: ["Imikhrel"]
+    # [CANON] piémonts O, ~800 km, débouché SO de l'Halakhel (Imekh-stom)
+    trace: [[2.4, 26.15], [3.3, 26.5], [4.4, 26.75], [5.6, 26.85], [6.7, 26.95], [7.7, 27.05], [8.85, 27.2]]
+    largeur: 2
+  - geo_id: GEO_FLV_EHUKHTAL
+    noms: ["Ehukhtal"]
+    # [CANON] sources !Okheti, ~1 100 km, estuaire Akhidalet (Halakhel O)
+    trace: [[0.0, 26.55], [0.35, 27.3], [0.9, 28.0], [1.6, 28.6], [2.4, 29.1], [3.3, 29.55],
+            [4.3, 29.9], [5.3, 30.2], [6.35, 30.45]]
+    largeur: 3
+  - geo_id: GEO_FLV_HAWQAL
+    noms: ["|Na-khuwel", "Ḥawqal"]
+    # [CANON] k'ara → Akhtir → Halakhel E
+    trace: [[19.9, 19.7], [20.6, 20.2], [21.3, 20.75], [22.6, 22.3], [23.1, 22.9], [23.7, 23.6],
+            [24.3, 24.3], [24.9, 25.0], [25.5, 25.75]]
+    traverse_lac: GEO_LAC_AKHTIR
+    largeur: 3
+  - geo_id: GEO_FLV_HAWQAL_RA
+    noms: ["|Na-khuwel-ra"]
+    # [CANON] affluent méridional à bras multiples
+    trace: [[22.4, 17.7], [22.6, 18.7], [22.7, 19.6], [22.75, 20.45]]
+    bras: [[[22.6, 18.7], [23.2, 19.4], [23.4, 20.2], [23.3, 20.8]]]
+    largeur: 2
+  - geo_id: GEO_FLV_HAWQAL_IN
+    noms: ["|Na-khuwel-ɨn"]
+    # [CANON] affluent oriental
+    trace: [[25.6, 21.7], [25.2, 22.5], [24.6, 23.2], [24.1, 24.0]]
+    largeur: 2
+  - geo_id: GEO_FLV_EMISSAIRE_MOPAMA
+    noms: [null]                     # [CANON] nom : [LACUNE]
+    # [CANON] ~600 km, navigable ; [PROPOSITION] cours inférieur réel du Niger
+    trace: [[6.4, 10.25], [5.75, 9.65], [5.5, 9.1], [5.9, 8.45], [6.55, 7.95], [6.75, 7.2], [6.75, 6.4],
+            [6.65, 5.7], [6.35, 5.05], [6.05, 4.5]]
+    largeur: 3
+
+deltas:
+  - {geo_id: GEO_DLT_SAFAQIL, nom: "Šafāqil", pos: [31.0, 30.9]}
+  - {geo_id: GEO_EST_AKHIDALET, nom: "Akhidalet", pos: [6.0, 30.35]}
+  - {geo_id: GEO_EST_TAWALMAZ, nom: "Tawālmaz", pos: [15.2, 23.75]}
+
+# -----------------------------------------------------------------------------
+#  MERS EXTÉRIEURES, GOLFES, ÎLES
+# -----------------------------------------------------------------------------
+eaux_exterieures:
+  - {geo_id: GEO_EXT_MEDITERRANEE, nom: "Méditerranée", pos: [18.0, 34.3]}
+  - {geo_id: GEO_EXT_ATLANTIQUE,   nom: "Océan Atlantique", pos: [-22.0, 25.0]}
+  - {geo_id: GEO_EXT_MERROUGE,     nom: "Mer Rouge", pos: [38.4, 19.2]}
+  - {geo_id: GEO_EXT_OCEAN_EST,    nom: "Océan de l'Est", pos: [50.0, 4.0]}
+  - {geo_id: GEO_GLF_KUJALIMARIR,  nom: "Ku-jálima-rir", pos: [-1.0, 2.6]}   # [PROPOSITION] golfe de Guinée
+  - {geo_id: GEO_GLF_JALONDU,      nom: "Golfe Jálondù", pos: [3.6, 5.6]}    # [PROPOSITION] baie du Bénin
+
+archipels:
+  - geo_id: GEO_ARC_STAURKHLOR
+    nom: "Staur-Khlōr"
+    # [CANON] 10 îles volcaniques arides à ~600 km de la façade atlantique SO
+    # [PROPOSITION] = archipel réel du Cap-Vert (10 îles, relief réel conservé)
+    zone: [[-25.6, 14.6], [-22.4, 14.6], [-22.4, 17.4], [-25.6, 17.4]]
+    pos_etiquette: [-24.0, 18.0]
+    ile_principale: {geo_id: GEO_ILE_KHLORNAW, nom: "Khlōr-Naw", pos: [-24.38, 14.95]}  # = Fogo (point culminant)
+  - geo_id: GEO_ARC_LISEKDI
+    nom: "Li-sèk-dì"
+    # [CANON] chapelet d'îlots secs au large de l'anse Jálondù
+    ilots: [[3.35, 5.05], [3.75, 4.85], [4.15, 4.7], [4.5, 4.55], [3.0, 5.2], [4.85, 4.45]]
+    pos_etiquette: [3.9, 4.25]
+
+# -----------------------------------------------------------------------------
+#  RÉGIONS NOMMÉES (étiquettes seulement)
+# -----------------------------------------------------------------------------
+regions:
+  - {geo_id: GEO_DES_SUMDAN, nom: "Désert du Sumdan", pos: [12.0, 31.3], taille: 1.3}
+  - {geo_id: GEO_ZON_INTERFLUVE_E, nom: "Interfluve oriental", pos: [29.7, 25.3], taille: 0.75}
+
+# -----------------------------------------------------------------------------
+#  DÉSERTS DE SABLE (ergs) — sinon désert de pierre. [PROPOSITION] d'après les ergs réels.
+# -----------------------------------------------------------------------------
+ergs:
+  - [[-8.5, 25.5], [-3.0, 25.0], [-0.5, 26.6], [-2.0, 28.0], [-7.5, 27.6]]      # Iguidi / Chech (Sumdan O)
+  - [[-1.5, 29.0], [1.8, 29.0], [2.2, 31.0], [-1.0, 31.2]]                       # Grand Erg occidental
+  - [[-16.2, 21.5], [-13.8, 21.2], [-11.8, 23.4], [-12.5, 25.0], [-15.0, 24.0]]  # cordons du Sahara atlantique
+  - [[27.0, 20.0], [31.0, 20.0], [31.5, 23.0], [28.5, 24.0], [27.0, 22.5]]       # mer de sable de Selima
+  - [[33.0, 16.5], [35.0, 17.5], [34.5, 19.0], [32.5, 18.5]]                     # Bayouda / Nubie
+
+# Dépressions salées supplémentaires (Maqbaṣ, Ṣaraq) — en plus de celles détectées automatiquement
+depressions_salees:
+  - {geo_id: GEO_MAR_SARAQ, nom: "Ṣaraq", contour: [[29.0, 28.6], [29.9, 28.6], [29.9, 29.2], [29.0, 29.2]]}
+
+# -----------------------------------------------------------------------------
+#  CLIMAT — cibles de calibration [CANON], en mm/an
+# -----------------------------------------------------------------------------
+calibration_pluies:
+  - {lieu: "côte atlantique SO (Ku-jálima-rir)", pos: [5.0, 5.0], mm: 2400}
+  - {lieu: "bassin Mopámà", pos: [6.8, 10.4], mm: 1900}
+  - {lieu: "bassin Tùmázì", pos: [29.3, 7.6], mm: 1500}
+  - {lieu: "plateaux qoyra", pos: [38.0, 9.5], mm: 1300}
+  - {lieu: "désert du Sumdan", pos: [12.0, 31.0], mm: 60}
+  - {lieu: "façade méditerranéenne N (djebel Akhdar)", pos: [21.8, 32.6], mm: 650}
+  - {lieu: "côte atlantique NO", pos: [-7.5, 33.5], mm: 450}
+  - {lieu: "côte Mer Rouge", pos: [37.5, 19.0], mm: 80}
+  - {lieu: "Akhtir", pos: [22.6, 21.3], mm: 750}
+  - {lieu: "côte océan de l'Est", pos: [47.0, 5.0], mm: 550}
+  # points ajoutés d'après le texte du Géosystème (§I, §II, §V) — valeurs [INFÉRENCE]
+  - {lieu: "versant sud de k'ara (humide)", pos: [19.5, 17.6], mm: 1000}
+  - {lieu: "versant sud de k'ara, Ennedi", pos: [23.0, 14.5], mm: 900}
+  - {lieu: "piémont nord de k'ara (200-600)", pos: [11.0, 24.6], mm: 280}
+  - {lieu: "rive sud de l'Halakhel (désertique)", pos: [20.5, 23.2], mm: 110}
+  - {lieu: "versant atlantique de halekh", pos: [-12.0, 20.6], mm: 750}
+  - {lieu: "versant SO de lóngò (humide)", pos: [3.0, 19.2], mm: 900}
+  - {lieu: "versant NE de lóngò (semi-aride)", pos: [7.6, 17.6], mm: 420}
+  - {lieu: "façade méditerranéenne NE", pos: [29.5, 30.95], mm: 400}
+  - {lieu: "piémonts SE (semi-arides)", pos: [43.5, 7.0], mm: 320}
+  - {lieu: "piémonts NO (semi-aride froid)", pos: [-6.5, 31.6], mm: 650}
+  - {lieu: "déserts orientaux (NE)", pos: [32.5, 22.5], mm: 30}
+  - {lieu: "plaines du NE, aval du confluent", pos: [29.0, 18.5], mm: 90}
+  - {lieu: "sud somalien (côte océan de l'Est)", pos: [42.5, 0.5], mm: 500}
+  - {lieu: "plateau somalien (bras E-O de qoyra)", pos: [45.0, 9.6], mm: 300}

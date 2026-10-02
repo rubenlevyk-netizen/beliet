@@ -1,0 +1,115 @@
+{
+ "0": {
+  "code": "desert_pierreux",
+  "libelle": "Désert de pierre",
+  "couleur": "#c9b48f"
+ },
+ "1": {
+  "code": "desert_sableux",
+  "libelle": "Désert de sable",
+  "couleur": "#ecd9a3"
+ },
+ "2": {
+  "code": "dunes_littorales",
+  "libelle": "Cordons dunaires côtiers",
+  "couleur": "#f3e6bd"
+ },
+ "3": {
+  "code": "oasis",
+  "libelle": "Oasis",
+  "couleur": "#3f8f4a"
+ },
+ "4": {
+  "code": "steppe_piemont",
+  "libelle": "Steppe semi-aride de piémont",
+  "couleur": "#c6c58a"
+ },
+ "5": {
+  "code": "fourre_cotier_sec",
+  "libelle": "Fourré côtier sec",
+  "couleur": "#9aa86a"
+ },
+ "6": {
+  "code": "depression_saline",
+  "libelle": "Dépression saline",
+  "couleur": "#e8e2d6"
+ },
+ "7": {
+  "code": "cote_desertique",
+  "libelle": "Côte désertique",
+  "couleur": "#d8c3a0"
+ },
+ "8": {
+  "code": "recif_corallien",
+  "libelle": "Récif corallien",
+  "couleur": "#5fc9c4"
+ },
+ "9": {
+  "code": "littoral_rocheux",
+  "libelle": "Littoral rocheux",
+  "couleur": "#8c8577"
+ },
+ "10": {
+  "code": "plaine_alluviale",
+  "libelle": "Plaine alluviale irriguée",
+  "couleur": "#8cbf5a"
+ },
+ "11": {
+  "code": "foret_montagne",
+  "libelle": "Forêt de montagne et de piémont",
+  "couleur": "#3e6b45"
+ },
+ "12": {
+  "code": "prairie_altitude",
+  "libelle": "Prairie d'altitude",
+  "couleur": "#a3b07f"
+ },
+ "13": {
+  "code": "zone_periglaciaire",
+  "libelle": "Zone périglaciaire",
+  "couleur": "#a59e94"
+ },
+ "14": {
+  "code": "glacier",
+  "libelle": "Glacier",
+  "couleur": "#f4f8fb"
+ },
+ "15": {
+  "code": "foret_tropicale_humide",
+  "libelle": "Forêt tropicale humide",
+  "couleur": "#1f5a32"
+ },
+ "16": {
+  "code": "herbage_arbore",
+  "libelle": "Herbage arboré",
+  "couleur": "#b4b85c"
+ },
+ "17": {
+  "code": "foret_berge",
+  "libelle": "Forêt de berge",
+  "couleur": "#4c8a3c"
+ },
+ "18": {
+  "code": "foret_maree",
+  "libelle": "Forêt de marée",
+  "couleur": "#2f7564"
+ },
+ "19": {
+  "code": "zone_humide_lacustre",
+  "libelle": "Zone humide lacustre",
+  "couleur": "#6fa58e"
+ },
+ "20": {
+  "code": "eaux_lacustres",
+  "libelle": "Eaux lacustres et hauts-fonds",
+  "couleur": "#7fb3d5"
+ },
+ "21": {
+  "code": "ile_aride",
+  "libelle": "Île aride",
+  "couleur": "#bda57e"
+ },
+ "252": "Dehors",
+ "253": "Mer Halakhel",
+ "254": "Océan"
+}

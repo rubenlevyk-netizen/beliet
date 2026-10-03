@@ -1,0 +1,43 @@
+{
+ "version": "0.4",
+ "terres_emergees_beliet_km2": 17605877,
+ "mer_halakhel_km2": 1280030,
+ "lacs_km2": {
+  "GEO_LAC_TUMAZI": 92194,
+  "GEO_LAC_AKHTIR": 44753,
+  "GEO_LAC_MOPAMA": 28555
+ },
+ "altitude_max_m": 5350,
+ "milieux_km2": {
+  "desert_pierreux": 2757911,
+  "desert_sableux": 271033,
+  "dunes_littorales": 203,
+  "oasis": 7080,
+  "steppe_piemont": 5515645,
+  "fourre_cotier_sec": 425678,
+  "depression_saline": 186963,
+  "cote_desertique": 25913,
+  "recif_corallien": 39473,
+  "littoral_rocheux": 12752,
+  "plaine_alluviale": 161392,
+  "foret_montagne": 545481,
+  "prairie_altitude": 226228,
+  "zone_periglaciaire": 20754,
+  "glacier": 1516,
+  "foret_tropicale_humide": 3813824,
+  "herbage_arbore": 3332420,
+  "foret_berge": 181643,
+  "foret_maree": 29354,
+  "zone_humide_lacustre": 64442,
+  "eaux_lacustres": 165502,
+  "ile_aride": 25233
+ },
+ "facies_arin_km2": {
+  "hors_arin": 12395856,
+  "hiver_blanc": 377531,
+  "hiver_gris": 842093,
+  "hiver_jaune": 3097105,
+  "hiver_vapeur": 1705304,
+  "hiver_pluvieux_cotier": 468017
+ }
+}

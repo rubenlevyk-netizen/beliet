@@ -1,6 +1,6 @@
 # Le Beliet — carte physique
 
-Carte topographique et des milieux (biomes) du Beliet, version 0.3.2.
+Carte topographique, des milieux (biomes) et du climat du Beliet, version 0.4.
 
 ![Carte des milieux](carte/beliet_carte_milieux.png)
 
@@ -10,7 +10,8 @@ Carte topographique et des milieux (biomes) du Beliet, version 0.3.2.
 |---|---|---|
 | `carte/beliet_carte_milieux.png` | carte des milieux + relief ombré + hydrographie + noms (5 020 × 2 881 px) | regarder, imprimer, partager |
 | `carte/beliet_carte_relief.png` | même carte, teintes d'altitude à la place des milieux | regarder le relief |
-| `carte/beliet_carte.svg` | carte complète **en calques** (Inkscape) | retoucher à la main, ajouter des villes |
+| `carte/beliet_carte_climat.png` | précipitations annuelles, isohyètes et hivers du \|'Arin (Blanc, Gris, Jaune, Vapeur) | regarder le climat |
+| `carte/beliet_carte_milieux.svg`, `_relief.svg`, `_climat.svg` | les trois cartes **en calques** (Inkscape) | retoucher à la main, ajouter des villes |
 | `carte/beliet_carte_ascii.md` | **carte texte** : relief, eaux, milieux, cols, répertoire des lieux avec coordonnées | corpus, agents, usages sans image |
 | `carte/sig/` | données géographiques (GeoJSON, GeoTIFF, cartes d'altitude) | outils SIG (QGIS), Azgaar, futures cartes interactives |
 | `donnees/parametres_carte.yaml` | **toutes les décisions de placement** (chaînes, mer, lacs, fleuves, climat) | modifier la géographie |
@@ -32,10 +33,11 @@ Formulez la demande en langage courant. Par exemple : « déplace le lac Akhtir 
 
 ### 2. Retoucher à la main avec Inkscape (gratuit)
 1. Installez Inkscape : https://inkscape.org
-2. Téléchargez `carte/beliet_carte.svg` et ouvrez-le.
+2. Téléchargez l'une des trois cartes (`carte/beliet_carte_milieux.svg`, `_relief.svg` ou `_climat.svg`) et ouvrez-la.
 3. Ouvrez le panneau des calques (menu Calque → Calques et objets). Vous y trouvez :
-   - `01 Relief` et `02 Milieux` : les fonds de carte (un seul visible à la fois) ;
-   - `03 Milieux — polygones éditables` : les biomes en formes modifiables (masqué au départ) ;
+   - `01 Relief` ou `02 Milieux` ou `02 Climat` : le fond de carte de ce fichier ;
+   - `03 Milieux — polygones éditables` (fichier des milieux) : les biomes en formes modifiables (masqué au départ) ;
+   - `03b Hivers du |'Arin` et `03c Isohyètes` (fichier du climat) : faciès d'hiver et courbes de pluie ;
    - `04 Courbes de niveau`, `05 Hydrographie`, `06 Méridiens et parallèles`, `07 Toponymie` ;
    - **`08 Villes et lieux (à compléter)`** : calque vide, prévu pour vos ajouts ;
    - `09 Titre, légende, échelle`.
@@ -61,6 +63,8 @@ La carte est en projection Web Mercator, la même que votre contour d'origine. L
 | `beliet_cours_eau_secondaires.geojson` | réseau fluvial calculé, avec débit (m³/s) et bassin (km²) |
 | `beliet_milieux.geojson` | polygones des milieux (codes du vocabulaire du Géosystème) |
 | `beliet_altitude.tif`, `beliet_milieux.tif`, `beliet_pluie_mm.tif` | rasters géoréférencés (EPSG:3857) ; altitude à demi-résolution, pluie au quart |
+| `beliet_facies_arin.tif`, `beliet_temperature_hiver.tif` | faciès d'hiver du \|'Arin (codes dans `beliet_climat_codes.json`) ; température moyenne du cœur de l'hiver (°C × 10) |
+| `beliet_climat.geojson` | polygones des faciès du \|'Arin et isohyètes |
 | `beliet_altitude_16bits.png` | altitude en niveaux de gris 16 bits (demi-résolution) : valeur = altitude + 10 000 m |
 | `beliet_altitude_azgaar.png` | altitude au format attendu par Azgaar |
 | `beliet_milieux_codes.json` | correspondance code → milieu → couleur |

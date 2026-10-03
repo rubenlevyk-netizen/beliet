@@ -23,7 +23,7 @@ POLICE = "/usr/share/fonts/truetype/freefont/FreeSerif.ttf"
 POLICE_I = "/usr/share/fonts/truetype/freefont/FreeSerifItalic.ttf"
 POLICE_B = "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf"
 FAMILLE = "FreeSerif, 'DejaVu Serif', 'Liberation Serif', Georgia, serif"
-VERSION = "0.3.2"
+VERSION = "0.4"
 
 # --------------------------------------------------------------------------- couleurs
 
@@ -35,6 +35,16 @@ BATHY = [(-6000, (62, 104, 156)), (-3000, (86, 132, 182)), (-1000, (118, 164, 20
          (0, (176, 208, 230))]
 BATHY_HAL = [(-1800, (70, 122, 150)), (-900, (96, 150, 172)), (-300, (130, 180, 196)), (0, (160, 202, 212))]
 LAC = [(-800, (90, 140, 178)), (-200, (130, 178, 210)), (0, (160, 200, 226))]
+# précipitations annuelles (mm) : désert ocre → steppe → savane → forêt → très humide
+PLUIE = [(0, (236, 224, 196)), (100, (230, 212, 166)), (250, (220, 214, 150)), (500, (186, 206, 130)),
+         (800, (140, 190, 118)), (1200, (92, 166, 122)), (1600, (62, 140, 140)), (2200, (48, 108, 160)),
+         (3000, (40, 76, 140))]
+ISOHYETES = [50, 100, 250, 500, 800, 1200, 1600, 2200]
+MODES = {
+    "milieux": "Carte physique — relief, hydrographie et milieux",
+    "relief": "Carte physique — relief et hydrographie",
+    "climat": "Carte du climat — précipitations annuelles et hivers du |’Arin",
+}
 
 
 def rampe(v, stops):
@@ -281,32 +291,130 @@ class Etiquettes:
 
 # --------------------------------------------------------------------------- principal
 
-def tout(rel, p, reg, pluie, temp, hy, mil, log=print):
+def tout(rel, p, reg, pluie, temp, hy, mil, hv, log=print):
     os.makedirs(os.path.join(SORTIE, "sig"), exist_ok=True)
     g = rel.g
     log("  ombrage et teintes…")
     om = ombrage(rel)
-    rgb_hyp = estomper(composer(teintes_hypso(rel), om, rel), rel, om)
-    rgb_mil = estomper(composer(teintes_milieux(rel, mil), om, rel, force_terre=0.62), rel, om)
+    rasters = {
+        "relief": estomper(composer(teintes_hypso(rel), om, rel), rel, om),
+        "milieux": estomper(composer(teintes_milieux(rel, mil), om, rel, force_terre=0.62), rel, om),
+        "climat": estomper(composer(teintes_pluie(rel, pluie), om, rel, force_terre=0.45), rel, om),
+    }
 
     log("  vecteurs…")
     vec = vecteurs(rel, p, reg, hy, mil, log)
+    vec.update(vecteurs_climat(rel, pluie, hv))
     log("  étiquettes…")
     et = etiquettes(rel, p, reg, vec)
 
-    # SVG complet (rasters à demi-résolution pour rester léger) + rendus PNG pleine résolution
-    for nom, rgb, cache_hyp in (("beliet_carte_milieux", rgb_mil, True), ("beliet_carte_relief", rgb_hyp, False)):
-        svg_png = assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso=not cache_hyp, demi=False)
-        rendre_png(svg_png, os.path.join(SORTIE, nom + ".png"), log)
-    svg = assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso=False, demi=True)
-    open(os.path.join(SORTIE, "beliet_carte.svg"), "w", encoding="utf-8").write(svg)
-    log(f"  SVG à calques : {os.path.getsize(os.path.join(SORTIE, 'beliet_carte.svg')) / 1e6:.1f} Mo")
+    # trois cartes : PNG pleine résolution + SVG à calques (rasters à demi-résolution pour rester légers)
+    for mode in ("milieux", "relief", "climat"):
+        rendre_png(assembler_svg(rel, p, rasters, om, vec, et, mil, mode, demi=False),
+                   os.path.join(SORTIE, f"beliet_carte_{mode}.png"), log)
+        chemin = os.path.join(SORTIE, f"beliet_carte_{mode}.svg")
+        open(chemin, "w", encoding="utf-8").write(assembler_svg(rel, p, rasters, om, vec, et, mil, mode, demi=True))
+        log(f"  {os.path.basename(chemin)} (calques) : {os.path.getsize(chemin) / 1e6:.1f} Mo")
+    ancien = os.path.join(SORTIE, "beliet_carte.svg")
+    if os.path.exists(ancien):
+        os.remove(ancien)
 
     log("  données SIG…")
     exporter_sig(rel, p, reg, pluie, hy, mil, vec)
+    exporter_climat(rel, pluie, hv, vec)
     log("  cartes d'altitude…")
     exporter_altitudes(rel)
-    stats(rel, p, mil, pluie, log)
+    stats(rel, p, mil, pluie, hv, log)
+
+
+FACIES_SVG = {
+    1: ("Hiver Blanc", "#5a7fa8"), 2: ("Hiver Gris", "#5c6170"), 3: ("Hiver Jaune", "#a8801c"),
+    4: ("Hiver de Vapeur", "#2f6b9c"), 5: ("Hiver pluvieux tempéré (hors matrice)", "#4d7a3c"),
+}
+DEFS_FACIES = (
+    '<defs>'
+    '<pattern id="motif_1" patternUnits="userSpaceOnUse" width="14" height="14">'
+    '<rect width="14" height="14" fill="#ffffff" fill-opacity="0.62"/><circle cx="7" cy="7" r="1.6" fill="#5a7fa8"/></pattern>'
+    '<pattern id="motif_2" patternUnits="userSpaceOnUse" width="12" height="12" patternTransform="rotate(45)">'
+    '<rect width="12" height="12" fill="#6d7280" fill-opacity="0.16"/><line x1="0" y1="0" x2="0" y2="12" stroke="#5c6170" stroke-width="2.4" stroke-opacity="0.7"/></pattern>'
+    '<pattern id="motif_3" patternUnits="userSpaceOnUse" width="18" height="18" patternTransform="rotate(-45)">'
+    '<line x1="0" y1="0" x2="0" y2="18" stroke="#a8801c" stroke-width="2" stroke-opacity="0.55"/></pattern>'
+    '<pattern id="motif_4" patternUnits="userSpaceOnUse" width="16" height="10">'
+    '<line x1="0" y1="5" x2="16" y2="5" stroke="#e8f2fb" stroke-width="2" stroke-opacity="0.85"/></pattern>'
+    '<pattern id="motif_5" patternUnits="userSpaceOnUse" width="16" height="16">'
+    '<line x1="8" y1="0" x2="8" y2="16" stroke="#4d7a3c" stroke-width="1.8" stroke-opacity="0.55"/></pattern>'
+    '</defs>')
+
+
+def legende_climat(lx, g):
+    """Légende de la carte du climat : précipitations et faciès |'Arin."""
+    W, Hh = 1060, 560
+    ly = g.H - Hh - 120
+    o = [f'<g id="legende_climat"><rect x="{lx - 10:.0f}" y="{ly:.0f}" width="{W}" height="{Hh}" rx="6" fill="#ffffff" '
+         f'fill-opacity="0.9" stroke="#6a5a48"/>']
+    o.append(DEFS_FACIES)
+    o.append(f'<text x="{lx + 10:.0f}" y="{ly + 42:.0f}" font-family="{FAMILLE}" font-size="28" font-weight="bold" fill="#3a2a1a">Précipitations annuelles</text>')
+    seuils = [0, 100, 250, 500, 800, 1200, 1600, 2200, 3000]
+    for i, mm in enumerate(seuils):
+        r, v, b = rampe(np.array([mm + 1], float), PLUIE)[0]
+        yy = ly + 62 + i * 40
+        txt = f"< 100 mm" if mm == 0 else (f"> 3 000 mm" if mm == 3000 else f"{mm:,} mm".replace(",", " "))
+        o.append(f'<rect x="{lx + 10:.0f}" y="{yy:.0f}" width="60" height="30" fill="rgb({int(r)},{int(v)},{int(b)})" stroke="#555" stroke-width="0.6"/>'
+                 f'<text x="{lx + 84:.0f}" y="{yy + 23:.0f}" font-family="{FAMILLE}" font-size="20" fill="#3a2a1a">{echap(txt)}</text>')
+    for j, t in enumerate(("Isohyètes (mm/an) :", "50 · 100 · 250 · 500", "800 · 1 200 · 1 600 · 2 200")):
+        o.append(f'<text x="{lx + 10:.0f}" y="{ly + 446 + j * 24:.0f}" font-family="{FAMILLE}" font-size="18" '
+                 f'font-style="italic" fill="#24577a">{t}</text>')
+    cx = lx + 400
+    o.append(f'<text x="{cx:.0f}" y="{ly + 42:.0f}" font-family="{FAMILLE}" font-size="28" font-weight="bold" fill="#3a2a1a">Hivers du |’Arin (fin oct. → fin avr.)</text>')
+    textes = {1: ["Hiver Blanc — manteau neigeux stable,", "cols fermés (§III)"],
+              2: ["Hiver Gris — pluies froides, gel humide,", "sols saturés, glissements"],
+              3: ["Hiver Jaune — gel nocturne, ciel clair,", "vents de poussière"],
+              4: ["Hiver de Vapeur — brouillards", "d'advection sur la mer Halakhel"],
+              5: ["Hiver pluvieux tempéré (Méditerranée,", "Atlas) — hors matrice canonique"]}
+    for k, code in enumerate((1, 2, 3, 4, 5)):
+        yy = ly + 66 + k * 68
+        fond = "#4f86b5" if code == 4 else "#e9e3d3"
+        o.append(f'<rect x="{cx:.0f}" y="{yy:.0f}" width="60" height="44" fill="{fond}"/>'
+                 f'<rect x="{cx:.0f}" y="{yy:.0f}" width="60" height="44" fill="url(#motif_{code})" stroke="{FACIES_SVG[code][1]}" stroke-width="1.6"/>')
+        for j, t in enumerate(textes[code]):
+            o.append(f'<text x="{cx + 76:.0f}" y="{yy + 18 + j * 22:.0f}" font-family="{FAMILLE}" font-size="19" fill="#3a2a1a">{echap(t)}</text>')
+    o.append(f'<text x="{cx:.0f}" y="{ly + 420:.0f}" font-family="{FAMILLE}" font-size="17" font-style="italic" fill="#3a2a1a">'
+             f'Sans motif : hiver doux (tropiques, pas d\'|’Arin).</text>')
+    o.append(f'<text x="{cx:.0f}" y="{ly + 446:.0f}" font-family="{FAMILLE}" font-size="17" font-style="italic" fill="#3a2a1a">'
+             f'Matrice canonique exacte à 22,5° N (Gris dès 800 m, Blanc dès 2 400 m) ;</text>')
+    o.append(f'<text x="{cx:.0f}" y="{ly + 470:.0f}" font-family="{FAMILLE}" font-size="17" font-style="italic" fill="#3a2a1a">'
+             f'les limites remontent vers le sud (Blanc ≈ 3 500 m à 13° N).</text>')
+    o.append("</g>")
+    return "".join(o)
+
+
+def teintes_pluie(rel, pluie):
+    c = rampe(np.where(rel.terre, pluie, 0), PLUIE)
+    return couleur_eaux(rel, c)
+
+
+def vecteurs_climat(rel, pluie, hv):
+    """Isohyètes et polygones des faciès |'Arin."""
+    import contourpy
+    g = rel.g
+    v = {"isohyetes": [], "facies": []}
+    Ps = gaussian_filter(np.where(rel.terre, pluie, np.nan_to_num(pluie)), 2.0)
+    visible = rel.terre & (rel.fondu > 0.45)
+    gen = contourpy.contour_generator(z=np.ma.masked_where(~visible, Ps), name="serial")
+    for niv in ISOHYETES:
+        for ligne in gen.lines(niv):
+            if len(ligne) < 6:
+                continue
+            ls = LineString(ligne + 0.5).simplify(0.8)
+            if ls.length > 40:
+                v["isohyetes"].append((niv, np.array(ls.coords)))
+    F = hv["facies"]
+    for code in (3, 5, 2, 1, 4):
+        m = (F == code) & ((rel.fondu > 0.45) | rel.mer)
+        if m.any():
+            for pg in contours_masque(m, simpl=1.0, aire_min=30):
+                v["facies"].append((code, pg))
+    return v
 
 
 # --------------------------------------------------------------------------- vecteurs
@@ -527,6 +635,9 @@ def etiquettes(rel, p, reg, vec):
     for d in p.get("detroits_et_debouches", []) + p.get("deltas", []):
         x, y = g.px(*d["pos"])
         n = nom(d["geo_id"]) or d["nom"]
+        # un delta homonyme d'une passe (Šafāqil) porte « delta » : pas d'étiquette en double
+        if d["geo_id"].startswith("GEO_DLT") and "delta" not in n.lower():
+            n = "delta " + n
         E.droit(x, y - 10, n, 19, COUL_EAU, POLICE_I, halo=3)
     # régions
     for r in p.get("regions", []):
@@ -560,14 +671,14 @@ def graticule(g):
     return " ".join(out), lab
 
 
-def legende_svg(g, rel, mil, montrer_hypso):
+def legende_svg(g, rel, mil, mode):
     """Cartouche : titre, légende, échelle, sources."""
     x0, y0 = 30, g.H - 30
     parts = []
     # titre (haut gauche)
     parts.append(f'<g id="titre"><rect x="24" y="24" width="760" height="150" rx="6" fill="#ffffff" fill-opacity="0.82" stroke="#6a5a48" stroke-width="1.5"/>'
                  f'<text x="44" y="86" font-family="{FAMILLE}" font-size="54" font-weight="bold" fill="#3a2a1a" letter-spacing="6">LE BELIET</text>'
-                 f'<text x="46" y="124" font-family="{FAMILLE}" font-size="24" font-style="italic" fill="#4a3a2a">Carte physique — relief, hydrographie et milieux</text>'
+                 f'<text x="46" y="124" font-family="{FAMILLE}" font-size="24" font-style="italic" fill="#4a3a2a">{echap(MODES[mode])}</text>'
                  f'<text x="46" y="156" font-family="{FAMILLE}" font-size="18" fill="#5a4a3a">Version {VERSION} · d\'après le Géosystème v3.1 et son registre · projection Web Mercator</text></g>')
     # échelle à 15° N
     kmpx = g.km_px_a(15)
@@ -582,7 +693,9 @@ def legende_svg(g, rel, mil, montrer_hypso):
     # légende (bas, dans l'Atlantique sud)
     lx, ly = g.px(-26.2, 9.6)
     lx += 20
-    if montrer_hypso:
+    if mode == "climat":
+        parts.append(legende_climat(lx, g))
+    elif mode == "relief":
         parts.append(f'<g id="legende_relief"><rect x="{lx - 10:.0f}" y="{ly:.0f}" width="560" height="560" rx="6" fill="#ffffff" fill-opacity="0.85" stroke="#6a5a48"/>')
         parts.append(f'<text x="{lx + 10:.0f}" y="{ly + 40:.0f}" font-family="{FAMILLE}" font-size="28" font-weight="bold" fill="#3a2a1a">Altitudes</text>')
         for i, (alt, col) in enumerate(reversed(HYPSO[1:])):
@@ -614,7 +727,7 @@ def legende_svg(g, rel, mil, montrer_hypso):
     return "".join(parts)
 
 
-def assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso, demi):
+def assembler_svg(rel, p, rasters, om, vec, et, mil, mode, demi):
     g = rel.g
     W, H = g.W, g.H
     sl = (slice(None, None, 2), slice(None, None, 2)) if demi else (slice(None), slice(None))
@@ -630,14 +743,16 @@ def assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso, dem
              f'xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" '
              f'xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" '
              f'width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
-    o.append(f'<title>Le Beliet — carte physique v{VERSION}</title>')
+    o.append(f'<title>Le Beliet — {MODES[mode].split(" — ")[0].lower()} v{VERSION}</title>')
     o.append(f'<desc>Grille Web Mercator : x = (longitude - {g.lon0}) × {g.K:.3f} ; '
              f'y = ({g.mtop:.6f} - ln(tan(π/4 + latitude/2))) × {g.R:.3f}. Paramètres : donnees/parametres_carte.yaml</desc>')
     o.append(f'<rect width="{W}" height="{H}" fill="#b0d0e6"/>')
-    o.append(img(rgb_hyp, "calque_relief", "01 Relief — teintes d'altitude (ombrées)", visible=montrer_hypso))
-    o.append(img(rgb_mil, "calque_milieux", "02 Milieux — biomes (ombrés)", visible=not montrer_hypso))
+    # un seul fond raster par fichier (léger) ; les autres versions sont dans leurs propres fichiers
+    noms_fond = {"relief": "01 Relief — teintes d'altitude (ombrées)", "milieux": "02 Milieux — biomes (ombrés)",
+                 "climat": "02 Climat — précipitations annuelles (ombrées)"}
+    o.append(img(rasters[mode], f"calque_{mode}", noms_fond[mode]))
     # milieux vectoriels (masqués par défaut, éditables)
-    if demi:
+    if demi and mode == "milieux":
         o.append('<g inkscape:groupmode="layer" id="calque_milieux_vect" inkscape:label="03 Milieux — polygones éditables" style="display:none">')
         for code in range(len(MILIEUX)):
             ps = [pg for c, pg in vec["milieux"] if c == code]
@@ -647,9 +762,30 @@ def assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso, dem
             o.append(f'<path id="milieu_{MILIEUX[code][0]}" inkscape:label="{MILIEUX[code][1]}" d="{d}" '
                      f'fill="{MILIEUX[code][2]}" fill-rule="evenodd" stroke="none"/>')
         o.append("</g>")
+    # climat : faciès |'Arin (motifs) et isohyètes
+    vis = "" if mode == "climat" else ' style="display:none"'
+    o.append(f'<g inkscape:groupmode="layer" id="calque_facies" inkscape:label="03b Hivers du |’Arin — faciès"{vis}>')
+    o.append(DEFS_FACIES)
+    for code, pg in vec.get("facies", []):
+        o.append(f'<path inkscape:label="{FACIES_SVG[code][0]}" d="{anneaux_svg(pg, lisse=True)}" fill="url(#motif_{code})" '
+                 f'fill-rule="evenodd" stroke="{FACIES_SVG[code][1]}" stroke-width="1.6" stroke-opacity="0.9"/>')
+    o.append("</g>")
+    o.append(f'<g inkscape:groupmode="layer" id="calque_isohyetes" inkscape:label="03c Isohyètes (mm/an)" fill="none" '
+             f'stroke="#24577a" stroke-linejoin="round"{vis}>')
+    for niv, P in vec.get("isohyetes", []):
+        o.append(f'<path inkscape:label="{niv} mm" d="{d_chemin(chaikin(P, 2))}" stroke-width="{1.6 if niv in (250, 800, 1600) else 0.9}" '
+                 f'stroke-opacity="0.75" stroke-dasharray="{"none" if niv in (250, 800, 1600) else "7 5"}"/>')
+    for niv, P in vec.get("isohyetes", []):
+        if len(P) > 60:
+            x, y = P[len(P) // 2]
+            o.append(f'<text x="{x:.0f}" y="{y:.0f}" font-family="{FAMILLE}" font-size="17" fill="#24577a" stroke="#ffffff" '
+                     f'stroke-width="3" paint-order="stroke" text-anchor="middle">{niv}</text>'
+                     f'<text x="{x:.0f}" y="{y:.0f}" font-family="{FAMILLE}" font-size="17" fill="#24577a" text-anchor="middle">{niv}</text>')
+    o.append("</g>")
     # isohypses
+    vis_iso = ' style="display:none"' if mode == "climat" else ""
     o.append('<g inkscape:groupmode="layer" id="calque_isohypses" inkscape:label="04 Courbes de niveau" '
-             'fill="none" stroke="#7a5532" stroke-linejoin="round">')
+             f'fill="none" stroke="#7a5532" stroke-linejoin="round"{vis_iso}>')
     for niv, P in vec["isohypses"]:
         maj = niv % 1000 == 0
         o.append(f'<path d="{d_chemin(P)}" stroke-width="{1.1 if maj else 0.55}" stroke-opacity="{0.55 if maj else 0.35}"/>')
@@ -698,14 +834,18 @@ def assembler_svg(rel, p, rgb_mil, rgb_hyp, om, vec, et, mil, montrer_hypso, dem
     o.append('<g inkscape:groupmode="layer" id="calque_villes" inkscape:label="08 Villes et lieux (à compléter)"></g>')
     # habillage
     o.append('<g inkscape:groupmode="layer" id="calque_habillage" inkscape:label="09 Titre, légende, échelle">')
-    o.append(legende_svg(g, rel, mil, montrer_hypso))
+    o.append(legende_svg(g, rel, mil, mode))
     o.append("</g></svg>")
     return "\n".join(o)
 
 
 def rendre_png(svg, chemin, log):
     import cairosvg
-    cairosvg.svg2png(bytestring=svg.encode("utf-8"), write_to=chemin)
+    try:
+        cairosvg.svg2png(bytestring=svg.encode("utf-8"), write_to=chemin)
+    except Exception:
+        open(chemin + ".echec.svg", "w", encoding="utf-8").write(svg)
+        raise
     im = Image.open(chemin).convert("RGB")
     im.save(chemin, optimize=True)
     log(f"  {os.path.basename(chemin)} : {im.size[0]} × {im.size[1]} px, {os.path.getsize(chemin) / 1e6:.1f} Mo")
@@ -793,6 +933,35 @@ def exporter_sig(rel, p, reg, pluie, hy, mil, vec):
               open(os.path.join(d, "beliet_milieux_codes.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
+def exporter_climat(rel, pluie, hv, vec):
+    """Faciès |'Arin, températures d'hiver et isohyètes : GeoTIFF et GeoJSON."""
+    import rasterio
+    from .climat import FACIES
+    g = rel.g
+    d = os.path.join(SORTIE, "sig")
+    R_ = 6378137.0
+    px = R_ * math.pi / 180 / g.K
+    def profil(f):
+        tr = Affine(px * f, 0, R_ * math.radians(g.lon0), 0, -px * f, R_ * g.mtop)
+        return dict(driver="GTiff", width=g.W // f, height=g.H // f, count=1, crs="EPSG:3857", transform=tr, compress="deflate")
+    F = hv["facies"][: g.H // 2 * 2: 2, : g.W // 2 * 2: 2]
+    with rasterio.open(os.path.join(d, "beliet_facies_arin.tif"), "w", dtype="uint8", **profil(2)) as f:
+        f.write(F, 1)
+    T = np.where(rel.terre, hv["Tw"], -99)[: g.H // 4 * 4: 4, : g.W // 4 * 4: 4]
+    with rasterio.open(os.path.join(d, "beliet_temperature_hiver.tif"), "w", dtype="int16", nodata=-990, **profil(4)) as f:
+        f.write(np.round(T * 10).astype(np.int16), 1)
+    feats = [{"type": "Feature", "geometry": _poly_ll(g, pg),
+              "properties": {"type": "FACIES_ARIN", "code": FACIES[c][0], "libelle": FACIES[c][1]}} for c, pg in vec["facies"]]
+    feats += [{"type": "Feature", "geometry": {"type": "LineString", "coordinates": _ll(g, P)},
+               "properties": {"type": "ISOHYETE", "pluie_mm": niv}} for niv, P in vec["isohyetes"]]
+    json.dump({"type": "FeatureCollection", "name": "beliet_climat", "features": feats},
+              open(os.path.join(d, "beliet_climat.geojson"), "w", encoding="utf-8"), ensure_ascii=False)
+    json.dump({"facies": {str(k): {"code": v[0], "libelle": v[1]} for k, v in FACIES.items()},
+               "temperature_hiver": "°C × 10 (moyenne du cœur de l'hiver |'Arin-sukhì)", "seuil_blanc_c": hv["seuil_blanc"],
+               "seuil_gris_c": hv["seuil_gris"]},
+              open(os.path.join(d, "beliet_climat_codes.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+
 def exporter_altitudes(rel):
     d = os.path.join(SORTIE, "sig")
     h = rel.h
@@ -806,7 +975,7 @@ def exporter_altitudes(rel):
     Image.fromarray(np.round(v * 2.55).astype(np.uint8)[::2, ::2]).save(os.path.join(d, "beliet_altitude_azgaar.png"))
 
 
-def stats(rel, p, mil, pluie, log):
+def stats(rel, p, mil, pluie, hv, log):
     g = rel.g
     A = g.aire_km2()
     s = {
@@ -816,6 +985,10 @@ def stats(rel, p, mil, pluie, log):
         "lacs_km2": {L["cfg"]["geo_id"]: round(float(A[rel.lac == k].sum())) for k, L in enumerate(rel.lacs, start=1)},
         "altitude_max_m": round(float(rel.h[rel.terre].max())),
         "milieux_km2": {k: round(v) for k, v in mil["stats"].items() if v > 0},
+        "facies_arin_km2": {},
     }
+    from .climat import FACIES
+    for c, (code, _, _) in FACIES.items():
+        s["facies_arin_km2"][code] = round(float((A * np.where(rel.mer, 1, rel.fondu))[(hv["facies"] == c) & (rel.terre | rel.mer)].sum()))
     json.dump(s, open(os.path.join(SORTIE, "sig", "beliet_statistiques.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     log("  " + json.dumps({k: s[k] for k in ("terres_emergees_beliet_km2", "mer_halakhel_km2", "altitude_max_m")}))

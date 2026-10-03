@@ -1,4 +1,4 @@
-# Analyse de cohérence — carte du Beliet v0.3.2
+# Analyse de cohérence — carte du Beliet v0.4
 
 Sources croisées :
 - `references/GEOSYSTEME_GLOBAL_DU_BELIET_v3.1.md` (GEO) et `GEOSYSTEME_REGISTRE.v1.json` ;
@@ -10,6 +10,18 @@ Sources croisées :
 L'illustration `TEST_Beliet_MAP.png` n'est **pas** utilisée. Aucun fichier du corpus ne donne de coordonnées : toutes les positions sont des [PROPOSITION] déduites des relations de voisinage croisées ci-dessous.
 
 ## 0. Changements
+
+### v0.4 (audits externes vérifiés ; carte du climat)
+
+| Point | v0.3.2 | v0.4 | Fondement |
+|---|---|---|---|
+| Delta Šafāqil | rectangle de coordonnées (plaine alluviale) | éventail le long des bras, borné par l'altitude | artefact relevé en vérifiant l'audit des cartes (`ALIGNEMENT_CORPUS.md` ALN-100 à 103) ; la « forêt tropicale » signalée n'existait pas |
+| Limites de milieux | plusieurs coupures rectilignes (29,5° N, −8°, 25° E, 30° E ; Ṣaraq rectangulaire) | limites adoucies et bruitées ; Ṣaraq irrégulier | idem |
+| Étiquettes | « Šafāqil » en double | « delta Šafāqil » pour le delta | idem |
+| Étages de montagne | 800 / 2 400 / 3 600 m partout | exacts à 22,5° N ; suivent la température de saison de végétation : plus hauts au sud, plus bas au nord | audit \|'Arin (ALN-119) ; réalisme (limite des arbres) |
+| Glaciers | seuils d'altitude par longitude | T annuelle ≤ −5 °C (k'ara), ≤ −2,5 °C relictuels (halekh) ; aucun sur qoyra | « dernier glacier » de k'ara (§I) ; ALN-114, ALN-118 |
+| Climat | pluie seule | carte du climat : précipitations, isohyètes, faciès du \|'Arin (modèle d'hiver calé sur la matrice du §III à 22,5° N) | demande de l'auteur ; audit \|'Arin (ALN-110 à 122) |
+| SVG | un fichier, deux fonds | trois fichiers : milieux, relief, climat | demande de l'auteur |
 
 ### v0.3.2
 

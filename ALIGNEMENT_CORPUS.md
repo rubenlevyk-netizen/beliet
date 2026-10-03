@@ -13,7 +13,7 @@ Ce document recense tout ce que le chantier de carte a **décidé, mesuré, ajou
   1. `carte/sig/beliet_mesures.json` : mesures, positions et cols, lisibles par machine ; régénéré par `python3 outils/mesures_corpus.py`.
   2. `donnees/parametres_carte.yaml` et `donnees/cols.yaml` : décisions de placement.
   3. `carte/sig/beliet_geographie.geojson` : géométries (rivage réel de la mer, lacs, crêtes, fleuves, cols).
-- **Version de référence** : carte v0.3.2. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
+- **Version de référence** : carte v0.4. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
 - **Carte texte** : `carte/beliet_carte_ascii.md` (relief, eaux, milieux, répertoire des lieux, cols ; une case = 0,5° × 0,5°).
 
 ---
@@ -87,7 +87,7 @@ Les valeurs « carte » sont mesurées sur la carte v0.3.2 (tables complètes en
 | ALN-050 | Staur-Khlōr | ~600 km de la façade SO | 737 km de Khlōr-Naw à la côte la plus proche ; 1 024 km jusqu'à l'extrémité O de halekh (RT_066) | annoter (~600-750 km) |
 | ALN-051 | Points culminants | \|'Ara-Sukhì > 5 000 m ; halekh > 4 200 m ; qoyra > 4 600 m ; lóngò > 3 200 m | 5 350 m (17,81° ; 20,33°) ; 4 350 m (-6,54° ; 22,39°) ; 4 673 m (38,38° ; 13,22°) ; 3 454 m (nœud !Okheti) | conserver ; ajouter les positions |
 | ALN-052 | Précipitations, écarts persistants du modèle | versant S humide de k'ara 1 000 mm ; piémonts NO 650 mm ; côte atlantique NO 450 mm ; Akhtir 750 mm ; piémonts SE 320 mm | 766 ; 474 ; 614 ; 630 ; 433 mm | annoter (modèle à vents dominants ; écarts locaux tolérés) |
-| ALN-053 | Montagne et forêt | « forêts de montagne 800-2 400 m » | forêt au-dessus de ~800 m si ≥ 720 mm/an ; bois clair de 480 à 720 mm ; steppe en dessous ; prairie alpine 2 400-3 600 m ; périglaciaire au-dessus ; glaciers au-dessus de 3 950 m (O), 4 350 m (qoyra), 4 750 m (k'ara) | préciser les étages par exposition |
+| ALN-053 | Montagne et forêt | « forêts de montagne 800-2 400 m », prairies 2 400-3 600 m, périglaciaire > 3 600 m | v0.4 : étages exacts à 22,5° N, relevés vers le sud (forêt dès ~1 275 m, prairie dès ~2 875 m, périglaciaire dès ~4 075 m vers 10-13° N), abaissés au nord (prairie dès ~1 900 m vers 33° N) ; forêt si ≥ 720 mm/an, bois clair 480-720 mm, steppe en dessous ; glaciers actifs si T annuelle ≤ −5 °C (k'ara), relictuels ≤ −2,5 °C (halekh), aucun sur qoyra | remplacer par la table « Limites par latitude » (§8) ; voir ALN-119 |
 
 ---
 
@@ -144,7 +144,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 |---|---|---|---|---|---|
 | ALN-070 | IMPOSSIBILITÉ | Dimensions de l'Halakhel | « 1 800 × 600-900 km » est incompatible avec quatre autres contraintes : l'ancrage NO (§V.1, suffixes `_NO`), l'interfluve de 300 km, le portage de 3 jours et 1,35 M km² | ancrage NO + interfluve + superficie | remplacer les dimensions (ALN-030) |
 | ALN-071 | IMPOSSIBILITÉ | RT_046 Imekh-stom ↔ Ku-jálima-rir en « maritime_cabotage » seul | mer fermée | — | ajouter un segment `terrestre_portage` |
-| ALN-072 | IMPOSSIBILITÉ | Gel de l'Halakhel (§III) | mer à −20 m, 23-31° N | non représenté | requalifier (brouillards, givre de rive) |
+| ALN-072 | IMPOSSIBILITÉ | Gel de l'Halakhel (§III) | mer à −20 m, 23-31° N ; Tw des rives > 10 °C (ALN-117) | non représenté ; Hiver de Vapeur sur la carte du climat | requalifier (brouillards, givre de rive) |
 | ALN-073 | IMPOSSIBILITÉ | Buhlela « sources hors-Beliet E » | à l'est se trouve la mer Rouge | Atbara/Tekezé | requalifier (« sources aux confins NE de qoyra ») |
 | ALN-074 | CONFLIT TRANCHÉ | \|'Ara-Sukhì : k'ara ou lóngò | §I contre sources de l'Imikhrel | k'ara (registre) | corriger la mention « (\|\|Urumati-lóngò) » des sources de l'Imikhrel |
 | ALN-075 | CONFLIT TRANCHÉ | Kù-kɨ́bò au N ou au S du Tùmázì | §V.5 relief contre limites | au SO du lac, vers la forêt (FOR_S) | corriger « N : ... chaîne Kù-kɨ́bò » |
@@ -164,9 +164,45 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 
 ---
 
+## 6 bis. Audits externes vérifiés (v0.4)
+
+Deux audits externes ont été soumis. Chaque point est vérifié par mesure sur la carte ou par le modèle physique (§8, « Climat »). Un point n'est retenu que s'il est fondé.
+
+### Audit « cartes physique / milieux » (sur la v0.3.2)
+
+| ID | Point de l'audit | Vérification | Verdict | Action |
+|---|---|---|---|---|
+| ALN-100 | « Forêt tropicale humide » dans le delta de Šafāqil (lu « Solaqi ») | classes mesurées sur 29,8-32,4° E × 30-31,7° N : plaine alluviale 74 %, fourré côtier sec 22 %, steppe 4 %, forêt tropicale 0 % | **non fondé** : confusion de teinte (vert vif de la plaine alluviale) | aucune sur le classement ; le canon (« terres alluviales fertiles ») est déjà conforme |
+| ALN-101 | (relevé en vérifiant) formes géométriques dans le même secteur | delta dessiné par un rectangle de coordonnées ; Ṣaraq rectangulaire ; fourré côtier coupé net à 29,5° N ; autres limites rectilignes (cordons dunaires à −8°, côte désertique à 30° E, remontées salines à 25° E, oasis karstiques) | **fondé** (artefacts) | corrigé en v0.4 : delta en éventail le long des bras ; Ṣaraq irrégulier ; limites adoucies et bruitées |
+| ALN-102 | (relevé en vérifiant) nom « Šafāqil » affiché deux fois (passe et delta) | deux étiquettes homonymes superposées : origine probable de la lecture « Solaqi » | **fondé** | delta étiqueté « delta Šafāqil » |
+| ALN-103 | (relevé en vérifiant) zones confondables | forêt de montagne (#3e6b45) et forêt tropicale (#1f5a32) presque identiques ; aucune autre confusion de classe trouvée (glaciers : k'ara 1 516 km² et halekh relictuel, aucun ailleurs ; forêt tropicale : aucune au nord de 16° N hors versants atlantiques) | **fondé** (lisibilité) | forêt de montagne éclaircie (#5f8466) |
+| ALN-104 | Confirmations (étagement, dissymétrie de qoyra, lóngò, endoréisme, glaciers du \|'Ara-Sukhì) | vérifiées | conservées | l'étagement est désormais modulé par la latitude, exact à 22,5° N (ALN-119) |
+
+### Audit « cohérence physique du cycle \|'Arin » (antérieur aux cartes)
+
+Méthode : un modèle d'hiver est ajouté au modèle climatique (§8, « Climat »). Il est calé pour que la matrice canonique (Gris dès 800 m, Blanc dès 2 400 m) soit **exacte** à 22,5° N (halekh). Ailleurs, la physique fixe les limites : l'hiver est plus doux vers le sud.
+
+| ID | Point de l'audit | Mesure (modèle v0.4) | Verdict | Action proposée pour le corpus |
+|---|---|---|---|---|
+| ALN-110 | §2 : « neige permanente dès 1 000 m (versants N) » contre « Hiver Gris 800-2 400 m » | Tw à 1 000 m : +8,5 °C (22,5° N) ; manteau stable dès 2 400 m (22,5° N), 3 020 m (17° N), 3 470 m (13° N) | **fondé** ; la matrice est juste, la phrase est fausse | remplacer par « neige épisodique dès ~1 500 m sur les versants N du nord de la cordillère ; manteau stable au-dessus de 2 400 m (halekh), plus haut vers le sud » |
+| ALN-111 | H1 : halekh, \|'Arin pleinement cohérent | Blanc dès 2 680 m (20° N) → 2 260 m (23,75° N) ; 18 % de la chaîne en Hiver Blanc, 18 % en Gris | **confirmé** | aucune |
+| ALN-112 | H2 : lóngò, Hiver Gris dominant, Blanc réduit aux sommets | Blanc 3,5 % ; Gris 21,5 % ; hors \|'Arin 57 % ; Blanc dès 2 280 m (N) → 3 650 m (S) ; contreforts sud sans \|'Arin | **fondé** et plus marqué que prévu : le sud de lóngò n'a pas d'\|'Arin | §III : paragraphe lóngò — Gris au nord, Blanc limité aux crêtes > 2 300-2 800 m près de !Okheti, \|'Arin absent au sud de ~13° N (régime tropical) |
+| ALN-113 | H3 : gradient interne de k'ara (chaîne unique) | Blanc dès 2 260 m (ouest, 23,75° N) → 3 435 m (Marra, 13,3° N) ; Gris dès 660 → 1 835 m ; prolongement SE : Blanc absent, 76 % hors \|'Arin | **fondé** | §III : formaliser un gradient continu ouest → est le long de k'ara, sans scission |
+| ALN-114 | H4 : qoyra, \|'Arin secondaire, mousson dominante | Blanc 0,5 % (sommets) ; Gris 32 % ; hors \|'Arin 42 % ; T annuelle au sommet −1,1 °C : aucun glacier | **fondé** pour toute la chaîne | §V : étendre « \|'Arin secondaire » à tout qoyra ; confirmer l'absence de glacier |
+| ALN-115 | (§III) « −10/−15 °C à 2 500 m » | nuits −8,5 à −12,5 °C à 22,5° N ; −2,3 °C à 13,3° N | valable au nord seulement | préciser « au nord de la cordillère (halekh, k'ara occidental) » |
+| ALN-116 | (§III) « gelées fréquentes < 1 500 m » | nuits −2,5 °C à 1 500 m (22,5° N) ; +3,7 °C (13,3° N) | valable au nord seulement | idem |
+| ALN-117 | (§III) « Mer Halakhel gelée en bordures » | rive à 28° N : Tw +10,8 °C ; nuits −1,2 °C | gel de la mer impossible ; gelée blanche possible sur les rives | remplacer par l'Hiver de Vapeur (brouillards) ; voir ALN-072 |
+| ALN-118 | (§I) halekh « glaciers relictuels > 3 500 m » | T annuelle à 3 500 m : +1,8 °C ; glace relictuelle possible dès ~4 200 m | à corriger | « glaciers relictuels > 4 100 m (cirques sommitaux exposés N) » |
+| ALN-119 | (§II) étages 800 / 2 400 / 3 600 m | exacts à 22,5° N ; relevés vers le sud, abaissés vers le nord (table « Limites par latitude », §8) | à préciser | présenter ces valeurs comme référence du nord de la cordillère, avec le gradient |
+| ALN-120 | (nouveau) hiver de la façade méditerranéenne et de l'Atlas | froid et pluvieux, hors cordillère \|\|Urumati | hors matrice canonique | canoniser un faciès (ou le rattacher à l'Hiver Gris) ; carte : « hiver pluvieux tempéré » |
+| ALN-121 | (nouveau) portée de l'Hiver Gris | conditions de l'Hiver Gris aussi au-delà de 100-200 km de la cordillère (plateaux du Fezzan, hauts plateaux) | à préciser | « zone d'impact » : rayon indicatif ; la physique (hiver froid et pluvieux) prime |
+| ALN-122 | Carte du climat | `carte/beliet_carte_climat.png` et `.svg` ; SIG : `beliet_facies_arin.tif`, `beliet_temperature_hiver.tif`, `beliet_climat.geojson` ; carte texte §3 de `carte/beliet_carte_ascii.md` | ajout | référencer dans le Géosystème (§II-III) |
+
+Effets sur la carte v0.4 : forêt de montagne de 840 000 à ~550 000 km² (étages relevés au sud) ; glaciers 1 516 km², sur k'ara (\|'Ara-Sukhì) et en relictuel sur halekh, aucun sur qoyra.
+
 ## 7. Historique des positions (versions caduques à ne pas reporter)
 
-| Élément | v0.1 | v0.2 (abandonnée) | v0.3 | v0.3.1 et v0.3.2 (référence) |
+| Élément | v0.1 | v0.2 (abandonnée) | v0.3 | v0.3.1 à v0.4 (référence) |
 |---|---|---|---|---|
 | Halakhel | 6-28° E, 23,5-31,5° N, bras des chotts | -11,5-28° E, bande coupée en deux | -8-28,5° E, d'un seul tenant | idem v0.3 |
 | Tùmázì | Sudd (26,4-32,1° E) | cuvette du Tchad | Sudd | 22,0-27,7° E |
@@ -182,7 +218,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 
 <!-- MESURES:DEBUT — section régénérée par outils/mesures_corpus.py ; ne pas éditer à la main -->
 
-### Mesures de la carte v0.3.2
+### Mesures de la carte v0.4
 
 Toutes les valeurs sont mesurées sur la carte générée. Fichier complet : `carte/sig/beliet_mesures.json`.
 
@@ -364,28 +400,85 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 
 | Milieu | Surface |
 |---|---|
-| `steppe_piemont` | 5 402 404 km² |
-| `foret_tropicale_humide` | 3 610 476 km² |
-| `herbage_arbore` | 3 214 338 km² |
-| `desert_pierreux` | 2 758 736 km² |
-| `foret_montagne` | 840 966 km² |
-| `fourre_cotier_sec` | 448 558 km² |
-| `prairie_altitude` | 329 701 km² |
-| `desert_sableux` | 272 234 km² |
-| `depression_saline` | 186 712 km² |
-| `foret_berge` | 179 242 km² |
-| `plaine_alluviale` | 169 062 km² |
+| `steppe_piemont` | 5 515 645 km² |
+| `foret_tropicale_humide` | 3 813 824 km² |
+| `herbage_arbore` | 3 332 420 km² |
+| `desert_pierreux` | 2 757 911 km² |
+| `foret_montagne` | 545 481 km² |
+| `fourre_cotier_sec` | 425 678 km² |
+| `desert_sableux` | 271 033 km² |
+| `prairie_altitude` | 226 228 km² |
+| `depression_saline` | 186 963 km² |
+| `foret_berge` | 181 643 km² |
 | `eaux_lacustres` | 165 502 km² |
-| `zone_humide_lacustre` | 65 894 km² |
+| `plaine_alluviale` | 161 392 km² |
+| `zone_humide_lacustre` | 64 442 km² |
 | `recif_corallien` | 39 473 km² |
-| `foret_maree` | 29 357 km² |
+| `foret_maree` | 29 354 km² |
 | `cote_desertique` | 25 913 km² |
-| `ile_aride` | 25 231 km² |
-| `zone_periglaciaire` | 24 504 km² |
-| `littoral_rocheux` | 12 539 km² |
-| `oasis` | 7 316 km² |
-| `glacier` | 2 078 km² |
+| `ile_aride` | 25 233 km² |
+| `zone_periglaciaire` | 20 754 km² |
+| `littoral_rocheux` | 12 752 km² |
+| `oasis` | 7 080 km² |
+| `glacier` | 1 516 km² |
 | `dunes_littorales` | 203 km² |
+
+#### Climat : hivers du |'Arin et étages (modèle v0.4)
+
+Modèle :
+
+- temperature_annuelle : T = 27,5 − 0,45 × max(|lat| − 12, 0) − 6,0 × altitude (km)
+- amplitude_ete_hiver : A = 4 + 0,45 × (|lat| − 8), min. 2 °C
+- temperature_hiver : Tw = T − A/2 − 3 (refroidissement |'Arin, §III cause 3)
+- minimum_nocturne : Tn = Tw − 8 (humide) à − 12 (aride, < 100 mm)
+- seuil_hiver_blanc_tw_c : 0.11
+- seuil_hiver_gris_tw_c : 9.71
+- etages : température de saison de végétation T + A/3 ; seuils calés sur 800 / 2 400 / 3 600 m à 22,5° N
+- glaciers : T ≤ -5.0 °C (actifs) ; T ≤ -2.5 °C sur halekh (relictuels)
+
+Limites par latitude (altitude du bas de chaque faciès ou étage) :
+
+| Latitude | Hiver Gris dès | Hiver Blanc dès | Forêt de montagne dès | Prairie dès | Périglaciaire dès | Glacier actif dès | Glacier relictuel dès |
+|---|---|---|---|---|---|---|---|
+| 8° N | 2131 m | 3731 m | 1225 m | 2825 m | 4025 m | 5417 m | 5000 m |
+| 10° N | 2056 m | 3656 m | 1275 m | 2875 m | 4075 m | 5417 m | 5000 m |
+| 13° N | 1869 m | 3469 m | 1275 m | 2875 m | 4075 m | 5342 m | 4925 m |
+| 15° N | 1644 m | 3244 m | 1175 m | 2775 m | 3975 m | 5192 m | 4775 m |
+| 17° N | 1419 m | 3019 m | 1075 m | 2675 m | 3875 m | 5042 m | 4625 m |
+| 20° N | 1081 m | 2681 m | 925 m | 2525 m | 3725 m | 4817 m | 4400 m |
+| 22.5° N | 800 m | 2400 m | 800 m | 2400 m | 3600 m | 4629 m | 4212 m |
+| 25° N | 519 m | 2119 m | 675 m | 2275 m | 3475 m | 4442 m | 4025 m |
+| 28° N | 181 m | 1781 m | 525 m | 2125 m | 3325 m | 4217 m | 3800 m |
+| 30° N | 0 m | 1556 m | 425 m | 2025 m | 3225 m | 4067 m | 3650 m |
+| 33° N | 0 m | 1219 m | 275 m | 1875 m | 3075 m | 3842 m | 3425 m |
+
+Affirmations du Géosystème confrontées au modèle :
+
+| Affirmation | Modèle | Verdict |
+|---|---|---|
+| §III \|'Arin-sukhì : « −10/−15 °C (2 500 m) » | halekh (22,5° N) : Tw -0.5 °C, nuits -8.5 à -12.5 °C ; k'ara orientale (13,3° N) : Tw 5.7 °C, nuits -2.3 °C | cohérent au nord (avec inversions) ; trop froid au sud |
+| §III \|'Arin-sukhì : « gelées fréquentes < 1 500 m » | nuits à 1 500 m : -2.5 °C (22,5° N) ; 3.7 °C (13,3° N) | cohérent au nord ; faux au sud de ~17° N |
+| §III \|'Arin-sukhì : « neige permanente dès 1 000 m (versants exposés N) » | Tw à 1 000 m : 8.5 °C (22,5° N), 6.8 °C (25° N) ; manteau stable dès 2400 m (22,5° N), 3019 m (17° N), 3469 m (13° N) | contradictoire avec la matrice (Gris 800-2 400 m) et physiquement faux : neige épisodique dès ~1 500 m (versants N du nord), manteau stable dès 2 400 m (22,5° N) |
+| §III matrice : « Hiver Gris 800-2 400 m », « Hiver Blanc > 2 400 m » | exact à 22,5° N ; Blanc dès 3469 m (13° N), 3019 m (17° N), 2119 m (25° N), 1556 m (30° N) | cohérent comme valeur de référence ; à préciser : gradient avec la latitude |
+| §III économie : « Mer Halakhel gelée en bordures » | rive à 28° N : Tw 10.8 °C, nuits -1.2 °C | gel de la mer impossible (eau salée, Tw > 10 °C) ; seules des gelées nocturnes givrent les rives : remplacer par brouillards d'advection (Hiver de Vapeur, déjà au §III) |
+| §I halekh : « glaciers relictuels > 3 500 m » | T annuelle à 3 500 m (22,4° N) : 1.8 °C ; glace relictuelle possible dès 4220 m | relever à > 4 100 m (cirques sommitaux exposés N) |
+| §I k'ara : « dernier glacier équatorial (> 4 800 m) » | glacier actif dès 4794 m à 20,3° N (\|'Ara-Sukhì, 5 350 m) | cohérent |
+| §I qoyra : sommets > 4 600 m, aucun glacier mentionné | T annuelle au sommet (4 673 m, 13,2° N) : -1.1 °C ; Hiver Blanc dès 3446 m | cohérent : neige d'hiver sur les sommets, pas de glacier ; k'ara porte bien le « dernier glacier » |
+| §II Zone II : étages 800 / 2 400 / 3 600 m | à 22,5° N : exact ; à 13° N : forêt dès 1275 m, prairie dès 2875 m | à préciser : étages de référence (nord de la cordillère), relevés vers le sud |
+
+Faciès |'Arin par chaîne (part de la surface de la chaîne) :
+
+| Chaîne | Latitudes (extrémités) | Blanc dès | Gris dès | Blanc | Gris | Jaune | Hors \|'Arin |
+|---|---|---|---|---|---|---|---|---|
+| \|\|Urumati-halekh | 20.0° → 23.75° N | 2681 → 2259 m | 1081 → 659 m | 17.7 % | 17.5 % | 57.0 % | 7.9 % |
+| !Okheti | 24.45° → 23.15° N | 2181 → 2327 m | 581 → 727 m | 24.4 % | 0 % | 66.7 % | 8.9 % |
+| \|\|Urumati-k'ara | 23.75° → 13.3° N | 2259 → 3435 m | 659 → 1835 m | 24.2 % | 25.4 % | 45.0 % | 5.4 % |
+| GEO_ORO_URUMATI_KARA (segment 24.4, 13.3) | 13.3° → 8.7° N | 3435 → 3705 m | 1835 → 2105 m | 0 % | 21.0 % | 3.4 % | 75.6 % |
+| \|\|Urumati-lóngò | 23.6° → 10.2° N | 2276 → 3649 m | 676 → 2049 m | 3.5 % | 21.5 % | 17.8 % | 57.2 % |
+| GEO_ORO_URUMATI_LONGO (segment 5.6, 16.6) | 16.6° → 18.9° N | 3064 → 2805 m | 1464 → 1205 m | 0 % | 19.3 % | 0 % | 80.7 % |
+| GEO_ORO_URUMATI_LONGO (segment 8.0, 12.9) | 12.9° → 11.2° N | 3480 → 3611 m | 1880 → 2011 m | 0 % | 2.6 % | 0 % | 97.4 % |
+| GEO_ORO_URUMATI_LONGO (segment 2.6, 20.4) | 20.4° → 18.9° N | 2636 → 2805 m | 1036 → 1205 m | 0 % | 62.9 % | 2.3 % | 34.8 % |
+| \|\|Urumati-qoyra | 15.4° → 10.6° N | 3199 → 3634 m | 1599 → 2034 m | 0.5 % | 31.9 % | 26.0 % | 41.6 % |
 
 #### Les 48 cols
 

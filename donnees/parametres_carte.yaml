@@ -669,7 +669,10 @@ ergs:
 
 # Dépressions salées supplémentaires (Maqbaṣ, Ṣaraq) — en plus de celles détectées automatiquement
 depressions_salees:
-  - {geo_id: GEO_MAR_SARAQ, nom: "Ṣaraq", contour: [[29.0, 28.6], [29.9, 28.6], [29.9, 29.2], [29.0, 29.2]]}
+  - geo_id: GEO_MAR_SARAQ          # [PROPOSITION] cuvette réelle au sud-est de Qattara (v0.4 : contour irrégulier)
+    nom: "Ṣaraq"
+    contour: [[29.05, 28.75], [29.3, 28.55], [29.65, 28.6], [29.95, 28.8], [29.85, 29.05], [29.55, 29.2],
+              [29.25, 29.15], [29.0, 28.98]]
 
 # -----------------------------------------------------------------------------
 #  CLIMAT — cibles de calibration [CANON], en mm/an
@@ -701,3 +704,27 @@ calibration_pluies:
   - {lieu: "plaines du NE, aval du confluent", pos: [29.0, 18.5], mm: 90}
   - {lieu: "sud somalien (côte océan de l'Est)", pos: [42.5, 0.5], mm: 500}
   - {lieu: "plateau somalien (bras E-O de qoyra)", pos: [45.0, 9.6], mm: 300}
+
+# -----------------------------------------------------------------------------
+#  ÉTAGES ET HIVER |'ARIN (v0.4) — modèle physique calé sur le canon
+#  Les étages du Géosystème (800 / 2 400 / 3 600 m) et la matrice des hivers (Gris dès 800 m,
+#  Blanc dès 2 400 m) sont exacts à la latitude de référence (halekh, versant N). Ailleurs, ils
+#  suivent la température : ils remontent vers le sud et descendent vers le nord.
+# -----------------------------------------------------------------------------
+etages:
+  latitude_reference: 22.5
+  glacier_t_annuelle_c: -5.0                 # glaciers actifs (k'ara : « dernier glacier » > 4 800 m)
+  glacier_relictuel_t_annuelle_c: -2.5       # glaciers relictuels de halekh (cirques sommitaux)
+  glaciers_relictuels_ouest_de_lon: 1.0
+climat_hiver:
+  latitude_reference: 22.5
+  altitude_gris_m: 800                       # [CANON] bas de l'Hiver Gris à la latitude de référence
+  altitude_blanc_m: 2400                     # [CANON] bas de l'Hiver Blanc à la latitude de référence
+  amplitude_base: 4.0                        # écart été-hiver (°C) = 4 + 0,45 × (latitude − 8)
+  amplitude_par_degre: 0.45
+  refroidissement_arin: 3.0                  # [CANON] §III cause 3 : Atlantique équatorial refroidi de ~3 °C
+  amplitude_jour_humide: 8.0                 # écart jour-nuit d'hiver (°C), humide / aride
+  amplitude_jour_aride: 12.0
+  pluie_min_gris_mm: 300                     # l'Hiver Gris suppose des pluies (saturation des sols)
+  rayon_cordillere_km: 200                   # [CANON] §III : piémonts immédiats, rayon 100-200 km
+  rive_vapeur_km: 25                         # brouillards d'advection sur la mer et ses rives

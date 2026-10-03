@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from carto.grille import Grille                      # noqa: E402
 from carto.relief import Relief                      # noqa: E402
 from carto.hydro import erosion, Hydro               # noqa: E402
-from carto.climat import Climat, temperature         # noqa: E402
+from carto.climat import Climat, temperature, hiver  # noqa: E402
 from carto.milieux import classer_milieux            # noqa: E402
 from carto.sources import RACINE, CACHE, registre    # noqa: E402
 from carto import export                             # noqa: E402
@@ -80,9 +80,10 @@ def main():
     hy = Hydro(rel, pluie, log=journal)
     journal("Milieux :")
     mil = classer_milieux(rel, p, pluie, temp, hy, log=journal)
+    hv = hiver(rel, temp, pluie, p, log=journal)
     journal("Exports :")
     reg = registre()
-    export.tout(rel, p, reg, pluie, temp, hy, mil, log=journal)
+    export.tout(rel, p, reg, pluie, temp, hy, mil, hv, log=journal)
     journal(f"Terminé en {time.time() - t0:.0f} s")
 
 

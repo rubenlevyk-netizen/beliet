@@ -52,7 +52,13 @@ def main():
     xb = [int(np.clip(g.px(LON0 + PAS * i, 0)[0], 0, g.W)) for i in range(nx + 1)]
     yb = [int(np.clip(g.px(0, LAT1 - PAS * j)[1], 0, g.H)) for j in range(ny + 1)]
 
+    from carto.climat import Climat, hiver, temperature
+    cl = Climat(rel, p, log=lambda m: None)
+    pluie = cl.pluie()
+    hv = hiver(rel, temperature(rel), pluie, p, log=lambda m: None)
     relief = np.full((ny, nx), " ", object)
+    c_pluie = np.full((ny, nx), " ", object)
+    c_hiver = np.full((ny, nx), " ", object)
     milieu = np.full((ny, nx), " ", object)
     terre_case = np.zeros((ny, nx), bool)
     inv = {int(k): v["code"] for k, v in codes.items()}
@@ -86,6 +92,16 @@ def main():
                 v = mil[sl][rel.terre[sl]]
                 v = v[v < 250]
                 milieu[j, i] = MILIEUX.get(inv.get(int(np.bincount(v).argmax()), ""), "?") if v.size else "?"
+            if c in "~o ":
+                c_pluie[j, i] = c_hiver[j, i] = c
+            elif c == "=":
+                c_pluie[j, i] = "="
+                c_hiver[j, i] = "V"
+            else:
+                pm = float(np.median(pluie[sl][rel.terre[sl]]))
+                c_pluie[j, i] = str(sum(pm >= b for b in (50, 100, 250, 500, 800, 1200, 1600, 2200, 3000)))
+                fv = hv["facies"][sl][rel.terre[sl]]
+                c_hiver[j, i] = ".BGJVP"[int(np.bincount(fv, minlength=6).argmax())]
 
     def case(lon, lat):
         i = int((lon - LON0) // PAS)
@@ -148,6 +164,7 @@ def main():
            f"- **Grille** : projection équirectangulaire, une case = {PAS}° de longitude × {PAS}° de latitude "
            f"(≈ 55 km × 55 km à l'équateur, ≈ 45 km × 55 km à 35° N).",
            f"- **Emprise** : {LON0}° à {LON1}° de longitude ; {LAT1}° N à {LAT0}° de latitude. {nx} colonnes × {ny} lignes.",
+           "- **Contenu** : 1. relief et eaux ; 2. milieux ; 3. climat (précipitations, hivers du |'Arin) ; 4. répertoire des lieux ; 5. cols ; 6. façades.",
            "- **Repères** : en haut et en bas, la longitude (`|` tous les 10°, `'` tous les 5°) ; à gauche, la latitude du "
            "bord supérieur de la ligne (toutes les 2°).",
            "- **Retrouver une case** : colonne = (longitude + 18) ÷ 0,5 ; ligne = (38 − latitude) ÷ 0,5, en comptant à partir de 0.",
@@ -173,13 +190,30 @@ def main():
         out.append(f"| `{a[0]}` | {a[1]} (`{a[2]}`) | " + (f"`{b[0]}` | {b[1]} (`{b[2]}`) |" if b[0] else " | |"))
     out += ["", "`~` océan, `=` mer Halakhel, `o` lac, blanc : hors Beliet ou estompé.", ""]
     out += grille(milieu, "")
+    out += ["", "## 3. Climat", "", "### 3a. Précipitations annuelles (médiane de la case)", "",
+            "| Chiffre | mm/an | Chiffre | mm/an |", "|---|---|---|---|",
+            "| `0` | < 50 | `5` | 800-1 200 |", "| `1` | 50-100 | `6` | 1 200-1 600 |", "| `2` | 100-250 | `7` | 1 600-2 200 |",
+            "| `3` | 250-500 | `8` | 2 200-3 000 |", "| `4` | 500-800 | `9` | > 3 000 |", "",
+            "`~` océan, `=` mer Halakhel, `o` lac.", ""]
+    out += grille(c_pluie, "")
+    out += ["", "### 3b. Hivers du |'Arin (faciès majoritaire de la case)", "",
+            "| Signe | Faciès |", "|---|---|",
+            "| `B` | Hiver Blanc : manteau neigeux stable, cols fermés |",
+            "| `G` | Hiver Gris : pluies froides, gel humide, sols saturés |",
+            "| `J` | Hiver Jaune : gel nocturne, ciel clair, vents de poussière |",
+            "| `V` | Hiver de Vapeur : brouillards de la mer Halakhel et de ses rives |",
+            "| `P` | Hiver pluvieux tempéré (Méditerranée, Atlas ; hors matrice canonique) |",
+            "| `.` | hiver doux (tropiques) : pas d'|'Arin |", "",
+            f"Seuils (température moyenne du cœur de l'hiver) : Blanc ≤ {hv['seuil_blanc']:.1f} °C, Gris ≤ {hv['seuil_gris']:.1f} °C ; "
+            "exactement 2 400 m et 800 m à 22,5° N (matrice du §III), plus haut vers le sud. Voir `ALIGNEMENT_CORPUS.md` §8.", ""]
+    out += grille(c_hiver, "")
 
     # ------------------------------------------------------------------ répertoire
     def ref(lon, lat):
         k = case(lon, lat)
         return f"c{k[1]}·l{k[0]}" if k else "—"
 
-    out += ["", "## 3. Répertoire des lieux", "",
+    out += ["", "## 4. Répertoire des lieux", "",
             "Coordonnées [longitude, latitude] en degrés décimaux ; « case » = colonne·ligne de la grille ci-dessus.", ""]
     H = M["halakhel"]
     e = H["emprise"]
@@ -220,13 +254,13 @@ def main():
         if "ile_principale" in a:
             ip = a["ile_principale"]
             out.append(f"| {ip['nom']} | `{ip['geo_id']}` | {ip['pos']} | {ref(*ip['pos'])} |")
-    out += ["", "## 4. Les 48 cols", "",
+    out += ["", "## 5. Les 48 cols", "",
             "| geo_id | Nom | Altitude | Position | Case | Groupe | Chaîne | Passage | Hiver | Ouverture (mois) |",
             "|---|---|---|---|---|---|---|---|---|---|"]
     for c in p["cols"]:
         out.append(f"| `{c['geo_id']}` | {c['nom']} | {c['altitude_m']} m | {c['pos']} | {ref(*c['pos'])} | {c['groupe']} | "
                    f"{c['chaine']} | {c.get('statut_passage')} | {c.get('cycle_hivernal')} | {c['ouverture_mois'][0]}-{c['ouverture_mois'][1]} |")
-    out += ["", "## 5. Façades de la mer Halakhel", "",
+    out += ["", "## 6. Façades de la mer Halakhel", "",
             "Voir `ALIGNEMENT_CORPUS.md` §4 pour les segments de rivage et les lieux de LIEUX qui s'y rattachent.", ""]
     from mesures_corpus import echapper_tableaux
     txt = echapper_tableaux("\n".join(out) + "\n")

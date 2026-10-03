@@ -1,4 +1,4 @@
-# Carte ASCII du Beliet (v0.3.2)
+# Carte ASCII du Beliet (v0.4)
 
 Version texte de la carte générée, pour un usage sans image : corpus, agents, recherche de positions.
 Elle complète la carte visuelle et ne la remplace pas. Elle est régénérée par `python3 outils/carte_ascii.py`.
@@ -7,6 +7,7 @@ Elle complète la carte visuelle et ne la remplace pas. Elle est régénérée p
 
 - **Grille** : projection équirectangulaire, une case = 0.5° de longitude × 0.5° de latitude (≈ 55 km × 55 km à l'équateur, ≈ 45 km × 55 km à 35° N).
 - **Emprise** : -18.0° à 52.0° de longitude ; 38.0° N à -2.0° de latitude. 140 colonnes × 80 lignes.
+- **Contenu** : 1. relief et eaux ; 2. milieux ; 3. climat (précipitations, hivers du |'Arin) ; 4. répertoire des lieux ; 5. cols ; 6. façades.
 - **Repères** : en haut et en bas, la longitude (`|` tous les 10°, `'` tous les 5°) ; à gauche, la latitude du bord supérieur de la ligne (toutes les 2°).
 - **Retrouver une case** : colonne = (longitude + 18) ÷ 0,5 ; ligne = (38 − latitude) ÷ 0,5, en comptant à partir de 0.
 - **Case** : altitude = 90e centile des terres de la case ; milieu = milieu majoritaire ; eau quand elle couvre ≥ 40 % (mer Halakhel), ≥ 30 % (lac) ou ≥ 50 % (océan).
@@ -140,76 +141,76 @@ Elle complète la carte visuelle et ne la remplace pas. Elle est régénérée p
   38.0 |~~~~~~~~~~~~~~~~~~                ~~~~~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~    ~~~~~~~                                            ~~~~~~|
        |~~~~~~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~ff~~~~~~~   ~~~~~~~~~~~~~   ~~~~~~~~~                                            ~~~~~|
        |~~~~~~~~~~~~~~~~~~~~~~~        ~~~~~~~~~~~ffff~fffffffffff~~~~~~~ ~~~~~~~~~~~~~~~ ~~~~~~~~~~     ~~      ~                                ~~|
-       |~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~fffffffff-fhhhffffff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~   ~~~~                                |
-  36.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~fffffffff-----------ddd~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                |
-       |~~~~~~~~~~~~~~~~~~~~~~~~ff~~~~~~~fffff-----------------ddd~~~~~~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~  ~~~~                                |
-       |~~~~~~~~~~~~~~~~~~~~~~~ffffhhffffh------------dddddddddddd~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~                                |
-       |~~~~~~~~~~~~~~~~~~~~~~~ffffffffh-----------ddddddddddddd-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
-  34.0 |~~~~~~~~~~~~~~~~~~~~~~fffhh-------------ddddddddddddxxddd~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
+       |~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~fffffffffhhhhhffffff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~   ~~~~                                |
+  36.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~fffffffff-f---------fdd~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~~fM~~~~~~~fffff-----------------ddd~~~~~~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~  ~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~fffMMMffffhh-----------dddddddddddd~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~ffffffffhh----------ddddddddddddd-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
+  34.0 |~~~~~~~~~~~~~~~~~~~~~~fffMhhh-----------ddddddddddddxxddd~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
        |~~~~~~~~~~~~~~~~~~~ ffffhh-----------ddddddddddddddddddd--d~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
-       |~~~~~~~~~~~~~~~~~~fffffh------------ddddddddddddddddddddd--dffff~~~~~~~~~~~~~~fff~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
-       |~~~~~~~~~~~~~~~~~~fffhhh----------ddddddddddddddddssssdddx--fffffdd~~~~~~~~~fffffff~~~~~~~~~~~~~~~~~~~~~~~                                  |
+       |~~~~~~~~~~~~~~~~~~fffffhh-----------ddddddddddddddddddddd--dffff~~~~~~~~~~~~~~fff~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
+       |~~~~~~~~~~~~~~~~~~fffhhhh---------ddddddddddddddddssssdddx--fffffdd~~~~~~~~~fffffff~~~~~~~~~~~~~~~~~~~~~~~                                  |
   32.0 |~~~~~~~~~~~~~~~~~fffhhh--------dddddddddddddddddddsssssddd-------dd~~~~~~~~~ffffffffff~~~~~~~~~~~~~~~~~~~                                   |
-       |~~~~~~~~~~~~~~~~fffhhh--------dddssssssssddddddddssssssdddddddddd--ff~~~~~~~ffdddddffffffff~~~~~aaaa~~~~                                    |
-       |~~~~~~~~~~~~~~~~ffMhh---------dd=sssssssddddddd==ddd===ddddddddddd--ffff~~~~ffdddddddfffffffffffaaaaaffff                                   |
-       |~~~~~~~~~~~~~~~~~ffh---------dd==ssdssdsdddddd==========dddddddddddddffffffffsssss==sdx===fffffffaaffffff                                   |
-  30.0 |~~~~~~~~~~~~~~~~ fhh------dddddd=dddd==dddddddd=========dddddddddd==dddfffffxd=ss==========xdff---afffffff                           ~~~~   |
-       |~~~~~~~~~~~~~~~~hhh-----dddddd=========dddddddd=======dddddddddddd===d==dddd================xdd-dxa-------                          ~~~~~   |
+       |~~~~~~~~~~~~~~~~fMMhhh--------dddssssssssddddddddssssssdddddddddd--ff~~~~~~~ffdddddffffffff~~~~~aaaa~~~~                                    |
+       |~~~~~~~~~~~~~~~~fMMMh---------dd=sssssssddddddd==ddd===ddddddddddd--ffff~~~~ffdddddddfffffffffffaaaafffff                                   |
+       |~~~~~~~~~~~~~~~~~fMMh--------dd==ssdssdsdddddd==========dddddddddddddffffffffsssss==sdd===fffffff-a-fff--                                   |
+  30.0 |~~~~~~~~~~~~~~~~ MMh------dddddd=dddd==dddddddd=========dddddddddd==dddff---xd=ss==========xdff----fffff-f                           ~~~~   |
+       |~~~~~~~~~~~~~~~~MMh-----dddddd=========dddddddd=======dddddddddddd===d==dddd================xddddxafff----                          ~~~~~   |
        |~~~~~~~~~~~~~~ hhh-----dd============d=dddddddd=========dddddddd=============================dxxddd--dd--                            ~~~~~  |
        |~~~~~~~~~~~~~hhhhh---==dd============d=ddd=dddd==============ddd=============================dddddd---ddd                            ~~~~~  |
-  28.0 |~~~~~~~~~~-h-hh-------===================d====d==============================================xdddadd--d~~~~                           ~~~~~~|
+  28.0 |~~~~~~~~~~-h-hh-------===================d====d==============================================xdddad---d~~~~                           ~~~~~~|
        |~~~~~~~~~-hh-----------====-==========================================dd=====================xdddddddddc~~~                            ~~~~~|
        |~~~~~~~~~hhh-----------==---d================ddd=====-------=========ddd=====================ddddddddddd~~~~                            ~~~~|
        |~~~~~~~hhh------------------dddddd==========dd-d-------hhh---=======dd-d====================ddddddddddddc~~~~                           ~~~~|
   26.0 |~~~~~~~hhh-----------------addd--ddd=dddddddd-------hhhh--------====dddd====================ddddddddddddd~~~~~                          ~~ ~|
-       |~~~~~~hhhh-----------------dddd-----dadddd-----------h----------==--d-ddd================xdddddddddddddddd~~~~                             ~|
+       |~~~~~~hhhh-----------------dddd-----dadddd-----------hh---------==--d-ddd================xdddddddddddddddd~~~~                             ~|
        |~~~~~~hhhh-------dd-------dx-dd--------------------------------hh----ddddddd============add-dddddddddddddd~~~~~                            ~|
-       |~~~~~hhhh--------d--------s------------------------------------------ddddd-d=====dd===dd----ddddddddddddddd~~~~                            ~|
+       |~~~~~hhhh--------d--------s------------------------------------h-----ddddd-d=====dd===dd----ddddddddddddddd~~~~                            ~|
   24.0 |~~~~hhhhh---------------sdd----dd-----------ppp---------------------dddddd-ddddd=dd==dd----dsssdddddddddddd~~~~~~                           |
        |~~~~hhhh---------------ddddpddddppddppppdddppppppp------------------ddddddd----ddd=d-d-----dsssdsxddddddddd~~~~~~~                          |
        |~~~hhhhh--------------pppdppddpdddddddddddddddddp----p--------------ddddddddd---------------sssssssddddddddc~~~~~~                          |
        |~~~hhhhh-------------p-----dddddddddddddddddddddd----p-------------ddddddddddd----oah--------sssssddddddddddd~~~~~                          |
-  22.0 |~~hhhhh-hh------------------dddxdddddd-dddddddd------------p-pp----xdddddddddd-ooooohh-------sssssaddddddddddd~~~~                          |
-       |~~hhhhhh-hhhhp-------------dddddd--------dddd-----------------------pdppppddddooooooMh--------ssssdddddddddddd~~~~                          |
-       |~~hhhhhhMhhhhhhh-------------------------------------------------ppp-pggppdxdd-oooooMh---------sssdddddddddddd~~~~~                         |
-       |~~~hhhMMMMhhhhhh------------------------------------------------------pggpddd--ooMMh---------sssssdddddddddddd~~~~~~                        |
-  20.0 |~~~hhhhhhhhhhhhh-------------------hhhhMMh---------h-------------------pggpppp--hha--ddddd-dddddddddddddddddddc~~~~~~                       |
-       |~~~hhhhhhhhhhhh---------------hhhhhhhMMMMMhh-------------------xx-------pggpp-----a-ddddddddddddddddddddddddddd~~~~~~~                      |
-       |~~~~hhhhhhhhhhhhhhhhhhh---hhhhhhhhhhhhhhhMMMhh------------------------h-hhhp--------ddddddddddddddddddsasdddddd~~~~~~~                      |
-       |~~~~hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhMMMMhh-----------------------hhhhMMpp------ddddddddddddddddddsssddddddd~~~~~~~                     |
-  18.0 |~~~~hhhTThTTThhhhhhhThhhhhhhhhhhhhhhhhhhhhhMMMh----------------------hhhhhhhhhp------ddddddddddddddddsssssdddddddc~~~~~~                    |
-       |~~~~hTTTTTTTTTTTTTTTTTTThhhThhhhhhhhhhhhhhhMMMMh-h------------------hhhhhhhhhhhh-----dddddddddddd---ddssddddddd--d~~~~~~~                   |
-       |~~~hTTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhMMMhh------------------hhhhhhhhhhhhh-----dddddddddd-------sddddddddd--~~~~~~~                   |
-       |~~~TTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhMMMh------------------hhhhhh--hhhhh---------ddddd------dddddddddddd--d~~~~~~~                  |
-  16.0 |~~~TTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhMMMh-----------------hhhh-----hhhhppp--------d--------ddddddddddd----~~~~~~                   |
-       |~~TTTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhMMMhh---------------hhh-----hhhhhMMp-----------------ddddddda------dc~~~~~                  ~|
-       |~TTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhh-h-hhhhhhhTMMMMh-----------d----h----hhhhhhhMMhh---------------dddddd-------dddddc~~~~             ~~~~~|
-       |~~TTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhTMMMMh---------xxx------hhhhhhhhhhMMh----------------dd----------ddddddd~~~            ~~~~~~|
-  14.0 |~~~TTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhMMMMh--------xxxx----hhhhhhhhhhhhhMh----------------d-----------dddddddd~~         ~~~~~~~~~|
-       |~~~TTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhhhMMh--------dxxx---hhhhhhhhhhhhhhhhp---------------------------pdddddd-d~~    ~~~~~~~~~~~~~|
-       |~~vTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh---------x-------hhhhhhh-hhhhhMhhh-----------dd-----------pp-----dd-d~  ~~~~~~~~~~~~~~~|
-       |~~~TTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh------------------------hhhhhhMMMMMMh-------dd------------pppp-------d~~~~~~~~~~~~~~~~~|
-  12.0 |~~~~~TTTTTTTTTTTTTTTTThTThhhhhhhhhhhhhhhhhhhhhhhMMMhMhhh---------d----------hhhhhhhhhhMhhhh--------------hhhhMMhppp-------~~~~~~~~~~~~~~~d~~|
-       |~~~~~vTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhMMhhhMMMTTMMMhhh-----------------hhhhhhhhhhhhh-h------------hhhhhTTMMhhpp--------~~~~~~~~~~d----~~|
-       |~~~~~~vTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhMMMhhhooTTMMMh-----------------hhhhhhhhhhh--------hhhhMMMMMMTTTTTMMMMphhp---------~~~-----------~~|
-       |~~~~~~~TTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhMMMhoooooTMMMh-----------------hhhhhhhhh---------hhhhMMMMMMMTTMMTTTMMMMhhp----------------------~~|
-  10.0 |~~~~~~~~~TTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhTMThoooTTTMMMhhhh--------------hhhh-----hhhhhhhhhhhTTTTTTMMMMMMMMMMMMMMpp-----------------------~~|
-       |~~~~~~~~~TTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhTMMTooTTThhMhhhhhhh-------------------hhhhhhTTTTThTTTTTTTTTTMMMMMMMMMMppp-----------------------~~|
-       |~~~~~~~~~~TTTTTTTTTTTTTTTTTTTThhhhhhTThhhhTTTTTTTTTThhhhhhhhhhhhhh-----------hhhhhhooooTTTTTTTTTTTTTTTTTMMMMpMMMMph----------------------~~~|
-       |~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTThhhTTThhhTTTTTTMTTTMTTTTTTTThhhhh----------hhhhhhhooooooooTTTTTTTTTTTTTTTTMMMMMMpphp--------------------~~~~|
-   8.0 |~~~~~~~~~~ TTTTTTTTTTTTTTTTTTTTTThhTTThhhTTTTTTMMMMTTTTTTTTThhhhh---------hhhMhhhoooooooooTTTTTTTTTTTTTTTTMMMMMMMpp---------------------~~~~|
-       |~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMhhhMhhh---hhhhhhMMMhoooooooooTTTTTTTTTTTTTTTTTMMMMMMppp-------------------~~~~~|
-       |~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMhhhhhhhhhhhhhhhhTTMMMMTooooooTTTTTTTTTTTTTTTTTTMTTMMMppph------------------~~~~~|
-       |~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTT~~TTTTTTTTTTTTMMTThhhhhhhhhhhhhhTTTTTMMMMTTTTTTTTTTTTTTTTTTTTTTTTMTMMMMMMhhhhhh--hhhh-------~~~~~~|
-   6.0 |~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTT~~~~~~~~TTTTTTTTTTMTTTTTTTTTTTTThhTTTTTTTTTMTTTTTTTTTTTTTTTTTTTTTTTTTTTMTMMMMMhhhhhhhhhhhh------~~~~~~|
-       |~~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTT~~~~~~~~~~~~TTTTTTTTTMTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMTMThhhhhhhhhhhh----~~~~~~~|
-       |~~~~~~~~~~~~~~~~~~~TTTT~~~~~~~~T~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMTTThhhhhhhhhhhh---~~~~~~~~|
-       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TT~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT TTTTTTTTTTTTTTTTMMTThhhhhhhhhhhhhh--~~~~~~~~|
-   4.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT  T   TTT TTMMTTTTTTTTTTThhhhhhhhhhhhh--~~~~~~~~~|
+  22.0 |~~hhhhh-hh------------------dddxdddddd-dddddddd------------p-pp----xdddddddddd-oooooMh-------sssssaddddddddddd~~~~                          |
+       |~~hhhhhh-hhhhh-------------dddddd--------dddd-----------------------pdppppddddooooooMMh-------ssssdddddddddddd~~~~                          |
+       |~~hhhhhhMhhhhhhh--------------------------------------------------pp-pggppdxdd-oooooMh---------sssdddddddddddd~~~~~                         |
+       |~~~hhhhMMhhhhhhh------------------------------------------------------pgpdddd--ooMMh---------sssssdddddddddddd~~~~~~                        |
+  20.0 |~~~hhhhhhhhhhhhh-------------------hhhhMhh---------h--------------------gppppp--hha--ddddd-dddddddddddddddddddc~~~~~~                       |
+       |~~~hhhhhhhhhhhh---------------hhhhhhhMMMMMhh-------------------xx--------ggpp-----a-ddddddddddddddddddddddddddd~~~~~~~                      |
+       |~~~~hhhhhhhhhhhhhhhhhhh---hhhhhhhhhhhhhhhMhMh-------------------------h-hhhp--------ddddddddddddddddddsasdddddd~~~~~~~                      |
+       |~~~~hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhMMhh-----------------------hhhhhMh-------ddddddddddddddddddsssddddddd~~~~~~~                     |
+  18.0 |~~~~hhhTThTTThhhhhhhThhhhhhhhhhhhhhhhhhhhhhhMMh----------------------hhhhhhhhhp------ddddddddddddddddsssssdddddddc~~~~~~                    |
+       |~~~~hTTTTTTTTTTTTTTTTTTThhhThhhhhhhhhhhhhhhhMMMh--------------------hhhhhhhhhhhh-----dddddddddddd---ddssddddddd--d~~~~~~~                   |
+       |~~~hTTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhMMhh------------------hhhhhhhhhhhhh-----dddddddddd-------sddddddddd--~~~~~~~                   |
+       |~~~TTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhMMMh------------------hhhhhh---hhhh---------ddddd------dddddddddddd--d~~~~~~~                  |
+  16.0 |~~~TTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhMMh-----------------hhhh-----hhhhpp---------d--------ddddddddddd----~~~~~~                   |
+       |~~TTTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhMMMh----------------hhh-----hhhhhMhh-----------------ddddddda------dc~~~~~                  ~|
+       |~TTTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhh-h-hhhhhhhTTMMMh-----------d----h----hhhhhhhMMhh---------------dddddd-------dddddc~~~~             ~~~~~|
+       |~~TTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhTTMMh----------xxx------hhhhhhhhhhMMh----------------dd----------ddddddd~~~            ~~~~~~|
+  14.0 |~~~TTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhMMMh--------xxxx----hhhhhhhhhhhhhMh----------------d-----------dddddddd~~         ~~~~~~~~~|
+       |~~~TTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhMh--------dxxx---hhhhhhhhhhhhhhhh----------------------------pdddddd-d~~    ~~~~~~~~~~~~~|
+       |~~vTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh---------x-------hhhhhhh--hhhhhhhh-----------dd------------------dd-d~  ~~~~~~~~~~~~~~~|
+       |~~~TTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-------------------------hhhhhhhMMMMh--------dd-----------------------d~~~~~~~~~~~~~~~~~|
+  12.0 |~~~~~TTTTTTTTTTTTTTTTThTThhhhhhhhhhhhhhhhhhhhhhhhhhhhh-----------d----------hhhhhhhhhhhhhh---------------hhhhhhhp---------~~~~~~~~~~~~~~~d~~|
+       |~~~~~vTTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhhhhhhhhTTThhhhhh-----------------hhhhhhhhhhhhh--------------hhhhhTTMMhh----------~~~~~~~~~~d----~~|
+       |~~~~~~vTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhhThhhhhooTTMMh------------------hhhhhhhhhhh--------hhhhMMhhhhTTTTTTTMMMhh----------~~~-----------~~|
+       |~~~~~~~TTTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhhTMhhoooooTMMh------------------hhhhhhhhh---------hhhhTTTTMMTTTTTTTTTMMMhh-----------------------~~|
+  10.0 |~~~~~~~~~TTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhTTThoooTTTTMMh-hh--------------hhhh------hhhhhhhhhhTTTTTTTTTMMTMMTMMMMMMh-----------------------~~|
+       |~~~~~~~~~TTTTTTTTTTTTTTTTTTTThhhhhhhhhhhhhTTTTooTTThhhhhhhhhh-------------------hhhhhhTTTTThTTTTTTTTTTTMMMMMMMMMMMh-----------------------~~|
+       |~~~~~~~~~~TTTTTTTTTTTTTTTTTTTThhhhhhTThhhhTTTTTTTTTThhhhhhhhhhhhhh-----------hhhhhhooooTTTTTTTTTTTTTTTTTTMMMMMMMMMh----------------------~~~|
+       |~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTThhhTTThhhTTTTTTTTTTTTTTTTTTThhhhh----------hhhhhhhooooooooTTTTTTTTTTTTTTTTMMMMMMMMh---------------------~~~~|
+   8.0 |~~~~~~~~~~ TTTTTTTTTTTTTTTTTTTTTThhTTThhhTTTTTTTTTMTTTTTTTTThhhhh---------hhhhhhhoooooooooTTTTTTTTTTTTTTTTMMMMMMMMp---------------------~~~~|
+       |~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTThhhhhhh----hhhhhhTThhoooooooooTTTTTTTTTTTTTTTTTMMMMMMMph-------------------~~~~~|
+       |~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-ThhhhhhhhhhhhhhhhTTTMTTTooooooTTTTTTTTTTTTTTTTTTMTTTMMMMMh------------------~~~~~|
+       |~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTT~~TTTTTTTTTTTTTTTThhhhhhhhhhhhhhTTTTTTMMTTTTTTTTTTTTTTTTTTTTTTTTTTTMMTMMMhhhhhh--hhhh-------~~~~~~|
+   6.0 |~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTT~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTThhTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMMMThhhhhhhhhhhh------~~~~~~|
+       |~~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTT~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMTTTThhhhhhhhhhhh----~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~TTTT~~~~~~~~T~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTMTTTThhhhhhhhhhhh---~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TT~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT TTTTTTTTTTTTTTTTMTTThhhhhhhhhhhhhh--~~~~~~~~|
+   4.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT  T   TTT TTTTTTTTTTTTTTThhhhhhhhhhhhh--~~~~~~~~~|
        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT             TTMTTTTTTTTTThhhhhhhhhhhhhh-~~~~~~~~~~|
        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T TTTTTTTTTT T T  TTTTTTT  T                  TTTTTTTTTTTThhhhhhhhhh-hhh-~~~~~~~~~~~|
-       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T  T   T           T                              MTTTTTTThhhhhhhhhh-----~~~~~~~~~~~~|
-   2.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T                                                   TTMTThhhhhhhhh-----~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T  T   T           T                              TTTTTTTThhhhhhhhhh-----~~~~~~~~~~~~|
+   2.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T                                                   TTTTThhhhhhhhh-----~~~~~~~~~~~~~~|
        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T                                                   TTMTThhhhhh-------~~~~~~~~~~~~~~~|
        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T                                                         h    ------~~~~~~~~~~~~~~~~|
        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~T                                                                 -~~~~~~~~~~~~~~~~~~|
@@ -221,7 +222,212 @@ Elle complète la carte visuelle et ne la remplace pas. Elle est régénérée p
                         -10                 0                   10                  20                  30                  40                  50  
 ```
 
-## 3. Répertoire des lieux
+## 3. Climat
+
+### 3a. Précipitations annuelles (médiane de la case)
+
+| Chiffre | mm/an | Chiffre | mm/an |
+|---|---|---|---|
+| `0` | < 50 | `5` | 800-1 200 |
+| `1` | 50-100 | `6` | 1 200-1 600 |
+| `2` | 100-250 | `7` | 1 600-2 200 |
+| `3` | 250-500 | `8` | 2 200-3 000 |
+| `4` | 500-800 | `9` | > 3 000 |
+
+`~` océan, `=` mer Halakhel, `o` lac.
+
+
+
+```
+                        -10                 0                   10                  20                  30                  40                  50  
+              '         |         '         |         '         |         '         |         '         |         '         |         '         |   
+  38.0 |~~~~~~~~~~~~~~~~~~                ~~~~~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~    ~~~~~~~                                            ~~~~~~|
+       |~~~~~~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~33~~~~~~~   ~~~~~~~~~~~~~   ~~~~~~~~~                                            ~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~        ~~~~~~~~~~~4444~44444443333~~~~~~~ ~~~~~~~~~~~~~~~ ~~~~~~~~~~     ~~      ~                                ~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~44444444444444443333~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~   ~~~~                                |
+  36.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~44444333333333333332222~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~~55~~~~~~~4444433322222222222222222~~~~~~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~  ~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~45555444444433332222222211111111222~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~4554444444333222222211111111100112~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
+  34.0 |~~~~~~~~~~~~~~~~~~~~~~44544433333322222211111111111000112~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
+       |~~~~~~~~~~~~~~~~~~~ 444444333332222222111111111111000011222~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
+       |~~~~~~~~~~~~~~~~~~4444444333222222221111111101100000000122222332~~~~~~~~~~~~~~444~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
+       |~~~~~~~~~~~~~~~~~~5444443322222222211111110000000000000112222333222~~~~~~~~~3444333~~~~~~~~~~~~~~~~~~~~~~~                                  |
+  32.0 |~~~~~~~~~~~~~~~~~55444433222222221111111000000000000000011222222222~~~~~~~~~3332223333~~~~~~~~~~~~~~~~~~~                                   |
+       |~~~~~~~~~~~~~~~~55544433222222221111110000000000000000001111122222223~~~~~~~332222233333333~~~~~3333~~~~                                    |
+       |~~~~~~~~~~~~~~~~6654433222222222=21110000000011==110===01111111112223333~~~~32222222223333333333333333333                                   |
+       |~~~~~~~~~~~~~~~~~65433322222222==2111111000011==========11100111112223333333322222==222===233333333333333                                   |
+  30.0 |~~~~~~~~~~~~~~~~ 654333322222222=2211==11000112=========1100000111==2222333322=22==========223333333333332                           ~~~~   |
+       |~~~~~~~~~~~~~~~~66433333222222=========11000011=======221100000001===2==2222================22222233332322                          ~~~~~   |
+       |~~~~~~~~~~~~~~ 5554333322============2=11100011=========11000000=============================222222222222                            ~~~~~  |
+       |~~~~~~~~~~~~~45544333==22============2=211=1111==============001=============================222222222221                            ~~~~~  |
+  28.0 |~~~~~~~~~~444444433333===================1====1==============================================2222222222~~~~                           ~~~~~~|
+       |~~~~~~~~~44444433333333====2==========================================22=====================22222211111~~~                            ~~~~~|
+       |~~~~~~~~~44443333322333==3332================222=====3333333=========222=====================22211111111~~~~                            ~~~~|
+       |~~~~~~~444443333322222333332222222==========22223333344444443=======2221====================2221111000000~~~~                           ~~~~|
+  26.0 |~~~~~~~44444333322222222222222222222=222222222233334444444444444====2211====================2211100000000~~~~~                          ~~ ~|
+       |~~~~~~4444443333222222222222222222222222222222233344444433334444==3322111================22221100000000000~~~~                             ~|
+       |~~~~~~4444433333222222222222222222222222222222233333333333333344443322111222============222211000000000000~~~~~                            ~|
+       |~~~~~44444333333222222222222222222222222222222223333333333333344443321111222=====22===223222110000000000000~~~~                            ~|
+  24.0 |~~~~4544433333332222222222222222222222222222222222233322233333333332211111222222=22==2222221100000000000000~~~~~~                           |
+       |~~~~554443333333322222221111111111112221111111112222222222333333332211111112222222=232222221100000000000000~~~~~~~                          |
+       |~~~554444333333332222211121111111111111111100011122222222223333333221111111122222333333322221110000000000000~~~~~~                          |
+       |~~~5544444333332222222222222111111111111110000111222222233333333322211111111122233o44433322222111100000000000~~~~~                          |
+  22.0 |~~45544444433332222222222222111111112222111111122222333333333222222211111111112ooooo54433332222111000000000011~~~~                          |
+       |~~4554444444433332333222222211112222222221111222233333333333333322222111111111oooooo54333332222211000000000011~~~~                          |
+       |~~45555544444443333333222222222222223322222222223333333333333333322222111111123ooooo54332222222111000000000011~~~~~                         |
+       |~~~5555555554444333333322222222223333333332222333334333333333332233222211111123oo55433222222221111000000000011~~~~~~                        |
+  20.0 |~~~555555555444443333333222233333344444444333333334443333322222223333222222222334433221112221111111000000001111~~~~~~                       |
+       |~~~555555555544444443333333334444455555555443333444443322222222223333333333222333322111111221111111100000001111~~~~~~~                      |
+       |~~~~55555555544444444444444445555555555555554433333433322222222223334444444333333222111111111111111111000011111~~~~~~~                      |
+       |~~~~555666665555555555555555555555555655555554433333333222222222233334444554433333221111111111111111111111111121~~~~~~~                     |
+  18.0 |~~~~56666667666666666666566666666555565555555544443333322222222233334444445444433322211111111111112211111111112221~~~~~~                    |
+       |~~~~66777777777777777776666666666555555555555554433333322222222333344444444444443322211111111111222221111111112222~~~~~~~                   |
+       |~~~677788888888887777776666666655555555555555554433333333333222333444444444444443322221111111122222222111111111222~~~~~~~                   |
+       |~~~7888899999998888777776666665555555555544555554433333333333223334444444444444433222222222122222222211111111112222~~~~~~~                  |
+  16.0 |~~~8999999999999888777776666665555554444444455665433333333333222334444443334444443322222222222222222211111111222222~~~~~~                   |
+       |~~999999999999998877777766666555554444444445556665443333333332223344444333444445444332222222222222221111112222222222~~~~~                  ~|
+       |~999999999999999887777666666655544444444445556666654444333332222333444434444555555433222222222222222111122222222212211~~~~             ~~~~~|
+       |~~999999999999998877766665555544444444445555666676544433333222222333444455555555555432222222222222222122222222221112211~~~            ~~~~~~|
+  14.0 |~~~999999999999888777665555555444444444555566666665443333322222223334455565555555444322222222222222222222222222211122222~~         ~~~~~~~~~|
+       |~~~9999999999998877766555555555555445555555555555554433333222222333344555555554444443333222222222222222222233222211222222~~    ~~~~~~~~~~~~~|
+       |~~999999999999887776665555555555555555555555555455444333332223333333444454444444444444433333322222222222223333322222222222~  ~~~~~~~~~~~~~~~|
+       |~~~999999999988777766666666555555555555555555444444443333333333333333333433444444455555544333222221222233333443332222222232~~~~~~~~~~~~~~~~~|
+  12.0 |~~~~~999999998877777666666666665555555555555444555554444444333333222223333344445555555554443322222222333444555443322222233~~~~~~~~~~~~~~~2~~|
+       |~~~~~9999999988777777777776666655555555555654455677665444444333222222223344445555555444444433333333333455666665443322222333~~~~~~~~~~22333~~|
+       |~~~~~~999999998887777777776666555555555556665555oo88765444443322222222333445555555444433334444445556666777787765443322233333~~~22222333333~~|
+       |~~~~~~~999999998888877777766655555555555567665ooooo876444444333222233333444454444444433344445566778999999888877654433333333332222223333333~~|
+  10.0 |~~~~~~~~~9999999988877777766665555555555567766ooo88765544444433333333333444444444444444555556678899999999998887655433333222222222333333333~~|
+       |~~~~~~~~~9999999998877777777666555556665567776oo777666555555443344433333333444444455667766667788999999999999877665433332222222223333333333~~|
+       |~~~~~~~~~~9999999998888777777766666666656677777776666666666654444443333333344444456oooo88877778899999999999987776543332222222222233333333~~~|
+       |~~~~~~~~~~999999999988888877777666667665667777887777777777776554443333333444444555oooooooo8877889999999999998777654333222222222333333333~~~~|
+   8.0 |~~~~~~~~~~ 9999999999988888887776666776667778899999888888887655444333344444555555ooooooooo9888888988999999999887754332222222333333333333~~~~|
+       |~~~~~~~~~~~~999999999999988888777767777677889999999999999887555544444444445566666ooooooooo998888888889999999999876543322333333333333333~~~~~|
+       |~~~~~~~~~~~~~9999999999999888888777777778889999999999999987665555555444555567777777oooooo9999888888889999999999987554333333444333444433~~~~~|
+       |~~~~~~~~~~~~~~~999999999999988888888888888~~999999999999987766666666555556677888888889999999999999889999999999999865544444444444444443~~~~~~|
+   6.0 |~~~~~~~~~~~~~~~~9999999999999999988888~~~~~~~~9999999999997777777777766667789999999999999999999999999999999999999987655555444444444443~~~~~~|
+       |~~~~~~~~~~~~~~~~~999999999999999998~~~~~~~~~~~~99999999999888788888887777789999999999999999999999999999999999999998776555555444444443~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~9999~~~~~~~~9~~~~~~~~~~~~~~~9999999999999888888888887888999999999999999999999999999999999999999877655555544444444~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~99~~~~99999999998888888888999999999999999999999 999999999999999999876655555544444443~~~~~~~~|
+   4.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~999999999999999999999999999999999999  9   999 999999999999976655555554444443~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~999999999999999999999999999999999             9999999999987655544444444444~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~9 9999999999 9 9  9999999  9                  999999999976655554444444444~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~9  9   9           8                              89999986555554444444333~~~~~~~~~~~~|
+   2.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~9                                                   9999765555444444333~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~9                                                   999965555444433333~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~9                                                         4    333333~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~9                                                                 3~~~~~~~~~~~~~~~~~~|
+   0.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~99                                                                 ~~~~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~99                                                                 ~~~~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~99                                                                ~~~~~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~99                                                               ~~~~~~~~~~~~~~~~~~~~~|
+              '         |         '         |         '         |         '         |         '         |         '         |         '         |   
+                        -10                 0                   10                  20                  30                  40                  50  
+```
+
+### 3b. Hivers du |'Arin (faciès majoritaire de la case)
+
+| Signe | Faciès |
+|---|---|
+| `B` | Hiver Blanc : manteau neigeux stable, cols fermés |
+| `G` | Hiver Gris : pluies froides, gel humide, sols saturés |
+| `J` | Hiver Jaune : gel nocturne, ciel clair, vents de poussière |
+| `V` | Hiver de Vapeur : brouillards de la mer Halakhel et de ses rives |
+| `P` | Hiver pluvieux tempéré (Méditerranée, Atlas ; hors matrice canonique) |
+| `.` | hiver doux (tropiques) : pas d'\|'Arin |
+
+Seuils (température moyenne du cœur de l'hiver) : Blanc ≤ 0.1 °C, Gris ≤ 9.7 °C ; exactement 2 400 m et 800 m à 22,5° N (matrice du §III), plus haut vers le sud. Voir `ALIGNEMENT_CORPUS.md` §8.
+
+
+
+```
+                        -10                 0                   10                  20                  30                  40                  50  
+              '         |         '         |         '         |         '         |         '         |         '         |         '         |   
+  38.0 |~~~~~~~~~~~~~~~~~~                ~~~~~~~~~~~~~~~~~~~~~~~~~~~      ~~~~~~~~~~~~    ~~~~~~~                                            ~~~~~~|
+       |~~~~~~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~PP~~~~~~~   ~~~~~~~~~~~~~   ~~~~~~~~~                                            ~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~        ~~~~~~~~~~~PPPP~PPPPPPPPPPP~~~~~~~ ~~~~~~~~~~~~~~~ ~~~~~~~~~~     ~~      ~                                ~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~PPPPPPPPBBBBBBBPPPPJ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~   ~~~~                                |
+  36.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~PPPPPPPPPJJBBBBBBBBJJJJ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~~PP~~~~~~~PPPPPBBJJJJJJJJBBBBBBJJJJ~~~~~~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~  ~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~PPPPBPPPPPBPPBBBBJJBBJJJJJJJJJJJJJJ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~                                |
+       |~~~~~~~~~~~~~~~~~~~~~~~PPPPPPPPPBBBJJJJBBBJJJJJJJJJJJJJJJ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
+  34.0 |~~~~~~~~~~~~~~~~~~~~~~PPPPPBPPBPPJJJBBBBJJJJJJJJJJJJJJJJJ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                 |
+       |~~~~~~~~~~~~~~~~~~~ PPPPPBBBPBBBBJBJBBJJJJJJJJJJJJJJJJJJJJJ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
+       |~~~~~~~~~~~~~~~~~~PPPPPPPBBJBBJBJBJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ~~~~~~~~~~~~~~PPP~~~~~~~~~~~~~~~~~~~~~~~~~                                  |
+       |~~~~~~~~~~~~~~~~~~PPPPPPBBBJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ~~~~~~~~~PPPPPPP~~~~~~~~~~~~~~~~~~~~~~~                                  |
+  32.0 |~~~~~~~~~~~~~~~~~PPPPPPBBJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ~~~~~~~~~PPPJJJJPPP~~~~~~~~~~~~~~~~~~~                                   |
+       |~~~~~~~~~~~~~~~~PPPPPBPJJJJJJJJJJJJJJJJJJJJJJJJJVJJJJJJJJJJJJJJJJJJJJ~~~~~~~PJJJJJJJPPPPPPP~~~~~PPPP~~~~                                    |
+       |~~~~~~~~~~~~~~~~PPPPPPJJJJJJJJJVVJJJJJJJJJJJJVVVVVVVVVVVJJJJJJJJJJJJJPPP~~~~PJJJJJVJJJJJPPPGPPPPPPPPPPPPP                                   |
+       |~~~~~~~~~~~~~~~~~PPPPPJJJJJJJJVVVVJJJJVJJJJJJVVVVVVVVVVVJJJJJJJJJJJJJJGPPPPPJJJJJVVVJVVVVVVJJGGPPPPPGPPPP                                   |
+  30.0 |~~~~~~~~~~~~~~~~ PPGGGJJJJJJJJVVVVVJJVVJJJJJJJVVVVVVVVVVJJJJJJJJJJVVVJVVPPGGJVVVVVVVVVVVVVVVJJJJJJGGGGPPPJ                           ~~~~   |
+       |~~~~~~~~~~~~~~~~PPPPPGGJJVVVVVVVVVVVVVVJJJJJJJVVVVVVVVVVJJJJJJJJVVVVVVVVVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJJJJ                          ~~~~~   |
+       |~~~~~~~~~~~~~~ GGGGGGGJJVVVVVVVVVVVVVVVVJVVJJJVVVVVVVVVVJJJJJJJJVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJJ                            ~~~~~  |
+       |~~~~~~~~~~~~~GGGGGGGVVVVVVVVVVVVVVVVVVVVJVVVJJVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJJ                            ~~~~~  |
+  28.0 |~~~~~~~~~~..GGGGGGGGVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJ~~~~                           ~~~~~~|
+       |~~~~~~~~~...G.GGGGJ.VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJ~~~                            ~~~~~|
+       |~~~~~~~~~......GGJJJ..VVVV.VVVVVVVVVVVVVVVVVVVJVVVVVVVVVVVVVVVVVVVVVVVJJVVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJ~~~~                            ~~~~|
+       |~~~~~~~.......GGJJJJJJ....JJ.VVVVVVVVVVVVVVVV.J.VV.VV.GG....VVVVVVVVVJJJVVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJJJ~~~~                           ~~~~|
+  26.0 |~~~~~~~......GG.JJJJJJJJ.JJJJJJJJ...VVVVVVV..JJ...G..GGGGGG.VVVVVVVVVJJJVVVVVVVVVVVVVVVVVVVVJJJJJJJJJJJJJ~~~~~                          ~~ ~|
+       |~~~~~~...........JJJJJJJJJJJJJJJJJJJVV.....JJJJJGGGGGGGGGGGG...VVVVV.JJJVVVVVVVVVVVVVVVVVVVVJJJJJ.JJJ.JJJJ~~~~                             ~|
+       |~~~~~~.............JJJJJJJJJJJJJJJJJ..JJJJJJJJJJGGGGGGGGGGGG.VVV....JJJJVV.VVVVVVVVVVVVVV..JJJJJ..JJJ.JJJJ~~~~~                            ~|
+       |~~~~~..............JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJGGGGGJJJJJG.......JJJJJJJJ.VVVVVVVVVV....JJJJJJ..JJJ..JJJJ~~~~                            ~|
+  24.0 |~~~~.............JJJJJJJJJJJJJJJJJJJJJJBJJJJBBBJJJJJJJJJJJJGG......JJJJJJJJJ...VVVVVVV...JJJJJJ...JJJ.JJJJJ~~~~~~                           |
+       |~~~~..............JJJJJJJJJBJJJJBBBJJBBBJJJBBBBBBBBBJBJJJJJJGGGGG.JJJJJJJJJJJJ...VVVV...JJJJJ..........JJJ.~~~~~~~                          |
+       |~~~.............JJJJJJBBBJBBJJBJJJJJJJJJJJJJJJJJBJJJJBJJJJJJJGGGGJJJJJJJJJJJJJJ...V....JJJJ.............JJJ.~~~~~~                          |
+       |~~~............JJJJJJBJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJBJJJJJJJJJJJJJJJJJJJJJJJJJJJGoGG.GGJJ...............JJ..~~~~~                          |
+  22.0 |~~..........GGJJJJJJJJJJ.JJJJJ..JJJJJJJJJJJJJJJJJJJJ.G.GG.GBJJBJJJJJJJJJJJJJJJJoooooGGGGG.................J...~~~~                          |
+       |~~........GGGGGGJ..JJ...J.JJJJJ.JJ...JJJJJJJJJJJ........GGGGGJJJJJJJBJJBBBJJJJooooooGGGGG...............JJJ...~~~~                          |
+       |~~......GGGGGGGGG....................JJJJJJJ...................JJJBBJBBBBBJJJJJoooooGGGJJ....................J~~~~~                         |
+       |~~~....GGG...........................GGGGJJ...................J.J.JJJJBBBJJJJJGooGGGGJJJJJ...................J~~~~~~                        |
+  20.0 |~~~....................................GGGG........................GGJJBBBBBBJJGGGGJJJJJJJ..................J..~~~~~~                       |
+       |~~~.....................................GGGG........................GGGGBBBBBJJGGJJJJJJJ....................J..~~~~~~~                      |
+       |~~~~.......................................G..........................G.GGGGGJGG.JJJJJJ......................J.~~~~~~~                      |
+       |~~~~.......................................GGG.............................GGGGGG.JJJ...........................~~~~~~~                     |
+  18.0 |~~~~.........................................G..............................GGGGGJJJJ.............................~~~~~~                    |
+       |~~~~.........................................G...............................GGGG.JJ..............................~~~~~~~                   |
+       |~~~...........................................................................GGG...............................J.~~~~~~~                   |
+       |~~~............................................G...............................GGGJ.............................J..~~~~~~~                  |
+  16.0 |~~~.............................................G..............................GGGGJ............................JJ.~~~~~~                   |
+       |~~..............................................................................GGGG............................JJJ.~~~~~                  ~|
+       |~.................................................................................G.............................JJJ...~~~~             ~~~~~|
+       |~~................................................................................GGGJ..........................JJJJ...~~~            ~~~~~~|
+  14.0 |~~~................................................................................GGJ.........................JJJJJ....~~         ~~~~~~~~~|
+       |~~~................................................................................GGGJJ.......................JJJJJ.....~~    ~~~~~~~~~~~~~|
+       |~~.................................................................................GGGG........................JJJJJ......~  ~~~~~~~~~~~~~~~|
+       |~~~............................................................................................................GGJJ........~~~~~~~~~~~~~~~~~|
+  12.0 |~~~~~..........................................................................................................GGGJ.......~~~~~~~~~~~~~~~.~~|
+       |~~~~~.........................................................................................................GGGGJJ.......~~~~~~~~~~.....~~|
+       |~~~~~~..........................................oo............................................................GGGGG.........~~~...........~~|
+       |~~~~~~~.......................................ooooo............................................................G.GGG......................~~|
+  10.0 |~~~~~~~~~.....................................ooo.............................................................G.GGGG......................~~|
+       |~~~~~~~~~.....................................oo..............................................................GGGGG....JJJ................~~|
+       |~~~~~~~~~~.........................................................................oooo.....................GG.GGGG...JJ.................~~~|
+       |~~~~~~~~~~........................................................................oooooooo..................GG..GGGG.J..................~~~~|
+   8.0 |~~~~~~~~~~ ......................................................................ooooooooo.................GG...GGGGG...................~~~~|
+       |~~~~~~~~~~~~.....................................................................ooooooooo......................GGGG...................~~~~~|
+       |~~~~~~~~~~~~~......................................................................oooooo........................GGG...................~~~~~|
+       |~~~~~~~~~~~~~~~...........................~~.....................................................................G....................~~~~~~|
+   6.0 |~~~~~~~~~~~~~~~~......................~~~~~~~~........................................................................................~~~~~~|
+       |~~~~~~~~~~~~~~~~~..................~~~~~~~~~~~~......................................................................................~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~....~~~~~~~~.~~~~~~~~~~~~~~~.....................................................................................~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~..~~~~......................................... ....................................~~~~~~~~|
+   4.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~....................................  .   ... ..............................~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.................................             ............................~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~. .......... . .  .......  .                  ...........................~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.  .   .           .                              .......................~~~~~~~~~~~~|
+   2.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.                                                   ...................~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.                                                   ..................~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.                                                         .    ......~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.                                                                 .~~~~~~~~~~~~~~~~~~|
+   0.0 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~..                                                                 ~~~~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~..                                                                 ~~~~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~..                                                                ~~~~~~~~~~~~~~~~~~~~|
+       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~..                                                               ~~~~~~~~~~~~~~~~~~~~~|
+              '         |         '         |         '         |         '         |         '         |         '         |         '         |   
+                        -10                 0                   10                  20                  30                  40                  50  
+```
+
+## 4. Répertoire des lieux
 
 Coordonnées [longitude, latitude] en degrés décimaux ; « case » = colonne·ligne de la grille ci-dessus.
 
@@ -308,7 +514,7 @@ Coordonnées [longitude, latitude] en degrés décimaux ; « case » = colonne·
 | Khlōr-Naw | `GEO_ILE_KHLORNAW` | [-24.38, 14.95] | — |
 | Li-sèk-dì | `GEO_ARC_LISEKDI` | [-1.7, 4.1] | c32·l67 |
 
-## 4. Les 48 cols
+## 5. Les 48 cols
 
 | geo_id | Nom | Altitude | Position | Case | Groupe | Chaîne | Passage | Hiver | Ouverture (mois) |
 |---|---|---|---|---|---|---|---|---|---|
@@ -361,7 +567,7 @@ Coordonnées [longitude, latitude] en degrés décimaux ; « case » = colonne·
 | `GEO_COL_047` | Rafīq-t'sal | 2300 m | [37.729, 13.0] | c111·l50 | Šamqiriyyūn ↔ Qoyra-ña-ra | \|\|Urumati-qoyra (escarpement) | secondaire | cycle_mixte | 5-10 |
 | `GEO_COL_048` | Nrelat-q'urm | 2200 m | [37.777, 11.85] | c111·l52 | Šamqiriyyūn ↔ Qoyra-ña-ra | \|\|Urumati-qoyra (escarpement) | secondaire | cycle_mixte | 4-11 |
 
-## 5. Façades de la mer Halakhel
+## 6. Façades de la mer Halakhel
 
 Voir `ALIGNEMENT_CORPUS.md` §4 pour les segments de rivage et les lieux de LIEUX qui s'y rattachent.
 

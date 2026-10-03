@@ -15,7 +15,7 @@ MILIEUX = [
     ("recif_corallien", "Récif corallien", "#5fc9c4"),
     ("littoral_rocheux", "Littoral rocheux", "#8c8577"),
     ("plaine_alluviale", "Plaine alluviale irriguée", "#8cbf5a"),
-    ("foret_montagne", "Forêt de montagne et de piémont", "#3e6b45"),
+    ("foret_montagne", "Forêt de montagne et de piémont", "#5f8466"),
     ("prairie_altitude", "Prairie d'altitude", "#a3b07f"),
     ("zone_periglaciaire", "Zone périglaciaire", "#a59e94"),
     ("glacier", "Glacier", "#f4f8fb"),
@@ -74,36 +74,56 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     base = np.where((P >= 110) & (P < 250) & (h < 350) & (rel.crete < 0.05), desert, base)
     base = np.where((P >= 600) & (P < 1450), CODE["herbage_arbore"], base)
     base = np.where((P >= 1450) & (T >= 19), CODE["foret_tropicale_humide"], base)
-    # étages montagnards (Zone II) : 800 / 2 400 / 3 600 m
-    # étage montagnard de la Zone II : chaînes et hauts reliefs, pas les plateaux relevés
-    # limites irrégulières : seuil d'altitude et emprise de la chaîne bruités, transition boisée
+    # étages montagnards (Zone II) : 800 / 2 400 / 3 600 m [CANON] à la latitude de référence (halekh, ~22,5° N),
+    # convertis en températures annuelles : les étages remontent vers le sud (~+800 m sous 12° N).
+    # Limites irrégulières : seuils et emprise de la chaîne bruités, transition boisée.
+    E = p.get("etages", {})
+    lat_ref = E.get("latitude_reference", 22.5)
+    # température de la saison de végétation (annuelle + 1/3 de l'amplitude) : la limite des arbres dépend
+    # de l'été, d'où un étage plus bas au nord (étés chauds) qu'au sud
+    from .climat import amplitude_annuelle
+    ch = p.get("climat_hiver", {})
+    T_ann = T
+    T = T_ann + amplitude_annuelle(LAT, ch) / 3
+    A_ref = float(amplitude_annuelle(np.float32(lat_ref), ch))
+    T_alt = lambda alt: 27.5 - 0.45 * max(lat_ref - 12, 0) - 6.0 * alt / 1000 + A_ref / 3
     nm = bruit_bande(g.shape, 911, 3, 70 / g.km_px_eq)
     nm2 = bruit_bande(g.shape, 912, 3, 40 / g.km_px_eq)
-    mont = (h >= 800 + 220 * nm) & (h < 2400) & ((rel.crete > 0.06 + 0.1 * nm2) | (h >= 1300 + 150 * nm2))
+    dT = 1.3 * nm                                      # ≈ ±220 m
+    mont = (T <= T_alt(800) + dT) & (T > T_alt(2400) + dT) & ((rel.crete > 0.06 + 0.1 * nm2) | (T <= T_alt(1300) + 0.9 * nm2))
     base = np.where(mont & (P >= 720), CODE["foret_montagne"], base)
     base = np.where(mont & (P >= 480) & (P < 720), CODE["herbage_arbore"], base)
     base = np.where(mont & (P < 480) & (P >= 110), CODE["steppe_piemont"], base)
-    base = np.where((h >= 2400) & (h < 3600), CODE["prairie_altitude"], base)
-    base = np.where(h >= 3600, CODE["zone_periglaciaire"], base)
-    neige = np.where(LON < 1, 3950, np.where(LON > 36, 4350, 4750))
-    base = np.where(h >= neige, CODE["glacier"], base)
+    base = np.where((T <= T_alt(2400) + dT) & (T > T_alt(3600) + dT) & terre, CODE["prairie_altitude"], base)
+    base = np.where((T <= T_alt(3600) + dT) & terre, CODE["zone_periglaciaire"], base)
+    # glaciers : actifs sous −5 °C de moyenne annuelle (k'ara, « dernier glacier » > 4 800 m) ;
+    # relictuels sous −2,5 °C sur halekh (cirques) ; aucun sur qoyra (−1 °C au sommet)
+    sl = 1.5 * bruit_bande(g.shape, 913, 40 / g.km_px_eq, 600 / g.km_px_eq)
+    halekh = (LON + sl) < E.get("glaciers_relictuels_ouest_de_lon", 1.0)
+    glace = (T_ann <= E.get("glacier_t_annuelle_c", -5.0)) | (halekh & (T_ann <= E.get("glacier_relictuel_t_annuelle_c", -2.5)))
+    base = np.where(glace & terre, CODE["glacier"], base)
     cl[terre] = base[terre].astype(np.uint8)
 
     # --- façades ----------------------------------------------------------------------
+    # limites géographiques adoucies : ±~0,7° de bruit à grande échelle (pas de coupure rectiligne)
+    nl = 0.7 * bruit_bande(g.shape, 914, 30 / g.km_px_eq, 500 / g.km_px_eq)
+    LONs, LATs = LON + nl, LAT + 0.8 * nl
     d_ocean = distance_transform_edt(~rel.ocean) * km
     d_mer = distance_transform_edt(~rel.mer) * km
-    cote = terre & (d_ocean < 120) & (LAT >= 29.5) & (P >= 220) & (h < 900) & (LON < 36)
+    cote = terre & (d_ocean < 120) & (LATs >= 29.5) & (P >= 220) & (h < 900) & (LONs < 36)
     cl[cote & np.isin(cl, [CODE["steppe_piemont"], CODE["herbage_arbore"], CODE["desert_pierreux"]])] = CODE["fourre_cotier_sec"]
-    dunes = terre & (d_ocean < 18) & (P < 450) & (LON < -8) & (LAT > 15) & (LAT < 28.5) & (h < 90)
+    dunes = terre & (d_ocean < 18) & (P < 450) & (LONs < -8) & (LATs > 15) & (LATs < 28.5) & (h < 90)
     cl[dunes] = CODE["dunes_littorales"]
-    cdes = terre & (d_ocean < 16) & (P < 130) & (LON > 30) & (h < 200)
+    cdes = terre & (d_ocean < 16) & (P < 130) & (LONs > 30) & (h < 200)
     cl[cdes] = CODE["cote_desertique"]
 
     # --- dépressions salées -----------------------------------------------------------
     sal = terre & (hy.profondeur_cuvette > 8) & (P < 320)
-    sal |= terre & (d_mer < 28) & (LON > 25) & (P < 260) & (h < 60)       # remontées salines de l'interfluve
+    sal |= terre & (d_mer < 28) & (LONs > 25) & (P < 260) & (h < 60)       # remontées salines de l'interfluve
     for d in p.get("depressions_salees", []):
-        sal |= g.rasteriser(g.poly_px(d["contour"])).astype(bool) & terre
+        m0 = g.rasteriser(g.poly_px(d["contour"])).astype(bool)
+        din, dout = distance_transform_edt(m0) * km, distance_transform_edt(~m0) * km
+        sal |= ((din - dout + 9 * bruit_bande(g.shape, 915, 3, 50 / g.km_px_eq)) > 0) & terre
     cl[sal] = CODE["depression_saline"]
 
     # --- zones humides et marées --------------------------------------------------------
@@ -132,7 +152,16 @@ def classer_milieux(rel, p, P, T, hy, log=print):
             lits[iy, ix] = True
     d_lit = distance_transform_edt(~lits) * km
     alluv = terre & (d_lit < 9) & (P < 650) & (h < 1300)
-    delta = terre & (LON > 29.8) & (LON < 32.4) & (LAT > 30.0) & (LAT < 31.7) & (h < 30)
+    # delta Šafāqil : éventail entre les bras, borné par l'altitude (pas de cadre géographique)
+    bras = np.zeros(g.shape, bool)
+    for F in rel.fleuves:
+        if F["cfg"]["geo_id"] == "GEO_FLV_ABNUHIL_SAFAQIL":
+            for c in F["lignes"]:
+                x, y = g.px(c[:, 0], c[:, 1])
+                bras[np.clip(y.astype(int), 0, g.H - 1), np.clip(x.astype(int), 0, g.W - 1)] = True
+    d_bras = distance_transform_edt(~bras) * km
+    nd = bruit_bande(g.shape, 916, 3, 60 / g.km_px_eq)
+    delta = terre & (d_bras < 70 + 18 * nd) & (h < 22 + 8 * nd) & (LATs > 29.9)
     alluv |= delta
     cl[alluv] = CODE["plaine_alluviale"]
 
@@ -144,7 +173,7 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     # --- oasis -------------------------------------------------------------------------
     rng = np.random.default_rng(p["cadre"]["graine_aleatoire"] + 77)
     cand = terre & (P < 160) & (hy.A > 400) & (hy.A < 60000) & (h < 1000) & np.isin(cl, [CODE["desert_pierreux"], CODE["desert_sableux"], CODE["depression_saline"], CODE["steppe_piemont"]])
-    karst = terre & (d_mer < 8) & (LON > 14) & (LON < 28) & (LAT < 26.8) & (P < 300)   # oasis littorales (§IV.20)
+    karst = terre & (d_mer < 8) & (LONs > 14) & (LONs < 28) & (LATs < 26.8) & (P < 300)   # oasis littorales (§IV.20)
     oasis = np.zeros(g.shape, bool)
     for masque, n_max, pas in ((cand, 140, 26), (karst, 40, 14)):
         ys, xs = np.nonzero(masque)

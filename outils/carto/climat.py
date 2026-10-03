@@ -156,3 +156,73 @@ def temperature(rel):
     """Température annuelle moyenne approximative (°C)."""
     h = np.maximum(np.where(rel.eau, 0, rel.h), 0)
     return (27.5 - 0.45 * np.clip(np.abs(rel.LAT) - 12, 0, None) - 6.0 * h / 1000).astype(np.float32)
+
+
+# ------------------------------------------------------------------------- hiver |'Arin
+# Faciès de la « matrice des hivers » (Géosystème §III)
+FACIES = {
+    0: ("hors_arin", "Hiver doux (hors |'Arin)", "#00000000"),
+    1: ("hiver_blanc", "Hiver Blanc — manteau neigeux stable", "#f4f8ff"),
+    2: ("hiver_gris", "Hiver Gris — pluies froides, gel humide, sols saturés", "#8a8f99"),
+    3: ("hiver_jaune", "Hiver Jaune — gel nocturne, vents de poussière", "#d9b44a"),
+    4: ("hiver_vapeur", "Hiver de Vapeur — brouillards de la mer Halakhel", "#4f86b5"),
+    5: ("hiver_pluvieux_cotier", "Hiver pluvieux tempéré (hors matrice canonique)", "#7aa36a"),
+}
+
+
+def amplitude_annuelle(lat, cfg):
+    """Écart été-hiver (°C) : faible sous les tropiques, croissant vers le nord."""
+    return np.clip(cfg.get("amplitude_base", 4.0) + cfg.get("amplitude_par_degre", 0.45) * (np.abs(lat) - 8), 2.0, None)
+
+
+def temperature_hiver(T_ann, lat, cfg):
+    """Moyenne du cœur de l'hiver (|'Arin-sukhì) : annuelle − demi-amplitude − refroidissement |'Arin."""
+    return T_ann - amplitude_annuelle(lat, cfg) / 2 - cfg.get("refroidissement_arin", 3.0)
+
+
+def seuils_facies(cfg):
+    """Seuils de température d'hiver calés pour que la matrice canonique (800 / 2 400 m) soit exacte
+    à la latitude de référence (halekh, versant N)."""
+    lat = cfg.get("latitude_reference", 22.5)
+    T = lambda h: 27.5 - 0.45 * max(lat - 12, 0) - 6.0 * h / 1000
+    blanc = float(temperature_hiver(T(cfg.get("altitude_blanc_m", 2400)), lat, cfg))
+    gris = float(temperature_hiver(T(cfg.get("altitude_gris_m", 800)), lat, cfg))
+    return blanc, gris
+
+
+def hiver(rel, T_ann, P, p, log=print):
+    """Température d'hiver, minimum nocturne et faciès |'Arin, cellule par cellule."""
+    from scipy.ndimage import distance_transform_edt
+    from .grille import distance_polyligne
+    g = rel.g
+    cfg = p.get("climat_hiver", {})
+    Tw = temperature_hiver(T_ann, rel.LAT, cfg).astype(np.float32)
+    aride = np.clip((400 - P) / 300, 0, 1)
+    Tn = (Tw - cfg.get("amplitude_jour_humide", 8.0)
+          - (cfg.get("amplitude_jour_aride", 12.0) - cfg.get("amplitude_jour_humide", 8.0)) * aride).astype(np.float32)
+    s_blanc, s_gris = seuils_facies(cfg)
+    # domaine de la cordillère ||Urumati : axes des chaînes + rayon d'influence (§III : 100-200 km)
+    rayon = cfg.get("rayon_cordillere_km", 200)
+    dom = np.zeros(g.shape, bool)
+    for ax in rel.axes:
+        if not ax["cfg"]["geo_id"].startswith(("GEO_ORO_URUMATI", "GEO_ORO_OKHETI")):
+            continue
+        d, _ = distance_polyligne(g, np.asarray(ax["ligne"]), rayon * 1.2)
+        dom |= d < rayon
+    terre = rel.terre
+    F = np.zeros(g.shape, np.uint8)
+    pluvieux = P >= cfg.get("pluie_min_gris_mm", 300)
+    froid_humide = terre & (Tw <= s_gris) & pluvieux
+    # régime méditerranéen (hors matrice) : façade nord, limite adoucie
+    from .grille import bruit_bande
+    nord = (rel.LAT + 0.8 * bruit_bande(g.shape, 917, 30 / g.km_px_eq, 500 / g.km_px_eq)) >= cfg.get("latitude_mediterraneenne", 29.5)
+    F[terre & (Tn <= 0) & (P < 600)] = 3
+    F[froid_humide & ~dom & nord] = 5
+    # Hiver Gris : domaine de la cordillère, et partout ailleurs où l'hiver est aussi froid et pluvieux
+    F[froid_humide & (dom | ~nord)] = 2
+    F[terre & (Tw <= s_blanc)] = 1
+    km = g.km_px[:, None]
+    rive = distance_transform_edt(~rel.mer) * km < cfg.get("rive_vapeur_km", 25)
+    F[rel.mer | (rive & terre)] = 4
+    log(f"  hiver |'Arin : seuils Tw Blanc ≤ {s_blanc:.1f} °C, Gris ≤ {s_gris:.1f} °C (calés à {cfg.get('latitude_reference', 22.5)}° N)")
+    return dict(Tw=Tw, Tn=Tn, facies=F, domaine=dom, seuil_blanc=s_blanc, seuil_gris=s_gris)

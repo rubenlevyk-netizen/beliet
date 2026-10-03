@@ -200,7 +200,9 @@ def main():
 
     # ---------------------------------------------------------------- pluie aux points de calibration
     from carto.climat import Climat
-    M["pluie_calibration"] = Climat(rel, p, log=lambda m: None).calibration
+    cl = Climat(rel, p, log=lambda m: None)
+    M["pluie_calibration"] = cl.calibration
+    M["climat"] = mesures_climat(rel, p, cl)
     M["statistiques"] = json.load(open(os.path.join(SIG, "beliet_statistiques.json"), encoding="utf-8"))
 
     # cols : altitude relevée sur la carte au point du col
@@ -212,6 +214,103 @@ def main():
     json.dump(M, open(os.path.join(SIG, "beliet_mesures.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     ecrire_md(M)
     print("mesures écrites")
+
+
+def mesures_climat(rel, p, cl):
+    """Hiver |'Arin : seuils par latitude, vérification des affirmations du §III, faciès par chaîne."""
+    from carto.climat import FACIES, amplitude_annuelle, hiver, seuils_facies, temperature, temperature_hiver
+    g = rel.g
+    cfg = p.get("climat_hiver", {})
+    E = p.get("etages", {})
+    T_ann = temperature(rel)
+    P = cl.pluie()
+    hv = hiver(rel, T_ann, P, p, log=lambda m: None)
+    sb, sg = seuils_facies(cfg)
+    Tl = lambda lat, h: 27.5 - 0.45 * max(abs(lat) - 12, 0) - 6.0 * h / 1000
+    Tw = lambda lat, h: float(temperature_hiver(Tl(lat, h), lat, cfg))
+    ampl_j = lambda humide: cfg.get("amplitude_jour_humide", 8.0) if humide else cfg.get("amplitude_jour_aride", 12.0)
+    alt_pour = lambda lat, T_cible, f: round(1000 * (f(lat, 0) - T_cible) / 6.0)
+    lat_ref = E.get("latitude_reference", 22.5)
+    A_ref = float(amplitude_annuelle(np.float32(lat_ref), cfg))
+    Tgs = lambda lat, h: Tl(lat, h) + float(amplitude_annuelle(np.float32(lat), cfg)) / 3
+    seuil_gs = lambda alt: Tgs(lat_ref, alt)
+    C = {"modele": {
+        "temperature_annuelle": "T = 27,5 − 0,45 × max(|lat| − 12, 0) − 6,0 × altitude (km)",
+        "amplitude_ete_hiver": "A = 4 + 0,45 × (|lat| − 8), min. 2 °C",
+        "temperature_hiver": "Tw = T − A/2 − 3 (refroidissement |'Arin, §III cause 3)",
+        "minimum_nocturne": "Tn = Tw − 8 (humide) à − 12 (aride, < 100 mm)",
+        "seuil_hiver_blanc_tw_c": round(sb, 2), "seuil_hiver_gris_tw_c": round(sg, 2),
+        "etages": "température de saison de végétation T + A/3 ; seuils calés sur 800 / 2 400 / 3 600 m à 22,5° N",
+        "glaciers": f"T ≤ {E.get('glacier_t_annuelle_c', -5.0)} °C (actifs) ; T ≤ {E.get('glacier_relictuel_t_annuelle_c', -2.5)} °C sur halekh (relictuels)"}}
+    lignes = []
+    for lat in (8, 10, 13, 15, 17, 20, 22.5, 25, 28, 30, 33):
+        f_ = lambda la, h: Tw(la, h)
+        lignes.append({"latitude": lat,
+                       "hiver_gris_des_m": max(0, alt_pour(lat, sg, f_)), "hiver_blanc_des_m": max(0, alt_pour(lat, sb, f_)),
+                       "foret_montagne_des_m": max(0, alt_pour(lat, seuil_gs(800), Tgs)),
+                       "prairie_altitude_des_m": max(0, alt_pour(lat, seuil_gs(2400), Tgs)),
+                       "periglaciaire_des_m": max(0, alt_pour(lat, seuil_gs(3600), Tgs)),
+                       "glacier_actif_des_m": alt_pour(lat, E.get("glacier_t_annuelle_c", -5.0), Tl),
+                       "glacier_relictuel_des_m": alt_pour(lat, E.get("glacier_relictuel_t_annuelle_c", -2.5), Tl)})
+    C["limites_par_latitude"] = lignes
+    # affirmations du §III et valeurs du modèle
+    V = []
+    def ajoute(texte, calcul, verdict):
+        V.append({"affirmation": texte, "modele": calcul, "verdict": verdict})
+    ajoute("§III |'Arin-sukhì : « −10/−15 °C (2 500 m) »",
+           f"halekh (22,5° N) : Tw {Tw(22.5, 2500):.1f} °C, nuits {Tw(22.5, 2500) - ampl_j(True):.1f} à {Tw(22.5, 2500) - ampl_j(False):.1f} °C ; "
+           f"k'ara orientale (13,3° N) : Tw {Tw(13.3, 2500):.1f} °C, nuits {Tw(13.3, 2500) - ampl_j(True):.1f} °C",
+           "cohérent au nord (avec inversions) ; trop froid au sud")
+    ajoute("§III |'Arin-sukhì : « gelées fréquentes < 1 500 m »",
+           f"nuits à 1 500 m : {Tw(22.5, 1500) - ampl_j(True):.1f} °C (22,5° N) ; {Tw(13.3, 1500) - ampl_j(True):.1f} °C (13,3° N)",
+           "cohérent au nord ; faux au sud de ~17° N")
+    ajoute("§III |'Arin-sukhì : « neige permanente dès 1 000 m (versants exposés N) »",
+           f"Tw à 1 000 m : {Tw(22.5, 1000):.1f} °C (22,5° N), {Tw(25, 1000):.1f} °C (25° N) ; manteau stable dès "
+           f"{alt_pour(22.5, sb, Tw)} m (22,5° N), {alt_pour(17, sb, Tw)} m (17° N), {alt_pour(13, sb, Tw)} m (13° N)",
+           "contradictoire avec la matrice (Gris 800-2 400 m) et physiquement faux : neige épisodique dès ~1 500 m (versants N du nord), manteau stable dès 2 400 m (22,5° N)")
+    ajoute("§III matrice : « Hiver Gris 800-2 400 m », « Hiver Blanc > 2 400 m »",
+           "exact à 22,5° N ; Blanc dès " + ", ".join(f"{l['hiver_blanc_des_m']} m ({l['latitude']}° N)" for l in lignes if l["latitude"] in (13, 17, 25, 30)),
+           "cohérent comme valeur de référence ; à préciser : gradient avec la latitude")
+    ajoute("§III économie : « Mer Halakhel gelée en bordures »",
+           f"rive à 28° N : Tw {Tw(28, 0):.1f} °C, nuits {Tw(28, 0) - ampl_j(False):.1f} °C",
+           "gel de la mer impossible (eau salée, Tw > 10 °C) ; seules des gelées nocturnes givrent les rives : remplacer par brouillards d'advection (Hiver de Vapeur, déjà au §III)")
+    ajoute("§I halekh : « glaciers relictuels > 3 500 m »",
+           f"T annuelle à 3 500 m (22,4° N) : {Tl(22.4, 3500):.1f} °C ; glace relictuelle possible dès {alt_pour(22.4, E.get('glacier_relictuel_t_annuelle_c', -2.5), Tl)} m",
+           "relever à > 4 100 m (cirques sommitaux exposés N)")
+    ajoute("§I k'ara : « dernier glacier équatorial (> 4 800 m) »",
+           f"glacier actif dès {alt_pour(20.3, E.get('glacier_t_annuelle_c', -5.0), Tl)} m à 20,3° N (|'Ara-Sukhì, 5 350 m)",
+           "cohérent")
+    ajoute("§I qoyra : sommets > 4 600 m, aucun glacier mentionné",
+           f"T annuelle au sommet (4 673 m, 13,2° N) : {Tl(13.2, 4673):.1f} °C ; Hiver Blanc dès {alt_pour(13.2, sb, Tw)} m",
+           "cohérent : neige d'hiver sur les sommets, pas de glacier ; k'ara porte bien le « dernier glacier »")
+    ajoute("§II Zone II : étages 800 / 2 400 / 3 600 m",
+           "à 22,5° N : exact ; à 13° N : forêt dès " + str(next(l for l in lignes if l["latitude"] == 13)["foret_montagne_des_m"]) +
+           " m, prairie dès " + str(next(l for l in lignes if l["latitude"] == 13)["prairie_altitude_des_m"]) + " m",
+           "à préciser : étages de référence (nord de la cordillère), relevés vers le sud")
+    C["verification_III"] = V
+    # faciès par chaîne (emprise de la chaîne, profil > 0,25)
+    A = g.aire_km2()
+    par_chaine = {}
+    for ax in rel.axes:
+        ch = ax["cfg"]
+        if ax["zone"] is None or not ch["geo_id"].startswith(("GEO_ORO_URUMATI", "GEO_ORO_OKHETI")):
+            continue
+        (y0, y1, x0, x1), pr, _ = ax["zone"]
+        m = (pr > 0.25) & rel.terre[y0:y1, x0:x1]
+        F = hv["facies"][y0:y1, x0:x1][m]
+        a = A[y0:y1, x0:x1][m]
+        tot = a.sum()
+        cle = ch.get("nom") or f"{ch['geo_id']} (segment {ch['points'][0][0]}, {ch['points'][0][1]})"
+        pts = np.array(ch["points"])
+        e = {"latitudes": [round(float(pts[0][1]), 2), round(float(pts[-1][1]), 2)],
+             "hiver_blanc_des_m": [alt_pour(float(pts[0][1]), sb, Tw), alt_pour(float(pts[-1][1]), sb, Tw)],
+             "hiver_gris_des_m": [max(0, alt_pour(float(pts[0][1]), sg, Tw)), max(0, alt_pour(float(pts[-1][1]), sg, Tw))],
+             "part_surface_pct": {FACIES[c][0]: round(float(100 * a[F == c].sum() / tot), 1) for c in FACIES if (F == c).any()}}
+        if cle in par_chaine:
+            continue
+        par_chaine[cle] = e
+    C["facies_par_chaine"] = par_chaine
+    return C
 
 
 def positions(p, M):
@@ -333,6 +432,25 @@ def ecrire_md(M):
           f"- Point culminant : {S['altitude_max_m']} m", "", "| Milieu | Surface |", "|---|---|"]
     for k, v in sorted(S["milieux_km2"].items(), key=lambda kv: -kv[1]):
         L.append(f"| `{k}` | {v:,} km² |".replace(",", " "))
+    C = M["climat"]
+    L += ["", "#### Climat : hivers du |'Arin et étages (modèle v0.4)", "",
+          "Modèle :", ""] + [f"- {k} : {v}" for k, v in C["modele"].items()] + ["",
+          "Limites par latitude (altitude du bas de chaque faciès ou étage) :", "",
+          "| Latitude | Hiver Gris dès | Hiver Blanc dès | Forêt de montagne dès | Prairie dès | Périglaciaire dès | Glacier actif dès | Glacier relictuel dès |",
+          "|---|---|---|---|---|---|---|---|"]
+    for l in C["limites_par_latitude"]:
+        L.append(f"| {l['latitude']}° N | {l['hiver_gris_des_m']} m | {l['hiver_blanc_des_m']} m | {l['foret_montagne_des_m']} m | "
+                 f"{l['prairie_altitude_des_m']} m | {l['periglaciaire_des_m']} m | {l['glacier_actif_des_m']} m | {l['glacier_relictuel_des_m']} m |")
+    L += ["", "Affirmations du Géosystème confrontées au modèle :", "", "| Affirmation | Modèle | Verdict |", "|---|---|---|"]
+    for v in C["verification_III"]:
+        L.append(f"| {v['affirmation']} | {v['modele']} | {v['verdict']} |")
+    L += ["", "Faciès |'Arin par chaîne (part de la surface de la chaîne) :", "",
+          "| Chaîne | Latitudes (extrémités) | Blanc dès | Gris dès | Blanc | Gris | Jaune | Hors |'Arin |", "|---|---|---|---|---|---|---|---|---|"]
+    for k, v in C["facies_par_chaine"].items():
+        f = v["part_surface_pct"]
+        L.append(f"| {k} | {v['latitudes'][0]}° → {v['latitudes'][1]}° N | {v['hiver_blanc_des_m'][0]} → {v['hiver_blanc_des_m'][1]} m | "
+                 f"{v['hiver_gris_des_m'][0]} → {v['hiver_gris_des_m'][1]} m | {f.get('hiver_blanc', 0)} % | {f.get('hiver_gris', 0)} % | "
+                 f"{f.get('hiver_jaune', 0)} % | {f.get('hors_arin', 0)} % |")
     L += ["", "#### Les 48 cols", "",
           "Altitude canonique imposée au relief ; « crête d'origine » = altitude de la ligne de crête avant entaille ou selle.", "",
           "| geo_id | Nom | Groupe (interface) | Chaîne | Position [lon, lat] | Altitude | Crête d'origine | Statut | Routes |",

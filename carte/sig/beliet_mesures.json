@@ -3100,7 +3100,7 @@
     6.4
    ],
    "cible_mm": 2200,
-   "modele_mm": 2227
+   "modele_mm": 2185
   },
   {
    "lieu": "bassin Mopámà",
@@ -3109,7 +3109,7 @@
     10.0
    ],
    "cible_mm": 1900,
-   "modele_mm": 1869
+   "modele_mm": 1750
   },
   {
    "lieu": "bassin Tùmázì",
@@ -3118,7 +3118,7 @@
     7.6
    ],
    "cible_mm": 1500,
-   "modele_mm": 1098
+   "modele_mm": 1078
   },
   {
    "lieu": "plateaux qoyra",
@@ -3127,7 +3127,7 @@
     9.5
    ],
    "cible_mm": 1300,
-   "modele_mm": 972
+   "modele_mm": 952
   },
   {
    "lieu": "désert du Sumdan",
@@ -3136,7 +3136,7 @@
     31.0
    ],
    "cible_mm": 50,
-   "modele_mm": 60
+   "modele_mm": 54
   },
   {
    "lieu": "façade méditerranéenne N (djebel Akhdar)",
@@ -3145,7 +3145,7 @@
     32.6
    ],
    "cible_mm": 650,
-   "modele_mm": 649
+   "modele_mm": 651
   },
   {
    "lieu": "côte atlantique NO",
@@ -3154,7 +3154,7 @@
     33.5
    ],
    "cible_mm": 450,
-   "modele_mm": 616
+   "modele_mm": 601
   },
   {
    "lieu": "côte Mer Rouge",
@@ -3163,7 +3163,7 @@
     19.0
    ],
    "cible_mm": 80,
-   "modele_mm": 79
+   "modele_mm": 80
   },
   {
    "lieu": "Akhtir",
@@ -3172,7 +3172,7 @@
     21.3
    ],
    "cible_mm": 750,
-   "modele_mm": 642
+   "modele_mm": 506
   },
   {
    "lieu": "côte océan de l'Est",
@@ -3190,7 +3190,7 @@
     17.6
    ],
    "cible_mm": 1000,
-   "modele_mm": 689
+   "modele_mm": 581
   },
   {
    "lieu": "versant sud de k'ara, Ennedi",
@@ -3199,7 +3199,7 @@
     14.5
    ],
    "cible_mm": 900,
-   "modele_mm": 901
+   "modele_mm": 900
   },
   {
    "lieu": "piémont nord de k'ara (200-600)",
@@ -3217,7 +3217,7 @@
     30.3
    ],
    "cible_mm": 90,
-   "modele_mm": 76
+   "modele_mm": 84
   },
   {
    "lieu": "rive sud de l'Halakhel (désertique)",
@@ -3226,7 +3226,7 @@
     23.1
    ],
    "cible_mm": 110,
-   "modele_mm": 140
+   "modele_mm": 173
   },
   {
    "lieu": "versant atlantique de halekh",
@@ -3235,7 +3235,7 @@
     20.6
    ],
    "cible_mm": 750,
-   "modele_mm": 744
+   "modele_mm": 745
   },
   {
    "lieu": "versant SO de lóngò (humide)",
@@ -3244,7 +3244,7 @@
     19.2
    ],
    "cible_mm": 900,
-   "modele_mm": 931
+   "modele_mm": 922
   },
   {
    "lieu": "versant NE de lóngò (semi-aride)",
@@ -3262,7 +3262,7 @@
     30.95
    ],
    "cible_mm": 400,
-   "modele_mm": 400
+   "modele_mm": 401
   },
   {
    "lieu": "piémonts SE (semi-arides)",
@@ -3271,7 +3271,7 @@
     7.0
    ],
    "cible_mm": 320,
-   "modele_mm": 420
+   "modele_mm": 384
   },
   {
    "lieu": "piémonts NO (semi-aride froid)",
@@ -3280,7 +3280,7 @@
     31.6
    ],
    "cible_mm": 650,
-   "modele_mm": 473
+   "modele_mm": 481
   },
   {
    "lieu": "déserts orientaux (NE)",
@@ -3298,7 +3298,7 @@
     18.5
    ],
    "cible_mm": 90,
-   "modele_mm": 85
+   "modele_mm": 86
   },
   {
    "lieu": "sud somalien (côte océan de l'Est)",
@@ -3307,7 +3307,7 @@
     0.5
    ],
    "cible_mm": 500,
-   "modele_mm": 507
+   "modele_mm": 505
   },
   {
    "lieu": "plateau somalien (bras E-O de qoyra)",
@@ -3316,7 +3316,7 @@
     9.6
    ],
    "cible_mm": 300,
-   "modele_mm": 210
+   "modele_mm": 232
   },
   {
    "lieu": "versant humide O des plateaux SE (cols T'araq-ɨnkh, Q'usa-||ema)",
@@ -3325,7 +3325,7 @@
     8.8
    ],
    "cible_mm": 2200,
-   "modele_mm": 2877
+   "modele_mm": 2906
   },
   {
    "lieu": "rive S du Tùmázì (haute futaie, FOR_S)",
@@ -3334,7 +3334,16 @@
     6.0
    ],
    "cible_mm": 1800,
-   "modele_mm": 2456
+   "modele_mm": 2491
+  },
+  {
+   "lieu": "côte au sud du Mopámà (delta du Sud)",
+   "pos": [
+    6.3,
+    5.4
+   ],
+   "cible_mm": 2400,
+   "modele_mm": 2608
   }
  ],
  "climat": {
@@ -3522,10 +3531,10 @@
      659
     ],
     "part_surface_pct": {
-     "hors_arin": 7.9,
+     "hors_arin": 8.7,
      "hiver_blanc": 17.7,
-     "hiver_gris": 17.6,
-     "hiver_jaune": 56.8
+     "hiver_gris": 18.4,
+     "hiver_jaune": 55.2
     }
    },
    "!Okheti": {
@@ -3542,9 +3551,9 @@
      727
     ],
     "part_surface_pct": {
-     "hors_arin": 9.3,
+     "hors_arin": 14.9,
      "hiver_blanc": 24.4,
-     "hiver_jaune": 66.2
+     "hiver_jaune": 60.7
     }
    },
    "||Urumati-k'ara": {
@@ -3561,10 +3570,10 @@
      1835
     ],
     "part_surface_pct": {
-     "hors_arin": 5.4,
+     "hors_arin": 6.1,
      "hiver_blanc": 24.2,
-     "hiver_gris": 24.9,
-     "hiver_jaune": 45.5
+     "hiver_gris": 23.5,
+     "hiver_jaune": 46.2
     }
    },
    "GEO_ORO_URUMATI_KARA (segment 24.4, 13.3)": {
@@ -3581,9 +3590,9 @@
      2105
     ],
     "part_surface_pct": {
-     "hors_arin": 75.4,
-     "hiver_gris": 20.7,
-     "hiver_jaune": 3.9
+     "hors_arin": 75.9,
+     "hiver_gris": 22.2,
+     "hiver_jaune": 1.9
     }
    },
    "||Urumati-lóngò": {
@@ -3600,10 +3609,10 @@
      2049
     ],
     "part_surface_pct": {
-     "hors_arin": 57.2,
+     "hors_arin": 57.5,
      "hiver_blanc": 3.5,
-     "hiver_gris": 21.5,
-     "hiver_jaune": 17.8
+     "hiver_gris": 21.6,
+     "hiver_jaune": 17.4
     }
    },
    "GEO_ORO_URUMATI_LONGO (segment 5.6, 16.6)": {
@@ -3657,8 +3666,8 @@
     ],
     "part_surface_pct": {
      "hors_arin": 34.8,
-     "hiver_gris": 62.9,
-     "hiver_jaune": 2.3
+     "hiver_gris": 63.1,
+     "hiver_jaune": 2.1
     }
    },
    "||Urumati-qoyra": {
@@ -3675,10 +3684,10 @@
      2034
     ],
     "part_surface_pct": {
-     "hors_arin": 40.9,
+     "hors_arin": 41.5,
      "hiver_blanc": 0.5,
-     "hiver_gris": 30.0,
-     "hiver_jaune": 28.5
+     "hiver_gris": 31.9,
+     "hiver_jaune": 26.1
     }
    }
   }
@@ -3694,36 +3703,36 @@
   },
   "altitude_max_m": 5350,
   "milieux_km2": {
-   "desert_pierreux": 2913439,
-   "desert_sableux": 271558,
-   "dunes_littorales": 89,
-   "oasis": 7297,
-   "steppe_piemont": 5563720,
-   "fourre_cotier_sec": 420829,
-   "depression_saline": 192247,
-   "cote_desertique": 24993,
-   "recif_corallien": 39214,
-   "littoral_rocheux": 20990,
-   "plaine_alluviale": 165514,
-   "foret_montagne": 518185,
-   "prairie_altitude": 226194,
-   "zone_periglaciaire": 20768,
+   "desert_pierreux": 2697571,
+   "desert_sableux": 284190,
+   "dunes_littorales": 5072,
+   "oasis": 6913,
+   "steppe_piemont": 5913744,
+   "fourre_cotier_sec": 446727,
+   "depression_saline": 199047,
+   "cote_desertique": 22498,
+   "recif_corallien": 39332,
+   "littoral_rocheux": 21035,
+   "plaine_alluviale": 164198,
+   "foret_montagne": 534367,
+   "prairie_altitude": 226138,
+   "zone_periglaciaire": 20740,
    "glacier": 1516,
-   "foret_tropicale_humide": 3587691,
-   "herbage_arbore": 3370227,
-   "foret_berge": 181275,
-   "foret_maree": 30440,
-   "zone_humide_lacustre": 63516,
+   "foret_tropicale_humide": 3147316,
+   "herbage_arbore": 3600095,
+   "foret_berge": 189740,
+   "foret_maree": 38430,
+   "zone_humide_lacustre": 61028,
    "eaux_lacustres": 165502,
-   "ile_aride": 25237
+   "ile_aride": 25241
   },
   "facies_arin_km2": {
-   "hors_arin": 12393316,
+   "hors_arin": 12423887,
    "hiver_blanc": 377531,
-   "hiver_gris": 836511,
-   "hiver_jaune": 3105677,
+   "hiver_gris": 823583,
+   "hiver_jaune": 3060190,
    "hiver_vapeur": 1705304,
-   "hiver_pluvieux_cotier": 467566
+   "hiver_pluvieux_cotier": 495411
   }
  },
  "cols": [
@@ -5094,8 +5103,8 @@
    "nom": "Golfe Jálondù",
    "nature": "point d'étiquette (mer, golfe)",
    "coordonnees": [
-    0.5,
-    4.75
+    -0.4,
+    4.6
    ],
    "note": ""
   },
@@ -5933,6 +5942,50 @@
     [
      0.6,
      5.6
+    ]
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "delta du Sud Mopámà",
+   "nature": "plaine deltaïque basse (v0.5) : contour",
+   "coordonnees": [
+    [
+     4.95,
+     5.95
+    ],
+    [
+     5.7,
+     6.05
+    ],
+    [
+     6.55,
+     5.85
+    ],
+    [
+     7.1,
+     5.3
+    ],
+    [
+     7.7,
+     4.8
+    ],
+    [
+     7.8,
+     4.3
+    ],
+    [
+     6.5,
+     3.9
+    ],
+    [
+     5.4,
+     4.0
+    ],
+    [
+     4.8,
+     4.9
     ]
    ],
    "note": ""

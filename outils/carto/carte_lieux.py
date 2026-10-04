@@ -49,7 +49,7 @@ class Placeur:
         return sum(w)
 
 
-def carte(rel, lieux, routes, cols, sortie, log):
+def carte(rel, lieux, routes, cols, sortie, log, trouees=()):
     g = rel.g
     W, H = g.W, g.H
     parts = []
@@ -89,6 +89,9 @@ def carte(rel, lieux, routes, cols, sortie, log):
             ds = f' stroke-dasharray="{dash}"' if dash else ""
             rts.append(f'<path d="{d_chemin(chaikin(P, 1))}" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-opacity="0.55" stroke-linejoin="round"/>'
                        f'<path d="{d_chemin(chaikin(P, 1))}" fill="none" stroke="{col}" stroke-width="2.6"{ds} stroke-linejoin="round" stroke-linecap="round"/>')
+        if r.get("correction"):
+            P = np.array([g.px(lo, la) for lo, la in r["correction"]["trace"]])
+            rts.append(f'<path d="{d_chemin(P)}" fill="none" stroke="#6a2a8a" stroke-width="2.4" stroke-dasharray="8,4,2,4" stroke-opacity="0.9"/>')
         if r.get("variante_corpus"):
             P = np.array([g.px(lo, la) for lo, la in r["variante_corpus"]["trace"]])
             rts.append(f'<path d="{d_chemin(P)}" fill="none" stroke="#7a3e1a" stroke-width="2" stroke-dasharray="2,5" stroke-opacity="0.9"/>')
@@ -109,6 +112,15 @@ def carte(rel, lieux, routes, cols, sortie, log):
         sym.append(f'<path d="M{x - s:.1f},{y + s * 0.8:.1f} L{x:.1f},{y - s:.1f} L{x + s:.1f},{y + s * 0.8:.1f} Z" '
                    f'fill="{"#3b2a1a" if utile else "#8a7a6a"}" stroke="#ffffff" stroke-width="1"/>')
         pl.reserver((x - s, y - s, x + s, y + s))
+    # trouées basses
+    txt_tr = []
+    for t in trouees:
+        x, y = g.px(*t["pos"])
+        sym.append(f'<path d="M{x - 9:.1f},{y - 7:.1f} L{x - 3:.1f},{y:.1f} L{x - 9:.1f},{y + 7:.1f} M{x + 9:.1f},{y - 7:.1f} L{x + 3:.1f},{y:.1f} L{x + 9:.1f},{y + 7:.1f}" '
+                   f'fill="none" stroke="#8a1a1a" stroke-width="2.6" stroke-linecap="round"/>')
+        pl.reserver((x - 10, y - 8, x + 10, y + 8))
+        txt_tr.append(f'<text x="{x + 12:.1f}" y="{y - 8:.1f}" font-family="{FAMILLE}" font-size="15" font-weight="bold" fill="#8a1a1a" '
+                   f'stroke="#ffffff" stroke-width="3" paint-order="stroke">{t["id"].replace("TRO_", "T")}</text>')
     # lieux
     et = []
     ordre = sorted(lieux.values(), key=lambda l: (l["type"] != "LUR", -(l.get("pop_1570") or 0)))
@@ -138,7 +150,7 @@ def carte(rel, lieux, routes, cols, sortie, log):
             taille, fich, coul = 14, POLICE_I, "#5a5a5a"
         pl.reserver((x - r, y - r, x + r, y + r))
         et.append((l, x, y, r, taille, fich, coul))
-    txt_halo, txt = [], []
+    txt_halo, txt = [], list(txt_tr)
     for l, x, y, r, taille, fich, coul in et:
         t = l["nom"]
         w = pl.largeur(t, taille, fich)
@@ -197,7 +209,7 @@ def carte(rel, lieux, routes, cols, sortie, log):
 
 def legende(g, lieux):
     p = []
-    Wd, Hd = 820, 650
+    Wd, Hd = 820, 712
     lx, ly = g.W - Wd - 14, 24  # coin NE, sur les terres hors Beliet
     p.append(f'<rect x="24" y="24" width="900" height="150" rx="6" fill="#ffffff" fill-opacity="0.86" stroke="#6a5a48" stroke-width="1.5"/>'
              f'<text x="44" y="86" font-family="{FAMILLE}" font-size="54" font-weight="bold" fill="#3a2a1a" letter-spacing="6">LE BELIET</text>'
@@ -234,6 +246,12 @@ def legende(g, lieux):
         y += 30
     p.append(f'<line x1="{lx + 14}" y1="{y - 7}" x2="{lx + 74}" y2="{y - 7}" stroke="#d0202a" stroke-width="3" stroke-dasharray="3,4"/>'
              f'<text x="{lx + 88:.0f}" y="{y:.0f}" font-family="{FAMILLE}" font-size="20" fill="#3a2a1a">tronçon imposé par la géographie, absent des modes déclarés</text>')
+    y += 30
+    p.append(f'<line x1="{lx + 14}" y1="{y - 7}" x2="{lx + 74}" y2="{y - 7}" stroke="#6a2a8a" stroke-width="2.4" stroke-dasharray="8,4,2,4"/>'
+             f'<text x="{lx + 88:.0f}" y="{y:.0f}" font-family="{FAMILLE}" font-size="20" fill="#3a2a1a">tracé corrigé proposé (extrémité ou modes)</text>')
+    y += 30
+    p.append(f'<path d="M{lx + 27},{y - 14} L{lx + 33},{y - 7} L{lx + 27},{y} M{lx + 45},{y - 14} L{lx + 39},{y - 7} L{lx + 45},{y}" fill="none" stroke="#8a1a1a" stroke-width="2.6"/>'
+             f'<text x="{lx + 88:.0f}" y="{y:.0f}" font-family="{FAMILLE}" font-size="20" fill="#3a2a1a">trouée basse de la cordillère (T1…, nom à forger)</text>')
     y += 30
     p.append(f'<line x1="{lx + 14}" y1="{y - 7}" x2="{lx + 74}" y2="{y - 7}" stroke="#7a3e1a" stroke-width="2" stroke-dasharray="2,5"/>'
              f'<text x="{lx + 88:.0f}" y="{y:.0f}" font-family="{FAMILLE}" font-size="20" fill="#3a2a1a">variante par le col indiqué dans le corpus</text>')

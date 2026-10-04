@@ -559,13 +559,15 @@ class Relief:
         g = self.g
         km = _km(g)
         for d in self.p.get("plaines_deltaiques", []):
-            zone = g.rasteriser(g.poly_px(d["contour"])).astype(bool) & self.beliet & ~self.mer & (self.lac == 0)
+            poly = g.rasteriser(g.poly_px(d["contour"])).astype(bool)
+            zone = poly & self.beliet & ~self.mer & (self.lac == 0)
             if not zone.any():
                 continue
             mer_ext = ~self.beliet & ~self.decoupe & (self.h <= 0)
             dmer = distance_transform_edt(~mer_ext) * km
             cible = d.get("altitude_cote_m", 1.0) + d.get("pente_m_par_km", 0.15) * dmer
-            din = distance_transform_edt(zone) * km
+            # transition comptée depuis le bord du contour (pas depuis la mer : la côte est abaissée en entier)
+            din = distance_transform_edt(poly) * km
             w = np.clip(din / d.get("transition_km", 12), 0, 1)
             self.h = np.where(zone & (self.h > cible), self.h + w * (cible - self.h), self.h).astype(np.float32)
 

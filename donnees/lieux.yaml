@@ -60,23 +60,23 @@ lieux:
 
 # ----------------------------------------------------------------- ATL_SO
 - id: LUR_KU-JALIMA-RIR_SO
-  cible: [0.05, 5.62]
+  cible: [-4.95, 5.2]
   rayon_km: 50
   eau: ocean
   milieux: [foret_maree]
-  note: "Grand port atlantique dans les mangroves du golfe, à l'ouest du delta du Mopámà ; relié au delta par les lagunes (RT_060 fluvial, lagune de Keta réelle)."
+  note: "v0.5.1 : « port linéaire en pointe d'estuaire » (LIEUX) sur le golfe Ku-jálima-rir, à l'ouest de la façade : estuaire réel du Bandama, mangroves. Le corpus ne le place pas au delta du Mopámà ; l'émissaire y mène par 600 km de cabotage (RT_003)."
 - id: LUR_JALI-FE_SO
-  cible: [0.95, 5.95]
+  cible: [-3.7, 5.22]
   rayon_km: 45
   eau: ocean
   milieux: [foret_maree, zone_humide_lacustre, foret_tropicale_humide]
-  note: "Cité des bassins d'eau douce du delta (« delta de Jáli-Fè », GEO §V.4) : sur le delta du Mopámà, entre l'anse Jálondù et les mangroves de Ku-jálima-rir."
+  note: "v0.5.1 : « delta de Jáli-Fè (golfe Jálondù / arrière-mangrove de Ku-jálima-rir) » : entre Ku-jálima-rir et l'anse Jálondù, sur un delta à lagunes d'eau douce (Comoé et lagune Aby réels), pas au delta du Mopámà."
 - id: LUR_ANSES-JALONDU_SO
-  cible: [-0.75, 5.2]
-  rayon_km: 50
+  cible: [-1.3, 5.1]
+  rayon_km: 45
   eau: ocean
   milieux: [foret_maree]
-  note: "Anse du golfe Jálondù, face à l'archipel Li-sèk-dì (ZRS drainée) ; mangroves."
+  note: "v0.5.1 : anse du golfe Jálondù, face aux îlots Li-sèk-dì (-2,4 à -0,45° E) ; extension littorale de Jáli-Fè vers l'est."
 - id: LUR_JALI-LONGO_SO
   cible: [2.45, 6.36]
   rayon_km: 60
@@ -208,12 +208,12 @@ lieux:
   altitude: [900, 2300]
   note: "Caravansérail-forteresse du corridor de la haute Tanāḥil, en amont du pôle Tanāḥil."
 - id: ZRS_SHALIM_NE
-  cible: [38.1, 10.15]
-  rayon_km: 60
-  eau: aucune
-  milieux: [steppe_piemont, herbage_arbore]
-  altitude: [800, 2300]
-  note: "Ruines de Šālim dans la haute Tanāḥil (fond de gorge)."
+  cible: [30.72, 27.66]
+  rayon_km: 35
+  eau: fleuve
+  fleuve: GEO_FLV_ABNUHIL_ABNIQA
+  milieux: [plaine_alluviale]
+  note: "v0.5.1 : ruines au seuil de diffluence de l'Abnuḥīl, tête du bras d'Abnīqa (HKL_NE) : digues cyclopéennes de la « valve » de l'interfluve, « fleuve coulant à l'envers » (reflux vers la mer intérieure en crue), drainage fluvial court vers Abnīqa (RT_071, « après crues »). Vallée entaillée dans les plateaux calcaires."
 - id: LUR_SARIQ_NE
   cible: [29.4, 29.35]
   rayon_km: 50
@@ -333,17 +333,17 @@ lieux:
   milieux: [zone_humide_lacustre, foret_berge, foret_tropicale_humide]
   note: "Sur l'émissaire, juste en aval du lac (transbordement Mopámà → émissaire, crues de l'émissaire)."
 - id: LUR_KUBELAA_SO
-  cible: [1.15, 5.85]
-  rayon_km: 45
+  cible: [6.3, 4.6]
+  rayon_km: 60
   eau: ocean
   milieux: [foret_maree]
-  note: "Mangroves du delta du Mopámà (ALN-081 : forêt de marée impossible sur un lac d'eau douce à 800 m)."
+  note: "v0.5.1 : « mangrove Sud » du Mopámà : au sud du lac, dans le delta des rivières qui drainent le sud du bassin (delta réel du Niger), à ~500 km du lac. Une forêt de marée exige la marée : elle n'existe pas au bord d'un lac d'eau douce à 800 m. Port d'arrivée des « pirogues lourdes venant de l'Atlantique »."
 - id: LUR_MAZI-DUM_SO
-  cible: [1.6, 6.05]
-  rayon_km: 45
-  eau: ocean
+  cible: [6.85, 4.62]
+  rayon_km: 50
+  eau: aucune
   milieux: [foret_maree]
-  note: "Mangroves orientales du delta du Mopámà, chenaux instables."
+  note: "v0.5.1 : même mangrove Sud, à l'est de Kù-Bèláà, en retrait des chenaux (« invisible depuis le fleuve ») ; la ceinture de mangrove suit la côte sur ~12 km de large."
 - id: ZRS_KUSALADI_SO
   cible: [6.2, 9.3]
   rayon_km: 45
@@ -501,14 +501,14 @@ lieux:
   eau: aucune
   milieux: [prairie_altitude, zone_periglaciaire]
   altitude: [2800, 4000]
-  note: "Seuls glaciers actifs du Beliet : flancs de |'Ara-Sukhì (k'ara). Bourg sous les glaciers."
+  note: "Seuls glaciers actifs du Beliet : flancs de |'Ara-Sukhì (k'ara). Bourg sous les glaciers (confirmé par l'auteur). Le territoire URM passe des cols de lóngò (024, 025, 028) aux cols qui encadrent |'Ara-Sukhì (002, 003, 005)."
 - id: LUR_UKH-SEK_CENTRE
-  cible: [33.4, 9.6]
-  rayon_km: 90
+  cible: [37.85, 10.65]
+  rayon_km: 60
   eau: aucune
-  milieux: [prairie_altitude, foret_montagne]
-  altitude: [2200, 2800]
-  note: "Sanctuaire-col sur la crête du prolongement SE de k'ara (côté Tɨrakh), à l'ouest du col T'araq-ɨnkh qu'il faut franchir pour gagner Q'irel-Ts'idar (RT_009) ; la haute corniche le relie à Hae Ts'i-K'uré (RT_025)."
+  milieux: [prairie_altitude]
+  altitude: [2900, 3600]
+  note: "v0.5.1 (décision de l'auteur) : hauts plateaux de qoyra, massif dominant la haute Tanāḥil (Choke réel, 3 960 m) ; prairie d'altitude, refuges au-dessus de 3 000 m. RT_021 et RT_073 descendent la vallée de la Tanāḥil ; RT_009 traverse le plateau jusqu'au col T'araq-ɨnkh."
 - id: LUR_ETHAK-KEL_CENTRE
   cible: [34.85, 8.9]
   rayon_km: 40
@@ -568,12 +568,12 @@ lieux:
   altitude: [1500, 2600]
   note: "Forteresse de sous-traitance voisine de P'i-K'uré-Neša (commandes des Nešaña)."
 - id: LUR_QIREL-TSIDAR_SE
-  cible: [36.0, 9.35]
-  rayon_km: 60
+  cible: [35.05, 9.0]
+  rayon_km: 35
   eau: aucune
   milieux: [herbage_arbore, prairie_altitude, foret_montagne]
-  altitude: [1800, 2800]
-  note: "Ville du haut plateau (PLT_SE), à l'est du col T'araq-ɨnkh (RT_009)."
+  altitude: [1900, 2700]
+  note: "Ville du haut plateau (PLT_SE), citadelle dominant le col T'araq-ɨnkh côté plateau (RT_009 arrive par ce col)."
 - id: AUX_FOYERS-PURS
   nom: Foyers-Purs
   type: AUX

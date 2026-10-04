@@ -25,6 +25,7 @@ Passe complète sur LIEUX (56 cités, 18 zones) et ROUTES (74 routes) : `LIEUX_E
 | Haute Tanāḥil | « piémonts N de k'ara », sans site | gorge amont de l'Abay ; Tanāḥil à la confluence | les deux sens de « Tanāḥil » se rejoignent (ALN-136) |
 | Pluies maximales | jusqu'à 9 500 mm (escarpement des cols du SE) | ~2 900 mm | deux points de calage ajoutés (ALN-134) |
 | Carte | trois cartes | + carte des lieux et des routes (PNG, SVG à calques, GeoJSON) ; section 7 de la carte texte | demande de l'auteur |
+| Révision (relecture de l'auteur) | — | \|'Ukh-‖Sék sur les plateaux de qoyra ; territoire URM autour de \|'Ara-Sukhì ; 7 trouées mesurées, 3 à nommer ; RT_020 depuis Kù-békà ; ATL_SO déplacée vers l'ouest ; mangrove Sud (nouveau delta côtier au sud du Mopámà) ; Šālim au seuil de diffluence | `LIEUX_ET_ROUTES.md` §2.5 ; ALN-139 à 181 |
 
 ### v0.4 (audits externes vérifiés ; carte du climat)
 

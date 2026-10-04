@@ -24,7 +24,10 @@ def charger_etat(log=print):
     emp = empreinte(p)
     rel = pickle.load(open(os.path.join(CACHE, f"relief_{emp}.pkl"), "rb"))
     rel.log = None
-    f = os.path.join(CACHE, f"etat_{emp}.pkl")
+    import hashlib
+    # la clé suit aussi le relief lui-même : un changement de code à paramètres égaux invalide le cache
+    cle = hashlib.sha1(np.ascontiguousarray(rel.h[::7, ::7]).tobytes()).hexdigest()[:8]
+    f = os.path.join(CACHE, f"etat_{emp}_{cle}.pkl")
     if os.path.exists(f):
         e = pickle.load(open(f, "rb"))
     else:

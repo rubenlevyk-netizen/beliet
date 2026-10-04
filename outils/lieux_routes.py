@@ -595,8 +595,29 @@ def mesurer_route(R, cells, modes, cols):
     )
 
 
-def tracer_routes(ROUTES, pos, R, cols, routes_cfg, log):
-    cols_par_id = {c["geo_id"]: c for c in cols}
+def _tracer(R, modes, etapes, pos):
+    cells = []
+    for u, w in zip(etapes[:-1], etapes[1:]):
+        pu, pw = pos[u], pos[w]
+        c = R.chemin(modes, R.idx(pu["lon"], pu["lat"]), R.idx(pw["lon"], pw["lat"]))
+        if c is None:
+            return None
+        cells.append(c if not cells else c[1:])
+    return np.concatenate(cells)
+
+
+def _trouees(trace, trouees):
+    """Trouées basses (donnees/routes.yaml) traversées : tracé à moins d'une demi-largeur (+15 km) du point le plus bas."""
+    t = np.array(trace)
+    out = []
+    for tr in trouees:
+        dd = GEOD.inv(np.full(len(t), tr["pos"][0]), np.full(len(t), tr["pos"][1]), t[:, 0], t[:, 1])[2] / 1000
+        if dd.min() < max(30, tr.get("largeur_km", 60) / 2 + 15):
+            out.append(tr["id"])
+    return out
+
+
+def tracer_routes(ROUTES, pos, R, cols, routes_cfg, trouees, log):
     res = {}
     for rt in ROUTES:
         rid = rt["route_id"]
@@ -611,38 +632,32 @@ def tracer_routes(ROUTES, pos, R, cols, routes_cfg, log):
             out["statut"] = "extrémité non localisable"
             res[rid] = out
             continue
-        etapes = [a] + via + [b]
-        cells = []
-        echec = False
-        for u, w in zip(etapes[:-1], etapes[1:]):
-            pu, pw = pos[u], pos[w]
-            c = R.chemin(modes, R.idx(pu["lon"], pu["lat"]), R.idx(pw["lon"], pw["lat"]))
-            if c is None:
-                echec = True
-                break
-            cells.append(c if not cells else c[1:])
-        if echec:
+        cells = _tracer(R, modes, [a] + via + [b], pos)
+        if cells is None:
             out["statut"] = "aucun tracé"
             res[rid] = out
             continue
-        cells = np.concatenate(cells)
         out.update(mesurer_route(R, cells, modes, cols))
+        out["trouees"] = _trouees(out["trace"], trouees)
         if cfg.get("via_corpus"):
-            et2 = [a] + list(cfg["via_corpus"]) + [b]
-            c2 = []
-            for u, w in zip(et2[:-1], et2[1:]):
-                pu, pw = pos[u], pos[w]
-                c = R.chemin(modes, R.idx(pu["lon"], pu["lat"]), R.idx(pw["lon"], pw["lat"]))
-                c2.append(c if not c2 else c[1:])
-            v = mesurer_route(R, np.concatenate(c2), modes, cols)
+            v = mesurer_route(R, _tracer(R, modes, [a] + list(cfg["via_corpus"]) + [b], pos), modes, cols)
             v["via"] = cfg["via_corpus"]
             out["variante_corpus"] = v
+        if cfg.get("correction"):
+            k = cfg["correction"]
+            a2, b2 = k.get("origine", a), k.get("destination", b)
+            m2 = set(k.get("modes", modes))
+            v = mesurer_route(R, _tracer(R, m2, [a2] + list(k.get("via", [])) + [b2], pos), m2, cols)
+            v.update(origine=a2, destination=b2, modes=sorted(m2), via=k.get("via", []), note=k.get("note"))
+            out["correction"] = v
         if cfg.get("note"):
             out["note_reglage"] = cfg["note"]
         out["via"] = via
         out["vol_oiseau_km"] = int(round(km((pos[a]["lon"], pos[a]["lat"]), (pos[b]["lon"], pos[b]["lat"]))))
         out["statut"] = "tracé"
         res[rid] = out
+    for tr in trouees:
+        tr["routes"] = [rid for rid, r in res.items() if tr["id"] in r.get("trouees", [])]
     log(f"  {sum(1 for r in res.values() if r['statut'] == 'tracé')} routes tracées sur {len(res)}")
     return res
 
@@ -667,7 +682,7 @@ def exporter_sig(lieux, routes):
         if r.get("statut") != "tracé":
             continue
         props = {k: (json.dumps(v, ensure_ascii=False) if isinstance(v, (dict, list)) else v)
-                 for k, v in r.items() if k not in ("trace", "segments_milieu", "variante_corpus")}
+                 for k, v in r.items() if k not in ("trace", "segments_milieu", "variante_corpus", "correction")}
         feats.append(dict(type="Feature", geometry=dict(type="LineString", coordinates=r["trace"]), properties=props))
         if r.get("variante_corpus"):
             v = r["variante_corpus"]
@@ -683,7 +698,7 @@ def _kv(d, unite=""):
     return ", ".join(f"{k} {v}{unite}" for k, v in d.items()) if d else "—"
 
 
-def documenter(lieux, routes, log):
+def documenter(lieux, routes, log, trouees=()):
     L = []
     L.append("### A. Lieux : position et site\n")
     L.append("Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre la cible raisonnée et la cellule retenue.\n")
@@ -740,6 +755,22 @@ def documenter(lieux, routes, log):
             v = r["variante_corpus"]
             L.append(f"| `{r['route_id']}` | {', '.join(v['via'])} | {v['longueur_km']} | {v['duree_jours']} | {v['altitude_max_m']} | "
                      f"{'; '.join(v['cols_franchis']) or '—'} ; {v.get('mois_ouverts') or '—'} | +{v['longueur_km'] - r['longueur_km']} km, +{r1(v['duree_jours'] - r['duree_jours'], 0)} j |")
+    cor = [r for r in routes.values() if r.get("correction")]
+    if cor:
+        L.append("\n### G. Corrections proposées (extrémités ou modes modifiés)\n")
+        L.append("| ID | Origine → destination proposées | Modes | Étapes | Longueur km | Durée (j) | km par milieu | Altitude max (m) | Cols franchis ; mois ouverts |")
+        L.append("|---|---|---|---|---|---|---|---|---|")
+        for r in cor:
+            v = r["correction"]
+            L.append(f"| `{r['route_id']}` | {v['origine']} → {v['destination']} | {', '.join(v['modes'])} | {', '.join(v['via']) or '—'} | {v['longueur_km']} | "
+                     f"{v['duree_jours']} | {_kv(v['km_par_milieu'])} | {v['altitude_max_m']} | {'; '.join(v['cols_franchis']) or '—'} ; {v.get('mois_ouverts') or '—'} |")
+    if trouees:
+        L.append("\n### H. Trouées basses de la cordillère\n")
+        L.append("Passages plus bas que les cols canoniques du tronçon (profil de crête mesuré tous les 6 km). Nom : à forger (`forge-ling`).\n")
+        L.append("| ID | Chaîne | Position | Crête minimale (m) | Largeur (km) | Cols canoniques du tronçon | Routes calculées qui l'empruntent | Statut |")
+        L.append("|---|---|---|---|---|---|---|---|")
+        for t in trouees:
+            L.append(f"| `{t['id']}` | {t['chaine']} | {t['pos']} | {t['crete_m']} | {t['largeur_km']} | {t['cols_troncon']} | {', '.join(t.get('routes', [])) or '—'} | {t.get('statut', '')} |")
     bloc = echapper_tableaux("\n".join(L))
     f = os.path.join(RACINE, "LIEUX_ET_ROUTES.md")
     deb, fin = "<!-- GENERE:DEBUT (outils/lieux_routes.py — ne pas éditer à la main) -->", "<!-- GENERE:FIN -->"
@@ -759,8 +790,10 @@ def main():
     C = Contexte(E, log)
     cfg = yaml.safe_load(open(os.path.join(RACINE, "donnees", "lieux.yaml"), encoding="utf-8"))
     cfgs = cfg["lieux"]
-    routes_cfg = (yaml.safe_load(open(os.path.join(RACINE, "donnees", "routes.yaml"), encoding="utf-8")) or {}).get("routes", {}) \
-        if os.path.exists(os.path.join(RACINE, "donnees", "routes.yaml")) else {}
+    fr = os.path.join(RACINE, "donnees", "routes.yaml")
+    doc_r = (yaml.safe_load(open(fr, encoding="utf-8")) or {}) if os.path.exists(fr) else {}
+    routes_cfg = doc_r.get("routes", {})
+    trouees = doc_r.get("trouees", [])
     cols = yaml.safe_load(open(os.path.join(RACINE, "donnees", "cols.yaml"), encoding="utf-8"))["cols"]
     idx, ROUTES = lire_corpus()
     Q_noms = {}
@@ -785,16 +818,16 @@ def main():
         lieux[lid]["constats_ecarts"] = sum(1 for k in lieux[lid]["constats"] if k["verdict"] != "ok")
     log("  routes (grille ≈ 5 km)…")
     R = Reseau(C, log)
-    routes = tracer_routes(ROUTES, pos, R, cols, routes_cfg, log)
+    routes = tracer_routes(ROUTES, pos, R, cols, routes_cfg, trouees, log)
     os.makedirs(SIG, exist_ok=True)
-    json.dump(dict(lieux=lieux, routes=routes), open(os.path.join(SIG, "beliet_lieux_routes.json"), "w", encoding="utf-8"),
+    json.dump(dict(lieux=lieux, routes=routes, trouees=trouees), open(os.path.join(SIG, "beliet_lieux_routes.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     log("  écrit carte/sig/beliet_lieux_routes.json")
     exporter_sig(lieux, routes)
     from carto.carte_lieux import carte
     log("  carte des lieux et des routes…")
-    carte(C.rel, lieux, routes, cols, os.path.join(RACINE, "carte", "beliet_carte_lieux"), log)
-    documenter(lieux, routes, log)
+    carte(C.rel, lieux, routes, cols, os.path.join(RACINE, "carte", "beliet_carte_lieux"), log, trouees)
+    documenter(lieux, routes, log, trouees)
 
 
 if __name__ == "__main__":

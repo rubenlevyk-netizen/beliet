@@ -250,6 +250,13 @@ plaines_deltaiques:
     altitude_cote_m: 1.0
     pente_m_par_km: 0.16
     transition_km: 14
+  # v0.5.1 — « mangrove Sud » du Mopámà (Kù-Bèláà, Mázì-Dúm) : delta des rivières qui drainent le sud du bassin
+  # (côte au sud du lac, delta réel du Niger). La forêt de marée exige la marée : elle n'existe qu'à la côte.
+  - nom: delta du Sud Mopámà
+    contour: [[4.95, 5.95], [5.7, 6.05], [6.55, 5.85], [7.1, 5.3], [7.7, 4.8], [7.8, 4.3], [6.5, 3.9], [5.4, 4.0], [4.8, 4.9]]
+    altitude_cote_m: 1.0
+    pente_m_par_km: 0.12
+    transition_km: 14
 
 # -----------------------------------------------------------------------------
 #  FONDU SUD — la découpe d'origine suivait des frontières politiques réelles.
@@ -657,7 +664,7 @@ eaux_exterieures:
   # [PROPOSITION] golfe occidental = golfe de Guinée à l'ouest du delta du Mopámà ;
   # anse Jálondù = côte de l'actuel Ghana, à l'ouest du delta (mangroves, bassins de Jáli-Fè)
   - {geo_id: GEO_GLF_KUJALIMARIR,  nom: "Ku-jálima-rir", pos: [-5.0, 3.3]}
-  - {geo_id: GEO_GLF_JALONDU,      nom: "Golfe Jálondù", pos: [0.5, 4.75]}
+  - {geo_id: GEO_GLF_JALONDU,      nom: "Golfe Jálondù", pos: [-0.4, 4.6]}   # v0.5.1 : face à l'anse Jálondù (ATL_SO déplacée vers l'ouest)
 
 archipels:
   - geo_id: GEO_ARC_STAURKHLOR
@@ -734,6 +741,8 @@ calibration_pluies:
   # (jusqu'à 9 500 mm sur l'escarpement des cols T'araq-ɨnkh / Q'usa-||ema ; 3 800 mm sur la rive S du Tùmázì)
   - {lieu: "versant humide O des plateaux SE (cols T'araq-ɨnkh, Q'usa-||ema)", pos: [35.0, 8.8], mm: 2200}
   - {lieu: "rive S du Tùmázì (haute futaie, FOR_S)", pos: [24.5, 6.0], mm: 1800}
+  # v0.5.1 : côte au sud du Mopámà (le modèle y donnait 5 000-6 500 mm) [INFÉRENCE : haut de la plage du §V.4]
+  - {lieu: "côte au sud du Mopámà (delta du Sud)", pos: [6.3, 5.4], mm: 2400}
 
 # -----------------------------------------------------------------------------
 #  ÉTAGES ET HIVER |'ARIN (v0.4) — modèle physique calé sur le canon

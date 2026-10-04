@@ -341,6 +341,10 @@ def positions(p, M):
     for c in p["halakhel"].get("chenaux", []):
         add(None, c["nom"], f"chenal {c['largeur_km']}→{c.get('largeur_fin_km', c['largeur_km'])} km", c["trace"])
     add("GEO_MER_HALAKHEL", "îles volcaniques et îles de passe", "points [lon, lat(, haut., rayon)]", p["halakhel"]["iles_volcaniques"])
+    for z in p["halakhel"].get("rivages_escarpes", []):
+        add(None, z["nom"], f"rivage escarpé (v0.5) : centre, rayon {z['rayon_km']} km, dénivelé {z['hauteur_m']} m", z["centre"])
+    for d in p.get("plaines_deltaiques", []):
+        add(None, d["nom"], "plaine deltaïque basse (v0.5) : contour", d["contour"])
     for L in p["lacs"]:
         add(L["geo_id"], L["nom"], "contour dessiné (ajusté à la superficie canonique)", L["contour"],
             "centre mesuré " + str(M["lacs"].get(L["geo_id"], {}).get("centre")))
@@ -354,6 +358,8 @@ def positions(p, M):
                 add(f["geo_id"], nom, "tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON", f["trace"])
             else:
                 add(f["geo_id"], nom, "tracé amont → aval", f["trace"])
+        for k, br in enumerate(f.get("bras", [])):
+            add(f["geo_id"], f"{nom} — bras {k + 1}", "bras ou chenal, amont → aval", br)
         if "reel" in f:
             add(f["geo_id"], nom, "tracé réel Natural Earth", f["reel"])
     for e in p.get("ecretements", []):

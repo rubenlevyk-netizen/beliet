@@ -164,7 +164,7 @@ def main():
            f"- **Grille** : projection équirectangulaire, une case = {PAS}° de longitude × {PAS}° de latitude "
            f"(≈ 55 km × 55 km à l'équateur, ≈ 45 km × 55 km à 35° N).",
            f"- **Emprise** : {LON0}° à {LON1}° de longitude ; {LAT1}° N à {LAT0}° de latitude. {nx} colonnes × {ny} lignes.",
-           "- **Contenu** : 1. relief et eaux ; 2. milieux ; 3. climat (précipitations, hivers du |'Arin) ; 4. répertoire des lieux ; 5. cols ; 6. façades.",
+           "- **Contenu** : 1. relief et eaux ; 2. milieux ; 3. climat (précipitations, hivers du |'Arin) ; 4. répertoire des lieux ; 5. cols ; 6. façades ; 7. lieux et routes du corpus.",
            "- **Repères** : en haut et en bas, la longitude (`|` tous les 10°, `'` tous les 5°) ; à gauche, la latitude du "
            "bord supérieur de la ligne (toutes les 2°).",
            "- **Retrouver une case** : colonne = (longitude + 18) ÷ 0,5 ; ligne = (38 − latitude) ÷ 0,5, en comptant à partir de 0.",
@@ -262,6 +262,34 @@ def main():
                    f"{c['chaine']} | {c.get('statut_passage')} | {c.get('cycle_hivernal')} | {c['ouverture_mois'][0]}-{c['ouverture_mois'][1]} |")
     out += ["", "## 6. Façades de la mer Halakhel", "",
             "Voir `ALIGNEMENT_CORPUS.md` §4 pour les segments de rivage et les lieux de LIEUX qui s'y rattachent.", ""]
+    # ------------------------------------------------------------------ lieux et routes
+    f_lr = os.path.join(RACINE, "carte", "sig", "beliet_lieux_routes.json")
+    if os.path.exists(f_lr):
+        LR = json.load(open(f_lr, encoding="utf-8"))
+        lr = relief.copy()
+        for r in LR["routes"].values():
+            for seg in r.get("segments_milieu", []):
+                for lo, la in seg["pts"]:
+                    k = case(lo, la)
+                    if k:
+                        lr[k] = ":" if seg["milieu"] in ("mer", "lac") else "+"
+        for l in LR["lieux"].values():
+            c = l["caracteristiques"]
+            k = case(c["lon"], c["lat"])
+            if k:
+                lr[k] = {"LUR": "@", "ZRS": "%"}.get(l["type"], "&")
+        out += ["## 7. Lieux et routes", "",
+                "Positions et tracés calculés par `outils/lieux_routes.py` (détail : `LIEUX_ET_ROUTES.md`).", "",
+                "| Signe | Sens |", "|---|---|",
+                "| `@` | cité (LUR) |", "| `%` | zone secondaire (ZRS) |", "| `&` | extrémité de route non documentée |",
+                "| `+` | route par voie de terre ou fluviale |", "| `:` | route maritime ou lacustre |",
+                "| autres | relief et eaux (section 1) |", ""]
+        out += grille(lr, "### 7a. Carte des lieux et des routes")
+        out += ["", "### 7b. Lieux par case", "", "| ID | Nom | Type | Façade | Position | Case |", "|---|---|---|---|---|---|"]
+        for l in LR["lieux"].values():
+            c = l["caracteristiques"]
+            out.append(f"| `{l['id']}` | {l['nom']} | {l['type']} | {l['facade'] or '—'} | [{c['lon']}, {c['lat']}] | {ref(c['lon'], c['lat'])} |")
+        out.append("")
     from mesures_corpus import echapper_tableaux
     txt = echapper_tableaux("\n".join(out) + "\n")
     chemin = os.path.join(RACINE, "carte", "beliet_carte_ascii.md")

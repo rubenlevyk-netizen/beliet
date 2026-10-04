@@ -1,4 +1,4 @@
-# Analyse de cohérence — carte du Beliet v0.4
+# Analyse de cohérence — carte du Beliet v0.5
 
 Sources croisées :
 - `references/GEOSYSTEME_GLOBAL_DU_BELIET_v3.1.md` (GEO) et `GEOSYSTEME_REGISTRE.v1.json` ;
@@ -10,6 +10,21 @@ Sources croisées :
 L'illustration `TEST_Beliet_MAP.png` n'est **pas** utilisée. Aucun fichier du corpus ne donne de coordonnées : toutes les positions sont des [PROPOSITION] déduites des relations de voisinage croisées ci-dessous.
 
 ## 0. Changements
+
+### v0.5 (lieux et routes)
+
+Passe complète sur LIEUX (56 cités, 18 zones) et ROUTES (74 routes) : `LIEUX_ET_ROUTES.md`, fiches ALN-130 à ALN-178.
+
+| Point | v0.4 | v0.5 | Fondement |
+|---|---|---|---|
+| Lieux | aucune position | 74 lieux et 21 extrémités de routes placés sous contraintes (rive, fleuve, île, milieu, altitude) ; caractéristiques physiques calculées | demande de l'auteur |
+| Routes | aucune géométrie | 74 tracés multimodaux sur la carte (mer, lac, fleuve navigable, terre, cols), avec longueur, durée, altitudes, cols et saisons | demande de l'auteur |
+| Rivages de l'Halakhel | glacis continu, aucun littoral rocheux | 7 secteurs escarpés : passe, goulets, rias, caps | 9 lieux du corpus en littoral rocheux ; passe, promontoire et rias du Géosystème |
+| Delta du Mopámà | plateau de 20-40 m | plaine deltaïque basse à mangroves | « delta de Jáli-Fè », mangroves (§V.4) ; deltas tropicaux |
+| Delta d'Abnīqa | un seul bras | chenaux Abnīṣar (NE) et Tanīlḥa (SE) | canon du §VI.1.3 |
+| Haute Tanāḥil | « piémonts N de k'ara », sans site | gorge amont de l'Abay ; Tanāḥil à la confluence | les deux sens de « Tanāḥil » se rejoignent (ALN-136) |
+| Pluies maximales | jusqu'à 9 500 mm (escarpement des cols du SE) | ~2 900 mm | deux points de calage ajoutés (ALN-134) |
+| Carte | trois cartes | + carte des lieux et des routes (PNG, SVG à calques, GeoJSON) ; section 7 de la carte texte | demande de l'auteur |
 
 ### v0.4 (audits externes vérifiés ; carte du climat)
 
@@ -178,10 +193,10 @@ Le corpus annonce 6 800 km et 3,2 M km² de bassin. Ce sont les valeurs du Nil r
 ### 3.9 Autres points
 - **Buhlela, « sources hors-Beliet E »** : à l'est se trouve la mer Rouge. Placé sur l'Atbara/Tekezé. **Non résolu.**
 - **Akhileth** (HKL_SO) : « relais forestier » d'Imekh-stom. La forêt la plus proche est l'étage montagnard de !Okheti, à ~150 km.
-- **HKL_S : glacis ou côte rocheuse.** L'index dit « glacis », LIEUX dit `littoral_rocheux`. La carte combine glacis et falaises (Tassili).
+- **HKL_S : glacis ou côte rocheuse.** L'index dit « glacis », LIEUX dit `littoral_rocheux`. Jusqu'en v0.4, la carte n'avait que du glacis. En v0.5, elle garde le glacis et ajoute des falaises aux sites rocheux du corpus (ALN-130).
 - **Gel de l'Halakhel** (§III) : à −20 m et 23-31° N, physiquement extrême ; non représenté.
 - **Chaîne côtière septentrionale** : « ~1 200 km » au corpus ; la côte qu'elle borde mesure ~2 600 km.
-- **Deux sens pour « Tanāḥil »** : affluent des plateaux SE (§VI.5) ou vallée des piémonts N de k'ara (§V.2, LIEUX). La carte suit le premier.
+- **Deux sens pour « Tanāḥil »** : affluent des plateaux SE (§VI.5) ou vallée des piémonts N de k'ara (§V.2, LIEUX). **Résolu en v0.5** : la vallée des villes est la gorge amont du fleuve, au nord du prolongement SE de k'ara (ALN-136).
 - **Registre** : `GEO_EXT_ATLANTIQUE` et `GEO_GLF_JALONDU` portent la même forme, « Jálondù ».
 
 ### 3.10 Surfaces
@@ -196,7 +211,7 @@ Le corpus annonce 6 800 km et 3,2 M km² de bassin. Ce sont les valeurs du Nil r
 - **Îles** : ~45 îles de l'Halakhel (Haruj volcanique, îles de passe, îlots côtiers).
 - **Milieux** : issus d'un modèle climatique calibré sur 25 points de précipitations du corpus.
 
-## 5. Absent de la v0.3
+## 5. Absent de la v0.3 (complété depuis : cols en v0.3.1, lieux et routes en v0.5)
 - **Les 48 cols** : le registre donne altitudes et interfaces, pas de positions.
 - **Les 24 phénomènes** : zones décrites, non cartographiées.
 - **Les villes** : le calque existe et il est vide. LIEUX ne donne aucune coordonnée ; les façades de la §2 indiquent où les placer.

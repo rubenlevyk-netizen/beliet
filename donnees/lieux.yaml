@@ -1,0 +1,688 @@
+# =============================================================================
+#  LIEUX DU BELIET — placement sur la carte (passe « lieux et routes », v0.5)
+# =============================================================================
+#  Chaque lieu de LIEUX_URBAINS.v2 (56 LUR, 18 ZRS) et chaque extrémité de route
+#  non documentée reçoit une CIBLE et des CONTRAINTES. Le script
+#  outils/lieux_routes.py cherche, dans le rayon donné, la cellule de la carte qui
+#  satisfait au mieux les contraintes (eau, milieu déclaré, altitude, col), puis
+#  calcule les caractéristiques physiques du site.
+#
+#  Champs :
+#    cible      [lon, lat] — position visée (raisonnée à partir du corpus)
+#    rayon_km   rayon de recherche autour de la cible
+#    eau        mer | ocean | lac | fleuve | ile | dans_lac | aucune
+#               (rive de la mer Halakhel, de l'océan, d'un lac, d'un fleuve nommé ;
+#                île hors continent ; plate-forme sur l'eau d'un lac ; intérieur)
+#    milieux    milieux préférés (vocabulaire fermé du Géosystème), dans l'ordre
+#    altitude   [min, max] en m (facultatif)
+#    meme_que   lieu dont on reprend la position (composante, institution, quartier)
+#    confiance  haute | moyenne | faible (faible = position déduite d'indices ténus)
+#    note       justification (reprise dans LIEUX_ET_ROUTES.md)
+#  Statut de toutes les positions : [PROPOSITION].
+# =============================================================================
+
+lieux:
+
+# ----------------------------------------------------------------- ATL_NO
+- id: LUR_KHLORETH-KLAM_NO
+  cible: [-9.62, 30.1]
+  rayon_km: 45
+  eau: ocean
+  milieux: [fourre_cotier_sec, littoral_rocheux]
+  note: "Terminus atlantique du portage le plus court vers l'Halakhel (ALN-033) ; baie basse abritée (Agadir réel), propice aux digues et à l'accostage."
+- id: LUR_STALOMAR-KOT_NO
+  cible: [-10.05, 29.3]
+  rayon_km: 70
+  eau: ocean
+  milieux: [littoral_rocheux]
+  note: "Falaises granitiques : la côte rocheuse la plus haute de la façade (rebord de l'Anti-Atlas, granites réels d'Ifni-Kerdous), à 75 km de Khloreth-klam (déroutement du pilote en 1342)."
+- id: LUR_STAKHR-DUREK_NO
+  cible: [-8.55, 29.0]
+  rayon_km: 60
+  eau: aucune
+  milieux: [desert_sableux, desert_pierreux, steppe_piemont]
+  altitude: [0, 700]
+  note: "Pôle du portage, à mi-chemin de Khloreth-klam et de Kralekh-Aktrik (rupture de charge de RT_027)."
+- id: LUR_HLORAN-RIR_NO
+  cible: [-8.05, 29.6]
+  rayon_km: 70
+  eau: aucune
+  milieux: [oasis, steppe_piemont, herbage_arbore]
+  altitude: [200, 1100]
+  note: "Oasis-étape à résurgence au pied du rebord montagneux (drains d'altitude), sur le corridor du portage (oasis réelles de Tata-Akka)."
+- id: ZRS_FALAMI_SKREN_PERIPH_NO
+  cible: [-8.6, 29.4]
+  rayon_km: 60
+  eau: aucune
+  milieux: [oasis, steppe_piemont, herbage_arbore]
+  altitude: [200, 1100]
+  note: "Résurgence secondaire hors registre, à l'écart du corridor certifié, à moins d'une étape de Hloran-rir."
+
+# ----------------------------------------------------------------- ATL_SO
+- id: LUR_KU-JALIMA-RIR_SO
+  cible: [0.05, 5.62]
+  rayon_km: 50
+  eau: ocean
+  milieux: [foret_maree]
+  note: "Grand port atlantique dans les mangroves du golfe, à l'ouest du delta du Mopámà ; relié au delta par les lagunes (RT_060 fluvial, lagune de Keta réelle)."
+- id: LUR_JALI-FE_SO
+  cible: [0.95, 5.95]
+  rayon_km: 45
+  eau: ocean
+  milieux: [foret_maree, zone_humide_lacustre, foret_tropicale_humide]
+  note: "Cité des bassins d'eau douce du delta (« delta de Jáli-Fè », GEO §V.4) : sur le delta du Mopámà, entre l'anse Jálondù et les mangroves de Ku-jálima-rir."
+- id: LUR_ANSES-JALONDU_SO
+  cible: [-0.75, 5.2]
+  rayon_km: 50
+  eau: ocean
+  milieux: [foret_maree]
+  note: "Anse du golfe Jálondù, face à l'archipel Li-sèk-dì (ZRS drainée) ; mangroves."
+- id: LUR_JALI-LONGO_SO
+  cible: [2.45, 6.36]
+  rayon_km: 60
+  eau: ocean
+  milieux: [littoral_rocheux, foret_tropicale_humide]
+  note: "Débouché côtier des forêts-galeries du SO (Ku-ùmanà), à l'est du delta, où la côte se relève (quais de basalte importé)."
+- id: LUR_GALU-KANDA_SO
+  cible: [1.45, 6.45]
+  rayon_km: 45
+  eau: fleuve
+  fleuve: GEO_FLV_EMISSAIRE_MOPAMA
+  milieux: [foret_tropicale_humide, foret_berge]
+  note: "Cales navales sur l'émissaire du Mopámà, à la tête du delta : en aval du parc à bois de Ku-sáladì (flottage), accessibles aux coques de mer."
+- id: ZRS_LISEKDI_SO
+  cible: [-1.25, 4.72]
+  rayon_km: 90
+  eau: ile
+  milieux: [ile_aride]
+  note: "Îlots secs au large de l'anse Jálondù (ALN-008)."
+
+# ----------------------------------------------------------------- ATL_INS
+- id: LUR_KOT-SKRAL_LARGE
+  cible: [-24.99, 16.88]
+  rayon_km: 40
+  eau: ile
+  milieux: [ile_aride]
+  note: "Skral-Kot (« Rocher de la Baleine ») = São Vicente réel : promontoire et vasques au-dessus d'une baie profonde (cétacés)."
+- id: LUR_THRESKOL-STRAKH_LARGE
+  cible: [-22.92, 16.17]
+  rayon_km: 40
+  eau: ile
+  milieux: [ile_aride]
+  note: "Strakh-Kot (« Rocher de l'Abîme », plus grande île du sous-groupe aride, tabulaire) = Boa Vista réel."
+
+# ----------------------------------------------------------------- HKL_N
+- id: LUR_KRETH-NA-SEREK_N
+  cible: [-1.98, 29.72]
+  rayon_km: 25
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Sur la rive ouest de la passe Khreth-na-Serek (« entre côtes NO et promontoire N »), falaises calcaires."
+- id: LUR_SEREKH-KHEM_N
+  cible: [-1.6, 31.05]
+  rayon_km: 40
+  eau: mer
+  milieux: []
+  note: "Fond du golfe de Serek, derrière la passe : port de la rive N exposé aux brumes de la mer intérieure."
+- id: AUX_KRALEKH-NER
+  nom: Kralekh-ner
+  type: AUX
+  cible: [-1.72, 30.25]
+  rayon_km: 25
+  eau: en_mer
+  confiance: moyenne
+  note: "[NON DOCUMENTÉ] « approches nord du détroit Khreth-na-Serek » : sortie N de la passe, dans le golfe de Serek."
+
+# ----------------------------------------------------------------- HKL_NO / HKL_O
+- id: LUR_AKHIDALET_NO
+  cible: [-7.75, 27.18]
+  rayon_km: 25
+  eau: fleuve
+  fleuve: GEO_FLV_EHUKHTAL
+  milieux: []
+  note: "Estuaire de l'Ehukhtal (GEO_EST_AKHIDALET), au fond du goulet Hlom-khetal."
+- id: LUR_KRALEKH-AKTRIK_NO
+  cible: [-7.5, 28.2]
+  rayon_km: 35
+  eau: mer
+  milieux: []
+  note: "Rive nord du goulet, point de l'Halakhel le plus proche de l'Atlantique (départ du portage RT_027, siège du Kisralom)."
+- id: LUR_AKTRIK-KHEM_NO
+  cible: [-6.2, 28.45]
+  rayon_km: 45
+  eau: mer
+  milieux: []
+  note: "Rive NO du bassin occidental, à l'est de Kralekh-Aktrik (port envasé)."
+- id: LUR_HLOM-KHETAL_NO
+  cible: [-6.95, 27.5]
+  rayon_km: 30
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Rive sud du goulet Hlom-khetal (entrée O de la mer), barres sableuses saisonnières."
+
+# ----------------------------------------------------------------- HKL_SO / HKL_S
+- id: LUR_IMEKH-STOM_NO
+  cible: [0.3, 25.75]
+  rayon_km: 30
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Goulet estuarien de l'Imikhrel (GEO_DET_IMEKHSTOM), entrée SO de la mer."
+- id: ZRS_AKHILETH_NO
+  cible: [0.6, 24.6]
+  rayon_km: 160
+  eau: aucune
+  milieux: [foret_montagne, herbage_arbore]
+  note: "Arrière-pays boisé du goulet d'Imekh-stom : premier étage boisé, piémont N de !Okheti."
+- id: LUR_CHERBEKH-KHEM_NO
+  cible: [2.6, 25.95]
+  rayon_km: 60
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Partie ouest de HKL_S (rias basaltiques), à l'est du goulet d'Imekh-stom ; débouché vers Ts'idar-‖Sek (RT_044)."
+- id: LUR_TAWALMAZ_NE
+  cible: [14.2, 25.3]
+  rayon_km: 35
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Ria-estuaire de la Madīlan (GEO_EST_TAWALMAZ), golfe du Fezzan, rive S."
+- id: LUR_QABD-AR-GANUB_NE
+  cible: [22.6, 23.75]
+  rayon_km: 70
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Cap du golfe de Koufra, extrémité S de la mer : terminus des routes du Sud profond (Akhtir à ~150 km, cols de k'ara au-delà)."
+
+# ----------------------------------------------------------------- HKL_NE (vallée de la haute Tanāḥil = gorge amont de l'Abay)
+- id: LUR_QURASH-TANIQA_NE
+  cible: [38.35, 10.55]
+  rayon_km: 70
+  eau: aucune
+  milieux: [steppe_piemont, herbage_arbore]
+  altitude: [900, 2300]
+  note: "Haute Tanāḥil = gorge amont du Tira-ñara/Tanāḥil (Abay réel : grès et marno-calcaires, fond semi-aride). Citadelle dans le canyon, à ~300 km des cols TNQ (044, 046, 047)."
+- id: LUR_QURASH-TANIHIL_NE
+  cible: [38.45, 10.95]
+  rayon_km: 60
+  eau: aucune
+  milieux: [steppe_piemont, herbage_arbore]
+  altitude: [900, 2300]
+  note: "Caravansérail-forteresse du corridor de la haute Tanāḥil, en amont du pôle Tanāḥil."
+- id: ZRS_SHALIM_NE
+  cible: [38.1, 10.15]
+  rayon_km: 60
+  eau: aucune
+  milieux: [steppe_piemont, herbage_arbore]
+  altitude: [800, 2300]
+  note: "Ruines de Šālim dans la haute Tanāḥil (fond de gorge)."
+- id: LUR_SARIQ_NE
+  cible: [29.4, 29.35]
+  rayon_km: 50
+  eau: aucune
+  milieux: [depression_saline, desert_pierreux]
+  note: "En bordure du marais de Ṣaraq (GEO_MAR_SARAQ), à la sortie des pistes de crête que surveillent les Ṣarqami."
+- id: ZRS_HAMAD-RAS_NE
+  cible: [28.15, 29.35]
+  rayon_km: 60
+  eau: mer
+  milieux: [littoral_rocheux]
+  note: "Port secondaire de cap sur la côte NE du bassin oriental, entre Qūrāš-Ṣafīḥ et la rive N (cabotage NE→E)."
+- id: AUX_QURASH-SAFIH
+  nom: Qūrāš-Ṣafīḥ
+  type: AUX
+  cible: [28.4, 28.45]
+  rayon_km: 35
+  eau: mer
+  confiance: moyenne
+  note: "[NON DOCUMENTÉ] cité šamqir au NE d'Abnaqil, sur le chenal NE (Abnīṣar) du delta d'Abnīqa."
+
+# ----------------------------------------------------------------- HKL_E (delta d'Abnīqa)
+- id: LUR_ABNAQIL_NE
+  cible: [28.9, 27.62]
+  rayon_km: 25
+  eau: fleuve
+  fleuve: GEO_FLV_ABNUHIL_ABNIQA
+  milieux: [plaine_alluviale]
+  note: "Carrefour deltaïque : à l'apex du cône du bras d'Abnīqa, d'où divergent les chenaux NE (Abnīṣar) et SE (Tanīlḥa)."
+- id: LUR_ABNIQA_NE
+  cible: [28.45, 27.6]
+  rayon_km: 20
+  eau: mer
+  milieux: [plaine_alluviale]
+  note: "Débouché du bras d'Abnīqa (GEO_DET_ABNIQA), ouest du delta."
+- id: LUR_TANAQIL_NE
+  cible: [28.45, 27.3]
+  rayon_km: 30
+  eau: mer
+  milieux: []
+  note: "Poste de transbordement sur le chenal SE (Tanīlḥa), au sud d'Abnīqa."
+- id: LUR_QABSUR-QIBS_E
+  cible: [28.15, 26.85]
+  rayon_km: 60
+  eau: mer
+  milieux: [depression_saline]
+  note: "Salines de la côte orientale (remontées salines de l'interfluve), au S du delta ; caravane lourde vers Abnaqil (RT_028)."
+- id: LUR_HAWQIL_NE
+  cible: [26.9, 25.45]
+  rayon_km: 25
+  eau: mer
+  milieux: [plaine_alluviale]
+  note: "Embouchure du Ḥawqal (GEO_DET_HAWQIL)."
+- id: LUR_TANAHIL_NE
+  cible: [32.55, 15.62]
+  rayon_km: 30
+  eau: fleuve
+  fleuve: GEO_FLV_TANAHIL
+  milieux: [plaine_alluviale]
+  note: "Confluence Tanāḥil-Abnuḥīl (Khartoum réel) : tête de la vallée de l'Abnuḥīl, débouché aval de la haute Tanāḥil. Résout ALN-083 : la vallée des villes est celle du fleuve."
+
+# ----------------------------------------------------------------- MED_NE
+- id: LUR_SHAFAQ-MIRQ_NE
+  cible: [31.25, 31.4]
+  rayon_km: 35
+  eau: ocean
+  milieux: [plaine_alluviale]
+  note: "Port des embouchures du delta Šafāqil (GEO_DET_SAFAQIL_PASSE)."
+- id: LUR_TANQUISH_NE
+  cible: [29.95, 30.95]
+  rayon_km: 45
+  eau: ocean
+  milieux: [plaine_alluviale, depression_saline]
+  note: "Rive méditerranéenne à l'ouest du delta, bordée de lagunes salées (Maqbaṣ) ; maillon aval de la chaîne Abnīqa-Tanāḥil-Ṭanquish."
+- id: AUX_MEDITERRANEE_NE
+  nom: Méditerranée NE (façade)
+  type: AUX
+  cible: [31.0, 32.3]
+  rayon_km: 30
+  eau: en_mer
+  confiance: faible
+  note: "Point de mer au large du delta (destination de façade de RT_008)."
+
+# ----------------------------------------------------------------- ROU_SE / IND_SE
+- id: LUR_TNAYA-HAEM_SE
+  cible: [42.9, 11.8]
+  rayon_km: 60
+  eau: ocean
+  milieux: [littoral_rocheux]
+  altitude: [0, 600]
+  note: "Golfe de Tadjoura réel : jonction mer Rouge / océan de l'Est (façades ROU_SE et IND_SE), côte basaltique adossée à un escarpement (treuil de RT_052)."
+- id: LUR_KURE-KESUN_SE
+  cible: [40.2, 14.9]
+  rayon_km: 60
+  eau: ocean
+  milieux: [littoral_rocheux]
+  note: "Côte basaltique de la mer Rouge au pied de l'escarpement (K'umal-Naqra au-dessus, RT_067)."
+- id: LUR_KURE-TAWA_SE
+  cible: [39.45, 15.6]
+  rayon_km: 40
+  eau: ocean
+  milieux: [recif_corallien, littoral_rocheux]
+  note: "Port corallien (Massawa réel), au pied du plateau des Foyers-Purs."
+
+# ----------------------------------------------------------------- MOP_SO
+- id: LUR_KUTEKA_SO
+  cible: [5.05, 9.5]
+  rayon_km: 30
+  eau: lac
+  milieux: [zone_humide_lacustre, eaux_lacustres]
+  note: "Sortie de l'émissaire du Mopámà (transbordement lac/fleuve, barrage Kù-bék-ngúmi)."
+- id: LUR_KUNGUMI_SO
+  cible: [4.55, 9.15]
+  rayon_km: 35
+  eau: fleuve
+  fleuve: GEO_FLV_EMISSAIRE_MOPAMA
+  milieux: [zone_humide_lacustre, foret_berge, foret_tropicale_humide]
+  note: "Sur l'émissaire, juste en aval du lac (transbordement Mopámà → émissaire, crues de l'émissaire)."
+- id: LUR_KUBELAA_SO
+  cible: [1.15, 5.85]
+  rayon_km: 45
+  eau: ocean
+  milieux: [foret_maree]
+  note: "Mangroves du delta du Mopámà (ALN-081 : forêt de marée impossible sur un lac d'eau douce à 800 m)."
+- id: LUR_MAZI-DUM_SO
+  cible: [1.6, 6.05]
+  rayon_km: 45
+  eau: ocean
+  milieux: [foret_maree]
+  note: "Mangroves orientales du delta du Mopámà, chenaux instables."
+- id: ZRS_KUSALADI_SO
+  cible: [6.2, 9.3]
+  rayon_km: 45
+  eau: lac
+  milieux: [foret_tropicale_humide, zone_humide_lacustre]
+  note: "Lisière du Sud Mopámà : la haute futaie s'ouvre sur l'eau (criques de flottage)."
+- id: AUX_LISIERES_BALONGO
+  nom: Lisières Ba-lóngó
+  type: AUX
+  cible: [6.3, 8.9]
+  rayon_km: 60
+  eau: aucune
+  milieux: [foret_tropicale_humide]
+  confiance: faible
+  note: "« lisières forestières du Sud Mopámà »."
+- id: AUX_PIEMONTS_MUDARHOBI
+  nom: Piémonts du Mù-dárhòbì
+  type: AUX
+  cible: [6.6, 8.5]
+  rayon_km: 50
+  eau: aucune
+  confiance: moyenne
+  note: "Piémonts basaltiques du Mù-dárhòbì (S du Mopámà)."
+- id: AUX_DLT_MOPAMA
+  nom: Estuaire Mopámà
+  type: AUX
+  cible: [1.3, 5.9]
+  rayon_km: 30
+  eau: ocean
+  confiance: haute
+  note: "GEO_DLT_MOPAMA."
+
+# ----------------------------------------------------------------- FOR_SO / FOR_S
+- id: ZRS_KUUMANA_SO
+  cible: [2.7, 7.4]
+  rayon_km: 90
+  eau: aucune
+  milieux: [foret_berge, foret_tropicale_humide]
+  note: "Clairières des forêts-galeries du SO, dans l'arrière-pays de Jáli-lòngò."
+- id: ZRS_SAKUMADI_FORS
+  cible: [24.8, 6.2]
+  rayon_km: 70
+  eau: aucune
+  milieux: [foret_tropicale_humide]
+  note: "Haute futaie de la rive S du Tùmázì."
+- id: ZRS_KUPEPANA_FORS
+  cible: [24.0, 5.9]
+  rayon_km: 90
+  eau: aucune
+  milieux: [foret_tropicale_humide]
+  note: "Lisières de la haute futaie (FOR_S, S du Tùmázì) ; « ouvrant sur le Sud Mopámà » est incompatible (1 900 km) : voir la fiche."
+
+# ----------------------------------------------------------------- TUM_SC
+- id: LUR_KUBEKA_SC
+  cible: [24.8, 8.75]
+  rayon_km: 45
+  eau: dans_lac
+  milieux: [eaux_lacustres]
+  note: "Cité sur pilotis (interdit de bâtir sur la terre ferme), près de la rive N : débouché des routes des cols (RT_010) et des rives N (Ku-Nómà, Ku-kànadì)."
+- id: LUR_KUPILA-MUSUKU_SC
+  cible: [23.2, 6.85]
+  rayon_km: 45
+  eau: lac
+  milieux: [zone_humide_lacustre]
+  note: "Rive SO, au pied des collines Kù-kɨ́bò (escarpement de Q'eša-Kɨ́bò, RT_069)."
+- id: LUR_KUKIBO_QESHA_SC
+  cible: [21.9, 6.9]
+  rayon_km: 60
+  eau: aucune
+  milieux: []
+  altitude: [700, 1500]
+  note: "Sur les collines Kù-kɨ́bò au-dessus du lac (portage d'escarpement, rapides)."
+- id: ZRS_KU-PILA-DI_SC
+  cible: [23.4, 7.25]
+  rayon_km: 35
+  eau: dans_lac
+  milieux: [eaux_lacustres]
+  note: "Récif-mère au large de Ku-Pɨla-Mù-Sùkú."
+- id: ZRS_KU-SUKU-NA_SC
+  cible: [24.1, 6.95]
+  rayon_km: 35
+  eau: dans_lac
+  milieux: [eaux_lacustres]
+  note: "Hauts-fonds rocheux du S (banc du Grand Poisson, temple Sa-nùbè yì Mù-Sùkú)."
+- id: ZRS_KU-LEMBE_SC
+  cible: [26.3, 8.4]
+  rayon_km: 40
+  eau: dans_lac
+  milieux: [eaux_lacustres]
+  note: "Hauts-fonds brumeux du NE."
+- id: ZRS_KU-ZABA_SC
+  cible: [25.2, 8.2]
+  rayon_km: 40
+  eau: dans_lac
+  milieux: [eaux_lacustres]
+  note: "Plate-forme flottante au large de Kù-békà."
+- id: ZRS_MI-TONO_SC
+  cible: [25.6, 7.4]
+  rayon_km: 60
+  eau: dans_lac
+  milieux: [eaux_lacustres]
+  note: "Gouffre : point le plus profond du lac."
+- id: ZRS_KU-PELE-SO_SC
+  cible: [23.8, 8.85]
+  rayon_km: 50
+  eau: lac
+  milieux: [herbage_arbore, foret_berge]
+  note: "Rive N : vergers de rive."
+- id: ZRS_KU-BANGA_SC
+  cible: [22.3, 7.25]
+  rayon_km: 50
+  eau: lac
+  milieux: []
+  note: "Rive SO au contact des piémonts des collines Kù-kɨ́bò (et non du Mù-dárhòbì, à 1 900 km)."
+- id: ZRS_KU-NOMA_SC
+  cible: [26.9, 8.5]
+  rayon_km: 50
+  eau: lac
+  milieux: [plaine_alluviale, herbage_arbore, zone_humide_lacustre]
+  note: "Plaine de rive du NE : terres céréalières."
+- id: ZRS_KUKANADI_SC
+  cible: [22.6, 8.0]
+  rayon_km: 50
+  eau: lac
+  milieux: [zone_humide_lacustre]
+  note: "Berges basses du bras N (NO du lac), roselières."
+
+# ----------------------------------------------------------------- URU_NO / URU_SO
+- id: LUR_BANNAKTI_NO
+  cible: [-9.1, 22.3]
+  rayon_km: 60
+  eau: aucune
+  milieux: []
+  altitude: [1400, 2600]
+  note: "Halekh occidental, au cœur du territoire KOL (cols Kurahek, Hlenik-k'eso, Pēlakh-t'sira) ; pistes vers Stalomar-Kot (RT_066)."
+- id: LUR_TAMAR-KHU_CENTRE
+  cible: [4.4, 17.8]
+  rayon_km: 80
+  eau: aucune
+  milieux: [foret_montagne, herbage_arbore]
+  altitude: [800, 2000]
+  note: "Vallées S de lóngò (URU_SO), près du col Ku-Ténɨlkh-te."
+
+# ----------------------------------------------------------------- URU_C
+- id: LUR_ZAGAKH-TIR_NE
+  cible: [23.75, 22.2]
+  rayon_km: 30
+  eau: fleuve
+  fleuve: GEO_FLV_HAWQAL
+  milieux: []
+  note: "Citadelle-écluse sur l'émissaire de l'Akhtir (Ḥawqal), à la sortie du lac."
+- id: LUR_URUM-SAMEL_CENTRE
+  cible: [17.9, 20.1]
+  rayon_km: 60
+  eau: aucune
+  milieux: [prairie_altitude, zone_periglaciaire]
+  altitude: [2800, 4000]
+  note: "Seuls glaciers actifs du Beliet : flancs de |'Ara-Sukhì (k'ara). Bourg sous les glaciers."
+- id: LUR_UKH-SEK_CENTRE
+  cible: [33.4, 9.6]
+  rayon_km: 90
+  eau: aucune
+  milieux: [prairie_altitude, foret_montagne]
+  altitude: [2200, 2800]
+  note: "Sanctuaire-col sur la crête du prolongement SE de k'ara (côté Tɨrakh), à l'ouest du col T'araq-ɨnkh qu'il faut franchir pour gagner Q'irel-Ts'idar (RT_009) ; la haute corniche le relie à Hae Ts'i-K'uré (RT_025)."
+- id: LUR_ETHAK-KEL_CENTRE
+  cible: [34.85, 8.9]
+  rayon_km: 40
+  eau: aucune
+  milieux: []
+  altitude: [2200, 3000]
+  note: "Carrefour de cols au col T'araq-ɨnkh (GEO_COL_010), passage commun de RT_009, RT_053 et RT_062."
+- id: LUR_TSIDAR-SEK_CENTRE
+  cible: [-2.1, 22.95]
+  rayon_km: 60
+  eau: aucune
+  milieux: [prairie_altitude]
+  altitude: [2300, 3400]
+  note: "Verrou de crête entre la confédération Költ (Bannaktì) et la façade HKL_S/SO (Cherbekh-khem) : crête de halekh oriental, col Hlelak-!uri."
+
+# ----------------------------------------------------------------- URU_SE / PLT_SE
+- id: LUR_GITES-TSIDAR_SE
+  cible: [34.3, 8.5]
+  rayon_km: 60
+  eau: aucune
+  milieux: [foret_montagne, herbage_arbore, foret_tropicale_humide]
+  altitude: [500, 1600]
+  note: "Pied de l'escarpement sous les cols T'araq-ɨnkh et Q'usa-||ema (territoire TSD), au départ des rivières qui descendent vers la confluence de Tanāḥil (RT_031) et vers l'ouest (RT_068)."
+- id: LUR_TSIDAR-RE_SE
+  cible: [35.3, 8.72]
+  rayon_km: 25
+  eau: aucune
+  milieux: []
+  altitude: [2000, 2800]
+  note: "Haut-col fortifié près du col Q'usa-||ema (GEO_COL_016, rattaché à l'Ordre du Col au registre)."
+- id: LUR_KUMAL-NAQRA_SE
+  cible: [39.0, 13.6]
+  rayon_km: 70
+  eau: aucune
+  milieux: [steppe_piemont, herbage_arbore]
+  altitude: [1200, 2400]
+  note: "Vallées encaissées du rebord oriental du plateau, au-dessus de la mer Rouge (RT_067) et à ~350 km de la haute Tanāḥil (RT_063)."
+- id: LUR_HAE-TSI-KURE_SE
+  cible: [30.35, 10.75]
+  rayon_km: 50
+  eau: aucune
+  milieux: []
+  altitude: [1600, 2500]
+  note: "Monastère au pied du col P'etsul-!ama (GEO_COL_013, 2 600 m), dernière rupture de charge avant le col."
+- id: LUR_PI-KURE-NESHA_SE
+  cible: [38.95, 15.25]
+  rayon_km: 50
+  eau: aucune
+  milieux: []
+  altitude: [1800, 2600]
+  note: "Monastère-banque sur le rebord du plateau au-dessus de K'uré-tawa (hub_rattache)."
+- id: LUR_HAE-PESHU_SE
+  cible: [39.05, 14.85]
+  rayon_km: 50
+  eau: aucune
+  milieux: []
+  altitude: [1500, 2600]
+  note: "Forteresse de sous-traitance voisine de P'i-K'uré-Neša (commandes des Nešaña)."
+- id: LUR_QIREL-TSIDAR_SE
+  cible: [36.0, 9.35]
+  rayon_km: 60
+  eau: aucune
+  milieux: [herbage_arbore, prairie_altitude, foret_montagne]
+  altitude: [1800, 2800]
+  note: "Ville du haut plateau (PLT_SE), à l'est du col T'araq-ɨnkh (RT_009)."
+- id: AUX_FOYERS-PURS
+  nom: Foyers-Purs
+  type: AUX
+  cible: [38.7, 14.6]
+  rayon_km: 60
+  eau: aucune
+  altitude: [1800, 3000]
+  confiance: faible
+  note: "« hauts plateaux SE », amont de K'uré-tawa (éboulements des routes amont)."
+- id: AUX_VOIE-DESNUEES
+  nom: Voie-Desnuées
+  type: AUX
+  cible: [38.3, 12.4]
+  rayon_km: 80
+  eau: aucune
+  altitude: [2000, 3500]
+  confiance: faible
+  note: "Pôle iconoclaste des cairns : hautes terres de qoyra (localisation inconnue)."
+- id: AUX_VOIE-HAUTE
+  nom: Voie-Haute
+  type: AUX
+  cible: [31.0, 10.6]
+  rayon_km: 80
+  eau: aucune
+  altitude: [1800, 3000]
+  confiance: faible
+  note: "Pôle orthodoxe (pèlerinage d'altitude vers Hae Ts'i-K'uré, RT_048) : crête voisine du col P'etsul-!ama."
+- id: AUX_HAE-KUMEL
+  nom: Hae K'umel
+  type: AUX
+  cible: [38.8, 13.3]
+  rayon_km: 60
+  eau: aucune
+  altitude: [1500, 3000]
+  confiance: faible
+  note: "Temple du Foyer-Origine des K'umal : vallées de K'umal-Naqra."
+
+# ----------------------------------------------------------------- extrémités = lieux existants
+- id: AUX_KUKEDA-MUKIRI
+  nom: Kù-kèdà yì Mù-Kíri
+  type: AUX
+  meme_que: LUR_KU-JALIMA-RIR_SO
+  confiance: moyenne
+  note: "« cité du Mù-Kíri » : chantiers Mù-Kíri du quartier Kù-kíri-jálima de Ku-jálima-rir (LIEUX)."
+- id: AUX_FORGES-DES-COQUES
+  nom: Forges-des-Coques (Mù-Kíri)
+  type: AUX
+  meme_que: LUR_KU-JALIMA-RIR_SO
+  confiance: moyenne
+  note: "Institution tutélaire Mù-Kíri (chantiers navals de Ku-jálima-rir)."
+- id: AUX_KISRALOM
+  nom: Kisralom
+  type: AUX
+  meme_que: LUR_KRALEKH-AKTRIK_NO
+  confiance: haute
+  note: "Tribunal, siège à Kralekh-Aktrik."
+- id: AUX_CERCLE-SANS-JURON
+  nom: Cercle-Sans-Juron
+  type: AUX
+  meme_que: LUR_KRALEKH-AKTRIK_NO
+  confiance: faible
+  note: "« pôle doctrinal cristallisé chez les Kisrali » : rattaché au siège Kisrali."
+- id: AUX_DIMLAS
+  nom: Dimlāš
+  type: AUX
+  meme_que: LUR_ABNAQIL_NE
+  confiance: haute
+  note: "Composante Dimlāš-Abnaq d'Abnaqil."
+- id: AUX_VOIE-PURE
+  nom: Voie-Pure-des-Vallées
+  type: AUX
+  meme_que: LUR_ABNIQA_NE
+  confiance: haute
+  note: "Siège aux quais lettrés d'Abnīqa."
+- id: AUX_HAMUQAS
+  nom: Ḥamūqaš
+  type: AUX
+  meme_que: LUR_ABNIQA_NE
+  confiance: haute
+  note: "Temple Ḥamūqaš, composante d'Abnīqa."
+- id: AUX_TAMA-ARA
+  nom: "!Tama-|'Ara"
+  type: AUX
+  meme_que: LUR_TAMAR-KHU_CENTRE
+  confiance: haute
+  note: "Ordre religieux, siège à !Tamar-||Khu."
+- id: AUX_VOIE-COMPTABLE
+  nom: Voie-Comptable
+  type: AUX
+  meme_que: LUR_PI-KURE-NESHA_SE
+  confiance: moyenne
+  note: "Pôle réformateur K'uré-Neša-ña : P'i-K'uré-Neša (Voie Comptable)."
+- id: AUX_PORTS-TNAYEL
+  nom: Ports T'nayel SE
+  type: AUX
+  meme_que: LUR_TNAYA-HAEM_SE
+  confiance: moyenne
+  note: "Façade portuaire T'nayel : T'naya-Ḥaem."
+- id: AUX_SANUBE-MUSUKU
+  nom: Sa-nùbè yì Mù-Sùkú
+  type: AUX
+  meme_que: ZRS_KU-SUKU-NA_SC
+  confiance: moyenne
+  note: "Temple du Sanctuaire du Fond : pesée rituelle au banc Ku-Sùkú-nà."
+- id: AUX_PORTS-EXTERNES-NO
+  nom: Ports externes NO
+  type: AUX
+  cible: [-22.0, 34.5]
+  rayon_km: 30
+  eau: en_mer
+  confiance: faible
+  note: "Marchands océaniques externes : point de sortie au NO de la carte."

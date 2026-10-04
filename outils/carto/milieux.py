@@ -199,10 +199,13 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     cl[oasis] = CODE["oasis"]
 
     # --- littoral rocheux ------------------------------------------------------------------
+    # pente à l'échelle réelle de la latitude ; hauteur mesurée au-dessus de l'eau voisine
+    # (la mer Halakhel est à rel.L, sous le niveau de l'océan)
     gy, gx = np.gradient(h, g.km_px_eq * 1000)
-    pente = np.hypot(gx, gy)
+    pente = np.hypot(gx, gy) / np.cos(np.radians(LAT))
     d_eau_sal = np.minimum(d_ocean, d_mer)
-    roche = terre & (d_eau_sal < 4) & ((pente > 0.035) | (h > 120))
+    h_eau = np.where(d_mer < d_ocean, h - rel.L, h)
+    roche = terre & (d_eau_sal < 4) & ((pente > 0.035) | (h_eau > 120))
     cl[roche] = CODE["littoral_rocheux"]
 
     # --- îles arides -----------------------------------------------------------------------
@@ -220,7 +223,8 @@ def classer_milieux(rel, p, P, T, hy, log=print):
     cl[recif] = CODE["recif_corallien"]
 
     # --- lissage ------------------------------------------------------------------------
-    garde = np.isin(cl, [CODE["oasis"], CODE["glacier"], CODE["foret_berge"], CODE["eaux_lacustres"]])
+    garde = np.isin(cl, [CODE["oasis"], CODE["glacier"], CODE["foret_berge"], CODE["eaux_lacustres"],
+                         CODE["littoral_rocheux"]])   # liseré étroit : protégé du lissage (v0.5)
     cl = filtre_majoritaire(cl, terre & ~garde, 5, codes=[i for i in range(len(MILIEUX)) if i not in (CODE["oasis"], CODE["eaux_lacustres"])])
     A_f = g.aire_km2() * rel.fondu
     stats = {MILIEUX[c][0]: float((A_f[cl == c]).sum()) for c in range(len(MILIEUX))}

@@ -1,5 +1,5 @@
 {
- "version": "0.4",
+ "version": "0.5",
  "halakhel": {
   "superficie_km2": 1280030,
   "emprise": {
@@ -1282,10 +1282,18 @@
    "noms": [
     "Abnīqa"
    ],
-   "longueur_dessinee_km": 262,
+   "longueur_dessinee_km": 386,
    "amont": [
     [
      30.78,
+     27.6
+    ],
+    [
+     28.95,
+     27.62
+    ],
+    [
+     28.95,
      27.6
     ]
    ],
@@ -1293,15 +1301,23 @@
     [
      28.3,
      27.6
+    ],
+    [
+     28.5,
+     28.0
+    ],
+    [
+     28.52,
+     27.32
     ]
    ],
    "source": [
-    30.78,
-    27.6
+    28.95,
+    27.62
    ],
    "embouchure": [
-    28.3,
-    27.6
+    28.52,
+    27.32
    ],
    "trace_dessine": [
     [
@@ -1903,7 +1919,7 @@
    "noms": [
     "Ehukhtal"
    ],
-   "longueur_dessinee_km": 918,
+   "longueur_dessinee_km": 919,
    "amont": [
     [
      -0.1,
@@ -1912,7 +1928,7 @@
    ],
    "aval": [
     [
-     -7.69,
+     -7.7,
      27.22
     ]
    ],
@@ -1921,7 +1937,7 @@
     24.5
    ],
    "embouchure": [
-    -7.69,
+    -7.7,
     27.22
    ],
    "trace_dessine": [
@@ -1938,159 +1954,159 @@
      24.728
     ],
     [
-     -0.536,
+     -0.537,
      24.927
     ],
     [
-     -0.74,
-     25.001
+     -0.741,
+     25.002
     ],
     [
-     -0.942,
+     -0.943,
      25.041
     ],
     [
-     -1.14,
+     -1.141,
      25.072
     ],
     [
-     -1.345,
-     25.062
+     -1.347,
+     25.061
     ],
     [
-     -1.551,
+     -1.553,
      24.988
     ],
     [
-     -1.774,
+     -1.776,
      25.009
     ],
     [
-     -1.981,
-     25.097
-    ],
-    [
-     -2.204,
-     25.067
-    ],
-    [
-     -2.418,
+     -1.983,
      25.098
     ],
     [
-     -2.604,
-     25.205
+     -2.206,
+     25.068
     ],
     [
-     -2.83,
+     -2.42,
+     25.099
+    ],
+    [
+     -2.606,
+     25.206
+    ],
+    [
+     -2.833,
      25.185
     ],
     [
-     -3.03,
-     25.278
+     -3.032,
+     25.279
     ],
     [
-     -3.213,
-     25.376
+     -3.216,
+     25.377
     ],
     [
-     -3.395,
-     25.473
+     -3.398,
+     25.474
     ],
     [
-     -3.586,
-     25.558
+     -3.589,
+     25.559
     ],
     [
-     -3.789,
-     25.614
+     -3.793,
+     25.615
     ],
     [
-     -4.003,
+     -4.006,
      25.622
     ],
     [
-     -4.209,
+     -4.213,
      25.68
     ],
     [
-     -4.422,
+     -4.426,
      25.675
     ],
     [
-     -4.644,
+     -4.648,
      25.644
     ],
     [
-     -4.847,
+     -4.851,
      25.708
     ],
     [
-     -5.053,
+     -5.057,
      25.753
     ],
     [
-     -5.261,
-     25.717
+     -5.266,
+     25.716
     ],
     [
-     -5.47,
-     25.67
+     -5.475,
+     25.669
     ],
     [
-     -5.684,
-     25.72
+     -5.689,
+     25.721
     ],
     [
-     -5.872,
-     25.798
+     -5.877,
+     25.801
     ],
     [
-     -6.031,
-     25.923
+     -6.036,
+     25.925
     ],
     [
-     -6.229,
-     25.998
+     -6.234,
+     26.001
     ],
     [
-     -6.397,
-     26.114
+     -6.401,
+     26.117
     ],
     [
-     -6.506,
-     26.286
+     -6.51,
+     26.289
     ],
     [
-     -6.693,
-     26.386
+     -6.698,
+     26.389
     ],
     [
-     -6.876,
-     26.49
+     -6.881,
+     26.494
     ],
     [
-     -7.0,
-     26.648
+     -7.005,
+     26.652
     ],
     [
-     -7.126,
-     26.804
+     -7.131,
+     26.808
     ],
     [
-     -7.222,
-     26.987
+     -7.229,
+     26.991
     ],
     [
-     -7.384,
-     27.113
+     -7.395,
+     27.115
     ],
     [
-     -7.621,
+     -7.632,
      27.164
     ],
     [
-     -7.687,
+     -7.697,
      27.218
     ]
    ]
@@ -3084,7 +3100,7 @@
     6.4
    ],
    "cible_mm": 2200,
-   "modele_mm": 2232
+   "modele_mm": 2227
   },
   {
    "lieu": "bassin Mopámà",
@@ -3093,7 +3109,7 @@
     10.0
    ],
    "cible_mm": 1900,
-   "modele_mm": 1873
+   "modele_mm": 1869
   },
   {
    "lieu": "bassin Tùmázì",
@@ -3102,7 +3118,7 @@
     7.6
    ],
    "cible_mm": 1500,
-   "modele_mm": 1492
+   "modele_mm": 1098
   },
   {
    "lieu": "plateaux qoyra",
@@ -3111,7 +3127,7 @@
     9.5
    ],
    "cible_mm": 1300,
-   "modele_mm": 1263
+   "modele_mm": 972
   },
   {
    "lieu": "désert du Sumdan",
@@ -3120,7 +3136,7 @@
     31.0
    ],
    "cible_mm": 50,
-   "modele_mm": 59
+   "modele_mm": 60
   },
   {
    "lieu": "façade méditerranéenne N (djebel Akhdar)",
@@ -3129,7 +3145,7 @@
     32.6
    ],
    "cible_mm": 650,
-   "modele_mm": 650
+   "modele_mm": 649
   },
   {
    "lieu": "côte atlantique NO",
@@ -3138,7 +3154,7 @@
     33.5
    ],
    "cible_mm": 450,
-   "modele_mm": 614
+   "modele_mm": 616
   },
   {
    "lieu": "côte Mer Rouge",
@@ -3156,7 +3172,7 @@
     21.3
    ],
    "cible_mm": 750,
-   "modele_mm": 630
+   "modele_mm": 642
   },
   {
    "lieu": "côte océan de l'Est",
@@ -3165,7 +3181,7 @@
     5.0
    ],
    "cible_mm": 550,
-   "modele_mm": 574
+   "modele_mm": 577
   },
   {
    "lieu": "versant sud de k'ara (humide)",
@@ -3174,7 +3190,7 @@
     17.6
    ],
    "cible_mm": 1000,
-   "modele_mm": 768
+   "modele_mm": 689
   },
   {
    "lieu": "versant sud de k'ara, Ennedi",
@@ -3183,7 +3199,7 @@
     14.5
    ],
    "cible_mm": 900,
-   "modele_mm": 904
+   "modele_mm": 901
   },
   {
    "lieu": "piémont nord de k'ara (200-600)",
@@ -3201,7 +3217,7 @@
     30.3
    ],
    "cible_mm": 90,
-   "modele_mm": 77
+   "modele_mm": 76
   },
   {
    "lieu": "rive sud de l'Halakhel (désertique)",
@@ -3210,7 +3226,7 @@
     23.1
    ],
    "cible_mm": 110,
-   "modele_mm": 142
+   "modele_mm": 140
   },
   {
    "lieu": "versant atlantique de halekh",
@@ -3219,7 +3235,7 @@
     20.6
    ],
    "cible_mm": 750,
-   "modele_mm": 747
+   "modele_mm": 744
   },
   {
    "lieu": "versant SO de lóngò (humide)",
@@ -3228,7 +3244,7 @@
     19.2
    ],
    "cible_mm": 900,
-   "modele_mm": 933
+   "modele_mm": 931
   },
   {
    "lieu": "versant NE de lóngò (semi-aride)",
@@ -3237,7 +3253,7 @@
     17.6
    ],
    "cible_mm": 420,
-   "modele_mm": 397
+   "modele_mm": 396
   },
   {
    "lieu": "façade méditerranéenne NE",
@@ -3255,7 +3271,7 @@
     7.0
    ],
    "cible_mm": 320,
-   "modele_mm": 433
+   "modele_mm": 420
   },
   {
    "lieu": "piémonts NO (semi-aride froid)",
@@ -3264,7 +3280,7 @@
     31.6
    ],
    "cible_mm": 650,
-   "modele_mm": 474
+   "modele_mm": 473
   },
   {
    "lieu": "déserts orientaux (NE)",
@@ -3300,7 +3316,25 @@
     9.6
    ],
    "cible_mm": 300,
-   "modele_mm": 204
+   "modele_mm": 210
+  },
+  {
+   "lieu": "versant humide O des plateaux SE (cols T'araq-ɨnkh, Q'usa-||ema)",
+   "pos": [
+    35.0,
+    8.8
+   ],
+   "cible_mm": 2200,
+   "modele_mm": 2877
+  },
+  {
+   "lieu": "rive S du Tùmázì (haute futaie, FOR_S)",
+   "pos": [
+    24.5,
+    6.0
+   ],
+   "cible_mm": 1800,
+   "modele_mm": 2456
   }
  ],
  "climat": {
@@ -3490,8 +3524,8 @@
     "part_surface_pct": {
      "hors_arin": 7.9,
      "hiver_blanc": 17.7,
-     "hiver_gris": 17.5,
-     "hiver_jaune": 57.0
+     "hiver_gris": 17.6,
+     "hiver_jaune": 56.8
     }
    },
    "!Okheti": {
@@ -3508,9 +3542,9 @@
      727
     ],
     "part_surface_pct": {
-     "hors_arin": 8.9,
+     "hors_arin": 9.3,
      "hiver_blanc": 24.4,
-     "hiver_jaune": 66.7
+     "hiver_jaune": 66.2
     }
    },
    "||Urumati-k'ara": {
@@ -3529,8 +3563,8 @@
     "part_surface_pct": {
      "hors_arin": 5.4,
      "hiver_blanc": 24.2,
-     "hiver_gris": 25.4,
-     "hiver_jaune": 45.0
+     "hiver_gris": 24.9,
+     "hiver_jaune": 45.5
     }
    },
    "GEO_ORO_URUMATI_KARA (segment 24.4, 13.3)": {
@@ -3547,9 +3581,9 @@
      2105
     ],
     "part_surface_pct": {
-     "hors_arin": 75.6,
-     "hiver_gris": 21.0,
-     "hiver_jaune": 3.4
+     "hors_arin": 75.4,
+     "hiver_gris": 20.7,
+     "hiver_jaune": 3.9
     }
    },
    "||Urumati-lóngò": {
@@ -3641,16 +3675,16 @@
      2034
     ],
     "part_surface_pct": {
-     "hors_arin": 41.6,
+     "hors_arin": 40.9,
      "hiver_blanc": 0.5,
-     "hiver_gris": 31.9,
-     "hiver_jaune": 26.0
+     "hiver_gris": 30.0,
+     "hiver_jaune": 28.5
     }
    }
   }
  },
  "statistiques": {
-  "version": "0.4",
+  "version": "0.5",
   "terres_emergees_beliet_km2": 17605877,
   "mer_halakhel_km2": 1280030,
   "lacs_km2": {
@@ -3660,36 +3694,36 @@
   },
   "altitude_max_m": 5350,
   "milieux_km2": {
-   "desert_pierreux": 2757911,
-   "desert_sableux": 271033,
-   "dunes_littorales": 203,
-   "oasis": 7080,
-   "steppe_piemont": 5515645,
-   "fourre_cotier_sec": 425678,
-   "depression_saline": 186963,
-   "cote_desertique": 25913,
-   "recif_corallien": 39473,
-   "littoral_rocheux": 12752,
-   "plaine_alluviale": 161392,
-   "foret_montagne": 545481,
-   "prairie_altitude": 226228,
-   "zone_periglaciaire": 20754,
+   "desert_pierreux": 2913439,
+   "desert_sableux": 271558,
+   "dunes_littorales": 89,
+   "oasis": 7297,
+   "steppe_piemont": 5563720,
+   "fourre_cotier_sec": 420829,
+   "depression_saline": 192247,
+   "cote_desertique": 24993,
+   "recif_corallien": 39214,
+   "littoral_rocheux": 20990,
+   "plaine_alluviale": 165514,
+   "foret_montagne": 518185,
+   "prairie_altitude": 226194,
+   "zone_periglaciaire": 20768,
    "glacier": 1516,
-   "foret_tropicale_humide": 3813824,
-   "herbage_arbore": 3332420,
-   "foret_berge": 181643,
-   "foret_maree": 29354,
-   "zone_humide_lacustre": 64442,
+   "foret_tropicale_humide": 3587691,
+   "herbage_arbore": 3370227,
+   "foret_berge": 181275,
+   "foret_maree": 30440,
+   "zone_humide_lacustre": 63516,
    "eaux_lacustres": 165502,
-   "ile_aride": 25233
+   "ile_aride": 25237
   },
   "facies_arin_km2": {
-   "hors_arin": 12395856,
+   "hors_arin": 12393316,
    "hiver_blanc": 377531,
-   "hiver_gris": 842093,
-   "hiver_jaune": 3097105,
+   "hiver_gris": 836511,
+   "hiver_jaune": 3105677,
    "hiver_vapeur": 1705304,
-   "hiver_pluvieux_cotier": 468017
+   "hiver_pluvieux_cotier": 467566
   }
  },
  "cols": [
@@ -5790,6 +5824,120 @@
    "note": ""
   },
   {
+   "geo_id": null,
+   "nom": "falaises calcaires de la passe Khreth-na-Serek",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 60 km, dénivelé 170 m",
+   "coordonnees": [
+    -1.85,
+    29.8
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "rives du goulet Hlom-khetal (calcaire blanc)",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 75 km, dénivelé 110 m",
+   "coordonnees": [
+    -7.2,
+    27.7
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "goulet estuarien d'Imekh-stom",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 55 km, dénivelé 120 m",
+   "coordonnees": [
+    0.25,
+    25.9
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "rias basaltiques de Cherbekh-khem",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 70 km, dénivelé 150 m",
+   "coordonnees": [
+    2.7,
+    25.95
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "versants de la ria Tawālmaz (pierre claire)",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 110 km, dénivelé 130 m",
+   "coordonnees": [
+    13.8,
+    25.05
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "cap de Qabḍ-ār-Ǧanūb (golfe de Koufra)",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 50 km, dénivelé 110 m",
+   "coordonnees": [
+    22.6,
+    23.75
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "cap de Ḥamaḍ-Rās",
+   "nature": "rivage escarpé (v0.5) : centre, rayon 45 km, dénivelé 100 m",
+   "coordonnees": [
+    28.15,
+    29.35
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": null,
+   "nom": "delta du Mopámà",
+   "nature": "plaine deltaïque basse (v0.5) : contour",
+   "coordonnees": [
+    [
+     0.3,
+     5.68
+    ],
+    [
+     0.45,
+     6.1
+    ],
+    [
+     0.85,
+     6.5
+    ],
+    [
+     1.35,
+     6.75
+    ],
+    [
+     1.9,
+     6.62
+    ],
+    [
+     2.2,
+     6.38
+    ],
+    [
+     2.1,
+     6.15
+    ],
+    [
+     1.2,
+     5.9
+    ],
+    [
+     0.6,
+     5.6
+    ]
+   ],
+   "note": ""
+  },
+  {
    "geo_id": "GEO_LAC_TUMAZI",
    "nom": "Tùmázì",
    "nature": "contour dessiné (ajusté à la superficie canonique)",
@@ -6655,6 +6803,54 @@
    "note": ""
   },
   {
+   "geo_id": "GEO_FLV_ABNUHIL_ABNIQA",
+   "nom": "Abnīqa — bras 1",
+   "nature": "bras ou chenal, amont → aval",
+   "coordonnees": [
+    [
+     28.95,
+     27.62
+    ],
+    [
+     28.8,
+     27.74
+    ],
+    [
+     28.65,
+     27.88
+    ],
+    [
+     28.5,
+     28.0
+    ]
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": "GEO_FLV_ABNUHIL_ABNIQA",
+   "nom": "Abnīqa — bras 2",
+   "nature": "bras ou chenal, amont → aval",
+   "coordonnees": [
+    [
+     28.95,
+     27.6
+    ],
+    [
+     28.8,
+     27.48
+    ],
+    [
+     28.65,
+     27.38
+    ],
+    [
+     28.52,
+     27.32
+    ]
+   ],
+   "note": ""
+  },
+  {
    "geo_id": "GEO_FLV_MADIKH",
    "nom": "|Na-madikh / Madīlan",
    "nature": "tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON",
@@ -6846,6 +7042,30 @@
     [
      22.75,
      20.45
+    ]
+   ],
+   "note": ""
+  },
+  {
+   "geo_id": "GEO_FLV_HAWQAL_RA",
+   "nom": "|Na-khuwel-ra — bras 1",
+   "nature": "bras ou chenal, amont → aval",
+   "coordonnees": [
+    [
+     22.6,
+     18.7
+    ],
+    [
+     23.2,
+     19.4
+    ],
+    [
+     23.4,
+     20.2
+    ],
+    [
+     23.3,
+     20.8
     ]
    ],
    "note": ""

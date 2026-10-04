@@ -1,6 +1,6 @@
 # Le Beliet — carte physique
 
-Carte topographique, des milieux (biomes) et du climat du Beliet, version 0.4.
+Carte topographique, des milieux (biomes) et du climat du Beliet, avec les lieux et les routes du corpus, version 0.5.
 
 ![Carte des milieux](carte/beliet_carte_milieux.png)
 
@@ -12,10 +12,13 @@ Carte topographique, des milieux (biomes) et du climat du Beliet, version 0.4.
 | `carte/beliet_carte_relief.png` | même carte, teintes d'altitude à la place des milieux | regarder le relief |
 | `carte/beliet_carte_climat.png` | précipitations annuelles, isohyètes et hivers du \|'Arin (Blanc, Gris, Jaune, Vapeur) | regarder le climat |
 | `carte/beliet_carte_milieux.svg`, `_relief.svg`, `_climat.svg` | les trois cartes **en calques** (Inkscape) | retoucher à la main, ajouter des villes |
-| `carte/beliet_carte_ascii.md` | **carte texte** : relief, eaux, milieux, cols, répertoire des lieux avec coordonnées | corpus, agents, usages sans image |
+| `carte/beliet_carte_lieux.png` et `.svg` | **lieux et routes** : 56 cités, 18 zones secondaires, 74 routes tracées sur la géographie, cols empruntés | voir où sont les villes et par où passent les routes |
+| `LIEUX_ET_ROUTES.md` | positions et caractéristiques physiques des lieux ; tracé, longueur, durée, altitudes, cols et saisons des routes ; écarts avec le corpus et solutions | valider les placements, corriger LIEUX et ROUTES |
+| `carte/beliet_carte_ascii.md` | **carte texte** : relief, eaux, milieux, cols, répertoire des lieux, lieux et routes du corpus, avec coordonnées | corpus, agents, usages sans image |
 | `carte/sig/` | données géographiques (GeoJSON, GeoTIFF, cartes d'altitude) | outils SIG (QGIS), Azgaar, futures cartes interactives |
 | `donnees/parametres_carte.yaml` | **toutes les décisions de placement** (chaînes, mer, lacs, fleuves, climat) | modifier la géographie |
 | `donnees/cols.yaml` | positions calculées des **48 cols** (altitudes du registre) | modifier ou recalculer les cols |
+| `donnees/lieux.yaml`, `donnees/routes.yaml` | cible raisonnée et contraintes de chaque lieu ; réglages de tracé des routes | déplacer un lieu, imposer une étape |
 | `ANALYSE_COHERENCE.md` | incohérences du corpus et choix retenus | valider ou corriger les choix |
 | `ALIGNEMENT_CORPUS.md` | **tout ce que la carte apporte au corpus** : positions, mesures, ajouts, corrections, impossibilités | faire remonter les décisions dans le corpus |
 | `carte/sig/beliet_mesures.json` | les mêmes mesures et positions, lisibles par machine | agent de gestion du corpus |
@@ -65,6 +68,8 @@ La carte est en projection Web Mercator, la même que votre contour d'origine. L
 | `beliet_altitude.tif`, `beliet_milieux.tif`, `beliet_pluie_mm.tif` | rasters géoréférencés (EPSG:3857) ; altitude à demi-résolution, pluie au quart |
 | `beliet_facies_arin.tif`, `beliet_temperature_hiver.tif` | faciès d'hiver du \|'Arin (codes dans `beliet_climat_codes.json`) ; température moyenne du cœur de l'hiver (°C × 10) |
 | `beliet_climat.geojson` | polygones des faciès du \|'Arin et isohyètes |
+| `beliet_lieux.geojson`, `beliet_routes.geojson` | lieux (points, caractéristiques physiques) et routes (lignes, mesures) |
+| `beliet_lieux_routes.json` | lieux et routes complets : positions, caractéristiques, écarts avec le corpus, tracés, mesures |
 | `beliet_altitude_16bits.png` | altitude en niveaux de gris 16 bits (demi-résolution) : valeur = altitude + 10 000 m |
 | `beliet_altitude_azgaar.png` | altitude au format attendu par Azgaar |
 | `beliet_milieux_codes.json` | correspondance code → milieu → couleur |
@@ -78,10 +83,11 @@ python3 outils/generer_carte.py              # complet, ~9 min
 python3 outils/generer_carte.py --reprendre  # réutilise le relief si seuls le climat, les milieux ou l'habillage changent
 python3 outils/placer_cols.py                # recalcule les positions des 48 cols (après une génération)
 python3 outils/mesures_corpus.py             # met à jour ALIGNEMENT_CORPUS.md §8 et carte/sig/beliet_mesures.json
-python3 outils/carte_ascii.py                # régénère la carte texte (après mesures_corpus.py)
+python3 outils/lieux_routes.py               # place les lieux, trace les routes, carte des lieux, LIEUX_ET_ROUTES.md
+python3 outils/carte_ascii.py                # régénère la carte texte (après mesures_corpus.py et lieux_routes.py)
 ```
 
-Après un changement de relief, relancez dans l'ordre : `generer_carte.py`, `placer_cols.py` (si les chaînes ont bougé), de nouveau `generer_carte.py`, puis `mesures_corpus.py` et `carte_ascii.py`.
+Après un changement de relief, relancez dans l'ordre : `generer_carte.py`, `placer_cols.py` (si les chaînes ont bougé), de nouveau `generer_carte.py`, puis `mesures_corpus.py`, `lieux_routes.py` et `carte_ascii.py`.
 
 Le programme télécharge les tuiles d'altitude et les tracés fluviaux réels au premier lancement. Il les garde ensuite dans `outils/cache/` (fichiers non versionnés).
 

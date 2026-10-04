@@ -219,6 +219,16 @@ halakhel:
   rias_ouest_de_lon: 0.0         # rias et goulets des façades HKL_NO / HKL_O / HKL_SO
   pente_glacis_m_par_km: 6       # glacis de la rive S (HKL_S) et de l'interfluve
   largeur_glacis_km: 200
+  # v0.5 — rivages escarpés : falaises, caps et rias là où LIEUX place un littoral rocheux (passe lieux-routes).
+  # [PROPOSITION] ; le glacis reste la règle ailleurs (HKL_S « glacis »). hauteur_m = dénivelé de la côte.
+  rivages_escarpes:
+    - {nom: "falaises calcaires de la passe Khreth-na-Serek", centre: [-1.85, 29.8], rayon_km: 60, hauteur_m: 170}
+    - {nom: "rives du goulet Hlom-khetal (calcaire blanc)", centre: [-7.2, 27.7], rayon_km: 75, hauteur_m: 110}
+    - {nom: "goulet estuarien d'Imekh-stom", centre: [0.25, 25.9], rayon_km: 55, hauteur_m: 120}
+    - {nom: "rias basaltiques de Cherbekh-khem", centre: [2.7, 25.95], rayon_km: 70, hauteur_m: 150}
+    - {nom: "versants de la ria Tawālmaz (pierre claire)", centre: [13.8, 25.05], rayon_km: 110, hauteur_m: 130}
+    - {nom: "cap de Qabḍ-ār-Ǧanūb (golfe de Koufra)", centre: [22.6, 23.75], rayon_km: 50, hauteur_m: 110}
+    - {nom: "cap de Ḥamaḍ-Rās", centre: [28.15, 29.35], rayon_km: 45, hauteur_m: 100}
   axe_etiquette: [[-4.0, 28.1], [1.0, 28.0], [6.0, 27.6], [11.0, 27.4], [16.0, 27.0], [21.0, 26.4]]
   pos_qibsan: [25.0, 27.3]
 
@@ -229,6 +239,17 @@ detroits_et_debouches:           # points, pour l'étiquetage
   - {geo_id: GEO_DET_ABNIQA,       nom: Abnīqa,          pos: [28.35, 27.6]}
   - {geo_id: GEO_DET_HAWQIL,       nom: Ḥawqil,          pos: [26.85, 25.35]}
   - {geo_id: GEO_DET_SAFAQIL_PASSE, nom: Šafāqil,        pos: [31.2, 31.5]}
+
+# -----------------------------------------------------------------------------
+#  PLAINES DELTAÏQUES (v0.5) — deltas océaniques bas et marécageux [PROPOSITION]
+#  Delta du Mopámà (GEO_DLT_MOPAMA) : « delta de Jáli-Fè », mangroves de Ku-jálima-rir (GEO §V.4).
+# -----------------------------------------------------------------------------
+plaines_deltaiques:
+  - nom: delta du Mopámà
+    contour: [[0.3, 5.68], [0.45, 6.1], [0.85, 6.5], [1.35, 6.75], [1.9, 6.62], [2.2, 6.38], [2.1, 6.15], [1.2, 5.9], [0.6, 5.6]]
+    altitude_cote_m: 1.0
+    pente_m_par_km: 0.16
+    transition_km: 14
 
 # -----------------------------------------------------------------------------
 #  FONDU SUD — la découpe d'origine suivait des frontières politiques réelles.
@@ -563,6 +584,11 @@ fleuves:
     # [CANON] bras de décharge vers l'ouest, ~300 km, débouché deltaïque dans l'Halakhel
     trace: [[30.78, 27.6], [30.2, 27.66], [29.6, 27.64], [29.0, 27.6], [28.55, 27.6], [28.3, 27.6]]
     largeur: 3
+    # v0.5 — chenaux internes du cône deltaïque [CANON GEO §VI.1.3, sans tracé jusqu'ici] :
+    # Abnīṣar (NE, Ḥamūqa) et Tanīlḥa (SE, Damalim ; poste de Tanāqil) [PROPOSITION de tracé]
+    bras:
+      - [[28.95, 27.62], [28.8, 27.74], [28.65, 27.88], [28.5, 28.0]]
+      - [[28.95, 27.6], [28.8, 27.48], [28.65, 27.38], [28.52, 27.32]]
   - geo_id: GEO_FLV_MADIKH
     noms: ["|Na-madikh", "Madīlan"]
     # [CANON] versants N de k'ara, ~1 400 km, eaux rougeâtres, vallées encaissées, ria Tawālmaz (HKL_S)
@@ -704,6 +730,10 @@ calibration_pluies:
   - {lieu: "plaines du NE, aval du confluent", pos: [29.0, 18.5], mm: 90}
   - {lieu: "sud somalien (côte océan de l'Est)", pos: [42.5, 0.5], mm: 500}
   - {lieu: "plateau somalien (bras E-O de qoyra)", pos: [45.0, 9.6], mm: 300}
+  # v0.5 (passe lieux-routes) : deux points bornent des maxima orographiques hors de toute plage du corpus
+  # (jusqu'à 9 500 mm sur l'escarpement des cols T'araq-ɨnkh / Q'usa-||ema ; 3 800 mm sur la rive S du Tùmázì)
+  - {lieu: "versant humide O des plateaux SE (cols T'araq-ɨnkh, Q'usa-||ema)", pos: [35.0, 8.8], mm: 2200}
+  - {lieu: "rive S du Tùmázì (haute futaie, FOR_S)", pos: [24.5, 6.0], mm: 1800}
 
 # -----------------------------------------------------------------------------
 #  ÉTAGES ET HIVER |'ARIN (v0.4) — modèle physique calé sur le canon

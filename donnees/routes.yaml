@@ -1,0 +1,19 @@
+# =============================================================================
+#  ROUTES — réglages du tracé (passe « lieux et routes », v0.5)
+# =============================================================================
+#  Le tracé de chaque route (RESEAU_ROUTES.v3) est le chemin le plus rapide sur la carte, dans les modes
+#  déclarés par la route (outils/lieux_routes.py). Ce fichier ne contient que les exceptions :
+#    via         étapes obligatoires (cols) ajoutées aux passages du corpus
+#    via_corpus  variante calculée en plus du tracé optimal, pour vérifier une indication du corpus
+#    note        justification
+# =============================================================================
+routes:
+  RT_010:
+    via_corpus: [GEO_COL_014]
+    note: "Le corpus indique un col à 2 700-2 800 m ouvert de juin à octobre : T'iqur-ɨlkh (2 700 m, juin-octobre) est le seul col de ce profil sur la remontée de la Tanāḥil."
+  RT_066:
+    via_corpus: [LUR_STALOMAR-KOT_NO]
+    note: "Le corpus précise « accès par Stalomar-Kot et les pistes nord »."
+  RT_027:
+    via_corpus: [LUR_STAKHR-DUREK_NO]
+    note: "Rupture de charge déclarée à Stakhr-Durek."

@@ -13,8 +13,9 @@ Ce document recense tout ce que le chantier de carte a **décidé, mesuré, ajou
   1. `carte/sig/beliet_mesures.json` : mesures, positions et cols, lisibles par machine ; régénéré par `python3 outils/mesures_corpus.py`.
   2. `donnees/parametres_carte.yaml` et `donnees/cols.yaml` : décisions de placement.
   3. `carte/sig/beliet_geographie.geojson` : géométries (rivage réel de la mer, lacs, crêtes, fleuves, cols).
-- **Version de référence** : carte v0.4. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
-- **Carte texte** : `carte/beliet_carte_ascii.md` (relief, eaux, milieux, répertoire des lieux, cols ; une case = 0,5° × 0,5°).
+- **Version de référence** : carte v0.5. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
+- **Carte texte** : `carte/beliet_carte_ascii.md` (relief, eaux, milieux, répertoire des lieux, cols, lieux et routes du corpus ; une case = 0,5° × 0,5°).
+- **Lieux et routes** (v0.5) : `LIEUX_ET_ROUTES.md` (méthode, constats, solutions, tables), `carte/sig/beliet_lieux_routes.json`, `carte/beliet_carte_lieux.png` ; synthèse en §9 (ALN-130 à ALN-178).
 
 ---
 
@@ -32,7 +33,8 @@ Le corpus ne donne aucune coordonnée. La carte fixe désormais les positions su
 | ALN-006 | GEO_COL_001 à 048 | 48 cols | §5 et §8 | ajouter positions ; altitudes inchangées |
 | ALN-007 | GEO_DET_*, GEO_EST_*, GEO_DLT_* | Passes, goulets, estuaires, deltas | §8 | ajouter |
 | ALN-008 | GEO_GLF_KUJALIMARIR, GEO_GLF_JALONDU, GEO_ARC_LISEKDI | Sud-ouest atlantique | golfe de Guinée, à l'ouest du delta du Mopámà ; anse Jálondù sur la côte de l'actuel Ghana ; îlots au large (-2,4 à -0,45° E ; 4,5-4,95° N) | ajouter |
-| ALN-009 | GEO_ARC_STAURKHLOR | Staur-Khlōr | archipel du Cap-Vert réel ; Khlōr-Naw = Fogo (-24,38° ; 14,95°) | ajouter |
+| ALN-009 | GEO_ARC_STAURKHLOR | Staur-Khlōr | archipel du Cap-Vert réel ; Khlōr-Naw = Fogo (-24,38° ; 14,95°) ; les dix îles : ALN-137 | ajouter |
+| ALN-135 | LUR_*, ZRS_* | 56 cités, 18 zones secondaires, 21 extrémités de routes | `LIEUX_ET_ROUTES.md` table A ; `carte/sig/beliet_lieux_routes.json` (clé `lieux`) | ajouter coordonnées (v0.5) |
 
 ---
 
@@ -102,10 +104,12 @@ Segments de rivage recommandés pour placer les lieux de LIEUX, déduits des suf
 | HKL_N | passe Khreth-na-Serek (-1,9 à -1,6° E ; 29,6-30,2° N), golfe de Serek, puis rive nord jusqu'au golfe de Ghadamès (~9° E) | Khreth-na-Serek, Serékh-khem | Serékh-khem dans le golfe ou à l'entrée de la passe |
 | HKL_SO | rive sud du bassin occidental, de -6,5° à 3,5° E ; goulet Imekh-stom (0,0-0,55° E ; 25,35-26,5° N) | Imekh-stom, Akhileth (relais) | Akhileth « forestier » : l'étage forestier le plus proche est !Okheti, à ~150 km |
 | HKL_S | rive sud de 3,5° à ~26° E : Tidikelt, falaises du Tassili, golfe du Fezzan (ria Tawālmaz), péninsule du Haruj, golfe de Koufra | Cherbekh-khem (_NO : partie ouest, 2-5° E), Tawālmaz (_NE : ria, 12,8-14,6° E), Qabḍ-ār-Ǧanūb (_NE : partie est) | littoral rocheux (LIEUX) et glacis (index) combinés |
-| HKL_NE | rive nord du bassin oriental, golfe de Syrte → Qattara (15-28° E) | Qūrāš-Tanīqa, Qūrāš-Taniḥīl-Ramšūr, Ṣarīq | vallée amont de la Tanāḥil : piémonts N de k'ara, au sud-est |
-| HKL_E | côte orientale (26-28,5° E ; 25-29° N) : Abnīqa (28,35° ; 27,6°), Ḥawqil (26,85° ; 25,35°) | Abnaqil, Tanāḥil, Tanāqil, Abnīqa, Qabṣūr-Qibṣ, Ḥawqil | Maqbaṣ et Ṣaraq au nord-est |
+| HKL_NE | rive nord du bassin oriental, golfe de Syrte → Qattara (15-28° E) ; arrière-pays : bassin de l'Abnuḥīl | Qūrāš-Tanīqa, Qūrāš-Taniḥīl-Ramšūr, Ṣarīq, Ḥamaḍ-Rās, Qūrāš-Ṣafīḥ | v0.5 : la haute Tanāḥil est la gorge amont de l'Abay, au nord du prolongement SE de k'ara (ALN-136) ; Ṣarīq au marais de Ṣaraq ; Ḥamaḍ-Rās sur un cap (28,17° ; 29,31°) |
+| HKL_E | côte orientale (26-28,5° E ; 25-29° N) : Abnīqa (28,35° ; 27,6°), Ḥawqil (26,85° ; 25,35°) | Abnaqil, Tanāqil, Abnīqa, Qabṣūr-Qibṣ, Ḥawqil ; Tanāḥil (à la confluence Tanāḥil-Abnuḥīl, 32,55° ; 15,61°) | v0.5 : cône deltaïque d'Abnīqa à deux chenaux (Abnīṣar NE, Tanīlḥa SE, ALN-132), Abnaqil à l'apex |
 
 ---
+
+Positions retenues pour tous les lieux de ces façades : `LIEUX_ET_ROUTES.md` §2 et table A.
 
 ## 5. Les 48 cols
 
@@ -143,7 +147,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 | ID | Type | Objet | Constat | Décision de la carte | Action proposée |
 |---|---|---|---|---|---|
 | ALN-070 | IMPOSSIBILITÉ | Dimensions de l'Halakhel | « 1 800 × 600-900 km » est incompatible avec quatre autres contraintes : l'ancrage NO (§V.1, suffixes `_NO`), l'interfluve de 300 km, le portage de 3 jours et 1,35 M km² | ancrage NO + interfluve + superficie | remplacer les dimensions (ALN-030) |
-| ALN-071 | IMPOSSIBILITÉ | RT_046 Imekh-stom ↔ Ku-jálima-rir en « maritime_cabotage » seul | mer fermée | — | ajouter un segment `terrestre_portage` |
+| ALN-071 | IMPOSSIBILITÉ | RT_046 Imekh-stom ↔ Ku-jálima-rir en « maritime_cabotage » seul | mer fermée | — | ajouter un segment `terrestre_portage` (275 km, confirmé en v0.5 ; dix autres routes dans le même cas : ALN-172) |
 | ALN-072 | IMPOSSIBILITÉ | Gel de l'Halakhel (§III) | mer à −20 m, 23-31° N ; Tw des rives > 10 °C (ALN-117) | non représenté ; Hiver de Vapeur sur la carte du climat | requalifier (brouillards, givre de rive) |
 | ALN-073 | IMPOSSIBILITÉ | Buhlela « sources hors-Beliet E » | à l'est se trouve la mer Rouge | Atbara/Tekezé | requalifier (« sources aux confins NE de qoyra ») |
 | ALN-074 | CONFLIT TRANCHÉ | \|'Ara-Sukhì : k'ara ou lóngò | §I contre sources de l'Imikhrel | k'ara (registre) | corriger la mention « (\|\|Urumati-lóngò) » des sources de l'Imikhrel |
@@ -153,9 +157,9 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 | ALN-078 | CONFLIT TRANCHÉ | Tawālmaz « zone nord-centrale côtière » | la Madīlan vient du sud | ria sur la rive S (golfe du Fezzan) | corriger le libellé |
 | ALN-079 | CONFLIT TRANCHÉ | HKL_NO « rias/goulets NO (Ehukhtal/Imikhrel) » | Imekh-stom est l'entrée SO | Imikhrel au SO | corriger l'index des façades |
 | ALN-080 | CONFLIT TRANCHÉ | Limites des bassins Mopámà et Tùmázì | « E : k'ara (piémonts) » ; « E : piémonts qoyra » | Mopámà central, Tùmázì au Sud-Centre (22-27,7° E) | assouplir les deux limites E |
-| ALN-081 | CONFLIT TRANCHÉ | Mangroves au bord du Mopámà | Ku-Bèláà, Mázì-Dúm en `foret_maree`, lac à 800 m | la façade MOP_SO inclut l'estuaire de l'émissaire, à ~650 km | annoter MOP_SO |
-| ALN-082 | CONFLIT TRANCHÉ | RT_029, RT_047 Mù-dárhòbì / côte SO ↔ Tùmázì (fluvial + lacustre) | ~2 000 km entre les bassins | voie Bénoué + portage + affluent occidental du lac | annoter les routes (ajouter le portage) |
-| ALN-083 | CONFLIT TRANCHÉ | Deux sens de « Tanāḥil » | affluent des plateaux SE (§VI) ou vallée des piémonts N de k'ara (§V.2, LIEUX) | fleuve = premier sens ; villes = second | distinguer deux noms |
+| ALN-081 | CONFLIT TRANCHÉ | Mangroves au bord du Mopámà | Ku-Bèláà, Mázì-Dúm en `foret_maree`, lac à 800 m | la façade MOP_SO inclut l'estuaire de l'émissaire, à ~650 km ; v0.5 : les deux cités sont dans les mangroves du delta (ALN-131) | annoter MOP_SO |
+| ALN-082 | CONFLIT TRANCHÉ | RT_029, RT_047 Mù-dárhòbì / côte SO ↔ Tùmázì (fluvial + lacustre) | ~2 000 km entre les bassins | voie Bénoué + portage + affluent occidental du lac ; v0.5 : portage mesuré de ~440 km (RT_047) ; RT_029 : ALN-166 | annoter les routes (ajouter le portage) |
+| ALN-083 | CONFLIT TRANCHÉ | Deux sens de « Tanāḥil » | affluent des plateaux SE (§VI) ou vallée des piémonts N de k'ara (§V.2, LIEUX) | **résolu en v0.5 (ALN-136)** : la haute Tanāḥil est la gorge amont du fleuve, au nord du prolongement SE de k'ara ; un seul sens | garder un seul nom ; préciser la position |
 | ALN-084 | CONFLIT TRANCHÉ | ATL_INS « ~40 îles : dunes stabilisées, volcans éteints... » | phrase des îles de l'Halakhel ; Staur-Khlōr = 10 îles | — | corriger l'index |
 | ALN-085 | CONFLIT TRANCHÉ | Registre : GEO_EXT_ATLANTIQUE porte la forme « Jálondù » | doublon avec GEO_GLF_JALONDU | — | corriger le registre |
 | ALN-086 | CONFLIT TRANCHÉ | Orientation de lóngò | « NO-SE » | conservée (nœud !Okheti → Jos) ; versants SO humides, NE semi-arides | conserver |
@@ -202,7 +206,7 @@ Effets sur la carte v0.4 : forêt de montagne de 840 000 à ~550 000 km² (étag
 
 ## 7. Historique des positions (versions caduques à ne pas reporter)
 
-| Élément | v0.1 | v0.2 (abandonnée) | v0.3 | v0.3.1 à v0.4 (référence) |
+| Élément | v0.1 | v0.2 (abandonnée) | v0.3 | v0.3.1 à v0.5 (référence) |
 |---|---|---|---|---|
 | Halakhel | 6-28° E, 23,5-31,5° N, bras des chotts | -11,5-28° E, bande coupée en deux | -8-28,5° E, d'un seul tenant | idem v0.3 |
 | Tùmázì | Sudd (26,4-32,1° E) | cuvette du Tchad | Sudd | 22,0-27,7° E |
@@ -210,7 +214,11 @@ Effets sur la carte v0.4 : forêt de montagne de 840 000 à ~550 000 km² (étag
 | Ku-jálima-rir / Jálondù | baie du Bénin | Guinée-Bissau | golfe de Guinée O / côte du Ghana | idem |
 | Cordillère | sur massifs réels | arc rectiligne 20-21° N | massifs réels, abaissée à l'ouest | + socles, lóngò arqué, contreforts |
 | Cols | absents | absents | absents | 48 placés |
-| Fleuves dessinés | tracés droits | tracés droits | tracés droits | v0.3.2 : cours calculés le long des vallées (même source, même embouchure) |
+| Fleuves dessinés | tracés droits | tracés droits | tracés droits | v0.3.2 : cours calculés le long des vallées (même source, même embouchure) ; v0.5 : chenaux Abnīṣar et Tanīlḥa |
+| Rivages de l'Halakhel | — | — | glacis continu | v0.5 : sept secteurs escarpés (ALN-130) |
+| Delta du Mopámà | — | — | plateau de 20-40 m | v0.5 : plaine deltaïque à mangroves (ALN-131) |
+| Haute Tanāḥil (vallée des villes) | — | — | piémonts N de k'ara, sans site (v0.3.2 §4) | v0.5 : gorge amont de l'Abay (ALN-136) ; l'ancien libellé est caduc |
+| Lieux (LUR, ZRS) | — | — | aucune position | v0.5 : 74 lieux placés (ALN-135) |
 
 ---
 
@@ -218,7 +226,7 @@ Effets sur la carte v0.4 : forêt de montagne de 840 000 à ~550 000 km² (étag
 
 <!-- MESURES:DEBUT — section régénérée par outils/mesures_corpus.py ; ne pas éditer à la main -->
 
-### Mesures de la carte v0.4
+### Mesures de la carte v0.5
 
 Toutes les valeurs sont mesurées sur la carte générée. Fichier complet : `carte/sig/beliet_mesures.json`.
 
@@ -312,10 +320,10 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 | Buhlela (`GEO_FLV_BUHLELA`) | 1135 km | [39.27, 11.97] | [33.98, 17.67] |
 | Tira-qoyra / Abnuḥīl (`GEO_FLV_ABNUHIL`) | 2446 km | [32.49, 15.63] | [30.86, 27.6] |
 | Šafāqil (`GEO_FLV_ABNUHIL_SAFAQIL`) | 768 km | [30.88, 27.63] | [30.4, 31.44] |
-| Abnīqa (`GEO_FLV_ABNUHIL_ABNIQA`) | 262 km | [30.78, 27.6] | [28.3, 27.6] |
+| Abnīqa (`GEO_FLV_ABNUHIL_ABNIQA`) | 386 km | [28.95, 27.62] | [28.52, 27.32] |
 | \|Na-madikh / Madīlan (`GEO_FLV_MADIKH`) | 808 km | [5.7, 24.25] | [12.8, 24.75] |
 | Imikhrel (`GEO_FLV_IMIKHREL`) | 536 km | [4.6, 24.0] | [0.49, 25.15] |
-| Ehukhtal (`GEO_FLV_EHUKHTAL`) | 918 km | [-0.1, 24.5] | [-7.69, 27.22] |
+| Ehukhtal (`GEO_FLV_EHUKHTAL`) | 919 km | [-0.1, 24.5] | [-7.7, 27.22] |
 | \|Na-khuwel / Ḥawqal (`GEO_FLV_HAWQAL`) | 1087 km | [19.9, 19.7] | [26.72, 25.2] |
 | \|Na-khuwel-ra (`GEO_FLV_HAWQAL_RA`) | 635 km | [22.4, 17.7] | [23.3, 20.8] |
 | \|Na-khuwel-ɨn (`GEO_FLV_HAWQAL_IN`) | 292 km | [27.0, 21.4] | [25.93, 23.62] |
@@ -367,31 +375,33 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 
 | Lieu | Position | Cible | Modèle |
 |---|---|---|---|
-| côte atlantique SO (Ku-jálima-rir) | [1.5, 6.4] | 2200 mm | 2232 mm |
-| bassin Mopámà | [6.2, 10.0] | 1900 mm | 1873 mm |
-| bassin Tùmázì | [24.9, 7.6] | 1500 mm | 1492 mm |
-| plateaux qoyra | [38.0, 9.5] | 1300 mm | 1263 mm |
-| désert du Sumdan | [11.0, 31.0] | 50 mm | 59 mm |
-| façade méditerranéenne N (djebel Akhdar) | [21.8, 32.6] | 650 mm | 650 mm |
-| côte atlantique NO | [-7.5, 33.5] | 450 mm | 614 mm |
+| côte atlantique SO (Ku-jálima-rir) | [1.5, 6.4] | 2200 mm | 2227 mm |
+| bassin Mopámà | [6.2, 10.0] | 1900 mm | 1869 mm |
+| bassin Tùmázì | [24.9, 7.6] | 1500 mm | 1098 mm |
+| plateaux qoyra | [38.0, 9.5] | 1300 mm | 972 mm |
+| désert du Sumdan | [11.0, 31.0] | 50 mm | 60 mm |
+| façade méditerranéenne N (djebel Akhdar) | [21.8, 32.6] | 650 mm | 649 mm |
+| côte atlantique NO | [-7.5, 33.5] | 450 mm | 616 mm |
 | côte Mer Rouge | [37.5, 19.0] | 80 mm | 79 mm |
-| Akhtir | [22.6, 21.3] | 750 mm | 630 mm |
-| côte océan de l'Est | [47.0, 5.0] | 550 mm | 574 mm |
-| versant sud de k'ara (humide) | [19.5, 17.6] | 1000 mm | 768 mm |
-| versant sud de k'ara, Ennedi | [23.0, 14.5] | 900 mm | 904 mm |
+| Akhtir | [22.6, 21.3] | 750 mm | 642 mm |
+| côte océan de l'Est | [47.0, 5.0] | 550 mm | 577 mm |
+| versant sud de k'ara (humide) | [19.5, 17.6] | 1000 mm | 689 mm |
+| versant sud de k'ara, Ennedi | [23.0, 14.5] | 900 mm | 901 mm |
 | piémont nord de k'ara (200-600) | [11.0, 23.9] | 280 mm | 273 mm |
-| rive nord de l'Halakhel (Sumdan) | [8.0, 30.3] | 90 mm | 77 mm |
-| rive sud de l'Halakhel (désertique) | [20.5, 23.1] | 110 mm | 142 mm |
-| versant atlantique de halekh | [-12.0, 20.6] | 750 mm | 747 mm |
-| versant SO de lóngò (humide) | [2.6, 19.2] | 900 mm | 933 mm |
-| versant NE de lóngò (semi-aride) | [7.4, 17.6] | 420 mm | 397 mm |
+| rive nord de l'Halakhel (Sumdan) | [8.0, 30.3] | 90 mm | 76 mm |
+| rive sud de l'Halakhel (désertique) | [20.5, 23.1] | 110 mm | 140 mm |
+| versant atlantique de halekh | [-12.0, 20.6] | 750 mm | 744 mm |
+| versant SO de lóngò (humide) | [2.6, 19.2] | 900 mm | 931 mm |
+| versant NE de lóngò (semi-aride) | [7.4, 17.6] | 420 mm | 396 mm |
 | façade méditerranéenne NE | [29.5, 30.95] | 400 mm | 400 mm |
-| piémonts SE (semi-arides) | [43.5, 7.0] | 320 mm | 433 mm |
-| piémonts NO (semi-aride froid) | [-6.5, 31.6] | 650 mm | 474 mm |
+| piémonts SE (semi-arides) | [43.5, 7.0] | 320 mm | 420 mm |
+| piémonts NO (semi-aride froid) | [-6.5, 31.6] | 650 mm | 473 mm |
 | déserts orientaux (NE) | [32.5, 22.5] | 30 mm | 32 mm |
 | plaines du NE, aval du confluent | [29.0, 18.5] | 90 mm | 85 mm |
 | sud somalien (côte océan de l'Est) | [42.5, 0.5] | 500 mm | 507 mm |
-| plateau somalien (bras E-O de qoyra) | [45.0, 9.6] | 300 mm | 204 mm |
+| plateau somalien (bras E-O de qoyra) | [45.0, 9.6] | 300 mm | 210 mm |
+| versant humide O des plateaux SE (cols T'araq-ɨnkh, Q'usa-\|\|ema) | [35.0, 8.8] | 2200 mm | 2877 mm |
+| rive S du Tùmázì (haute futaie, FOR_S) | [24.5, 6.0] | 1800 mm | 2456 mm |
 
 #### Surfaces
 
@@ -400,28 +410,28 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 
 | Milieu | Surface |
 |---|---|
-| `steppe_piemont` | 5 515 645 km² |
-| `foret_tropicale_humide` | 3 813 824 km² |
-| `herbage_arbore` | 3 332 420 km² |
-| `desert_pierreux` | 2 757 911 km² |
-| `foret_montagne` | 545 481 km² |
-| `fourre_cotier_sec` | 425 678 km² |
-| `desert_sableux` | 271 033 km² |
-| `prairie_altitude` | 226 228 km² |
-| `depression_saline` | 186 963 km² |
-| `foret_berge` | 181 643 km² |
+| `steppe_piemont` | 5 563 720 km² |
+| `foret_tropicale_humide` | 3 587 691 km² |
+| `herbage_arbore` | 3 370 227 km² |
+| `desert_pierreux` | 2 913 439 km² |
+| `foret_montagne` | 518 185 km² |
+| `fourre_cotier_sec` | 420 829 km² |
+| `desert_sableux` | 271 558 km² |
+| `prairie_altitude` | 226 194 km² |
+| `depression_saline` | 192 247 km² |
+| `foret_berge` | 181 275 km² |
+| `plaine_alluviale` | 165 514 km² |
 | `eaux_lacustres` | 165 502 km² |
-| `plaine_alluviale` | 161 392 km² |
-| `zone_humide_lacustre` | 64 442 km² |
-| `recif_corallien` | 39 473 km² |
-| `foret_maree` | 29 354 km² |
-| `cote_desertique` | 25 913 km² |
-| `ile_aride` | 25 233 km² |
-| `zone_periglaciaire` | 20 754 km² |
-| `littoral_rocheux` | 12 752 km² |
-| `oasis` | 7 080 km² |
+| `zone_humide_lacustre` | 63 516 km² |
+| `recif_corallien` | 39 214 km² |
+| `foret_maree` | 30 440 km² |
+| `ile_aride` | 25 237 km² |
+| `cote_desertique` | 24 993 km² |
+| `littoral_rocheux` | 20 990 km² |
+| `zone_periglaciaire` | 20 768 km² |
+| `oasis` | 7 297 km² |
 | `glacier` | 1 516 km² |
-| `dunes_littorales` | 203 km² |
+| `dunes_littorales` | 89 km² |
 
 #### Climat : hivers du |'Arin et étages (modèle v0.4)
 
@@ -470,15 +480,15 @@ Faciès |'Arin par chaîne (part de la surface de la chaîne) :
 
 | Chaîne | Latitudes (extrémités) | Blanc dès | Gris dès | Blanc | Gris | Jaune | Hors \|'Arin |
 |---|---|---|---|---|---|---|---|---|
-| \|\|Urumati-halekh | 20.0° → 23.75° N | 2681 → 2259 m | 1081 → 659 m | 17.7 % | 17.5 % | 57.0 % | 7.9 % |
-| !Okheti | 24.45° → 23.15° N | 2181 → 2327 m | 581 → 727 m | 24.4 % | 0 % | 66.7 % | 8.9 % |
-| \|\|Urumati-k'ara | 23.75° → 13.3° N | 2259 → 3435 m | 659 → 1835 m | 24.2 % | 25.4 % | 45.0 % | 5.4 % |
-| GEO_ORO_URUMATI_KARA (segment 24.4, 13.3) | 13.3° → 8.7° N | 3435 → 3705 m | 1835 → 2105 m | 0 % | 21.0 % | 3.4 % | 75.6 % |
+| \|\|Urumati-halekh | 20.0° → 23.75° N | 2681 → 2259 m | 1081 → 659 m | 17.7 % | 17.6 % | 56.8 % | 7.9 % |
+| !Okheti | 24.45° → 23.15° N | 2181 → 2327 m | 581 → 727 m | 24.4 % | 0 % | 66.2 % | 9.3 % |
+| \|\|Urumati-k'ara | 23.75° → 13.3° N | 2259 → 3435 m | 659 → 1835 m | 24.2 % | 24.9 % | 45.5 % | 5.4 % |
+| GEO_ORO_URUMATI_KARA (segment 24.4, 13.3) | 13.3° → 8.7° N | 3435 → 3705 m | 1835 → 2105 m | 0 % | 20.7 % | 3.9 % | 75.4 % |
 | \|\|Urumati-lóngò | 23.6° → 10.2° N | 2276 → 3649 m | 676 → 2049 m | 3.5 % | 21.5 % | 17.8 % | 57.2 % |
 | GEO_ORO_URUMATI_LONGO (segment 5.6, 16.6) | 16.6° → 18.9° N | 3064 → 2805 m | 1464 → 1205 m | 0 % | 19.3 % | 0 % | 80.7 % |
 | GEO_ORO_URUMATI_LONGO (segment 8.0, 12.9) | 12.9° → 11.2° N | 3480 → 3611 m | 1880 → 2011 m | 0 % | 2.6 % | 0 % | 97.4 % |
 | GEO_ORO_URUMATI_LONGO (segment 2.6, 20.4) | 20.4° → 18.9° N | 2636 → 2805 m | 1036 → 1205 m | 0 % | 62.9 % | 2.3 % | 34.8 % |
-| \|\|Urumati-qoyra | 15.4° → 10.6° N | 3199 → 3634 m | 1599 → 2034 m | 0.5 % | 31.9 % | 26.0 % | 41.6 % |
+| \|\|Urumati-qoyra | 15.4° → 10.6° N | 3199 → 3634 m | 1599 → 2034 m | 0.5 % | 30.0 % | 28.5 % | 40.9 % |
 
 #### Les 48 cols
 
@@ -571,6 +581,14 @@ Coordonnées [longitude, latitude] en degrés décimaux WGS84. Liste complète e
 | `—` | Imekh-stom | chenal 28→12 km | [[0.0, 26.5], [0.1, 26.0], [0.3, 25.6], [0.55, 25.35]] |  |
 | `—` | Tawālmaz | chenal 24→8 km | [[14.6, 25.4], [14.0, 25.05], [13.4, 24.85], [12.8, 24.75]] |  |
 | `GEO_MER_HALAKHEL` | îles volcaniques et îles de passe | points [lon, lat(, haut., rayon)] | [[17.3, 27.6], [17.9, 27.45], [18.5, 27.8], [16.8, 27.4], [18.9, 27.3], [19.8, 26.4], [21.6, 27.1], [24.0, 27.4], [22.7, 25.2], [13.0, 27.2], [9.3, 27.9], [7.3, 28.4], [1.2, 27.6], [-2.4, 28.0], [-4.9, 28.1], [-1.62, 29.72, 260, 6]] |  |
+| `—` | falaises calcaires de la passe Khreth-na-Serek | rivage escarpé (v0.5) : centre, rayon 60 km, dénivelé 170 m | [-1.85, 29.8] |  |
+| `—` | rives du goulet Hlom-khetal (calcaire blanc) | rivage escarpé (v0.5) : centre, rayon 75 km, dénivelé 110 m | [-7.2, 27.7] |  |
+| `—` | goulet estuarien d'Imekh-stom | rivage escarpé (v0.5) : centre, rayon 55 km, dénivelé 120 m | [0.25, 25.9] |  |
+| `—` | rias basaltiques de Cherbekh-khem | rivage escarpé (v0.5) : centre, rayon 70 km, dénivelé 150 m | [2.7, 25.95] |  |
+| `—` | versants de la ria Tawālmaz (pierre claire) | rivage escarpé (v0.5) : centre, rayon 110 km, dénivelé 130 m | [13.8, 25.05] |  |
+| `—` | cap de Qabḍ-ār-Ǧanūb (golfe de Koufra) | rivage escarpé (v0.5) : centre, rayon 50 km, dénivelé 110 m | [22.6, 23.75] |  |
+| `—` | cap de Ḥamaḍ-Rās | rivage escarpé (v0.5) : centre, rayon 45 km, dénivelé 100 m | [28.15, 29.35] |  |
+| `—` | delta du Mopámà | plaine deltaïque basse (v0.5) : contour | [[0.3, 5.68], [0.45, 6.1], [0.85, 6.5], [1.35, 6.75], [1.9, 6.62], [2.2, 6.38], [2.1, 6.15], [1.2, 5.9], [0.6, 5.6]] |  |
 | `GEO_LAC_TUMAZI` | Tùmázì | contour dessiné (ajusté à la superficie canonique) | [[22.0, 7.9], [22.8, 8.55], [24.0, 8.85], [25.2, 8.9], [26.4, 8.7], [27.4, 8.2], [27.7, 7.4], [27.1, 6.8], [25.9, 6.5], [24.6, 6.6], [23.4, 6.8], [22.4, 7.2]] | centre mesuré [24.77, 7.66] |
 | `GEO_LAC_AKHTIR` | Akhtir | contour dessiné (ajusté à la superficie canonique) | [[21.2, 21.0], [21.7, 21.85], [22.6, 22.3], [23.6, 22.15], [24.0, 21.5], [23.6, 20.75], [22.6, 20.4], [21.7, 20.45]] | centre mesuré [22.61, 21.31] |
 | `GEO_LAC_MOPAMA` | Mopámà | contour dessiné (ajusté à la superficie canonique) | [[4.9, 9.55], [5.4, 10.25], [6.3, 10.75], [7.2, 10.85], [7.4, 10.35], [6.8, 9.75], [5.9, 9.3], [5.2, 9.2]] | centre mesuré [6.08, 10.1] |
@@ -592,11 +610,14 @@ Coordonnées [longitude, latitude] en degrés décimaux WGS84. Liste complète e
 | `GEO_FLV_ABNUHIL` | Tira-qoyra / Abnuḥīl | tracé réel Natural Earth | ["Nile"] |  |
 | `GEO_FLV_ABNUHIL_SAFAQIL` | Šafāqil | tracé réel Natural Earth | ["Nile", "Rosetta Branch", "Damietta Branch"] |  |
 | `GEO_FLV_ABNUHIL_ABNIQA` | Abnīqa | tracé amont → aval | [[30.78, 27.6], [30.2, 27.66], [29.6, 27.64], [29.0, 27.6], [28.55, 27.6], [28.3, 27.6]] |  |
+| `GEO_FLV_ABNUHIL_ABNIQA` | Abnīqa — bras 1 | bras ou chenal, amont → aval | [[28.95, 27.62], [28.8, 27.74], [28.65, 27.88], [28.5, 28.0]] |  |
+| `GEO_FLV_ABNUHIL_ABNIQA` | Abnīqa — bras 2 | bras ou chenal, amont → aval | [[28.95, 27.6], [28.8, 27.48], [28.65, 27.38], [28.52, 27.32]] |  |
 | `GEO_FLV_MADIKH` | \|Na-madikh / Madīlan | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[5.7, 24.25], [6.6, 24.55], [7.6, 24.6], [8.6, 24.5], [9.6, 24.35], [10.6, 24.3], [11.6, 24.45], [12.3, 24.65], [12.8, 24.75]] |  |
 | `GEO_FLV_IMIKHREL` | Imikhrel | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[4.6, 24.0], [3.9, 24.25], [3.1, 24.5], [2.3, 24.7], [1.6, 24.85], [0.9, 25.0], [0.4, 25.15]] |  |
 | `GEO_FLV_EHUKHTAL` | Ehukhtal | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[-0.1, 24.5], [-1.0, 24.7], [-2.1, 24.9], [-3.3, 25.15], [-4.5, 25.45], [-5.7, 25.8], [-6.8, 26.25], [-7.6, 26.75], [-8.0, 27.2], [-7.8, 27.3]] |  |
 | `GEO_FLV_HAWQAL` | \|Na-khuwel / Ḥawqal | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[19.9, 19.7], [20.6, 20.2], [21.3, 20.75], [23.6, 22.15], [24.5, 22.6], [25.3, 23.25], [25.9, 24.0], [26.4, 24.75], [26.8, 25.3]] |  |
 | `GEO_FLV_HAWQAL_RA` | \|Na-khuwel-ra | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[22.4, 17.7], [22.6, 18.7], [22.7, 19.6], [22.75, 20.45]] |  |
+| `GEO_FLV_HAWQAL_RA` | \|Na-khuwel-ra — bras 1 | bras ou chenal, amont → aval | [[22.6, 18.7], [23.2, 19.4], [23.4, 20.2], [23.3, 20.8]] |  |
 | `GEO_FLV_HAWQAL_IN` | \|Na-khuwel-ɨn | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[27.0, 21.4], [26.7, 22.2], [26.2, 23.0], [25.8, 23.7]] |  |
 | `GEO_FLV_EMISSAIRE_MOPAMA` | sans nom | tracé indicatif (couloir) ; cours dessiné : clé fleuves.trace_dessine du JSON | [[5.0, 9.45], [4.4, 9.0], [3.8, 8.4], [3.0, 7.8], [2.3, 7.25], [1.7, 6.7], [1.25, 6.2], [0.95, 5.85]] |  |
 | `—` | Atlas (relief réel non documenté au corpus) | écrêtement (seuil 1200 m, facteur 0.35) | [[-10.5, 29.0], [10.0, 29.0], [10.0, 37.5], [-10.5, 37.5]] |  |
@@ -611,3 +632,71 @@ Coordonnées [longitude, latitude] en degrés décimaux WGS84. Liste complète e
 | `—` | erg n° 8 | zone de désert de sable | [[33.0, 16.5], [35.0, 17.5], [34.5, 19.0], [32.5, 18.5]] |  |
 
 <!-- MESURES:FIN -->
+
+---
+
+## 9. Lieux et routes (v0.5)
+
+Passe de cohérence des lieux (LIEUX_URBAINS v2) et des routes (RESEAU_ROUTES v3) avec la géographie. Le détail est dans `LIEUX_ET_ROUTES.md` : méthode, constats LR-xx (lieux) et LT-xx (routes), tables A à F. Les données lisibles par machine sont dans `carte/sig/beliet_lieux_routes.json` (clés `lieux` et `routes`). La carte est `carte/beliet_carte_lieux.png` (ou `.svg` à calques).
+
+### 9.1 Géographie modifiée (contenu ajouté, physiquement fondé)
+
+| ID | Type | Objet | Décision | Action pour le corpus |
+|---|---|---|---|---|
+| ALN-130 | AJOUT | Rivages escarpés de l'Halakhel | 7 secteurs de falaises, caps et rias (100-170 m) : passe Khreth-na-Serek, goulets Hlom-khetal et Imekh-stom, rias de Cherbekh-khem et de Tawālmaz, caps de Qabḍ-ār-Ǧanūb et de Ḥamaḍ-Rās ; glacis ailleurs. Positions : §8, « Positions paramétrées » | §VI.1 et index des façades : « rivage de glacis, coupé de falaises aux passes, goulets, rias et caps » ; forger des noms pour les caps |
+| ALN-131 | AJOUT | Plaine deltaïque du Mopámà | plaine basse à mangroves (~180 km de côte, 0,3-2,2° E) | §V.4 : le « delta de Jáli-Fè » est cette plaine ; Kù-Bèláà et Mázì-Dúm y sont |
+| ALN-132 | AJOUT | Chenaux Abnīṣar (NE) et Tanīlḥa (SE) | tracés depuis l'apex (28,95° ; 27,6°) jusqu'à la mer | §VI.1.3 : ajouter les positions des deux chenaux |
+| ALN-133 | PRÉCISION | Classement du littoral rocheux | hauteur mesurée au-dessus de l'eau voisine (mer Halakhel à −20 m) | aucune (méthode) |
+| ALN-134 | CORRECTION | Pluies maximales du modèle | deux points de calage : versant O des plateaux SE 2 200 mm, rive S du Tùmázì 1 800 mm (modèle : 2 880 et 2 460 mm au lieu de 9 500 et 3 800) | aucune ; les valeurs restent dans les plages du §V |
+
+### 9.2 Positions
+
+| ID | Type | Objet | Décision | Action pour le corpus |
+|---|---|---|---|---|
+| ALN-135 | AJOUT | Positions des 74 lieux et de 21 extrémités de routes | table A de `LIEUX_ET_ROUTES.md` ; JSON `lieux.<id>.caracteristiques.lon/lat` | ajouter `coordonnees_geo.position` à chaque lieu de LIEUX ; statut [PROPOSITION] |
+| ALN-136 | CONFLIT TRANCHÉ | Haute Tanāḥil (GEO_VAL_HAUTE_TANAHIL) | gorge amont du Tira-ñara/Tanāḥil (Abay réel), ~38,1-38,5° E, 10,1-11,0° N, au nord du prolongement SE de k'ara ; Tanāḥil à la confluence avec l'Abnuḥīl (32,55° ; 15,61°) | §V.2 : préciser la position ; supprimer la double lecture (ALN-083) ; LIEUX : Tanāḥil « tête de la vallée de l'Abnuḥīl, à la confluence » |
+| ALN-137 | PROPOSITION | Les dix îles de Staur-Khlōr | Fogo = Khlōr-Naw ; Boa Vista = Strakh-Kot ; Santiago = Staur-Om ; Santo Antão = Threl-Hal ; São Vicente = Skral-Kot ; Sal = Hleka-Kōr ; São Nicolau = Strakh-Khlōr ; Brava = Aktir-Kot ; îlots Branco et Raso = Skel-Ti ; Santa Luzia = Hal-Kot | §V.7 : ajouter positions ; Kot-Skral sur Skral-Kot, Threskōl-Strakh sur Strakh-Kot |
+| ALN-138 | PROPOSITION | Extrémités non documentées | Kralekh-ner, Qūrāš-Ṣafīḥ, Kù-kèdà yì Mù-Kíri, Foyers-Purs, Voie-Desnuées, Voie-Haute, Voie-Comptable, Hae K'umel, Sa-nùbè yì Mù-Sùkú, Cercle-Sans-Juron, Lisières Ba-lóngó : `LIEUX_ET_ROUTES.md` §2.4 | documenter ces lieux (Qūrāš-Ṣafīḥ en priorité : trois routes) |
+
+### 9.3 Lieux : corrections proposées
+
+| ID | Type | Lieu | Constat | Action pour le corpus |
+|---|---|---|---|---|
+| ALN-140 | CORRECTION | Stakhr-Durek | steppe de piémont (546 mm), pas de désert de sable | biome → `steppe_piemont` ; « cordons sableux, ensablement des pistes en saison sèche » |
+| ALN-141 | CORRECTION | Hloran-rir, Oase-Skren | steppe (480-700 mm) | « oasis de résurgence en steppe de piémont » |
+| ALN-142 | CORRECTION | Li-sèk-dì | 2 900 mm/an : climat de golfe équatorial | « îlots sans nappe ni source : la pluie ne se garde pas » ; garder la fonction (bannissement) |
+| ALN-143 | CORRECTION | Imekh-stom, Akhileth | l'Imikhrel est un oued (débit modélisé ~0) | « crues d'oued, rares et brutales » |
+| ALN-144 | CORRECTION | Akhileth | forêt de montagne à ~150 km du goulet | scinder : comptoir au goulet, coupes sur le piémont de !Okheti ; RT_035 : + portage de 70 km |
+| ALN-145 | CORRECTION | Kù-téka, Jáli-Fè, Šafāq-Mirq, Cherbekh-khem, Abnīqa | aucun sable à 25 km | « ensablement » → « envasement, colmatage alluvial » |
+| ALN-150 | À TRANCHER | \|'Ukh-‖Sék | crête à ~2 250 m, prairie à ~2 900 m à 9,5° N | biome → forêt de montagne claire, refuges à 2 200-2 400 m ; ou déplacer le sanctuaire sur les plateaux de qoyra et revoir RT_009 |
+| ALN-151 | À TRANCHER | \|'Urum-!Samel | seuls glaciers : \|'Ara-Sukhì (k'ara) ; cols URM sur lóngò, à 1 300 km | garder à \|'Ara-Sukhì (pèlerinage) ; ou retirer `glacier` |
+| ALN-152 | CONFLIT TRANCHÉ | Ts'idar-‖Sek ; RT_061 | interface Költ / HKL_S-SO à l'ouest (retenu, crête de halekh oriental, 2 840 m) ; RT_061 vers K'elis-‖ara : 4 200 km, 216 jours | RT_061 : remplacer K'elis-‖ara par Hlelak-!uri (GEO_COL_032) ou Kraloth-!enu (GEO_COL_035) ; noter une colonie Ts'idari à l'ouest |
+| ALN-153 | CORRECTION | Tanāḥil | « avalanches sur l'accès au col Abnī-tɨra » : col à 920 km | viser T'iqur-ɨlkh (GEO_COL_014) ou Rafīq-t'sal (GEO_COL_047) |
+| ALN-154 | PRÉCISION | Hae Ts'i-K'uré | monastère à 1 890 m, hors \|'Arin ; le col P'etsul-!ama (2 600 m) est en Hiver Gris | rattacher « hypoxie/froid » à la montée du col (RT_065) |
+| ALN-155 | CORRECTION | Q'irel-Ts'idar | 1 370 mm/an | « saison sèche marquée » au lieu de « sécheresses prolongées » ; ou déplacer vers le plateau sec du nord-est |
+
+### 9.4 Routes : corrections proposées
+
+| ID | Type | Routes | Constat | Action pour le corpus |
+|---|---|---|---|---|
+| ALN-160 | AJOUT / À TRANCHER | cordillère | brèches plus basses que les cols : prolongement SE de k'ara 1 180 m (27,0° E ; 11,9° N), 1 240 m (32,9° E), 1 580 m (31,5° E) ; lóngò 1 200-1 670 m | registre : ajouter des « trouées » (voies basses, longues ou exposées) ; les cols restent les voies courtes et gardées |
+| ALN-161 | PRÉCISION | RT_010 | optimal : 1 260 km, 39 j, par la trouée (1 690 m) ; par T'iqur-ɨlkh (2 700 m, juin-oct.) : 2 610 km, 69 j | préciser le col (GEO_COL_014) et la raison de le préférer, ou retirer l'hypoxie |
+| ALN-162 | PRÉCISION | RT_062, RT_051 | « toute l'année » par des cols fermés en hiver (T'araq-ɨnkh nov.-avr. ; Hlenik-k'eso déc.-mars) | préciser le dépôt d'hiver (Silos de Trêve) et le service d'hiver du corridor d'État |
+| ALN-163 | CORRECTION | RT_020 | Mù-Kíri (Atlantique) → Ts'idar-ré : 4 470 km, 184 j | origine → un port de la mer Rouge (K'uré-tawa, T'naya-Ḥaem) |
+| ALN-165 | PRÉCISION | RT_001 | Kù-békà ↔ Kù-téka : 2 440 km, 84 j | annoter « grande caravane trans-forestière (~3 mois) » |
+| ALN-166 | CORRECTION | RT_029 ; Ku-Bángá | Mù-dárhòbì à ~1 900 km du Tùmázì ; « canaux inter-lacs » impossibles | Mù-dárhòbì → collines Kù-kɨ́bò (basalte de Ku-Bángá) ; supprimer les canaux inter-lacs |
+| ALN-167 | CORRECTION | RT_070 ; Sa-kúmadì, Ku-pèpanà | pôles et lisières au Sud Mopámà pour des lieux du Sud Tùmázì | lisières → rive S du Tùmázì ; pôle → Kù-békà |
+| ALN-170 | AJOUT | RT_003, RT_059, RT_031, RT_071 | rapides : émissaire du Mopámà (140-160 km de portage) ; gorge de la haute Tanāḥil (110-220 km de piste) | ajouter `terrestre_portage` ou `terrestre_caravane` |
+| ALN-171 | CORRECTION | portage NO (RT_027 ; §VI.1.2 « 3 jours ») | 291 km, 14 jours, point haut ~1 230 m | « 12 à 15 jours » ; ALN-033 (8-10 jours) est remplacé |
+| ALN-172 | IMPOSSIBILITÉ | RT_046, 056, 033, 049, 074, 072, 047, 007, 036, 032, 035 | mer Halakhel et Tùmázì fermés ; isthme entre Méditerranée et mer Rouge | ajouter le segment terrestre mesuré (`LIEUX_ET_ROUTES.md` §5.1, LT-01 à LT-11) |
+| ALN-173 | PRÉCISION | caravanes Halakhel E → mer Rouge (« 8 jours ») | 370 km au plus court | 8 jours suppose ~45 km/j (méharée) ; 12-13 jours en caravane chargée |
+| ALN-175 | PRÉCISION | fenêtres saisonnières | mois communs des cols franchis : table D (RT_009 mai-oct. ; RT_043 juin-sept. ; RT_068 mai-oct. au lieu d'avr.-nov.) | aligner les fenêtres des routes sur `ouverture_mois` des cols |
+
+### 9.5 Caractéristiques à reporter dans LIEUX
+
+| ID | Type | Objet | Contenu | Action |
+|---|---|---|---|---|
+| ALN-174 | PRÉCISION | Façades | §4 mis à jour (HKL_NE, HKL_E) ; toutes les façades : table A | reporter |
+| ALN-176 | AJOUT | Caractéristiques physiques des lieux | altitude, pluie, températures, faciès du \|'Arin, distances à l'eau, débit, col proche, expositions calculées : tables A à C ; JSON `lieux.<id>.caracteristiques` | ajouter un bloc `physique` à chaque lieu de LIEUX |
+| ALN-177 | AJOUT | Métriques des routes | longueur, durée, km par milieu, ruptures de charge, altitude max, dénivelé, cols, mois : table D ; JSON `routes.<id>` | remplir `trajet.metrique` (actuellement « [LACUNE] » partout) |
+| ALN-178 | À TRANCHER | Points ouverts | ALN-150, 151, 160, 163 | décision de l'auteur |

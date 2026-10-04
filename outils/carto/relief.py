@@ -338,6 +338,21 @@ class Relief:
         w = np.clip((45 - dout2) / 25, 0, 1)
         cible = smax(self.h, self.L + 2 + 4 * np.minimum(dout2, 15), 40)
         self.h = np.where(rive, self.h + w * (cible - self.h), self.h).astype(np.float32)
+        # rivages escarpés (v0.5) : falaises, caps et rias là où le corpus place un littoral rocheux ;
+        # le glacis reste la règle ailleurs. Profil : la côte monte de H m sur les premiers kilomètres.
+        nz = bruit_bande(g.shape, self.graine + 41, 6, 60 / g.km_px_eq)
+        for z in H.get("rivages_escarpes", []):
+            xc, yc = g.px(*z["centre"])
+            yy, xx = np.ogrid[:g.H, :g.W]
+            dc = np.hypot(xx + 0.5 - xc, yy + 0.5 - yc) * km
+            R = z["rayon_km"]
+            wz = np.clip((R - dc) / (0.35 * R), 0, 1) * (self.beliet & ~self.mer)
+            if not wz.any():
+                continue
+            Hz = z["hauteur_m"] * np.clip(0.75 + 0.5 * nz, 0.5, 1.25)
+            falaise = self.L + 2 + Hz * (1 - np.exp(-dout2 / z.get("raideur_km", 1.2)))
+            cible = smax(self.h, falaise, 25)
+            self.h = np.where(wz > 0, self.h + wz * (cible - self.h), self.h).astype(np.float32)
         aire = (self.g.aire_km2()[self.mer]).sum()
         lab_i, n_i = label(m & ~self.mer)
         self.infos["halakhel_km2"] = aire
@@ -538,6 +553,22 @@ class Relief:
         lon, lat = g.ll(X2, Y2)
         return np.c_[lon, lat]
 
+    def plaines_deltaiques(self):
+        """Deltas océaniques (v0.5) : plaine basse et marécageuse, quelques mètres au-dessus de la mer,
+        montant doucement vers l'apex. Le terrain n'est qu'abaissé (jamais relevé)."""
+        g = self.g
+        km = _km(g)
+        for d in self.p.get("plaines_deltaiques", []):
+            zone = g.rasteriser(g.poly_px(d["contour"])).astype(bool) & self.beliet & ~self.mer & (self.lac == 0)
+            if not zone.any():
+                continue
+            mer_ext = ~self.beliet & ~self.decoupe & (self.h <= 0)
+            dmer = distance_transform_edt(~mer_ext) * km
+            cible = d.get("altitude_cote_m", 1.0) + d.get("pente_m_par_km", 0.15) * dmer
+            din = distance_transform_edt(zone) * km
+            w = np.clip(din / d.get("transition_km", 12), 0, 1)
+            self.h = np.where(zone & (self.h > cible), self.h + w * (cible - self.h), self.h).astype(np.float32)
+
     def creuser_fleuves(self):
         g = self.g
         km = _km(g)
@@ -673,6 +704,7 @@ class Relief:
         self.creuser_lacs()
         self.preparer_fleuves()
         self.creuser_fleuves()
+        self.plaines_deltaiques()
         # masques finaux
         self.ocean = ~self.beliet & ~self.decoupe & (self.h <= 0)
         self.dehors = ~self.beliet & ~self.ocean

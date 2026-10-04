@@ -33,10 +33,12 @@ def journal(msg):
 
 def empreinte(p):
     cles = ["cadre", "contour", "niveaux", "halakhel", "lacs", "chaines", "ecretements", "fleuves", "archipels",
-            "fondu_sud", "zones_soulevement", "cols"]
+            "fondu_sud", "zones_soulevement", "cols", "plaines_deltaiques"]
     d = {k: p.get(k) for k in cles}
     if not d.get("cols"):
         d.pop("cols")          # sans cols : même empreinte qu'un relief de référence non entaillé
+    if not d.get("plaines_deltaiques"):
+        d.pop("plaines_deltaiques")
     return hashlib.sha1(json.dumps(d, sort_keys=True).encode()).hexdigest()[:12]
 
 

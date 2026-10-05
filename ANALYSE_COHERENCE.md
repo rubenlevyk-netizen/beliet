@@ -22,10 +22,10 @@ Passe complète sur LIEUX (56 cités, 18 zones) et ROUTES (74 routes) : `LIEUX_E
 | Rivages de l'Halakhel | glacis continu, aucun littoral rocheux | 7 secteurs escarpés : passe, goulets, rias, caps | 9 lieux du corpus en littoral rocheux ; passe, promontoire et rias du Géosystème |
 | Delta du Mopámà | plateau de 20-40 m | plaine deltaïque basse à mangroves | « delta de Jáli-Fè », mangroves (§V.4) ; deltas tropicaux |
 | Delta d'Abnīqa | un seul bras | chenaux Abnīṣar (NE) et Tanīlḥa (SE) | canon du §VI.1.3 |
-| Haute Tanāḥil | « piémonts N de k'ara », sans site | gorge amont de l'Abay ; Tanāḥil à la confluence | les deux sens de « Tanāḥil » se rejoignent (ALN-136) |
+| Haute Tanāḥil | « piémonts N de k'ara », sans site | v0.5 : gorge amont de l'Abay (caduc) ; v0.5.2 : canyon de 465 km au nord du col Abnī-tɨra, Qūrāš-Taniḥīl-Ramšūr en tête, Qūrāš-Tanīqa ~115 km en aval ; Tanāḥil reste au confluent | Géosystème « en aval des piémonts septentrionaux de k'ara », bassin de l'Abnuḥīl, canyon (ALN-182, 183) |
 | Pluies maximales | jusqu'à 9 500 mm (escarpement des cols du SE) | ~2 900 mm | deux points de calage ajoutés (ALN-134) |
 | Carte | trois cartes | + carte des lieux et des routes (PNG, SVG à calques, GeoJSON) ; section 7 de la carte texte | demande de l'auteur |
-| Révision (relecture de l'auteur) | — | \|'Ukh-‖Sék sur les plateaux de qoyra ; territoire URM autour de \|'Ara-Sukhì ; 7 trouées mesurées, 3 à nommer ; RT_020 depuis Kù-békà ; ATL_SO déplacée vers l'ouest ; mangrove Sud (nouveau delta côtier au sud du Mopámà) ; Šālim au seuil de diffluence | `LIEUX_ET_ROUTES.md` §2.5 ; ALN-139 à 181 |
+| Révision (relecture de l'auteur) | — | \|'Ukh-‖Sék sur les plateaux de qoyra ; territoire URM autour de \|'Ara-Sukhì ; 7 trouées mesurées, 3 à nommer ; RT_020 depuis Kù-békà ; ATL_SO déplacée vers l'ouest ; mangrove Sud (nouveau delta côtier au sud du Mopámà) ; Šālim au seuil de diffluence ; haute Tanāḥil au nord de k'ara (RV-08) ; aucun fleuve Mopámà-Tùmázì, Tùmázì endoréique tenable (RV-09) | `LIEUX_ET_ROUTES.md` §2.5 ; ALN-139 à 184 |
 
 ### v0.4 (audits externes vérifiés ; carte du climat)
 
@@ -197,7 +197,7 @@ Le corpus annonce 6 800 km et 3,2 M km² de bassin. Ce sont les valeurs du Nil r
 - **HKL_S : glacis ou côte rocheuse.** L'index dit « glacis », LIEUX dit `littoral_rocheux`. Jusqu'en v0.4, la carte n'avait que du glacis. En v0.5, elle garde le glacis et ajoute des falaises aux sites rocheux du corpus (ALN-130).
 - **Gel de l'Halakhel** (§III) : à −20 m et 23-31° N, physiquement extrême ; non représenté.
 - **Chaîne côtière septentrionale** : « ~1 200 km » au corpus ; la côte qu'elle borde mesure ~2 600 km.
-- **Deux sens pour « Tanāḥil »** : affluent des plateaux SE (§VI.5) ou vallée des piémonts N de k'ara (§V.2, LIEUX). **Résolu en v0.5** : la vallée des villes est la gorge amont du fleuve, au nord du prolongement SE de k'ara (ALN-136).
+- **Deux sens pour « Tanāḥil »** : affluent des plateaux SE (§VI.5) ou vallée des piémonts N de k'ara (§V.2, LIEUX). **Rouvert en v0.5.2** : ce sont deux objets. Le fleuve Tanāḥil descend des plateaux SE ; la vallée des villes est un canyon au nord du col Abnī-tɨra, autre affluent de l'Abnuḥīl (ALN-182). La lecture v0.5 (gorge de l'Abay) est caduque.
 - **Registre** : `GEO_EXT_ATLANTIQUE` et `GEO_GLF_JALONDU` portent la même forme, « Jálondù ».
 
 ### 3.10 Surfaces

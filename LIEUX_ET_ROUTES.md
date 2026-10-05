@@ -115,6 +115,8 @@ L'auteur a tranché quatre points et signalé quatre placements. Chaque signalem
 | RV-05 | Kù-Bèláà, Mázì-Dúm (signalement : au sud du Mopámà, pas au delta de l'émissaire) | **avéré** : « ceinture de sécurité de la mangrove Sud » ; « pirogues lourdes venant de l'Atlantique » ; « invisible depuis le fleuve » | Une forêt de marée exige la marée : elle n'existe pas au bord d'un lac d'eau douce à 800 m. Au sud du lac, la seule mangrove possible est la côte, à ~500 km, dans le delta des rivières qui drainent le sud du bassin (delta réel du Niger). Carte : plaine deltaïque ajoutée, pluie bornée (ALN-139) | Kù-Bèláà 6,27° E, 4,35° N ; Mázì-Dúm 6,85° E, 4,62° N ; mangrove, 2 000-2 200 mm, hors \|'Arin. Plus aucun écart |
 | RV-06 | Jáli-Fè, Ku-jálima-rir, Anses-Jálondù (signalement : plus à l'ouest, pas au delta du Mopámà) | **avéré** : golfe Ku-jálima-rir à l'ouest ; Ku-jálima-rir « port linéaire en pointe d'estuaire » ; Jáli-Fè « delta (golfe Jálondù / arrière-mangrove de Ku-jálima-rir) » à bassins d'eau douce ; Li-sèk-dì « au large de l'anse Jálondù » | Ku-jálima-rir à l'estuaire du golfe Ku-jálima-rir (Bandama réel) ; Jáli-Fè sur le delta à lagunes voisin (Comoé et lagune Aby réels) ; Anses-Jálondù face aux îlots Li-sèk-dì. L'étiquette du golfe Jálondù est déplacée. Écart restant : « bassins alimentés par les fleuves du bassin-versant du Mopámà » ; ces fleuves côtiers ne drainent pas le Mopámà | Ku-jálima-rir -4,95° ; 5,21° (débit 3 200 m³/s à 15 km) ; Jáli-Fè -3,70° ; 5,22° ; Anses-Jálondù -1,28° ; 5,10°. RT_054 : 150 km ; RT_055 : 320 km ; RT_003 : 1 480 km, émissaire puis 860 km de cabotage |
 | RV-07 | Šālim (signalement : au NE, plus au nord) | **avéré** : HKL_NE ; « restes cyclopéens de digues » ; « fleuve coulant à l'envers la nuit » ; RT_071 « fluvial après crues, chenaux mobiles » vers Abnīqa ; Ṭanquish a recueilli les scribes de sa chancellerie | Seuil de diffluence de l'Abnuḥīl, tête du bras d'Abnīqa. C'est la « valve » de l'interfluve : en crue, l'eau y repart vers la mer intérieure. Les digues sont celles de la valve | 30,72° E, 27,64° N ; 30 m, plaine alluviale, 140 mm, Hiver Jaune. RT_071 : 264 km et 5,5 jours au lieu de 3 830 km. Écart restant : `steppe_piemont` (vallée irriguée en désert) |
+| RV-08 | Qūrāš-Taniḥīl-Ramšūr, Qūrāš-Tanīqa (signalement : plus au nord, au NE, moins proches ; la v0.5 les mettait au SE, à 2 300 m) | **avéré** : haute Tanāḥil « en aval des piémonts septentrionaux de k'ara », « secteur intérieur amont de HKL_NE » ; bassin GEO_FLV_ABNUHIL ; `steppe_piemont` ; « fermant le fond de canyon » ; « rupture de charge au débouché des cols » ; RT_006 col Abnī-tɨra ↔ Tanāḥil ; citernes, siège | La haute Tanāḥil devient le canyon au nord du col Abnī-tɨra (§2.2). Carte : canyon de 465 km creusé le long du thalweg existant (ALN-182). Qūrāš-Taniḥīl-Ramšūr ferme la tête du canyon ; Qūrāš-Tanīqa est ~115 km en aval, sur le rebord | Qūrāš-Taniḥīl-Ramšūr 24,33° E, 15,94° N : 624 m, fond de canyon, dénivelé 460 m à 10 km, steppe, 170 mm, col Abnī-tɨra à 78 km. Qūrāš-Tanīqa 25,20° E, 16,55° N : 645 m, rebord du canyon (200 m), steppe, 120 mm. Écart restant : aucun pour les sites ; RT_063 s'allonge (LT-31) |
+| RV-09 | Fleuve Mopámà-Tùmázì ; exutoire océanique du Tùmázì (questions) | aucun fleuve de ce type au corpus ; RT_029 « canaux inter-lacs » ; Tùmázì `endoreique: true` [CANON] | Aucun changement (§3, « Non modifié, consigné ») | ALN-184 |
 
 **Conséquence sur les deltas.** Le delta de l'émissaire (ALN-131) reste celui de Gálu-kánda (cales). Le « delta de Jáli-Fè » est un autre delta côtier, plus à l'ouest. La « mangrove Sud » est un troisième delta, au sud du lac. Le corpus réunissait les trois sous le seul nom de « delta du Mopámà ».
 
@@ -122,7 +124,7 @@ L'auteur a tranché quatre points et signalé quatre placements. Chaque signalem
 
 ## 3. Modifications de la géographie (v0.5)
 
-Quatre changements apportent un contenu absent jusqu'ici. Chacun est physiquement fondé. Aucun ne déplace un lieu canonique, un lac, une chaîne ou un col.
+Ces changements apportent un contenu absent jusqu'ici. Chacun est physiquement fondé. Aucun ne déplace un lieu canonique, un lac, une chaîne ou un col.
 
 | ID | Changement | Pourquoi | Physique | Effet mesuré |
 |---|---|---|---|---|
@@ -132,10 +134,13 @@ Quatre changements apportent un contenu absent jusqu'ici. Chacun est physiquemen
 | ALN-133 | **Règle du littoral rocheux** : hauteur mesurée au-dessus de l'eau voisine (la mer Halakhel est à −20 m) ; pente à l'échelle de la latitude ; liseré protégé du lissage | La règle mesurait la hauteur au-dessus de l'océan et le lissage effaçait les liserés étroits | Correction de calcul | Inclus dans ALN-130 |
 | ALN-134 | **Deux points de calibration des pluies** : versant humide ouest des plateaux SE (2 200 mm) ; rive sud du Tùmázì (1 800 mm) | Le modèle donnait jusqu'à 9 500 mm à l'escarpement des cols T'araq-ɨnkh et Q'usa-‖ema, et 3 800 mm au sud du Tùmázì, hors de toute plage du corpus | Maxima orographiques ramenés à des valeurs plausibles (2 900 et 2 450 mm au point) | Gîtes-Ts'idar 9 530 → 3 800 mm ; ‖Ethak-Kél 7 500 → 3 080 mm |
 | ALN-139 | **Delta du Sud Mopámà** (révision) : plaine deltaïque basse à mangroves sur la côte au sud du lac (4,8-7,8° E) ; troisième point de calage des pluies (2 400 mm) | « mangrove Sud » de Kù-Bèláà et Mázì-Dúm (RV-05) | Delta réel du Niger : grand fleuve tropical, marées, mangroves. Le modèle y donnait 5 000-6 500 mm | Forêt de marée : 30 440 → 38 430 km² ; pluie au point 2 610 mm |
+| ALN-182 | **Canyon de la haute Tanāḥil** (révision) : 465 km le long du thalweg qui descend du col Abnī-tɨra vers l'Abnuḥīl ; tête fermée ; 170-210 m de profondeur sur 120 km, puis décroissant ; fond à pente ≥ 0,4 m/km | Vallée déclarée « encaissée en canyon » au nord de k'ara (RV-08) ; le piémont n'y avait que 40-110 m de relief local | Rebord d'un piémont gréseux entaillé par un oued à crues brutales issu de k'ara (Ennedi réel). Creusement après l'érosion ; terrain seulement abaissé ; drainage vérifié jusqu'à l'Abnuḥīl | Steppe de piémont, désert, oasis : moins de 0,01 % de variation ; aucune autre région modifiée |
 
 **Non modifié, consigné :**
 - **Brèches des chaînes** (ALN-160) : le prolongement SE de k'ara et lóngò ont des brèches plus basses que leurs cols. Relever les crêtes reviendrait à plier la géographie au corpus.
 - **Distance Mopámà-Tùmázì** (~2 000 km, ALN-165) : le Tùmázì reste au Sud-Centre (choix v0.3.1).
+- **Fleuve Mopámà-Tùmázì** (RV-09, ALN-184) : physiquement impossible. Les lacs sont à ~1 900 km l'un de l'autre, à 800 m et 620 m ; le Mopámà déborde par son émissaire canonique vers l'Atlantique ; la ligne de partage entre eux passe au-dessus de 800 m. Un fleuve qui les relierait devrait sortir d'un lac par deux exutoires ou remonter une pente. Les « canaux inter-lacs » de RT_029 étaient déjà jugés impossibles (ALN-166).
+- **Exutoire océanique du Tùmázì** (RV-09, ALN-184) : non requis. Bilan hydrique mesuré sur la carte : bassin terrestre 57 000 km², pluie 1 330 mm ; lac 92 000 km², pluie 1 450 mm ; évaporation d'un lac tropical 1 500-1 900 mm/an. Bilan entre +14 et −30 km³/an : l'endoréisme canonique tient, au prix d'un niveau qui oscille. Si le lac montait de 190 m (809 m), il déborderait par un seuil de la rive est (27,47° E ; 7,36° N) vers l'océan de l'Est, sortie près de 42,6° E ; −0,3° N. Rien ne l'impose.
 - **Sables du portage NO** (ALN-140) : le corridor reçoit 300 à 550 mm/an (calage du corpus lui-même) ; c'est une steppe, pas un erg.
 
 ---
@@ -158,7 +163,7 @@ Biomes et expositions de 74 lieux (106 mentions) confrontés au site : 54 lieux 
 | LR-10 | \|'Ukh-‖Sék (résolu : RV-01) | `prairie_altitude`, refuges à 3 200 m. La crête du prolongement SE de k'ara culmine à ~2 450 m vers 9,5° N ; la prairie commence à ~2 900 m à cette latitude | (a) le corpus garde le site et remplace « prairie » par « forêt de montagne claire » et « refuges à 2 200-2 400 m » ; ou (b) le sanctuaire va sur les hauts plateaux de qoyra (> 3 000 m), à l'est de T'araq-ɨnkh, ce qui oblige à revoir RT_009 | ALN-150 |
 | LR-11 | \|'Urum-!Samel (résolu : RV-02) | Seul lieu à biome `glacier` : seuls les flancs de \|'Ara-Sukhì (k'ara) en portent. Site : 3 710 m, prairie et zone périglaciaire sous les glaciers, Hiver Blanc. Or les cols du territoire URM (024, 025, 028) sont sur lóngò, à 1 300 km | Garder le sanctuaire à \|'Ara-Sukhì : les URM y montent en pèlerinage depuis leurs vallées de lóngò ; ou retirer `glacier` et placer le bourg sur lóngò | ALN-151 |
 | LR-12 | Ts'idar-‖Sek | Deux ancrages incompatibles : « interface Költ (Bannaktì) / façade HKL_S/SO (Cherbekh-khem) » à l'ouest ; ethnie Ts'idari et RT_061 vers K'elis-‖ara à l'est, à 3 900 km | Retenu : crête de halekh oriental (2 840 m, Hiver Blanc, « Mur de l'Hiver »). Corriger RT_061 (LT-21) | ALN-152 |
-| LR-13 | Tanāḥil | « Avalanches de redoux sur l'accès au col Abnī-tɨra » : le col est à 920 km | Viser le col de la haute Tanāḥil : T'iqur-ɨlkh (2 700 m) ou Rafīq-t'sal (2 300 m) | ALN-153 |
+| LR-13 | Tanāḥil | « Avalanches de redoux sur l'accès au col Abnī-tɨra » : le col est à 920 km | (révisé, RV-08) Abnī-tɨra est le col de la haute Tanāḥil : il domine Qūrāš-Taniḥīl-Ramšūr (78 km). L'aléa appartient au corridor RT_006, pas à la cité ; Tanāḥil le subit comme terminus de la route | ALN-153 |
 | LR-14 | Hae Ts'i-K'uré | « Hypoxie/froid » : le monastère est à 1 890 m, hors \|'Arin ; c'est le col P'etsul-!ama (2 600 m, Hiver Gris) qui l'expose | Rattacher l'exposition à la montée du col (RT_065) | ALN-154 |
 | LR-15 | Gîtes-Ts'idar | « blocages par avalanches en amont » : site à 1 380 m hors \|'Arin ; les cols voisins sont en Hiver Gris | Garder : l'aléa vient des cols (amont) ; préciser « en amont, aux cols T'araq-ɨnkh et Q'usa-‖ema » | — |
 | LR-16 | Q'irel-Ts'idar | « Sécheresses prolongées » : 1 370 mm/an sur le plateau à l'est des cols | Lire « saison sèche marquée » ; ou situer Q'irel-Ts'idar plus au nord-est, sur le plateau sec qui borde la haute Tanāḥil (500 à 700 mm vers 38,3° E, 10,5-11° N), au prix d'un RT_009 plus long | ALN-155 |
@@ -206,7 +211,7 @@ La mer Halakhel est fermée (§VI.1.2). Aucune voie d'eau ne relie la mer Rouge 
 
 ### 5.2 Rapides : émissaire du Mopámà et haute Tanāḥil
 - **Émissaire du Mopámà.** Il descend de 800 m sur 650 km (1,2 m/km en moyenne). Plusieurs biefs dépassent 1,5 m/km. RT_003 (Kù-téka → Ku-jálima-rir) et RT_059 (Ku-Ngúmi → estuaire) comptent 140 à 170 km de portage autour des rapides. Le corpus le dit déjà : aléa « barres/rapides » de RT_003. **Action** : ajouter un segment `terrestre_portage` aux deux routes, ou préciser « navigable par biefs » (GEO §VI.3 : « navigable, ~600 km ») (ALN-170).
-- **Haute Tanāḥil.** La gorge n'est pas navigable. RT_031 (Gîtes-Ts'idar → Tanāḥil) commence par ~220 km de descente de l'escarpement avant le premier bief navigable. **Action** : ajouter `terrestre_caravane` en tête de la route (ALN-170).
+- **Gorge du Tanāḥil (Abay).** La gorge n'est pas navigable. RT_031 (Gîtes-Ts'idar → Tanāḥil) commence par ~220 km de descente de l'escarpement avant le premier bief navigable. **Action** : ajouter `terrestre_caravane` en tête de la route (ALN-170).
 
 ### 5.3 Cols et brèches de la cordillère
 - **Brèches** (ALN-160). Le profil de crête mesuré montre des passages plus bas que les cols canoniques :
@@ -257,6 +262,8 @@ Ces routes relient des lieux que la géographie sépare de plusieurs milliers de
 | LT-28 | RT_021, RT_073 \|'Urum-‖Sek ↔ Abnaqil / Abnīqa | 2 190-2 220 km, ~75 jours | col + vallée | cohérent : crête → vallée de l'Abnuḥīl → delta |
 | LT-29 | RT_071 Šālim ↔ Abnīqa | révisé : 264 km, 5,5 jours de descente du bras d'Abnīqa (RV-07) | « drainage administratif après crues » | cohérent |
 | LT-30 | RT_030 Qabṣūr-Qibṣ ↔ Tanāḥil | 2 750 km de remontée, 58 jours | « remontée saisonnière » | cohérent avec §2.2 |
+| LT-31 | RT_063 Qūrāš-Tanīqa ↔ K'umal-Naqra | révisé (RV-08) : 1 620 km, 56 jours, dont 1 055 km de désert (était 366 km) | « muletier (nuit) », contrebande | route trans-Beliet du canyon au rebord de la mer Rouge : nuits de marche plausibles en désert ; la capacité « niveau 2 » et la fenêtre « toute (sauf tempêtes) » restent tenables. **Action** : annoter « ~2 mois de contrebande de nuit » ou rapprocher la destination (ALN-183) |
+| LT-32 | RT_006 Abnī-tɨra ↔ Tanāḥil | 936 km, 32 jours ; variante par Qūrāš-Taniḥīl-Ramšūr (tête du canyon) : 979 km, 33 jours | « cols, vallée, vallée (vertical) » | cohérent : le fort est sur la descente du col, à un jour du tracé optimal |
 
 ### 5.5 Durées canoniques
 - **Portage NO** : 291 km et 14 jours de Khloreth-klam à Kralekh-Aktrik (RT_027), contre « 3 jours » au Géosystème. La valeur de 8 à 10 jours d'ALN-033 est trop courte d'un tiers : le tracé franchit les contreforts côtiers (point haut ~1 230 m). **Action** : « portage NO : 12 à 15 jours » (ALN-171).
@@ -302,7 +309,7 @@ Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre 
 | `LUR_KOT-SKRAL_LARGE` | Kot-Skral | LUR | ATL_INS | [-24.994, 16.884] | 2 | 430 | ile_aride | océan 71, ile_aride 29 |
 | `LUR_THRESKOL-STRAKH_LARGE` | Threskōl-Strakh | LUR | ATL_INS | [-22.906, 16.166] | 1 | 178 | ile_aride | océan 72, ile_aride 28 |
 | `LUR_KRETH-NA-SEREK_N` | Khreth-na-Serek | LUR | HKL_N | [-1.983, 29.671] | 107 | 215 | littoral_rocheux | mer Halakhel 64, desert_pierreux 19, steppe_piemont 12 |
-| `LUR_SEREKH-KHEM_N` | Serékh-khem | LUR | HKL_N | [-1.632, 30.772] | -27 | 133 | desert_pierreux | desert_pierreux 66, mer Halakhel 23, desert_sableux 9 |
+| `LUR_SEREKH-KHEM_N` | Serékh-khem | LUR | HKL_N | [-1.632, 30.772] | -27 | 133 | desert_pierreux | desert_pierreux 68, mer Halakhel 23, desert_sableux 9 |
 | `AUX_KRALEKH-NER` | Kralekh-ner | AUX | — | [-1.728, 30.25] | sur l'eau (mer Halakhel) | 112 | mer Halakhel | mer Halakhel 100 |
 | `LUR_AKHIDALET_NO` | Akhidalet | LUR | HKL_NO | [-7.72, 27.19] | 10 | 135 | plaine_alluviale | steppe_piemont 42, mer Halakhel 35, plaine_alluviale 21 |
 | `LUR_KRALEKH-AKTRIK_NO` | Kralekh-Aktrik | LUR | HKL_NO | [-7.497, 28.206] | 32 | 139 | desert_pierreux | mer Halakhel 37, steppe_piemont 33, desert_pierreux 30 |
@@ -312,9 +319,9 @@ Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre 
 | `ZRS_AKHILETH_NO` | Akhileth | ZRS | HKL_SO | [0.599, 24.596] | 443 | 203 | steppe_piemont | steppe_piemont 98 |
 | `LUR_CHERBEKH-KHEM_NO` | Cherbekh-khem | LUR | HKL_S | [2.623, 25.85] | 55 | 209 | littoral_rocheux | mer Halakhel 62, desert_pierreux 24, littoral_rocheux 7, steppe_piemont 5 |
 | `LUR_TAWALMAZ_NE` | Tawālmaz | LUR | HKL_S | [14.064, 25.203] | 62 | 245 | littoral_rocheux | mer Halakhel 58, herbage_arbore 31, steppe_piemont 9 |
-| `LUR_QABD-AR-GANUB_NE` | Qabḍ-ār-Ǧanūb | LUR | HKL_S | [22.574, 23.709] | 32 | 164 | littoral_rocheux | desert_pierreux 39, mer Halakhel 34, steppe_piemont 20, littoral_rocheux 6 |
-| `LUR_QURASH-TANIQA_NE` | Qūrāš-Tanīqa | LUR | HKL_NE | [38.351, 10.555] | 1384 | 1097 | herbage_arbore | herbage_arbore 62, steppe_piemont 21, plaine_alluviale 13 |
-| `LUR_QURASH-TANIHIL_NE` | Qūrāš-Taniḥīl-Ramšūr | LUR | HKL_NE | [38.446, 10.947] | 1413 | 828 | steppe_piemont | steppe_piemont 67, herbage_arbore 32 |
+| `LUR_QABD-AR-GANUB_NE` | Qabḍ-ār-Ǧanūb | LUR | HKL_S | [22.574, 23.709] | 32 | 164 | littoral_rocheux | desert_pierreux 38, mer Halakhel 34, steppe_piemont 19, littoral_rocheux 6 |
+| `LUR_QURASH-TANIQA_NE` | Qūrāš-Tanīqa | LUR | HKL_NE | [25.204, 16.548] | 645 | 200 | steppe_piemont | steppe_piemont 84, desert_pierreux 16 |
+| `LUR_QURASH-TANIHIL_NE` | Qūrāš-Taniḥīl-Ramšūr | LUR | HKL_NE | [24.327, 15.936] | 624 | 459 | steppe_piemont | steppe_piemont 99 |
 | `ZRS_SHALIM_NE` | Šālim | ZRS | HKL_NE | [30.717, 27.643] | 30 | 88 | plaine_alluviale | plaine_alluviale 63, desert_pierreux 37 |
 | `LUR_SARIQ_NE` | Ṣarīq | LUR | HKL_NE | [29.395, 29.268] | 241 | 38 | depression_saline | desert_pierreux 49, depression_saline 35, steppe_piemont 16 |
 | `ZRS_HAMAD-RAS_NE` | Ḥamaḍ-Rās | ZRS | HKL_NE | [28.168, 29.31] | 43 | 185 | littoral_rocheux | desert_pierreux 43, mer Halakhel 32, depression_saline 23 |
@@ -323,14 +330,14 @@ Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre 
 | `LUR_ABNIQA_NE` | Abnīqa | LUR | HKL_E | [28.359, 27.657] | 12 | 72 | plaine_alluviale | mer Halakhel 47, plaine_alluviale 30, depression_saline 20 |
 | `LUR_TANAQIL_NE` | Tanāqil | LUR | HKL_E | [28.423, 27.375] | -5 | 110 | depression_saline | mer Halakhel 55, plaine_alluviale 23, depression_saline 22 |
 | `LUR_QABSUR-QIBS_E` | Qabṣūr-Qibṣ | LUR | HKL_E | [28.343, 26.75] | 0 | 118 | depression_saline | mer Halakhel 61, depression_saline 31 |
-| `LUR_HAWQIL_NE` | Ḥawqil | LUR | HKL_E | [26.893, 25.333] | 6 | 141 | depression_saline | mer Halakhel 53, depression_saline 22, plaine_alluviale 11, steppe_piemont 9 |
+| `LUR_HAWQIL_NE` | Ḥawqil | LUR | HKL_E | [26.893, 25.333] | 6 | 141 | depression_saline | mer Halakhel 53, depression_saline 23, plaine_alluviale 11, steppe_piemont 9 |
 | `LUR_TANAHIL_NE` | Tanāḥil | LUR | HKL_E | [32.55, 15.614] | 378 | 29 | plaine_alluviale | desert_pierreux 54, plaine_alluviale 46 |
 | `LUR_SHAFAQ-MIRQ_NE` | Šafāq-Mirq | LUR | MED_NE | [31.291, 31.481] | 0 | 12 | plaine_alluviale | plaine_alluviale 54, océan 45 |
 | `LUR_TANQUISH_NE` | Ṭanquish | LUR | MED_NE | [29.809, 31.073] | 0 | 49 | plaine_alluviale | océan 42, plaine_alluviale 32, fourre_cotier_sec 26 |
 | `AUX_MEDITERRANEE_NE` | Méditerranée NE (façade) | AUX | — | [31.004, 32.293] | sur l'eau (océan) | 540 | océan | océan 100 |
 | `LUR_TNAYA-HAEM_SE` | T'naya-Ḥaem | LUR | ROU_SE | [42.892, 11.744] | -15 | 994 | littoral_rocheux | steppe_piemont 55, océan 37, littoral_rocheux 7 |
 | `LUR_KURE-KESUN_SE` | K'uré-K’ésun | LUR | ROU_SE | [40.135, 15.014] | 62 | 199 | littoral_rocheux | cote_desertique 31, desert_pierreux 29, recif_corallien 27, hors Beliet 9 |
-| `LUR_KURE-TAWA_SE` | K'uré-tawa | LUR | ROU_SE | [39.45, 15.598] | 368 | 666 | littoral_rocheux | steppe_piemont 38, recif_corallien 30, océan 15, littoral_rocheux 10 |
+| `LUR_KURE-TAWA_SE` | K'uré-tawa | LUR | ROU_SE | [39.45, 15.598] | 368 | 666 | littoral_rocheux | steppe_piemont 41, recif_corallien 30, océan 15, littoral_rocheux 10 |
 | `LUR_KUTEKA_SO` | Kù-téka | LUR | MOP_SO | [5.045, 9.504] | 804 | 60 | zone_humide_lacustre | eaux_lacustres 43, zone_humide_lacustre 39, herbage_arbore 14 |
 | `LUR_KUNGUMI_SO` | Ku-Ngúmi | LUR | MOP_SO | [4.583, 9.048] | 671 | 67 | foret_tropicale_humide | foret_tropicale_humide 83, herbage_arbore 17 |
 | `LUR_KUBELAA_SO` | Kù-Bèláà | LUR | MOP_SO | [6.272, 4.349] | -6 | 10 | foret_maree | foret_tropicale_humide 46, foret_maree 34, océan 19 |
@@ -414,8 +421,8 @@ Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre 
 | `LUR_CHERBEKH-KHEM_NO` | 226 | 20.9 | 11.9 / 1.6 | Hiver de Vapeur | 2 / 1160 / 1616 / 120 | — ; 0 | Ktamar-khɨ (3000 m) à 302 km |
 | `LUR_TAWALMAZ_NE` | 651 | 21.2 | 12.3 / 4.3 | Hiver de Vapeur | 2 / 719 / 832 / 141 | — ; 1 | Ṣabūl-tɨkh (2900 m) à 544 km |
 | `LUR_QABD-AR-GANUB_NE` | 247 | 22.0 | 13.5 / 3.5 | Hiver de Vapeur | 2 / 817 / 167 / 187 | — ; 0 | Qaṣūl-tɨra (2700 m) à 620 km |
-| `LUR_QURASH-TANIQA_NE` | 573 | 19.2 | 13.6 / 5.6 | hors \|'Arin | 2056 / 471 / 1236 / 12 | Tira-ñara / Tanāḥil ; 46 | Nrelat-q'urm (2200 m) à 156 km |
-| `LUR_QURASH-TANIHIL_NE` | 445 | 19.0 | 13.4 / 5.4 | hors \|'Arin | 2024 / 453 / 1257 / 3 | Tira-ñara / Tanāḥil ; 27 | Nrelat-q'urm (2200 m) à 124 km |
+| `LUR_QURASH-TANIQA_NE` | 119 | 21.6 | 14.7 / 2.9 | hors \|'Arin | 758 / 1322 / 497 / 254 | — ; 93 | Abnī-tɨra (2800 m) à 189 km |
+| `LUR_QURASH-TANIHIL_NE` | 169 | 22.0 | 15.2 / 4.1 | hors \|'Arin | 810 / 1434 / 522 / 242 | — ; 92 | Abnī-tɨra (2800 m) à 78 km |
 | `ZRS_SHALIM_NE` | 138 | 20.3 | 10.9 / -0.6 | Hiver Jaune | 185 / 237 / 907 / 2 | Abnīqa ; 4560 | Ṭanīkhūr (3200 m) à 1455 km |
 | `LUR_SARIQ_NE` | 222 | 18.3 | 8.5 / -1.9 | Hiver Jaune | 79 / 173 / 944 / 153 | — ; 0 | Qaṣūl-tɨra (2700 m) à 1507 km |
 | `ZRS_HAMAD-RAS_NE` | 175 | 19.5 | 9.7 / -1.3 | Hiver de Vapeur | 2 / 187 / 886 / 147 | — ; 0 | Qaṣūl-tɨra (2700 m) à 1437 km |
@@ -434,18 +441,18 @@ Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre 
 | `LUR_KURE-TAWA_SE` | 117 | 23.7 | 17.0 / 5.2 | hors \|'Arin | 1670 / 2 / 1558 / 229 | — ; 0 | Ḥazīr-k'ama (2100 m) à 82 km |
 | `LUR_KUTEKA_SO` | 1372 | 22.7 | 17.3 / 9.3 | hors \|'Arin | 1884 / 362 / 2 / 6 | GEO_FLV_EMISSAIRE_MOPAMA ; 17 | Ku-Pámà-Tɨra-te (2000 m) à 500 km |
 | `LUR_KUNGUMI_SO` | 1613 | 23.5 | 18.2 / 10.2 | hors \|'Arin | 1925 / 297 / 56 / 2 | GEO_FLV_EMISSAIRE_MOPAMA ; 51 | Ku-Pámà-Tɨra-te (2000 m) à 571 km |
-| `LUR_KUBELAA_SO` | 1995 | 27.5 | 23.3 / 15.3 | hors \|'Arin | 2455 / 4 / 542 / 11 | — ; 82 | Ku-Pámà-Tɨra-te (2000 m) à 979 km |
+| `LUR_KUBELAA_SO` | 1995 | 27.5 | 23.3 / 15.3 | hors \|'Arin | 2455 / 4 / 542 / 62 | — ; 82 | Ku-Pámà-Tɨra-te (2000 m) à 979 km |
 | `LUR_MAZI-DUM_SO` | 2200 | 27.5 | 23.3 / 15.3 | hors \|'Arin | 2407 / 6 / 525 / 9 | — ; 353 | Ku-Pámà-Tɨra-te (2000 m) à 940 km |
 | `ZRS_KUSALADI_SO` | 1596 | 22.7 | 17.3 / 9.3 | hors \|'Arin | 1909 / 395 / 4 / 89 | — ; 7 | Ku-Pámà-Tɨra-te (2000 m) à 449 km |
 | `AUX_LISIERES_BALONGO` | 1417 | 24.4 | 19.2 / 11.2 | hors \|'Arin | 1964 / 352 / 60 / 26 | — ; 17 | Ku-Pámà-Tɨra-te (2000 m) à 499 km |
 | `AUX_PIEMONTS_MUDARHOBI` | 1379 | 25.1 | 20.0 / 12.0 | hors \|'Arin | 1987 / 342 / 110 / 2 | — ; 318 | Ku-Pámà-Tɨra-te (2000 m) à 523 km |
-| `AUX_DLT_MOPAMA` | 2217 | 27.5 | 22.9 / 14.9 | hors \|'Arin | 2223 / 2 / 554 / 13 | GEO_FLV_EMISSAIRE_MOPAMA ; 76 | Ku-Pámà-Tɨra-te (2000 m) à 1066 km |
+| `AUX_DLT_MOPAMA` | 2217 | 27.5 | 22.9 / 14.9 | hors \|'Arin | 2223 / 2 / 554 / 17 | GEO_FLV_EMISSAIRE_MOPAMA ; 76 | Ku-Pámà-Tɨra-te (2000 m) à 1066 km |
 | `ZRS_KUUMANA_SO` | 1840 | 25.6 | 20.7 / 12.7 | hors \|'Arin | 2078 / 118 / 330 / 16 | GEO_FLV_EMISSAIRE_MOPAMA ; 12 | Ku-Pámà-Tɨra-te (2000 m) à 844 km |
 | `ZRS_SAKUMADI_FORS` | 2187 | 21.6 | 17.0 / 9.0 | hors \|'Arin | 1934 / 1679 / 46 / 34 | — ; 39 | Šaqra-t'em (2400 m) à 695 km |
 | `ZRS_KUPEPANA_FORS` | 2442 | 21.9 | 17.3 / 9.3 | hors \|'Arin | 1963 / 1586 / 80 / 30 | — ; 68 | Šaqra-t'em (2400 m) à 730 km |
 | `LUR_KUBEKA_SC` | 1730 | 27.5 | 22.3 / 14.3 | hors \|'Arin | 1646 / 1745 / 0 / 105 | — ; 7 | Šaqra-t'em (2400 m) à 417 km |
 | `LUR_KUPILA-MUSUKU_SC` | 1192 | 21.8 | 17.1 / 9.1 | hors \|'Arin | 1854 / 1522 / 2 / 134 | — ; 81 | Šaqra-t'em (2400 m) à 640 km |
-| `LUR_KUKIBO_QESHA_SC` | 1349 | 20.2 | 15.4 / 7.4 | hors \|'Arin | 1852 / 1387 / 82 / 57 | — ; 36 | Šaqra-t'em (2400 m) à 680 km |
+| `LUR_KUKIBO_QESHA_SC` | 1349 | 20.2 | 15.4 / 7.4 | hors \|'Arin | 1852 / 1387 / 82 / 56 | — ; 36 | Šaqra-t'em (2400 m) à 680 km |
 | `ZRS_KU-PILA-DI_SC` | 1136 | 27.5 | 22.7 / 14.7 | hors \|'Arin | 1813 / 1554 / 0 / 134 | — ; 4 | Šaqra-t'em (2400 m) à 596 km |
 | `ZRS_KU-SUKU-NA_SC` | 1292 | 27.5 | 22.7 / 14.7 | hors \|'Arin | 1844 / 1619 / 0 / 128 | — ; 3 | Šaqra-t'em (2400 m) à 614 km |
 | `ZRS_KU-LEMBE_SC` | 2205 | 27.5 | 22.4 / 14.4 | hors \|'Arin | 1715 / 1666 / 0 / 58 | — ; 9 | Kurel-ahek (2150 m) à 476 km |
@@ -514,7 +521,7 @@ Positions [PROPOSITION] en [longitude, latitude]. « Écart » = distance entre 
 | `LUR_CHERBEKH-KHEM_NO` | Cherbekh-khem | brouillards d'évaporation (Hiver de Vapeur); tempêtes et houle de rivage | exposition « ensablement des chenaux » — non soutenue par le site (ensablement) |
 | `LUR_TAWALMAZ_NE` | Tawālmaz | brouillards d'évaporation (Hiver de Vapeur); tempêtes et houle de rivage | aucun |
 | `LUR_QABD-AR-GANUB_NE` | Qabḍ-ār-Ǧanūb | brouillards d'évaporation (Hiver de Vapeur); tempêtes et houle de rivage | aucun |
-| `LUR_QURASH-TANIQA_NE` | Qūrāš-Tanīqa | éboulements, glissements (versants raides) | aucun |
+| `LUR_QURASH-TANIQA_NE` | Qūrāš-Tanīqa | aridité (< 150 mm) | aucun |
 | `LUR_QURASH-TANIHIL_NE` | Qūrāš-Taniḥīl-Ramšūr | — | aucun |
 | `ZRS_SHALIM_NE` | Šālim | crues (lit majeur); aridité (< 150 mm) | biome « steppe_piemont » — milieux calculés : desert_pierreux, plaine_alluviale |
 | `LUR_SARIQ_NE` | Ṣarīq | — | aucun |
@@ -591,7 +598,7 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_018` | Imekh-stom ↔ Khloreth-klam | maritime_cabotage, terrestre_portage | 1209 (1090) | 27.0 | mer Halakhel 920, terre 286 | — | 1 | 1232 / 1461 | — |
 | `RT_019` | Q'usa-\|\|ema ↔ Ts'idar-ré | col_haute_altitude | 20 (20) | 1.3 | terre 20 | — | 0 | 2192 / 115 | Q'usa-\|\|ema (016, 2100 m) ; avr → nov |
 | `RT_020` | Kù-kèdà yì Mù-Kíri ↔ Ts'idar-ré | col_haute_altitude, maritime_cabotage | 5078 (4463) | 189.0 | océan 1811, lac 505, terre 2753 | — | 3 | 2309 / 8654 | P'etsul-!ama (013, 2600 m) ; mai → oct |
-| `RT_021` | \|'Urum-‖Sek ↔ Dimlāš | col_haute_altitude, terrestre_caravane | 2269 (2099) | 76.0 | terre 2269 | — | 0 | 3216 / 1626 | — |
+| `RT_021` | \|'Urum-‖Sek ↔ Dimlāš | col_haute_altitude, terrestre_caravane | 2269 (2099) | 76.0 | terre 2269 | — | 0 | 3216 / 1581 | — |
 | `RT_022` | Qūrāš-Ṣafīḥ ↔ Ḥamaḍ-Rās | maritime_cabotage | 107 (99) | 1.9 | mer Halakhel 102, terre 2 | — | 1 | 26 / 0 | — |
 | `RT_023` | Tawālmaz ↔ Abnaqil | maritime_cabotage | 1769 (1503) | 24.0 | mer Halakhel 1744, terre 22 | terre 19 | 1 | 29 / 26 | — |
 | `RT_024` | !Tama-\|'Ara ↔ Dimlāš | col_haute_altitude, terrestre_caravane | 3071 (2734) | 105.0 | terre 3071 | — | 0 | 1743 / 6214 | — |
@@ -623,7 +630,7 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_050` | Cherbekh-khem ↔ Imekh-stom | maritime_cabotage, terrestre_caravane | 379 (229) | 5.0 | mer Halakhel 379 | — | 0 | None / 0 | — |
 | `RT_051` | Bannaktì ↔ Cherbekh-khem | terrestre_caravane | 1357 (1255) | 47.0 | terre 1353 | — | 1 | 2016 / 4388 | Hlenik-k'eso (038, 2000 m) ; avr → nov |
 | `RT_052` | T'naya-Ḥaem ↔ Q'irel-Ts'idar | terrestre_caravane, terrestre_portage | 985 (911) | 38.0 | terre 985 | — | 0 | 2514 / 7699 | — |
-| `RT_053` | Ṣarīq ↔ \|\|Ethak-Kél-Ts'idar | terrestre_caravane | 2492 (2325) | 87.0 | terre 2492 | — | 0 | 2386 / 4255 | T'araq-ɨnkh (010, 2400 m) ; mai → oct |
+| `RT_053` | Ṣarīq ↔ \|\|Ethak-Kél-Ts'idar | terrestre_caravane | 2492 (2325) | 87.0 | terre 2492 | — | 0 | 2386 / 4252 | T'araq-ɨnkh (010, 2400 m) ; mai → oct |
 | `RT_054` | Ku-jálima-rir ↔ Jáli-Fè | maritime_cabotage | 149 (138) | 2.4 | océan 141, terre 4 | — | 1 | -8 / 0 | — |
 | `RT_055` | Jáli-Fè ↔ Anses-Jálondù | maritime_cabotage | 319 (269) | 5.1 | océan 306, terre 6 | — | 2 | -3 / 0 | — |
 | `RT_056` | Talom-ak ↔ Kisralom | maritime_cabotage | 333 (275) | 12.0 | mer Halakhel 18, océan 11, terre 292 | terre 280 | 4 | 646 / 532 | — |
@@ -631,10 +638,10 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_058` | Kisralom ↔ Serékh-khem | maritime_cabotage | 765 (636) | 11.0 | mer Halakhel 752, terre 9 | — | 2 | 26 / 0 | — |
 | `RT_059` | Ku-Ngúmi ↔ Estuaire Mopámà | fluvial | 728 (498) | 21.0 | océan 23, fleuve (aval) 374, fleuve (amont) 148, terre 163 | mer 23, terre 142 | 6 | 693 / 154 | — |
 | `RT_060` | Kù-Bèláà ↔ Ku-jálima-rir | fluvial | 1529 (1248) | 53.0 | océan 885, fleuve (aval) 75, fleuve (amont) 69, terre 250 | mer 885 | 77 | 16 / 22 | — |
-| `RT_061` | Ts'idar-‖Sek ↔ K'elis-‖ara | col_haute_altitude | 4200 (3909) | 216.0 | terre 4200 | — | 0 | 2842 / 10602 | K'elis-‖ara (011, 2500 m); Hlelak-!uri (032, 2900 m); Krathal-t'iq (041, 2300 m) ; juin → sep |
+| `RT_061` | Ts'idar-‖Sek ↔ K'elis-‖ara | col_haute_altitude | 4200 (3909) | 216.0 | terre 4200 | — | 0 | 2842 / 10786 | K'elis-‖ara (011, 2500 m); Hlelak-!uri (032, 2900 m); Krathal-t'iq (041, 2300 m) ; juin → sep |
 | `RT_062` | Gîtes-Ts'idar ↔ \|\|Ethak-Kél-Ts'idar | terrestre_caravane | 71 (63) | 3.8 | terre 71 | — | 0 | 2386 / 1286 | T'araq-ɨnkh (010, 2400 m) ; mai → oct |
-| `RT_063` | Qūrāš-Tanīqa ↔ K'umal-Naqra | terrestre_caravane | 366 (344) | 14.0 | terre 366 | — | 0 | 2792 / 2192 | — |
-| `RT_064` | Abnī-tɨra ↔ Zagakh-TƗr | col_haute_altitude | 817 (766) | 43.0 | terre 817 | — | 0 | 2515 / 1462 | Abnī-tɨra (001, 2800 m) ; juin → oct |
+| `RT_063` | Qūrāš-Tanīqa ↔ K'umal-Naqra | terrestre_caravane | 1617 (1519) | 56.0 | terre 1617 | — | 0 | 2284 / 3573 | — |
+| `RT_064` | Abnī-tɨra ↔ Zagakh-TƗr | col_haute_altitude | 817 (766) | 43.0 | terre 817 | — | 0 | 2515 / 1463 | Abnī-tɨra (001, 2800 m) ; juin → oct |
 | `RT_065` | Hae Ts'i-K'uré ↔ P'etsul-!ama | terrestre_caravane | 42 (40) | 1.9 | terre 42 | — | 0 | 2397 / 736 | P'etsul-!ama (013, 2600 m) ; mai → oct |
 | `RT_066` | Kot-Skral ↔ Bannaktì | maritime_hauturier, terrestre_caravane | 2106 (1770) | 34.0 | océan 1422, terre 677 | — | 2 | 1262 / 1493 | — |
 | `RT_067` | K'umal-Naqra ↔ K'uré-K'ésun | col_haute_altitude | 208 (199) | 11.0 | terre 208 | — | 0 | 2472 / 906 | — |
@@ -643,7 +650,7 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_070` | Lisières Ba-lóngó ↔ Q'eša-Kɨ́bò | terrestre_caravane | 1815 (1735) | 62.0 | terre 1815 | — | 0 | 1178 / 3665 | — |
 | `RT_071` | Šālim ↔ Abnīqa | fluvial | 264 (233) | 5.5 | fleuve (aval) 221, fleuve (amont) 30, terre 13 | terre 13 | 0 | 30 / 64 | — |
 | `RT_072` | Sa-nùbè yì Mù-Sùkú ↔ Talom-ak | fluvial, maritime_cabotage | 9368 (4347) | 156.0 | océan 4580, lac 387, fleuve (aval) 4079, fleuve (amont) 122, terre 184 | terre 167 | 5 | 1529 / 1315 | — |
-| `RT_073` | \|'Urum-‖Sek ↔ Ḥamūqaš | col_haute_altitude, terrestre_caravane | 2297 (2129) | 78.0 | terre 2297 | — | 0 | 3216 / 1762 | — |
+| `RT_073` | \|'Urum-‖Sek ↔ Ḥamūqaš | col_haute_altitude, terrestre_caravane | 2297 (2129) | 78.0 | terre 2297 | — | 0 | 3216 / 1736 | — |
 | `RT_074` | Hae K'umel ↔ Talom-ak | maritime_cabotage | 7149 (5324) | 104.0 | océan 6774, terre 363 | terre 352 | 4 | 2369 / 1110 | ʿUbayl-t'iq (044, 2000 m) ; avr → nov |
 
 ### E. Routes : milieux et hivers traversés (voies de terre)
@@ -655,7 +662,7 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_003` | foret_tropicale_humide 501, herbage_arbore 71, zone_humide_lacustre 20 | hors \|'Arin 605 |
 | `RT_004` | steppe_piemont 145, fourre_cotier_sec 57, foret_montagne 48 | hiver pluvieux tempéré 125, Hiver Gris 85, Hiver Jaune 59 |
 | `RT_005` | — | — |
-| `RT_006` | steppe_piemont 602, desert_pierreux 313, plaine_alluviale 21 | hors \|'Arin 913 |
+| `RT_006` | steppe_piemont 602, desert_pierreux 308, plaine_alluviale 21 | hors \|'Arin 913 |
 | `RT_007` | plaine_alluviale 2063, desert_pierreux 133, desert_sableux 20 | hors \|'Arin 2034, Hiver Jaune 190 |
 | `RT_008` | — | — |
 | `RT_009` | herbage_arbore 217, foret_montagne 203, steppe_piemont 22 | hors \|'Arin 318, Hiver Gris 138 |
@@ -670,10 +677,10 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_018` | steppe_piemont 145, fourre_cotier_sec 57, foret_montagne 48 | hiver pluvieux tempéré 125, Hiver Gris 85, Hiver Jaune 59 |
 | `RT_019` | foret_montagne 20 | Hiver Gris 20 |
 | `RT_020` | herbage_arbore 1796, steppe_piemont 405, foret_tropicale_humide 335, foret_montagne 201, foret_berge 21 | hors \|'Arin 2680, Hiver Gris 78 |
-| `RT_021` | desert_pierreux 1539, steppe_piemont 335, plaine_alluviale 249, herbage_arbore 118, prairie_altitude 28 | hors \|'Arin 1639, Hiver Jaune 552, Hiver Gris 72 |
+| `RT_021` | desert_pierreux 1520, steppe_piemont 335, plaine_alluviale 249, herbage_arbore 118, prairie_altitude 28 | hors \|'Arin 1639, Hiver Jaune 552, Hiver Gris 72 |
 | `RT_022` | — | — |
 | `RT_023` | plaine_alluviale 25 | Hiver de Vapeur 25 |
-| `RT_024` | steppe_piemont 2086, desert_pierreux 743, herbage_arbore 94, plaine_alluviale 64, foret_montagne 39, depression_saline 25 | hors \|'Arin 1522, Hiver Jaune 1056, Hiver de Vapeur 419, Hiver Gris 74 |
+| `RT_024` | steppe_piemont 2086, desert_pierreux 758, herbage_arbore 94, plaine_alluviale 64, foret_montagne 39 | hors \|'Arin 1522, Hiver Jaune 1056, Hiver de Vapeur 419, Hiver Gris 74 |
 | `RT_025` | herbage_arbore 509, steppe_piemont 178, foret_montagne 124 | hors \|'Arin 728, Hiver Gris 118 |
 | `RT_026` | foret_montagne 97 | hors \|'Arin 83, Hiver Gris 26 |
 | `RT_027` | steppe_piemont 158, foret_montagne 50, fourre_cotier_sec 50 | hiver pluvieux tempéré 114, Hiver Gris 99, Hiver Jaune 46, Hiver de Vapeur 33 |
@@ -702,7 +709,7 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_050` | — | — |
 | `RT_051` | steppe_piemont 710, desert_pierreux 509, plaine_alluviale 98, littoral_rocheux 21 | Hiver Jaune 1007, hors \|'Arin 201, Hiver de Vapeur 142 |
 | `RT_052` | steppe_piemont 491, herbage_arbore 300, foret_montagne 161 | hors \|'Arin 806, Hiver Gris 179 |
-| `RT_053` | desert_pierreux 1224, plaine_alluviale 586, steppe_piemont 337, foret_montagne 151, herbage_arbore 124, depression_saline 55 | hors \|'Arin 1891, Hiver Jaune 564, Hiver Gris 37 |
+| `RT_053` | desert_pierreux 1202, plaine_alluviale 589, steppe_piemont 337, foret_montagne 151, herbage_arbore 124, depression_saline 55 | hors \|'Arin 1891, Hiver Jaune 564, Hiver Gris 37 |
 | `RT_054` | — | — |
 | `RT_055` | — | — |
 | `RT_056` | steppe_piemont 134, herbage_arbore 126, desert_pierreux 31 | Hiver Gris 161, hiver pluvieux tempéré 69, Hiver Jaune 36, Hiver de Vapeur 25 |
@@ -712,7 +719,7 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_060` | foret_maree 252, foret_tropicale_humide 124 | hors \|'Arin 376 |
 | `RT_061` | steppe_piemont 3157, desert_pierreux 684, herbage_arbore 236, foret_montagne 92, prairie_altitude 24 | hors \|'Arin 3050, Hiver Jaune 885, Hiver Gris 241, Hiver Blanc 24 |
 | `RT_062` | foret_montagne 63 | hors \|'Arin 45, Hiver Gris 25 |
-| `RT_063` | steppe_piemont 331, herbage_arbore 23 | Hiver Jaune 201, hors \|'Arin 84, Hiver Gris 81 |
+| `RT_063` | desert_pierreux 1055, steppe_piemont 429, plaine_alluviale 127 | hors \|'Arin 1460, Hiver Jaune 157 |
 | `RT_064` | steppe_piemont 554, herbage_arbore 129, foret_montagne 106 | Hiver Gris 305, Hiver Jaune 268, hors \|'Arin 245 |
 | `RT_065` | herbage_arbore 22 | Hiver Gris 22 |
 | `RT_066` | steppe_piemont 603, desert_pierreux 69 | hors \|'Arin 606, Hiver Jaune 70 |
@@ -722,13 +729,14 @@ Tracé le plus rapide sur la carte (grille ≈ 5 km), dans les modes déclarés 
 | `RT_070` | herbage_arbore 1012, steppe_piemont 780 | hors \|'Arin 1815 |
 | `RT_071` | plaine_alluviale 264 | Hiver Jaune 202, Hiver de Vapeur 62 |
 | `RT_072` | plaine_alluviale 2834, foret_tropicale_humide 789, steppe_piemont 278, desert_pierreux 270, foret_berge 89, foret_montagne 67, herbage_arbore 35, desert_sableux 20 | hors \|'Arin 3605, Hiver Jaune 523, hiver pluvieux tempéré 192, Hiver Gris 66 |
-| `RT_073` | desert_pierreux 1507, steppe_piemont 335, plaine_alluviale 283, herbage_arbore 118, prairie_altitude 28, depression_saline 25 | hors \|'Arin 1662, Hiver Jaune 473, Hiver de Vapeur 89, Hiver Gris 72 |
+| `RT_073` | desert_pierreux 1493, steppe_piemont 335, plaine_alluviale 283, herbage_arbore 118, prairie_altitude 28, depression_saline 25 | hors \|'Arin 1662, Hiver Jaune 473, Hiver de Vapeur 89, Hiver Gris 72 |
 | `RT_074` | steppe_piemont 206, fourre_cotier_sec 119, desert_pierreux 27 | Hiver Jaune 205, Hiver Gris 64, hiver pluvieux tempéré 59, hors \|'Arin 33 |
 
 ### F. Variantes imposées par une indication du corpus
 
 | ID | Étapes imposées | Longueur km | Durée (j) | Altitude max (m) | Cols franchis ; mois ouverts | Écart avec le tracé optimal |
 |---|---|---|---|---|---|---|
+| `RT_006` | LUR_QURASH-TANIHIL_NE | 979 | 33.0 | 2515 | Abnī-tɨra (001, 2800 m) ; juin → oct | +43 km, +1.0 j |
 | `RT_010` | GEO_COL_014 | 2614 | 69.0 | 2624 | T'iqur-ɨlkh (014, 2700 m) ; juin → oct | +1354 km, +30.0 j |
 | `RT_027` | LUR_STAKHR-DUREK_NO | 300 | 15.0 | 1232 | — ; — | +9 km, +1.0 j |
 | `RT_066` | LUR_STALOMAR-KOT_NO | 2924 | 44.0 | 1347 | — ; — | +818 km, +10.0 j |

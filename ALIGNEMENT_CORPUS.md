@@ -15,7 +15,7 @@ Ce document recense tout ce que le chantier de carte a **décidé, mesuré, ajou
   3. `carte/sig/beliet_geographie.geojson` : géométries (rivage réel de la mer, lacs, crêtes, fleuves, cols).
 - **Version de référence** : carte v0.5. Les positions des versions antérieures (v0.1, v0.2) sont **caduques** ; voir §7.
 - **Carte texte** : `carte/beliet_carte_ascii.md` (relief, eaux, milieux, répertoire des lieux, cols, lieux et routes du corpus ; une case = 0,5° × 0,5°).
-- **Lieux et routes** (v0.5) : `LIEUX_ET_ROUTES.md` (méthode, constats, solutions, tables), `carte/sig/beliet_lieux_routes.json`, `carte/beliet_carte_lieux.png` ; synthèse en §9 (ALN-130 à ALN-181 ; révision après relecture de l'auteur : §9.6).
+- **Lieux et routes** (v0.5) : `LIEUX_ET_ROUTES.md` (méthode, constats, solutions, tables), `carte/sig/beliet_lieux_routes.json`, `carte/beliet_carte_lieux.png` ; synthèse en §9 (ALN-130 à ALN-184 ; révisions après relecture de l'auteur : §9.6).
 
 ---
 
@@ -412,26 +412,26 @@ Largeur du Sumdan (rive nord → Méditerranée) :
 
 | Milieu | Surface |
 |---|---|
-| `steppe_piemont` | 5 913 744 km² |
-| `herbage_arbore` | 3 600 095 km² |
-| `foret_tropicale_humide` | 3 147 316 km² |
-| `desert_pierreux` | 2 697 571 km² |
-| `foret_montagne` | 534 367 km² |
+| `steppe_piemont` | 5 914 038 km² |
+| `herbage_arbore` | 3 600 109 km² |
+| `foret_tropicale_humide` | 3 147 311 km² |
+| `desert_pierreux` | 2 697 175 km² |
+| `foret_montagne` | 534 358 km² |
 | `fourre_cotier_sec` | 446 727 km² |
-| `desert_sableux` | 284 190 km² |
+| `desert_sableux` | 284 236 km² |
 | `prairie_altitude` | 226 138 km² |
-| `depression_saline` | 199 047 km² |
+| `depression_saline` | 199 008 km² |
 | `foret_berge` | 189 740 km² |
 | `eaux_lacustres` | 165 502 km² |
-| `plaine_alluviale` | 164 198 km² |
+| `plaine_alluviale` | 164 242 km² |
 | `zone_humide_lacustre` | 61 028 km² |
 | `recif_corallien` | 39 332 km² |
 | `foret_maree` | 38 430 km² |
 | `ile_aride` | 25 241 km² |
 | `cote_desertique` | 22 498 km² |
-| `littoral_rocheux` | 21 035 km² |
+| `littoral_rocheux` | 21 032 km² |
 | `zone_periglaciaire` | 20 740 km² |
-| `oasis` | 6 913 km² |
+| `oasis` | 6 968 km² |
 | `dunes_littorales` | 5 072 km² |
 | `glacier` | 1 516 km² |
 
@@ -592,6 +592,7 @@ Coordonnées [longitude, latitude] en degrés décimaux WGS84. Liste complète e
 | `—` | cap de Ḥamaḍ-Rās | rivage escarpé (v0.5) : centre, rayon 45 km, dénivelé 100 m | [28.15, 29.35] |  |
 | `—` | delta du Mopámà | plaine deltaïque basse (v0.5) : contour | [[0.3, 5.68], [0.45, 6.1], [0.85, 6.5], [1.35, 6.75], [1.9, 6.62], [2.2, 6.38], [2.1, 6.15], [1.2, 5.9], [0.6, 5.6]] |  |
 | `—` | delta du Sud Mopámà | plaine deltaïque basse (v0.5) : contour | [[4.95, 5.95], [5.7, 6.05], [6.55, 5.85], [7.1, 5.3], [7.7, 4.8], [7.8, 4.3], [6.5, 3.9], [5.4, 4.0], [4.8, 4.9]] |  |
+| `GEO_VAL_HAUTE_TANAHIL` | haute Tanāḥil | canyon (v0.5.2) : thalweg amont → aval, profondeur ≤ 220 m | [[24.184, 15.921], [24.263, 15.936], [24.343, 15.936], [24.407, 15.982], [24.455, 16.058], [24.534, 16.135], [24.598, 16.196], [24.678, 16.212], [24.757, 16.181], [24.837, 16.166], [24.885, 16.227], [24.964, 16.288], [25.028, 16.364], [25.108, 16.426], [25.… |  |
 | `GEO_LAC_TUMAZI` | Tùmázì | contour dessiné (ajusté à la superficie canonique) | [[22.0, 7.9], [22.8, 8.55], [24.0, 8.85], [25.2, 8.9], [26.4, 8.7], [27.4, 8.2], [27.7, 7.4], [27.1, 6.8], [25.9, 6.5], [24.6, 6.6], [23.4, 6.8], [22.4, 7.2]] | centre mesuré [24.77, 7.66] |
 | `GEO_LAC_AKHTIR` | Akhtir | contour dessiné (ajusté à la superficie canonique) | [[21.2, 21.0], [21.7, 21.85], [22.6, 22.3], [23.6, 22.15], [24.0, 21.5], [23.6, 20.75], [22.6, 20.4], [21.7, 20.45]] | centre mesuré [22.61, 21.31] |
 | `GEO_LAC_MOPAMA` | Mopámà | contour dessiné (ajusté à la superficie canonique) | [[4.9, 9.55], [5.4, 10.25], [6.3, 10.75], [7.2, 10.85], [7.4, 10.35], [6.8, 9.75], [5.9, 9.3], [5.2, 9.2]] | centre mesuré [6.08, 10.1] |
@@ -674,7 +675,7 @@ Passe de cohérence des lieux (LIEUX_URBAINS v2) et des routes (RESEAU_ROUTES v3
 | ALN-150 | DÉCIDÉ (révision) : hauts plateaux de qoyra (37,86° ; 10,65°, 3 440 m, prairie) ; façade URU_C → URU_SE ; voir §9.6 | \|'Ukh-‖Sék | crête à ~2 250 m, prairie à ~2 900 m à 9,5° N | biome → forêt de montagne claire, refuges à 2 200-2 400 m ; ou déplacer le sanctuaire sur les plateaux de qoyra et revoir RT_009 |
 | ALN-151 | DÉCIDÉ (révision) : reste à \|'Ara-Sukhì ; territoire URM réattribué (ALN-156) | \|'Urum-!Samel | seuls glaciers : \|'Ara-Sukhì (k'ara) ; cols URM sur lóngò, à 1 300 km | garder à \|'Ara-Sukhì (pèlerinage) ; ou retirer `glacier` |
 | ALN-152 | CONFLIT TRANCHÉ | Ts'idar-‖Sek ; RT_061 | interface Költ / HKL_S-SO à l'ouest (retenu, crête de halekh oriental, 2 840 m) ; RT_061 vers K'elis-‖ara : 4 200 km, 216 jours | RT_061 : remplacer K'elis-‖ara par Hlelak-!uri (GEO_COL_032) ou Kraloth-!enu (GEO_COL_035) ; noter une colonie Ts'idari à l'ouest |
-| ALN-153 | CORRECTION | Tanāḥil | « avalanches sur l'accès au col Abnī-tɨra » : col à 920 km | viser T'iqur-ɨlkh (GEO_COL_014) ou Rafīq-t'sal (GEO_COL_047) |
+| ALN-153 | PRÉCISION (révisée, ALN-183) | Tanāḥil | « avalanches sur l'accès au col Abnī-tɨra » : col à 920 km de la cité, à 78 km de Qūrāš-Taniḥīl-Ramšūr | garder Abnī-tɨra ; rattacher l'aléa au corridor RT_006 (haute Tanāḥil) ; Tanāḥil le subit comme terminus |
 | ALN-154 | PRÉCISION | Hae Ts'i-K'uré | monastère à 1 890 m, hors \|'Arin ; le col P'etsul-!ama (2 600 m) est en Hiver Gris | rattacher « hypoxie/froid » à la montée du col (RT_065) |
 | ALN-155 | CORRECTION | Q'irel-Ts'idar | 1 370 mm/an | « saison sèche marquée » au lieu de « sécheresses prolongées » ; ou déplacer vers le plateau sec du nord-est |
 
@@ -689,7 +690,7 @@ Passe de cohérence des lieux (LIEUX_URBAINS v2) et des routes (RESEAU_ROUTES v3
 | ALN-165 | PRÉCISION | RT_001 | Kù-békà ↔ Kù-téka : 2 440 km, 84 j | annoter « grande caravane trans-forestière (~3 mois) » |
 | ALN-166 | CORRECTION | RT_029 ; Ku-Bángá | Mù-dárhòbì à ~1 900 km du Tùmázì ; « canaux inter-lacs » impossibles | Mù-dárhòbì → collines Kù-kɨ́bò (basalte de Ku-Bángá) ; supprimer les canaux inter-lacs |
 | ALN-167 | CORRECTION | RT_070 ; Sa-kúmadì, Ku-pèpanà | pôles et lisières au Sud Mopámà pour des lieux du Sud Tùmázì | lisières → rive S du Tùmázì ; pôle → Kù-békà |
-| ALN-170 | AJOUT | RT_003, RT_059, RT_031, RT_071 | rapides : émissaire du Mopámà (140-160 km de portage) ; gorge de la haute Tanāḥil (110-220 km de piste) | ajouter `terrestre_portage` ou `terrestre_caravane` |
+| ALN-170 | AJOUT | RT_003, RT_059, RT_031, RT_071 | rapides : émissaire du Mopámà (140-160 km de portage) ; gorge du Tanāḥil (Abay) (110-220 km de piste) | ajouter `terrestre_portage` ou `terrestre_caravane` |
 | ALN-171 | CORRECTION | portage NO (RT_027 ; §VI.1.2 « 3 jours ») | 291 km, 14 jours, point haut ~1 230 m | « 12 à 15 jours » ; ALN-033 (8-10 jours) est remplacé |
 | ALN-172 | IMPOSSIBILITÉ | RT_046, 056, 033, 049, 074, 072, 047, 007, 036, 032, 035 | mer Halakhel et Tùmázì fermés ; isthme entre Méditerranée et mer Rouge | ajouter le segment terrestre mesuré (`LIEUX_ET_ROUTES.md` §5.1, LT-01 à LT-11) |
 | ALN-173 | PRÉCISION | caravanes Halakhel E → mer Rouge (« 8 jours ») | 370 km au plus court | 8 jours suppose ~45 km/j (méharée) ; 12-13 jours en caravane chargée |
@@ -717,4 +718,7 @@ Signalements vérifiés dans le corpus avant tout déplacement ; détail et mesu
 | ALN-156 | CORRECTION (décidée) | Territoire URM (registre, relation « territoire ») | URM ← Ṣabūl-tɨkh (GEO_COL_003), Qaṣūl-tɨra (GEO_COL_005), Ṭanīkhūr (GEO_COL_002), autour de \|'Ara-Sukhì ; retirer URM de GEO_COL_024, 025, 028 (lóngò). Positions des cols inchangées | modifier les `renvois` des six cols au registre |
 | ALN-180 | AJOUT (décidé) | Trouées principales | TRO_01 (27,0° ; 11,94°, 1 180 m, 360 km), TRO_02 (31,47° ; 10,29°, 1 580 m, 114 km ; 5 routes), TRO_07 (7,25° ; 11,48°, 1 200 m, extrémité S de lóngò) ; TRO_03 à 06 restent anonymes. Positions : `donnees/routes.yaml` ; table H | forger trois noms (`forge-ling`) dans la langue de leurs usagers ; créer un type « trouée » au registre |
 | ALN-181 | PRÉCISION | « Delta du Mopámà » du corpus | trois deltas distincts : celui de l'émissaire (Gálu-kánda, ALN-131), celui de Jáli-Fè (ALN-146), celui de la mangrove Sud (ALN-139) | §V.4 : distinguer les trois |
+| ALN-182 | AJOUT (géographie) ; CORRECTION (registre) | Haute Tanāḥil (GEO_VAL_HAUTE_TANAHIL) | canyon au nord du col Abnī-tɨra (k'ara) : 465 km, du débouché du col (24,18° E ; 15,92° N) au piémont (27,4° E ; 17,5° N) ; tête fermée ; 170-210 m de profondeur sur 120 km ; fond ≥ 0,4 m/km ; l'oued rejoint l'Abnuḥīl vers 30,6° E ; 18,4° N, ~450 km en aval du confluent de Tanāḥil. Tracé : `donnees/parametres_carte.yaml`, clé `canyons` ; §8, « Positions paramétrées ». Remplace la gorge de l'Abay (ALN-136) | §V.2 : ajouter la position ; registre : `partie_de` GEO_FLV_TANAHIL → GEO_FLV_ABNUHIL (affluent occidental) ; forger un nom pour l'oued (`forge-ling`) ou assumer que « Tanāḥil » désigne aussi ce cours ; ALN-083 rouvert : deux objets |
+| ALN-183 | CORRECTION (avérée, signalement de l'auteur) | Qūrāš-Taniḥīl-Ramšūr ; Qūrāš-Tanīqa ; RT_006, RT_063 | Qūrāš-Taniḥīl-Ramšūr (24,33° E ; 15,94° N) : 624 m, ferme la tête du canyon, col Abnī-tɨra à 78 km, steppe, 170 mm. Qūrāš-Tanīqa (25,20° E ; 16,55° N) : 645 m, rebord du canyon, ~115 km en aval, steppe, 120 mm. RT_006 : 936 km, 32 j ; variante par le fort 979 km, 33 j. RT_063 : 1 620 km, 56 j (était 366 km). Le col « 2 700-2 800 m, juin-octobre » de RT_010 correspond aussi à Abnī-tɨra (2 800 m, juin-oct.) | LIEUX : positions ; « canyon de la haute Tanāḥil, au nord du col Abnī-tɨra » ; RT_063 : annoter « ~2 mois de contrebande de nuit » ou rapprocher la destination ; RT_010 : le col du corpus peut être Abnī-tɨra si la route passe par la haute Tanāḥil. Option non retenue : Tanāḥil au confluent du canyon (casse le confluent Tira-ñara/Tanāḥil) |
+| ALN-184 | PRÉCISION (question de l'auteur) | Fleuve Mopámà-Tùmázì ; exutoire du Tùmázì ; émissaire de l'Akhtir | aucun fleuve ne peut relier le Mopámà (800 m, émissaire vers l'Atlantique) au Tùmázì (620 m), à ~1 900 km. Tùmázì : bilan mesuré entre +14 et −30 km³/an (bassin 57 000 km², 1 330 mm ; lac 92 000 km², 1 450 mm ; évaporation 1 500-1 900 mm) : l'endoréisme [CANON] tient. Seuil de débordement éventuel : 809 m, rive est (27,47° E ; 7,36° N), vers l'océan de l'Est. Akhtir : bassin 134 000 km², 400 mm ; bilan voisin de zéro, même avec la fonte de k'ara : l'émissaire canonique (Ḥawqal) est faible ou saisonnier | ne pas créer de fleuve inter-lacs (ALN-166) ; garder le Tùmázì endoréique, « niveau oscillant » ; Akhtir : préciser « émissaire saisonnier » |
 

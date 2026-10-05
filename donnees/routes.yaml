@@ -11,6 +11,9 @@ routes:
   RT_010:
     via_corpus: [GEO_COL_014]
     note: "Le corpus indique un col à 2 700-2 800 m ouvert de juin à octobre : T'iqur-ɨlkh (2 700 m, juin-octobre) est le seul col de ce profil sur la remontée de la Tanāḥil."
+  RT_006:
+    via_corpus: [LUR_QURASH-TANIHIL_NE]
+    note: "v0.5.2 : variante par la tête du canyon de la haute Tanāḥil (Qūrāš-Taniḥīl-Ramšūr, « rupture de charge au débouché des cols »), puis descente du canyon."
   RT_066:
     via_corpus: [LUR_STALOMAR-KOT_NO]
     note: "Le corpus précise « accès par Stalomar-Kot et les pistes nord »."

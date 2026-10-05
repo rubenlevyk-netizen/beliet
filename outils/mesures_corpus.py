@@ -345,6 +345,8 @@ def positions(p, M):
         add(None, z["nom"], f"rivage escarpé (v0.5) : centre, rayon {z['rayon_km']} km, dénivelé {z['hauteur_m']} m", z["centre"])
     for d in p.get("plaines_deltaiques", []):
         add(None, d["nom"], "plaine deltaïque basse (v0.5) : contour", d["contour"])
+    for c in p.get("canyons", []):
+        add(c.get("geo_id"), c["nom"], f"canyon (v0.5.2) : thalweg amont → aval, profondeur ≤ {c['profondeur_m']} m", c["trace"])
     for L in p["lacs"]:
         add(L["geo_id"], L["nom"], "contour dessiné (ajusté à la superficie canonique)", L["contour"],
             "centre mesuré " + str(M["lacs"].get(L["geo_id"], {}).get("centre")))

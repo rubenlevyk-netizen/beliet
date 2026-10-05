@@ -571,6 +571,52 @@ class Relief:
             w = np.clip(din / d.get("transition_km", 12), 0, 1)
             self.h = np.where(zone & (self.h > cible), self.h + w * (cible - self.h), self.h).astype(np.float32)
 
+    def creuser_canyons(self):
+        """Canyons déclarés (v0.5.2) : vallée encaissée à parois raides le long d'un thalweg existant.
+        Le fond est calé de l'aval vers l'amont (jamais de contre-pente), le terrain n'est qu'abaissé."""
+        g = self.g
+        km = _km(g)
+        for c in self.p.get("canyons", []):
+            P = np.c_[g.px(*np.array(c["trace"], float).T)]
+            seg = np.hypot(*np.diff(P, axis=0).T)
+            Ls = np.r_[0, np.cumsum(seg)]
+            n = max(2, int(Ls[-1] / 0.4))
+            t = np.linspace(0, Ls[-1], n)
+            X = np.interp(t, Ls, P[:, 0]); Y = np.interp(t, Ls, P[:, 1])
+            ix = np.clip(X.astype(int), 0, g.W - 1); iy = np.clip(Y.astype(int), 0, g.H - 1)
+            ds = np.r_[0, np.hypot(np.diff(X), np.diff(Y))] * g.km_px[iy]
+            s = np.cumsum(ds)
+            hz = self.h[iy, ix].astype(np.float64)
+            a = np.clip(s / c.get("amorce_km", 15), 0, 1)
+            d = c["profondeur_m"] * a * a * (3 - 2 * a)
+            smin = c.get("pente_min_m_par_km", 0.4)
+            z = hz.copy()
+            for i in range(n - 2, -1, -1):
+                z[i] = min(hz[i], max(hz[i] - d[i], z[i + 1] + smin * ds[i + 1]))
+            z = np.minimum.accumulate(z)
+            trace = np.zeros(g.shape, bool)
+            zr = np.full(g.shape, np.nan, np.float32)
+            trace[iy, ix] = True
+            zr[iy, ix] = z
+            m = 12
+            x0, x1 = max(0, ix.min() - m), min(g.W, ix.max() + m + 1)
+            y0, y1 = max(0, iy.min() - m), min(g.H, iy.max() + m + 1)
+            sub = trace[y0:y1, x0:x1]
+            dist, (iy2, ix2) = distance_transform_edt(~sub, return_indices=True)
+            dk = dist * km[y0:y1]
+            znear = zr[y0:y1, x0:x1][iy2, ix2]
+            hs = self.h[y0:y1, x0:x1]
+            b, w = c.get("demi_fond_km", 0.8), c.get("paroi_km", 3.0)
+            f = np.clip((dk - b) / w, 0, 1) ** 0.7          # paroi convexe : rebord net, pied raide
+            nouv = znear + (hs - znear) * f
+            app = (dk < b + w) & (hs > znear) & self.terre[y0:y1, x0:x1]
+            hs[app] = nouv[app]
+            prof = hz - z
+            self.infos.setdefault("canyons", {})[c["nom"]] = dict(
+                longueur_km=round(float(s[-1])), profondeur_max_m=round(float(prof.max())),
+                profondeur_moy_m=round(float(prof[prof > 5].mean())) if (prof > 5).any() else 0)
+            self.log(f"  canyon {c['nom']} : {s[-1]:.0f} km, profondeur max {prof.max():.0f} m")
+
     def creuser_fleuves(self):
         g = self.g
         km = _km(g)

@@ -192,21 +192,21 @@ lieux:
   milieux: [littoral_rocheux]
   note: "Cap du golfe de Koufra, extrémité S de la mer : terminus des routes du Sud profond (Akhtir à ~150 km, cols de k'ara au-delà)."
 
-# ----------------------------------------------------------------- HKL_NE (vallée de la haute Tanāḥil = gorge amont de l'Abay)
+# ----------------------------------------------------------------- HKL_NE (vallée de la haute Tanāḥil = canyon nord du col Abnī-tɨra, v0.5.2)
 - id: LUR_QURASH-TANIQA_NE
-  cible: [38.35, 10.55]
-  rayon_km: 70
+  cible: [25.2, 16.55]
+  rayon_km: 25
   eau: aucune
-  milieux: [steppe_piemont, herbage_arbore]
-  altitude: [900, 2300]
-  note: "Haute Tanāḥil = gorge amont du Tira-ñara/Tanāḥil (Abay réel : grès et marno-calcaires, fond semi-aride). Citadelle dans le canyon, à ~300 km des cols TNQ (044, 046, 047)."
+  milieux: [steppe_piemont, desert_pierreux]
+  altitude: [450, 800]
+  note: "v0.5.2 : citadelle-coffre dans le canyon de la haute Tanāḥil (bassin GEO_FLV_ABNUHIL déclaré), ~110 km en aval de Qūrāš-Taniḥīl-Ramšūr. Canyon gréseux semi-aride (~150 mm), crues saisonnières, citernes : site de siège et de blocus. Ancienne position (38,35 E ; 10,55 N, gorge de l'Abay, 2 300 m) abandonnée : hors bassin déclaré, trop haute, au SE."
 - id: LUR_QURASH-TANIHIL_NE
-  cible: [38.45, 10.95]
-  rayon_km: 60
+  cible: [24.33, 15.94]
+  rayon_km: 15
   eau: aucune
-  milieux: [steppe_piemont, herbage_arbore]
-  altitude: [900, 2300]
-  note: "Caravansérail-forteresse du corridor de la haute Tanāḥil, en amont du pôle Tanāḥil."
+  milieux: [steppe_piemont]
+  altitude: [550, 1000]
+  note: "v0.5.2 : caravansérail-forteresse fermant la tête du canyon de la haute Tanāḥil, au débouché nord du col Abnī-tɨra (001, 2 800 m, origine de RT_006 vers Tanāḥil) : rupture de charge au débouché des cols. Ancienne position (38,45 E ; 10,95 N) abandonnée."
 - id: ZRS_SHALIM_NE
   cible: [30.72, 27.66]
   rayon_km: 35

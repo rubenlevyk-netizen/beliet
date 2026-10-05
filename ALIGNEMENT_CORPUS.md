@@ -104,7 +104,7 @@ Segments de rivage recommandés pour placer les lieux de LIEUX, déduits des suf
 | HKL_N | passe Khreth-na-Serek (-1,9 à -1,6° E ; 29,6-30,2° N), golfe de Serek, puis rive nord jusqu'au golfe de Ghadamès (~9° E) | Khreth-na-Serek, Serékh-khem | Serékh-khem dans le golfe ou à l'entrée de la passe |
 | HKL_SO | rive sud du bassin occidental, de -6,5° à 3,5° E ; goulet Imekh-stom (0,0-0,55° E ; 25,35-26,5° N) | Imekh-stom, Akhileth (relais) | Akhileth « forestier » : l'étage forestier le plus proche est !Okheti, à ~150 km |
 | HKL_S | rive sud de 3,5° à ~26° E : Tidikelt, falaises du Tassili, golfe du Fezzan (ria Tawālmaz), péninsule du Haruj, golfe de Koufra | Cherbekh-khem (_NO : partie ouest, 2-5° E), Tawālmaz (_NE : ria, 12,8-14,6° E), Qabḍ-ār-Ǧanūb (_NE : partie est) | littoral rocheux (LIEUX) et glacis (index) combinés |
-| HKL_NE | rive nord du bassin oriental, golfe de Syrte → Qattara (15-28° E) ; arrière-pays : bassin de l'Abnuḥīl | Qūrāš-Tanīqa, Qūrāš-Taniḥīl-Ramšūr, Ṣarīq, Ḥamaḍ-Rās, Qūrāš-Ṣafīḥ | v0.5 : la haute Tanāḥil est la gorge amont de l'Abay, au nord du prolongement SE de k'ara (ALN-136) ; Ṣarīq au marais de Ṣaraq ; Ḥamaḍ-Rās sur un cap (28,17° ; 29,31°) |
+| HKL_NE | rive nord du bassin oriental, golfe de Syrte → Qattara (15-28° E) ; arrière-pays : bassin de l'Abnuḥīl | Qūrāš-Tanīqa, Qūrāš-Taniḥīl-Ramšūr, Ṣarīq, Ḥamaḍ-Rās, Qūrāš-Ṣafīḥ | v0.5.2 : la haute Tanāḥil est le canyon au nord du col Abnī-tɨra, affluent occidental de l'Abnuḥīl (ALN-136 révisé, ALN-182) ; Ṣarīq au marais de Ṣaraq ; Ḥamaḍ-Rās sur un cap (28,17° ; 29,31°) |
 | HKL_E | côte orientale (26-28,5° E ; 25-29° N) : Abnīqa (28,35° ; 27,6°), Ḥawqil (26,85° ; 25,35°) | Abnaqil, Tanāqil, Abnīqa, Qabṣūr-Qibṣ, Ḥawqil ; Tanāḥil (à la confluence Tanāḥil-Abnuḥīl, 32,55° ; 15,61°) | v0.5 : cône deltaïque d'Abnīqa à deux chenaux (Abnīṣar NE, Tanīlḥa SE, ALN-132), Abnaqil à l'apex |
 
 ---
@@ -159,7 +159,7 @@ Table complète (position, altitude, crête d'origine, statut de passage, routes
 | ALN-080 | CONFLIT TRANCHÉ | Limites des bassins Mopámà et Tùmázì | « E : k'ara (piémonts) » ; « E : piémonts qoyra » | Mopámà central, Tùmázì au Sud-Centre (22-27,7° E) | assouplir les deux limites E |
 | ALN-081 | CONFLIT TRANCHÉ | Mangroves au bord du Mopámà | Ku-Bèláà, Mázì-Dúm en `foret_maree`, lac à 800 m | la façade MOP_SO inclut l'estuaire de l'émissaire, à ~650 km ; v0.5 : les deux cités sont dans les mangroves du delta (ALN-131) | annoter MOP_SO |
 | ALN-082 | CONFLIT TRANCHÉ | RT_029, RT_047 Mù-dárhòbì / côte SO ↔ Tùmázì (fluvial + lacustre) | ~2 000 km entre les bassins | voie Bénoué + portage + affluent occidental du lac ; v0.5 : portage mesuré de ~440 km (RT_047) ; RT_029 : ALN-166 | annoter les routes (ajouter le portage) |
-| ALN-083 | CONFLIT TRANCHÉ | Deux sens de « Tanāḥil » | affluent des plateaux SE (§VI) ou vallée des piémonts N de k'ara (§V.2, LIEUX) | **résolu en v0.5 (ALN-136)** : la haute Tanāḥil est la gorge amont du fleuve, au nord du prolongement SE de k'ara ; un seul sens | garder un seul nom ; préciser la position |
+| ALN-083 | CONFLIT TRANCHÉ | Deux sens de « Tanāḥil » | affluent des plateaux SE (§VI) ou vallée des piémonts N de k'ara (§V.2, LIEUX) | **rouvert en v0.5.2 (ALN-136 révisé, ALN-182)** : deux objets distincts. Le fleuve Tanāḥil (Tira-ñara) descend des plateaux SE jusqu'au confluent de Tanāḥil ; la haute Tanāḥil est le canyon au nord du col Abnī-tɨra, autre affluent de l'Abnuḥīl | registre : rattacher GEO_VAL_HAUTE_TANAHIL à GEO_FLV_ABNUHIL ; forger un nom pour le cours d'eau du canyon, ou renommer la vallée |
 | ALN-084 | CONFLIT TRANCHÉ | ATL_INS « ~40 îles : dunes stabilisées, volcans éteints... » | phrase des îles de l'Halakhel ; Staur-Khlōr = 10 îles | — | corriger l'index |
 | ALN-085 | CONFLIT TRANCHÉ | Registre : GEO_EXT_ATLANTIQUE porte la forme « Jálondù » | doublon avec GEO_GLF_JALONDU | — | corriger le registre |
 | ALN-086 | CONFLIT TRANCHÉ | Orientation de lóngò | « NO-SE » | conservée (nœud !Okheti → Jos) ; versants SO humides, NE semi-arides | conserver |
@@ -217,7 +217,8 @@ Effets sur la carte v0.4 : forêt de montagne de 840 000 à ~550 000 km² (étag
 | Fleuves dessinés | tracés droits | tracés droits | tracés droits | v0.3.2 : cours calculés le long des vallées (même source, même embouchure) ; v0.5 : chenaux Abnīṣar et Tanīlḥa |
 | Rivages de l'Halakhel | — | — | glacis continu | v0.5 : sept secteurs escarpés (ALN-130) |
 | Delta du Mopámà | — | — | plateau de 20-40 m | v0.5 : plaine deltaïque à mangroves (ALN-131) |
-| Haute Tanāḥil (vallée des villes) | — | — | piémonts N de k'ara, sans site (v0.3.2 §4) | v0.5 : gorge amont de l'Abay (ALN-136) ; l'ancien libellé est caduc |
+| Haute Tanāḥil (vallée des villes) | — | — | piémonts N de k'ara, sans site (v0.3.2 §4) | v0.5 : gorge amont de l'Abay (caduc) ; v0.5.2 : canyon au nord du col Abnī-tɨra, 24,2-27,4° E, 15,9-17,5° N (ALN-182) |
+| Qūrāš-Taniḥīl-Ramšūr ; Qūrāš-Tanīqa | — | — | — | v0.5 : 38,45° ; 10,95° et 38,35° ; 10,55° (caducs) ; v0.5.2 : tête et cours du canyon (ALN-183) |
 | Lieux (LUR, ZRS) | — | — | aucune position | v0.5 : 74 lieux placés (ALN-135) |
 
 ---
@@ -656,7 +657,7 @@ Passe de cohérence des lieux (LIEUX_URBAINS v2) et des routes (RESEAU_ROUTES v3
 | ID | Type | Objet | Décision | Action pour le corpus |
 |---|---|---|---|---|
 | ALN-135 | AJOUT | Positions des 74 lieux et de 21 extrémités de routes | table A de `LIEUX_ET_ROUTES.md` ; JSON `lieux.<id>.caracteristiques.lon/lat` | ajouter `coordonnees_geo.position` à chaque lieu de LIEUX ; statut [PROPOSITION] |
-| ALN-136 | CONFLIT TRANCHÉ | Haute Tanāḥil (GEO_VAL_HAUTE_TANAHIL) | gorge amont du Tira-ñara/Tanāḥil (Abay réel), ~38,1-38,5° E, 10,1-11,0° N, au nord du prolongement SE de k'ara ; Tanāḥil à la confluence avec l'Abnuḥīl (32,55° ; 15,61°) | §V.2 : préciser la position ; supprimer la double lecture (ALN-083) ; LIEUX : Tanāḥil « tête de la vallée de l'Abnuḥīl, à la confluence » |
+| ALN-136 | CONFLIT TRANCHÉ (révisé en v0.5.2 : ALN-182) | Haute Tanāḥil (GEO_VAL_HAUTE_TANAHIL) | ~~gorge amont de l'Abay (38,1-38,5° E ; 10,1-11,0° N)~~ : caduc. Canyon au nord du col Abnī-tɨra (§9.6, ALN-182). Tanāḥil reste à la confluence du Tanāḥil et de l'Abnuḥīl (32,55° ; 15,61°) | voir ALN-182 et ALN-183 |
 | ALN-137 | PROPOSITION | Les dix îles de Staur-Khlōr | Fogo = Khlōr-Naw ; Boa Vista = Strakh-Kot ; Santiago = Staur-Om ; Santo Antão = Threl-Hal ; São Vicente = Skral-Kot ; Sal = Hleka-Kōr ; São Nicolau = Strakh-Khlōr ; Brava = Aktir-Kot ; îlots Branco et Raso = Skel-Ti ; Santa Luzia = Hal-Kot | §V.7 : ajouter positions ; Kot-Skral sur Skral-Kot, Threskōl-Strakh sur Strakh-Kot |
 | ALN-138 | PROPOSITION | Extrémités non documentées | Kralekh-ner, Qūrāš-Ṣafīḥ, Kù-kèdà yì Mù-Kíri, Foyers-Purs, Voie-Desnuées, Voie-Haute, Voie-Comptable, Hae K'umel, Sa-nùbè yì Mù-Sùkú, Cercle-Sans-Juron, Lisières Ba-lóngó : `LIEUX_ET_ROUTES.md` §2.4 | documenter ces lieux (Qūrāš-Ṣafīḥ en priorité : trois routes) |
 

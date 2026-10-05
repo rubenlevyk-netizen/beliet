@@ -259,6 +259,24 @@ plaines_deltaiques:
     transition_km: 14
 
 # -----------------------------------------------------------------------------
+#  CANYONS (v0.5.2) — vallées encaissées déclarées par le corpus [PROPOSITION]
+#  Haute Tanāḥil (GEO_VAL_HAUTE_TANAHIL) : « canyon gréseux/marno-calcaire, semi-aride, crues saisonnières »,
+#  bassin GEO_FLV_ABNUHIL (Qūrāš-Taniḥīl-Ramšūr, Qūrāš-Tanīqa). Tracé = thalweg calculé sur la carte v0.5.1,
+#  du débouché nord du col Abnī-tɨra (001) jusqu'au piémont de l'Abnuḥīl (analogue : Ennedi, wadi Howar).
+#  Creusé après l'érosion, avant l'entaille des cols. Le fond descend toujours vers l'aval (pente ≥ pente_min) ;
+#  la profondeur est plafonnée et s'annule à l'aval quand le plateau rejoint le fond.
+# -----------------------------------------------------------------------------
+canyons:
+  - nom: haute Tanāḥil
+    geo_id: GEO_VAL_HAUTE_TANAHIL
+    profondeur_m: 220
+    amorce_km: 15                # tête de canyon (cirque fermé) : le fond plonge sur 15 km
+    pente_min_m_par_km: 0.4
+    demi_fond_km: 0.8
+    paroi_km: 3.0
+    trace: [[24.184,15.921],[24.263,15.936],[24.343,15.936],[24.407,15.982],[24.455,16.058],[24.534,16.135],[24.598,16.196],[24.678,16.212],[24.757,16.181],[24.837,16.166],[24.885,16.227],[24.964,16.288],[25.028,16.364],[25.108,16.426],[25.188,16.502],[25.235,16.578],[25.267,16.655],[25.299,16.731],[25.331,16.807],[25.299,16.884],[25.299,16.96],[25.251,17.036],[25.219,17.112],[25.283,17.158],[25.331,17.082],[25.411,17.143],[25.49,17.158],[25.57,17.143],[25.65,17.127],[25.729,17.158],[25.809,17.158],[25.889,17.188],[25.968,17.219],[26.048,17.234],[26.128,17.204],[26.207,17.234],[26.287,17.234],[26.367,17.219],[26.447,17.219],[26.526,17.234],[26.606,17.28],[26.686,17.295],[26.765,17.341],[26.845,17.386],[26.925,17.401],[27.004,17.401],[27.084,17.447],[27.164,17.462],[27.243,17.477],[27.323,17.493],[27.403,17.493],[27.435,17.493]]
+
+# -----------------------------------------------------------------------------
 #  FONDU SUD — la découpe d'origine suivait des frontières politiques réelles.
 #  Elle est remplacée par une limite lissée et bruitée, estompée progressivement.
 # -----------------------------------------------------------------------------

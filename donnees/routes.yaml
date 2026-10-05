@@ -1,0 +1,38 @@
+# =============================================================================
+#  ROUTES — réglages du tracé (passe « lieux et routes », v0.5)
+# =============================================================================
+#  Le tracé de chaque route (RESEAU_ROUTES.v3) est le chemin le plus rapide sur la carte, dans les modes
+#  déclarés par la route (outils/lieux_routes.py). Ce fichier ne contient que les exceptions :
+#    via         étapes obligatoires (cols) ajoutées aux passages du corpus
+#    via_corpus  variante calculée en plus du tracé optimal, pour vérifier une indication du corpus
+#    note        justification
+# =============================================================================
+routes:
+  RT_010:
+    via_corpus: [GEO_COL_014]
+    note: "Le corpus indique un col à 2 700-2 800 m ouvert de juin à octobre : T'iqur-ɨlkh (2 700 m, juin-octobre) est le seul col de ce profil sur la remontée de la Tanāḥil."
+  RT_006:
+    via_corpus: [LUR_QURASH-TANIHIL_NE]
+    note: "v0.5.2 : variante par la tête du canyon de la haute Tanāḥil (Qūrāš-Taniḥīl-Ramšūr, « rupture de charge au débouché des cols »), puis descente du canyon."
+  RT_066:
+    via_corpus: [LUR_STALOMAR-KOT_NO]
+    note: "Le corpus précise « accès par Stalomar-Kot et les pistes nord »."
+  RT_027:
+    via_corpus: [LUR_STAKHR-DUREK_NO]
+    note: "Rupture de charge déclarée à Stakhr-Durek."
+  RT_020:
+    correction:
+      origine: LUR_KUBEKA_SC
+      modes: [lacustre, terrestre_caravane, col_haute_altitude]
+      note: "Origine la plus plausible : la cité-mère du Tùmázì (Ba-mbaro, pirogues géantes). Ts'idar-ré est l'interface des flux trans-cordillère Tɨrakh et Ba-mbaro (LIEUX) ; bois et cloches viennent de l'ouest. Le « cabotage » devient la traversée lacustre, suivie d'une caravane vers l'escarpement."
+
+# Trouées basses de la cordillère (v0.5.1) : passages plus bas que les cols canoniques de leur tronçon.
+# Mesurées sur le profil de crête (point le plus haut de chaque transect, tous les 6 km). Nom : à forger.
+trouees:
+  - {id: TRO_01, chaine: "||Urumati-k'ara (prolongement SE)", pos: [27.0, 11.94], crete_m: 1178, largeur_km: 360, cols_troncon: "Kurel-ahek 2 150 m — P'etsul-!ama 2 600 m", statut: "principale — à nommer"}
+  - {id: TRO_02, chaine: "||Urumati-k'ara (prolongement SE)", pos: [31.47, 10.29], crete_m: 1578, largeur_km: 114, cols_troncon: "P'etsul-!ama 2 600 m — K'elis-‖ara 2 500 m", statut: "principale — à nommer"}
+  - {id: TRO_03, chaine: "||Urumati-k'ara (prolongement SE)", pos: [32.93, 9.88], crete_m: 1239, largeur_km: 108, cols_troncon: "K'elis-‖ara 2 500 m — T'amr-khɨna 2 450 m", statut: "secondaire"}
+  - {id: TRO_04, chaine: "||Urumati-k'ara (prolongement SE)", pos: [34.22, 9.40], crete_m: 1790, largeur_km: 60, cols_troncon: "T'amr-khɨna 2 450 m — T'araq-ɨnkh 2 400 m", statut: "secondaire"}
+  - {id: TRO_05, chaine: "||Urumati-lóngò", pos: [3.93, 18.74], crete_m: 1387, largeur_km: 60, cols_troncon: "Kù-Pété-‖Eni 1 900 m — Ku-Ténɨlkh-te 2 300 m", statut: "secondaire"}
+  - {id: TRO_06, chaine: "||Urumati-lóngò", pos: [7.52, 13.67], crete_m: 1473, largeur_km: 48, cols_troncon: "Lémakhɨ 2 200 m — Ku-Pámà-Tɨra-te 2 000 m", statut: "secondaire"}
+  - {id: TRO_07, chaine: "||Urumati-lóngò (extrémité S)", pos: [7.25, 11.48], crete_m: 1201, largeur_km: 234, cols_troncon: "Ku-Pámà-Tɨra-te 2 000 m — fin de chaîne", statut: "principale — à nommer"}

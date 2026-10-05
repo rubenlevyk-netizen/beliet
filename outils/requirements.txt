@@ -1,0 +1,12 @@
+numpy
+scipy
+numba
+pillow
+pyyaml
+shapely
+rasterio
+affine
+pyproj
+svgpathtools
+contourpy
+cairosvg

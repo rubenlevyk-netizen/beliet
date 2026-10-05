@@ -1,0 +1,31 @@
+{
+ "facies": {
+  "0": {
+   "code": "hors_arin",
+   "libelle": "Hiver doux (hors |'Arin)"
+  },
+  "1": {
+   "code": "hiver_blanc",
+   "libelle": "Hiver Blanc — manteau neigeux stable"
+  },
+  "2": {
+   "code": "hiver_gris",
+   "libelle": "Hiver Gris — pluies froides, gel humide, sols saturés"
+  },
+  "3": {
+   "code": "hiver_jaune",
+   "libelle": "Hiver Jaune — gel nocturne, vents de poussière"
+  },
+  "4": {
+   "code": "hiver_vapeur",
+   "libelle": "Hiver de Vapeur — brouillards de la mer Halakhel"
+  },
+  "5": {
+   "code": "hiver_pluvieux_cotier",
+   "libelle": "Hiver pluvieux tempéré (hors matrice canonique)"
+  }
+ },
+ "temperature_hiver": "°C × 10 (moyenne du cœur de l'hiver |'Arin-sukhì)",
+ "seuil_blanc_c": 0.11249999999999805,
+ "seuil_gris_c": 9.712499999999999
+}

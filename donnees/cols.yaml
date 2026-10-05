@@ -1,0 +1,968 @@
+# Cols de la cordillère ||Urumati — positions calculées par outils/placer_cols.py
+# Altitudes et attributs : [CANON] (registre). Positions : [PROPOSITION].
+# Le générateur entaille le relief pour que chaque col ait son altitude canonique.
+cols:
+- geo_id: GEO_COL_001
+  nom: Abnī-tɨra
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 23.96
+  - 15.332
+  altitude_m: 2800
+  altitude_crete_avant_entaille_m: 2804
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 56.9
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes:
+  - RT_006
+  - RT_064
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_002
+  nom: Ṭanīkhūr
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 21.319
+  - 17.798
+  altitude_m: 3200
+  altitude_crete_avant_entaille_m: 3442
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 47.8
+  statut_passage: haute_route_extreme
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 7
+  - 8
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_003
+  nom: Ṣabūl-tɨkh
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 15.678
+  - 20.524
+  altitude_m: 2900
+  altitude_crete_avant_entaille_m: 3139
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 14.7
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_004
+  nom: Ḥamīr-ɨlkh
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 23.01
+  - 15.768
+  altitude_m: 3000
+  altitude_crete_avant_entaille_m: 3164
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 53.6
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 7
+  - 9
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_005
+  nom: Qaṣūl-tɨra
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 20.26
+  - 18.55
+  altitude_m: 2700
+  altitude_crete_avant_entaille_m: 2868
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 43.2
+  statut_passage: secondaire
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_006
+  nom: Maḥēl-!ara
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 21.777
+  - 16.057
+  altitude_m: 2950
+  altitude_crete_avant_entaille_m: 3161
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 50.7
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 7
+  - 9
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_007
+  nom: Ṭubayl
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 24.178
+  - 13.441
+  altitude_m: 2850
+  altitude_crete_avant_entaille_m: 2851
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 64.1
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_008
+  nom: Šaqra-t'em
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 24.503
+  - 12.481
+  altitude_m: 2400
+  altitude_crete_avant_entaille_m: 2649
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 33.9
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_009
+  nom: Kurel-ahek
+  groupe: Šamqiriyyūn ↔ Tɨrakh
+  interface: 'k''ara du Tibesti au Marra, puis monts Nouba : plaines NE (Abnuḥīl, interfluve) ↔ hautes terres centrales'
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 25.553
+  - 12.554
+  altitude_m: 2150
+  altitude_crete_avant_entaille_m: 2155
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 33.3
+  statut_passage: principal
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_010
+  nom: T'araq-ɨnkh
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 34.758
+  - 8.873
+  altitude_m: 2400
+  altitude_crete_avant_entaille_m: 2525
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 21.0
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 5
+  - 10
+  routes:
+  - RT_009
+  - RT_053
+  - RT_062
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_011
+  nom: K'elis-‖ara
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 32.099
+  - 9.98
+  altitude_m: 2500
+  altitude_crete_avant_entaille_m: 2060
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 21.2
+  statut_passage: secondaire
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes:
+  - RT_061
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_012
+  nom: Q'ami-tɨra
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 35.03
+  - 7.796
+  altitude_m: 2300
+  altitude_crete_avant_entaille_m: 2314
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 15.7
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_013
+  nom: P'etsul-!ama
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 30.075
+  - 10.977
+  altitude_m: 2600
+  altitude_crete_avant_entaille_m: 2197
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 12.3
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes:
+  - RT_065
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_014
+  nom: T'iqur-ɨlkh
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 36.183
+  - 8.701
+  altitude_m: 2700
+  altitude_crete_avant_entaille_m: 2596
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: -0.6
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_015
+  nom: S'akum-|ena
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 35.665
+  - 7.59
+  altitude_m: 2200
+  altitude_crete_avant_entaille_m: 2295
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 6.8
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes:
+  - RT_038
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_016
+  nom: Q'usa-||ema
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 35.432
+  - 8.586
+  altitude_m: 2100
+  altitude_crete_avant_entaille_m: 2170
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 13.8
+  statut_passage: principal
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes:
+  - RT_019
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_017
+  nom: T'amr-khɨna
+  groupe: Qoyra-ña-ra ↔ Tɨrakh
+  interface: prolongement SE de k'ara jusqu'à la jonction avec qoyra (cirque de !Ayk-ma-‖Ixa)
+  chaine: '||Urumati-k''ara (prolongement SE)'
+  pos:
+  - 33.608
+  - 9.527
+  altitude_m: 2450
+  altitude_crete_avant_entaille_m: 2131
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 30.0
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_018
+  nom: Ku-Pámà-Rikh-te
+  groupe: Ba-mbaro ↔ Halaktim
+  interface: 'extrémité ouest de halekh : versant atlantique humide ↔ cordons dunaires du NO'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -12.952
+  - 20.913
+  altitude_m: 1600
+  altitude_crete_avant_entaille_m: 1642
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -21.1
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 12
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_019
+  nom: Ku-Mázì-Klek-te
+  groupe: Ba-mbaro ↔ Halaktim
+  interface: 'extrémité ouest de halekh : versant atlantique humide ↔ cordons dunaires du NO'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -14.336
+  - 20.402
+  altitude_m: 1900
+  altitude_crete_avant_entaille_m: 1698
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: -13.5
+  statut_passage: principal
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_020
+  nom: Kù-Lábà
+  groupe: Ba-mbaro ↔ Halaktim
+  interface: 'extrémité ouest de halekh : versant atlantique humide ↔ cordons dunaires du NO'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -12.405
+  - 20.938
+  altitude_m: 1700
+  altitude_crete_avant_entaille_m: 2061
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: -21.3
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 12
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_021
+  nom: Ku-Sikal-Ktet-te
+  groupe: Ba-mbaro ↔ Halaktim
+  interface: 'extrémité ouest de halekh : versant atlantique humide ↔ cordons dunaires du NO'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -10.915
+  - 21.194
+  altitude_m: 1800
+  altitude_crete_avant_entaille_m: 2628
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -18.0
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_022
+  nom: Ku-Dúma-te
+  groupe: Ba-mbaro ↔ Halaktim
+  interface: 'extrémité ouest de halekh : versant atlantique humide ↔ cordons dunaires du NO'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -13.729
+  - 20.559
+  altitude_m: 1650
+  altitude_crete_avant_entaille_m: 1690
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -17.4
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 12
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_023
+  nom: Kù-Sepá
+  groupe: Ba-mbaro ↔ Halaktim
+  interface: 'extrémité ouest de halekh : versant atlantique humide ↔ cordons dunaires du NO'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -11.623
+  - 21.139
+  altitude_m: 1750
+  altitude_crete_avant_entaille_m: 2548
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -20.0
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 12
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_024
+  nom: Ku-Pámà-Tɨra-te
+  groupe: Ba-mbaro ↔ Tɨrakh
+  interface: 'lóngò : forêts du SO (bassin Mopámà) ↔ hautes terres'
+  chaine: '||Urumati-lóngò'
+  pos:
+  - 7.88
+  - 13.059
+  altitude_m: 2000
+  altitude_crete_avant_entaille_m: 1919
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 64.8
+  statut_passage: principal
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_025
+  nom: Lémakhɨ
+  groupe: Ba-mbaro ↔ Tɨrakh
+  interface: 'lóngò : forêts du SO (bassin Mopámà) ↔ hautes terres'
+  chaine: '||Urumati-lóngò'
+  pos:
+  - 6.604
+  - 14.407
+  altitude_m: 2200
+  altitude_crete_avant_entaille_m: 2022
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 60.9
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_026
+  nom: Ku-Sogo-!Ara-te
+  groupe: Ba-mbaro ↔ Tɨrakh
+  interface: 'lóngò : forêts du SO (bassin Mopámà) ↔ hautes terres'
+  chaine: '||Urumati-lóngò'
+  pos:
+  - 6.311
+  - 15.863
+  altitude_m: 2100
+  altitude_crete_avant_entaille_m: 2112
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 51.5
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_027
+  nom: Kù-Pété-‖Eni
+  groupe: Ba-mbaro ↔ Tɨrakh
+  interface: 'lóngò : forêts du SO (bassin Mopámà) ↔ hautes terres'
+  chaine: '||Urumati-lóngò'
+  pos:
+  - 3.581
+  - 19.229
+  altitude_m: 1900
+  altitude_crete_avant_entaille_m: 2060
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 53.2
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_028
+  nom: Ku-Ténɨlkh-te
+  groupe: Ba-mbaro ↔ Tɨrakh
+  interface: 'lóngò : forêts du SO (bassin Mopámà) ↔ hautes terres'
+  chaine: '||Urumati-lóngò'
+  pos:
+  - 4.886
+  - 17.745
+  altitude_m: 2300
+  altitude_crete_avant_entaille_m: 2114
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 50.5
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_029
+  nom: Ku-Darikámba-!Ari-te
+  groupe: Ba-mbaro ↔ Tɨrakh
+  interface: 'lóngò : forêts du SO (bassin Mopámà) ↔ hautes terres'
+  chaine: '||Urumati-lóngò'
+  pos:
+  - 2.313
+  - 19.76
+  altitude_m: 2400
+  altitude_crete_avant_entaille_m: 2280
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 60.2
+  statut_passage: secondaire
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_030
+  nom: Ktalep-tɨra
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 1.194
+  - 23.154
+  altitude_m: 2600
+  altitude_crete_avant_entaille_m: 2715
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 5.0
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_031
+  nom: Tkrilan-ɨkh
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -5.028
+  - 22.903
+  altitude_m: 2800
+  altitude_crete_avant_entaille_m: 2890
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -10.9
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_032
+  nom: Hlelak-!uri
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -2.117
+  - 22.914
+  altitude_m: 2900
+  altitude_crete_avant_entaille_m: 2941
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -9.1
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 9
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_033
+  nom: Rekal-‖ene
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -3.648
+  - 23.157
+  altitude_m: 2500
+  altitude_crete_avant_entaille_m: 2571
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -10.1
+  statut_passage: secondaire
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_034
+  nom: Ktamar-khɨ
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 4.313
+  - 23.601
+  altitude_m: 3000
+  altitude_crete_avant_entaille_m: 3009
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 6.2
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 7
+  - 9
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_035
+  nom: Kraloth-!enu
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -1.477
+  - 23.34
+  altitude_m: 2700
+  altitude_crete_avant_entaille_m: 2821
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -9.8
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 6
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_036
+  nom: Narkh-ɨlkh
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 7.442
+  - 23.081
+  altitude_m: 2550
+  altitude_crete_avant_entaille_m: 2669
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 8.2
+  statut_passage: secondaire
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_037
+  nom: Kurahek
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -9.494
+  - 21.843
+  altitude_m: 2100
+  altitude_crete_avant_entaille_m: 2209
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: -15.9
+  statut_passage: principal
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_038
+  nom: Hlenik-k'eso
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -8.698
+  - 22.642
+  altitude_m: 2000
+  altitude_crete_avant_entaille_m: 2437
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -14.7
+  statut_passage: principal
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_039
+  nom: Pēlakh-t'sira
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-halekh'
+  pos:
+  - -9.927
+  - 21.123
+  altitude_m: 1750
+  altitude_crete_avant_entaille_m: 1879
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: -16.9
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 12
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_040
+  nom: Namkural
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 2.838
+  - 23.089
+  altitude_m: 1800
+  altitude_crete_avant_entaille_m: 2041
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 5.6
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 12
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_041
+  nom: Krathal-t'iq
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 2.366
+  - 21.929
+  altitude_m: 2300
+  altitude_crete_avant_entaille_m: 2372
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 5.4
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_042
+  nom: Ktalor-p'es
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '||Urumati-k''ara'
+  pos:
+  - 8.376
+  - 22.98
+  altitude_m: 2600
+  altitude_crete_avant_entaille_m: 2799
+  ensellement_naturel: true
+  entaille: true
+  azimut_crete_px_deg: 12.1
+  statut_passage: haute_route
+  cycle_hivernal: hiver_blanc
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_043
+  nom: Halek-t'ama
+  groupe: Halaktim ↔ Tɨrakh
+  interface: 'halekh central et oriental, !Okheti, k''ara occidental : piémonts NO et rive S de l''Halakhel ↔ Centre'
+  chaine: '!Okheti'
+  pos:
+  - -0.344
+  - 23.746
+  altitude_m: 1900
+  altitude_crete_avant_entaille_m: 2015
+  ensellement_naturel: false
+  entaille: true
+  azimut_crete_px_deg: 44.6
+  statut_passage: bas_col
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_044
+  nom: ʿUbayl-t'iq
+  groupe: Šamqiriyyūn ↔ Qoyra-ña-ra
+  interface: 'rebord occidental et septentrional de qoyra : déserts du NE ↔ hauts plateaux'
+  chaine: '||Urumati-qoyra (escarpement)'
+  pos:
+  - 39.339
+  - 14.45
+  altitude_m: 2000
+  altitude_crete_avant_entaille_m: 2128
+  ensellement_naturel: false
+  entaille: false
+  statut_passage: secondaire
+  cycle_hivernal: hiver_gris
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_045
+  nom: Ḥazīr-k'ama
+  groupe: Šamqiriyyūn ↔ Qoyra-ña-ra
+  interface: 'rebord occidental et septentrional de qoyra : déserts du NE ↔ hauts plateaux'
+  chaine: '||Urumati-qoyra (escarpement)'
+  pos:
+  - 38.749
+  - 15.3
+  altitude_m: 2100
+  altitude_crete_avant_entaille_m: 2195
+  ensellement_naturel: false
+  entaille: false
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_046
+  nom: Ṣamar-q'ut
+  groupe: Šamqiriyyūn ↔ Qoyra-ña-ra
+  interface: 'rebord occidental et septentrional de qoyra : déserts du NE ↔ hauts plateaux'
+  chaine: '||Urumati-qoyra (escarpement)'
+  pos:
+  - 38.462
+  - 14.05
+  altitude_m: 2200
+  altitude_crete_avant_entaille_m: 2268
+  ensellement_naturel: false
+  entaille: false
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_047
+  nom: Rafīq-t'sal
+  groupe: Šamqiriyyūn ↔ Qoyra-ña-ra
+  interface: 'rebord occidental et septentrional de qoyra : déserts du NE ↔ hauts plateaux'
+  chaine: '||Urumati-qoyra (escarpement)'
+  pos:
+  - 37.729
+  - 13.0
+  altitude_m: 2300
+  altitude_crete_avant_entaille_m: 2403
+  ensellement_naturel: false
+  entaille: false
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 5
+  - 10
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
+- geo_id: GEO_COL_048
+  nom: Nrelat-q'urm
+  groupe: Šamqiriyyūn ↔ Qoyra-ña-ra
+  interface: 'rebord occidental et septentrional de qoyra : déserts du NE ↔ hauts plateaux'
+  chaine: '||Urumati-qoyra (escarpement)'
+  pos:
+  - 37.777
+  - 11.85
+  altitude_m: 2200
+  altitude_crete_avant_entaille_m: 2225
+  ensellement_naturel: false
+  entaille: false
+  statut_passage: secondaire
+  cycle_hivernal: cycle_mixte
+  ouverture_mois:
+  - 4
+  - 11
+  routes: []
+  statut: '[PROPOSITION] position calculée ; altitude [CANON]'
